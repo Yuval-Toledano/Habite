@@ -30,7 +30,7 @@ export default function NewUserBegin(props) {
           await signUpJG(location.state.userMail, location.state.password, location.state.groupID, nameRef.current.value, imageRef.current.value)
         }
         //await updateUserInfo(nameRef.current.value, imageRef.current.value)
-        history.push("/overview")
+        history.push("/user/overview")
     }
 
     return (

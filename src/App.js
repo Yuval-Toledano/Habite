@@ -5,16 +5,20 @@ import SignUp from "./containers/pages/auth/signUp";
 import NewUserBegin from "./containers/pages/auth/newUserBegin";
 import PageTemplate from "./containers/pages/pageTemplate";
 import Overview from "./containers/pages/overview";
+import ChallengePage from "./containers/pages/challenges";
+import { HomePage } from "./containers/pages/landingPage/homePage";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <Switch>
+          <Route path="/" exact component={HomePage} />
           <Route path="/signup" component={SignUp}/>
           <Route path="/newUser" exact component={NewUserBegin} />
           <PageTemplate>
-            <Route path="overview" exact component={Overview}/>
+            <Route path="/user/overview" exact component={Overview}/>
+            <Route path="/user/challenges" exact component={ChallengePage} />
           </PageTemplate>
         </Switch>
       </AuthProvider>
