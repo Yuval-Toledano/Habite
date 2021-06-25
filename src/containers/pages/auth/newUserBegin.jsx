@@ -1,21 +1,35 @@
+import { Email } from '@material-ui/icons';
 import React, {useRef, useState} from 'react';
-import {Link, withRouter, useHistory} from "react-router-dom";
+import {Link, withRouter, useHistory, useLocation} from "react-router-dom";
 import {TextInPage, StandAloneTitle, IndicationText } from "../../../components/designSystem/common";
 import {PageContainer, InnerPageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
 
 
-export default function NewUserBegin() {
-    const nameRef = useRef();
-    const imageRef = useRef();
-    const {updateUserInfo, forceRender} = useAuth();
+export default function NewUserBegin(props) {
+  //const [email, setEmail] = useState()
+  //const password = location.state.password
+  //const typeSignUp = location.state.type
+      
+  const nameRef = useRef();
+  const imageRef = useRef();
+  const {updateUserInfo, forceRender, signUpNG, signUpJG} = useAuth();
 
-    const history = useHistory();
-
+  const history = useHistory();
+  const location = useLocation()
+    
+    
     // The function handles submit form
     async function handleSubmit(event) {
         event.preventDefault();
-        await updateUserInfo(nameRef.current.value, imageRef.current.value)
+        
+        if (location.state.type === 'NG'){
+          await signUpNG(location.state.userMail, location.state.password, nameRef.current.value, imageRef.current.value);
+        }
+        else {
+          await signUpJG(location.state.userMail, location.state.password, location.state.groupID, nameRef.current.value, imageRef.current.value)
+        }
+        //await updateUserInfo(nameRef.current.value, imageRef.current.value)
         history.push("/overview")
     }
 

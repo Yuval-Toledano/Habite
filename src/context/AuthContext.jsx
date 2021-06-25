@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import firebase from "firebase/app";
 import { auth, db} from "../firebase";
 import {
   generateUserDocument,
@@ -11,6 +12,8 @@ import {
 } from "../server/firebaseTools";
 
 const AuthContext = React.createContext();
+const increment = firebase.firestore.FieldValue.increment(1);
+
 
 export function useAuth() {
   return useContext(AuthContext);
@@ -28,7 +31,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   // The function creates new user and new group documents
-  function signUpNG(email, password) {
+  function signUpNG(email, password, name, pic) {
     
     return auth.createUserWithEmailAndPassword(email, password)
         .then((user) => {
@@ -39,6 +42,8 @@ export function AuthProvider({ children }) {
                 score: 0,
                 level: 1,
                 groupId: user.user.uid,
+                userName: name,
+                profilePic: ''
             })
             db.doc(`groups/${user.user.uid}`).set({
                 usersInGroup: [user.user.uid],
@@ -51,18 +56,24 @@ export function AuthProvider({ children }) {
 }
 
   // The function creates new user and updates the group info
-  async function signUpJG(email, password, groupId) {
-    try {
-      await auth
-        .createUserWithEmailAndPassword(email, password)
-        .then((user) => {
-          generateUserDocument(user, user.user.uid);
-          generateUserInGroupDocument(user.user.uid, groupId);
-        });
-    } catch (error) {
-      console.error("Error with signUp join group: " + error);
-    }
-  }
+  async function signUpJG(email, password, groupId, name, pic) {
+    return auth.createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+          db.doc(`users/${user.user.uid}`).set({
+            email: email,
+            challengeVotes: [],
+            notification: [],
+            score: 0,
+            level: 1,
+            groupId: groupId,
+            userName: name,
+            profilePic: ''
+        })
+        db.collection("groups").doc(groupId).update({
+          usersInGroup: firebase.firestore.FieldValue.arrayUnion(user.user.uid),
+          countGroup: increment,
+        })
+      })}
 
   // the function update the user's document with new info
   function updateUserInfo(name, image) {

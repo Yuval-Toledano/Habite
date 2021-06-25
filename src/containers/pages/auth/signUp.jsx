@@ -6,7 +6,7 @@ import { Marginer } from '../../../components/marginer/marginer';
 import {useAuth} from "../../../context/AuthContext";
 
 
-export default function SignUp() {
+export default function SignUp(props) {
     const NG_emailRef = useRef();
     const NG_passwordRef = useRef();
     const WG_emailRef = useRef();
@@ -20,20 +20,31 @@ export default function SignUp() {
     // The function handles submit 'no group' form
     async function handleSubmitNG(event){
         event.preventDefault();
-        setLoading(true);
-        await signUpNG(NG_emailRef.current.value, NG_passwordRef.current.value);
-        setLoading(false);
-        history.push("/newUser")
-
+        //setLoading(true);
+        //await signUpNG(NG_emailRef.current.value, NG_passwordRef.current.value);
+        //setLoading(false);
+        history.push( {
+          pathname: "/newUser",
+          state: {
+            userMail: NG_emailRef.current.value,
+            password: NG_passwordRef.current.value,
+            type: 'NG'}})
     }
 
     // The function handles submit 'join group' form
     async function handleSubmitJG(event) {
         event.preventDefault();
-        setLoading(true);
-        await signUpJG(WG_emailRef.current.value, WG_passwordRef.current.value, groupCodeRef.current.value);
-        setLoading(false);
-        console.log("submit")
+        //setLoading(true);
+        //await signUpJG(WG_emailRef.current.value, WG_passwordRef.current.value, groupCodeRef.current.value);
+        //setLoading(false);
+        history.push( {
+          pathname: "/newUser",
+          state: {
+            userMail: WG_emailRef.current.value,
+            password: WG_passwordRef.current.value,
+            groupID: groupCodeRef.current.value,
+            type: 'JG'}})
+        
     }
 
     return (
