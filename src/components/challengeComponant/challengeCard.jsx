@@ -21,6 +21,9 @@ export function ChallengeCard(props) {
           return;
         }
         const userVotes = userData.challengeVotes;
+        console.log("users votes",userVotes)
+        console.log("if", userVotes &&
+        userVotes.some((challengeIds) => challengeIds === curr))
         if (
           userVotes &&
           userVotes.some((challengeIds) => challengeIds === curr)
@@ -31,7 +34,7 @@ export function ChallengeCard(props) {
         }
       };
       fetchUsersVotes();
-    }, [userData, curr, updateVal]);
+    }, [userData, curr]);
   
     useEffect(() => {
       const fetchChallenge = () => {

@@ -63,8 +63,10 @@ export function AuthProvider({ children }) {
         groupRef.update({
           usersInGroup: firebase.firestore.FieldValue.arrayUnion(user.user.uid),
           countGroup: increment,
+        }).then(() => {
+          forceRender();
         }).catch(err => console.log("Error with update group", err));
-        forceRender();
+        
     }).catch(err => console.log("Error with join group: ", err));
   }
 

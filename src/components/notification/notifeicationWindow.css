@@ -1,0 +1,66 @@
+.BellButton {
+    cursor: pointer;
+    border: none;
+    background-color: #F8F7F5;
+}
+
+
+.NotiWrapper{
+    background:#F8F7F5;
+    width: 23%;
+    height: 90%;
+    top: 50px;
+    right: 10px;
+    display: flex;
+    position: absolute;
+    z-index: 11;
+    float: center;
+    border-radius: 8px;
+    border: 1px solid #E4DCD3;
+    box-shadow: -5px 5px 5px 0px lightgrey;
+}
+
+.NotiHeader{
+    padding: 10px;
+    height: 20%;
+    flex-direction: row;
+    
+}
+
+
+.iconDesign{
+    color: #00397B;
+    border-style:none;
+    width: 29px;
+    height: 29px;
+}
+
+.NotiBody{
+    padding: 10px;
+}
+
+.NotiList{
+    padding: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+
+.NotiListTitle{
+    border-top: solid;
+    border-color: #E71C96;
+    padding-top: 10px;
+
+}
+
+.NotiListData{
+    padding-bottom: 10px;
+    margin: 5px;
+}
+
+.NotiList .NotiListData:hover{
+    cursor: pointer;
+    background-color: #E71C96;
+    color: #FAF0E4;
+    border-radius: 15px;
+  }

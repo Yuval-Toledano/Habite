@@ -8,6 +8,7 @@ import {Separator} from "../../components/marginer/marginer";
 import { ChallengeCard } from "../../components/challengeComponant/challengeCard";
 import {ChallengeBox} from "../../components/challengeComponant/challengeBox";
 import {getChallengesData} from "../../server/firebaseTools";
+import {useAuth} from "../../context/AuthContext";
 
 export default function ChallengePage() {
   const [currentChallenge, setCurrentChallenge] = useState(null);
@@ -16,6 +17,8 @@ export default function ChallengePage() {
   const [active, setActiveMode] = useState(null);
   const [isFirst, setFirst] = useState(true);
   const [clicked, setClicked] = useState(null);
+
+  const {forceRender} = useAuth();
 
   useEffect(() => {
     //gets the  10 challenges from db order by level
@@ -37,6 +40,7 @@ export default function ChallengePage() {
       setFirst(false);
       setClicked(id);
       setCurrentChallenge(id);
+      forceRender();
     }
   }
 
