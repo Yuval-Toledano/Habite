@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { H4, IndicationText} from '../../designSystem/common'
-import './NotificationWindow.css'
-import { NotificationData } from './NotificationData.js'
-import NotificationBar from '../../notifictionBar/notificationBar';
-import {db, auth} from "../../../config/firebase.js";
-import { getUserDocumentData } from "../../../config/firebaseTools";
+import React from 'react'
+import { H4, IndicationText} from '../designSystem/common'
+import './notificationWindow.css'
+import { NotificationData } from './notificationData.js'
 
 
-export const NotificationWindow = ({ show, showDot, notiData}) => {
+
+export const NotificationWindow = ({ show, notiData}) => {
 
 
     const reverseNotiArr = notiData.reverse() ;

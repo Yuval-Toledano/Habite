@@ -86,15 +86,13 @@ function usePrevious(value) {
 function NotificationBar(props) {
     const {userData} = useAuth();
     const [show, setShow] = useState(false);
-
     const [showDot, setShowDot] = useState(false)
-
     const [notiData, setNotiData] = useState([])
-    const [currUser, setCurrUser] = useState()
-
 
     const prevNoti = usePrevious(notiData)
     
+    console.log("userData in notiBar", userData)
+    console.log("prevNoti", prevNoti)
 
     useEffect(() => {
         const isEqual = (notiPrev, notiNew) => {
@@ -105,13 +103,14 @@ function NotificationBar(props) {
         const fetchNotification = () =>{
             if (userData == null){return}
             const noti = userData.notification
+            console.log("noti", noti)
             const isNewNoti = isEqual(prevNoti, noti)
             console.log("is new noti", isNewNoti)
             setNotiData(noti)
             setShowDot(!isNewNoti)
         }
         fetchNotification();
-    }, [prevNoti, showDot, show])
+    }, [userData, prevNoti, showDot, show])
     
     const closeWindow = () => {
         setShow(!show);
@@ -123,8 +122,6 @@ function NotificationBar(props) {
                 <IconsContainer>
                     <button className="BellButton" style={{border:"none"}} onClick={closeWindow}><NotificationIndicator showDot={showDot} onClick={()=> setShowDot(false)}/></button>                        
                     <NotificationWindow show={show} showDot={setShowDot} notiData={notiData} closeWindow={closeWindow}/>
-                    {/* <Marginer direction="horizontal" margin={30} />
-                    <ChatBubbleRoundedIcon style={{ color: "#00397B" }}/> */} 
                 </IconsContainer>
             </NotiBarContainer>
         );

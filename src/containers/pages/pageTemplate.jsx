@@ -1,7 +1,7 @@
 import React from "react";
 import { Marginer } from "../../components//marginer/marginer";
 import Sidebar from "../../components/sidebar/sidbar";
-// import NotificationBar from "../../components/notifictionBar/notificationBar";
+import NotificationBar from "../../components/notification/notificationBar";
 
 function PageTemplate({ children }) {
   return (
@@ -17,7 +17,7 @@ function PageTemplate({ children }) {
 
         {/* <div className="col-10 g-0"> */}
         {/* Topbar starts here */}
-        {/* <NotificationBar /> */}
+        <NotificationBar />
         {/* Topbar ends here */}
 
         {/* Page content starts here */}
