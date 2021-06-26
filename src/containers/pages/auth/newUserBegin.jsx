@@ -1,10 +1,10 @@
 import { Email } from '@material-ui/icons';
 import React, {useRef, useState} from 'react';
-import {Link, withRouter, useHistory, useLocation} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import {TextInPage, StandAloneTitle, IndicationText } from "../../../components/designSystem/common";
 import {PageContainer, InnerPageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
-
+import {storage} from "../../../firebase";
 
 export default function NewUserBegin(props) {
   //const [email, setEmail] = useState()
@@ -13,7 +13,8 @@ export default function NewUserBegin(props) {
       
   const nameRef = useRef();
   const imageRef = useRef();
-  const {updateUserInfo, forceRender, signUpNG, signUpJG} = useAuth();
+  const [image, setImage] = useState(null);
+  const {signUpNG, signUpJG} = useAuth();
 
   const history = useHistory();
   const location = useLocation()
@@ -24,13 +25,19 @@ export default function NewUserBegin(props) {
         event.preventDefault();
         
         if (location.state.type === 'NG'){
-          await signUpNG(location.state.userMail, location.state.password, nameRef.current.value, imageRef.current.value);
+          await signUpNG(location.state.userMail, location.state.password, nameRef.current.value, image);
         }
         else {
-          await signUpJG(location.state.userMail, location.state.password, location.state.groupID, nameRef.current.value, imageRef.current.value)
+          await signUpJG(location.state.userMail, location.state.password, location.state.groupID, nameRef.current.value, image)
         }
         //await updateUserInfo(nameRef.current.value, imageRef.current.value)
         history.push("/user/overview")
+    }
+
+    async function handleUploadImage(e){
+      if(e.target.files[0]){
+        setImage(e.target.files[0])
+      }
     }
 
     return (
@@ -87,11 +94,13 @@ export default function NewUserBegin(props) {
                       </label>
                       <input
                         type="file"
+                        accept="image/*"
                         className="form-control rounded-pill"
                         name="userProfilePic"
                         placeholder=""
                         id="userProfilePic"
                         ref={imageRef}
+                        onChange={(e) => handleUploadImage(e)}
                       />
                     </div>
                     {/* profile picture input end */}

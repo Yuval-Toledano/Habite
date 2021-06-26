@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import firebase from "firebase/app";
-import { auth, db } from "../firebase";
+import { auth, db, storage} from "../firebase";
 import {
   getGroupMembersData,
 } from "../server/firebaseTools";
@@ -25,49 +25,74 @@ export function AuthProvider({ children }) {
 
   // The function creates new user and new group documents
   async function signUpNG(email, password, name, pic) {
-    return auth.createUserWithEmailAndPassword(email, password).then((user) => {
-      db.doc(`users/${user.user.uid}`).set({
-        email: email,
-        challengeVotes: [],
-        notification: [],
-        score: 0,
-        level: 1,
-        groupId: user.user.uid,
-        userName: name,
-        profilePic: "",
-      });
-      db.doc(`groups/${user.user.uid}`).set({
-        usersInGroup: [user.user.uid],
-        countGroup: 1,
-        currentChallenge: "",
-        approvedChallenges: [],
-        pastChallenges: [],
-      });
-    });
+    //add profile picture to firebase storage.
+    const userImagePath = "users/" + email + "/profile";
+        return storage.ref(userImagePath).put(pic).on(
+          "state_changed",
+          (snapshot) => {}, 
+          error => {console.log("Error adding image to storage", error)},
+          () => {
+            storage.ref(userImagePath).getDownloadURL().then((url) => {
+              // creates user
+              auth.createUserWithEmailAndPassword(email, password).then((user) => {
+                db.doc(`users/${user.user.uid}`).set({
+                  email: email,
+                  challengeVotes: [],
+                  notification: [],
+                  score: 0,
+                  level: 1,
+                  groupId: user.user.uid,
+                  userName: name,
+                  profilePic: url,
+                });
+                // creates group
+                db.doc(`groups/${user.user.uid}`).set({
+                  usersInGroup: [user.user.uid],
+                  countGroup: 1,
+                  currentChallenge: "",
+                  approvedChallenges: [],
+                  pastChallenges: [],
+            })
+          }
+        )
+        })})  
   }
 
   // The function creates new user and updates the group info
   async function signUpJG(email, password, groupId, name, pic) {
-    return auth.createUserWithEmailAndPassword(email, password).then((user) => {
-      db.doc(`users/${user.user.uid}`).set({
-        email: email,
-        challengeVotes: [],
-        notification: [],
-        score: 0,
-        level: 1,
-        groupId: groupId,
-        userName: name,
-        profilePic: "",
-      });
-      const groupRef = db.collection("groups").doc(groupId)
-        groupRef.update({
-          usersInGroup: firebase.firestore.FieldValue.arrayUnion(user.user.uid),
-          countGroup: increment,
-        }).then(() => {
-          forceRender();
-        }).catch(err => console.log("Error with update group", err));
-        
-    }).catch(err => console.log("Error with join group: ", err));
+      //add profile picture to firebase storage.
+       const userImagePath = "users/" + email + "/profile";
+        return storage.ref(userImagePath).put(pic).on(
+          "state_changed",
+          (snapshot) => {}, 
+          error => {console.log("Error adding image to storage", error)},
+          () => {
+            storage.ref(userImagePath).getDownloadURL().then((url) => {
+              // creates user
+              auth.createUserWithEmailAndPassword(email, password).then((user) => {
+                db.doc(`users/${user.user.uid}`).set({
+                  email: email,
+                  challengeVotes: [],
+                  notification: [],
+                  score: 0,
+                  level: 1,
+                  groupId: groupId,
+                  userName: name,
+                  profilePic: url,
+                });
+                // update group
+                const groupRef = db.collection("groups").doc(groupId)
+                  groupRef.update({
+                    usersInGroup: firebase.firestore.FieldValue.arrayUnion(user.user.uid),
+                    countGroup: increment,
+                  }).then(() => {
+                    forceRender();
+                  }).catch(err => console.log("Error with update group", err));
+                  
+              }).catch(err => console.log("Error with join group: ", err));
+            })
+          }
+        )
   }
 
   // the function sign out the user
@@ -86,33 +111,32 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    // setLoadData(true);
     // the function load the user data from the db
     const fetchUser = async () => {
       if (userId) {
-        console.log("load data in useEffect 1", loadData)
         db.collection("users")
           .doc(userId)
           .get()
           .then((user) => {
             const dataUser = { ...user.data(), id: user.id };
+            if(Object.keys(dataUser).length < 8){
+              forceRender();
+              return;
+            }
             setUserData(dataUser);
           });
       } else {
-        console.log("no userId")
-        // setUserId(null);
+        console.log("ERROR: no userId")
         setUserData(null);
         setGroupData(null);
         setGroupMemberData([]);
         setLoadData(false);
       }
     };
-    console.log("userId", userId)
     fetchUser();
   }, [userId, updateVal]);
 
   useEffect(() => {
-    // setLoadData(true);
     // the function load the group data and the group members data from the db
     const fetchGroup = () => {
       if (userData) {
@@ -122,7 +146,10 @@ export function AuthProvider({ children }) {
           .get()
           .then((group) => {
             const dataGroup = { ...group.data(), id: group.id };
-            console.log("groupData in useEffect 2", dataGroup)
+            if(Object.keys(dataGroup).length < 5){
+              forceRender();
+              return;
+            }
             setGroupData(dataGroup);
           });
         //load group members data

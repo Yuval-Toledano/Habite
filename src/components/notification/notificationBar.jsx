@@ -90,22 +90,17 @@ function NotificationBar(props) {
     const [notiData, setNotiData] = useState([])
 
     const prevNoti = usePrevious(notiData)
-    
-    console.log("userData in notiBar", userData)
-    console.log("prevNoti", prevNoti)
 
     useEffect(() => {
         const isEqual = (notiPrev, notiNew) => {
-            return( notiPrev.length === notiNew.length 
+            return( notiPrev && notiNew && notiPrev.length === notiNew.length 
                 && notiPrev.every((v,i)=> v === notiNew[i]))
         }
 
         const fetchNotification = () =>{
             if (userData == null){return}
             const noti = userData.notification
-            console.log("noti", noti)
             const isNewNoti = isEqual(prevNoti, noti)
-            console.log("is new noti", isNewNoti)
             setNotiData(noti)
             setShowDot(!isNewNoti)
         }
@@ -114,7 +109,6 @@ function NotificationBar(props) {
     
     const closeWindow = () => {
         setShow(!show);
-        // setShowDot(false);
     }
 
     return (
