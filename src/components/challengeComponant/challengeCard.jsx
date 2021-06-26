@@ -31,7 +31,7 @@ export function ChallengeCard(props) {
         }
       };
       fetchUsersVotes();
-    }, [userData, curr]);
+    }, [userData, curr, updateVal]);
   
     useEffect(() => {
       const fetchChallenge = () => {

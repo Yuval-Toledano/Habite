@@ -34,11 +34,11 @@ const NO_CURR_UPDATE = 3;
 
 export default function Overview() {
     const { userData, groupData, groupMemberData, forceRender } = useAuth();
-    const [currChallenge, setCurrChallenge] = useState(groupData.currentChallenge);
+    const [currChallenge, setCurrChallenge] = useState();
   const history = useHistory();
 
-  console.log("group data in overview", groupData)
-
+    console.log("group data in overview", groupData)
+    console.log("group members data in overview", groupMemberData)
   useEffect(() => {
     // check if the the date is valid for the current challenge
     const isValidDate = () => {
@@ -49,7 +49,7 @@ export default function Overview() {
     //gets current challenge to show
     const fetchChallenge = () => {
       if (!groupData ) {
-          console.log('fetch challenge return', groupData.currentChallenge)
+          console.log('fetch challenge return', groupData)
         return;
       }
       const currentChallengeId = groupData.currentChallenge;
@@ -219,6 +219,8 @@ export default function Overview() {
     <InfoBox></InfoBox>
   );
 
+
+
   const copyGroupCode = () => {
     var copyText = document.getElementById("groupCodeText").innerText;
     navigator.clipboard.writeText(copyText);
@@ -257,7 +259,7 @@ export default function Overview() {
               </SubTitle>
               <div className="d-flex flex-row">
                 <div id="groupCodeText" className="group_code_div">
-                  {groupData.id}
+                  {groupData && groupData.id}
                 </div>
                 <TextualButton
                   id="btn_copy"

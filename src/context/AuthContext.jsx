@@ -60,7 +60,6 @@ export function AuthProvider({ children }) {
         profilePic: "",
       });
       const groupRef = db.collection("groups").doc(groupId)
-        console.log("group ref", groupRef)
         groupRef.update({
           usersInGroup: firebase.firestore.FieldValue.arrayUnion(user.user.uid),
           countGroup: increment,
@@ -71,10 +70,12 @@ export function AuthProvider({ children }) {
 
   // the function sign out the user
   function logOut() {
-    setUserData(null);
-    setGroupData(null);
-    setGroupMemberData(null);
-    return auth.signOut();
+    return auth.signOut().then(() => {
+      setUserId(null);
+      setUserData(null);
+      setGroupData(null);
+      setGroupMemberData([]);
+    });
   }
 
   // the function force page render
@@ -87,6 +88,7 @@ export function AuthProvider({ children }) {
     // the function load the user data from the db
     const fetchUser = async () => {
       if (userId) {
+        console.log("load data in useEffect 1", loadData)
         db.collection("users")
           .doc(userId)
           .get()
@@ -95,12 +97,15 @@ export function AuthProvider({ children }) {
             setUserData(dataUser);
           });
       } else {
+        console.log("no userId")
+        // setUserId(null);
         setUserData(null);
         setGroupData(null);
-        setGroupMemberData(null);
+        setGroupMemberData([]);
         setLoadData(false);
       }
     };
+    console.log("userId", userId)
     fetchUser();
   }, [userId, updateVal]);
 
@@ -115,6 +120,7 @@ export function AuthProvider({ children }) {
           .get()
           .then((group) => {
             const dataGroup = { ...group.data(), id: group.id };
+            console.log("groupData in useEffect 2", dataGroup)
             setGroupData(dataGroup);
           });
         //load group members data
@@ -124,9 +130,15 @@ export function AuthProvider({ children }) {
           setLoadData(false);
         });
       } else {
+        console.log("no userData")
+        // setUserId(null);
+        setUserData(null);
+        setGroupData(null);
+        setGroupMemberData([]);
         setLoadData(false);
       }
     };
+    console.log("userData", userData);
     fetchGroup();
   }, [userData, updateVal]);
 

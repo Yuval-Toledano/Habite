@@ -10,7 +10,7 @@ import {SidebarData} from "./sidebarData";
 
 export default function Sidebar() {
     const [hour, setHour] = useState("");
-    const {logOut, userData, forceRender, groupData, groupMemberData} = useAuth();
+    const {logOut, userData, groupData, groupMemberData} = useAuth();
     const history = useHistory();
 
     async function handleLogOut(event){
