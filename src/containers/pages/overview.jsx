@@ -10,6 +10,7 @@ import {
 import {
   Button,
   TextualButton,
+  SecondaryButton,
 } from "../../components/button/button";
 import { Separator, Marginer } from "../../components/marginer/marginer";
 import {
@@ -19,6 +20,8 @@ import {
   updateScore,
   notiForGroupMembers,
   generateChallengeLog,
+  updateSuccessChallengeLog,
+  getChallengeLogData,
 } from "../../server/firebaseTools";
 import { LeaderBoard } from "../../components/leaderBoard/leaderBoard";
 import File_copy from "@material-ui/icons/FileCopy";
@@ -42,7 +45,12 @@ const NO_CURR_UPDATE = 3;
 export default function Overview() {
     const { userData, groupData, groupMemberData, forceRender, loadData } = useAuth();
     const [currChallenge, setCurrChallenge] = useState();
+    const [disabledButton, setDisabledButton] = useState();
+    const [loading, setLoading] = useState(true);
   const history = useHistory();
+
+  const nowDate = new Date().getDate();
+
 
     console.log("group data in overview", groupData)
     console.log("group members data in overview", groupMemberData)
@@ -144,26 +152,63 @@ export default function Overview() {
     fetchChallenge();
   }, [userData, groupData]);
 
+  useEffect(() => {
+    setLoading(true);
+
+    //check if the user already click the success button
+    const checkDisabled = () => {
+      if (userData == null || currChallenge == null || currChallenge === "noChallenge"){
+        return;
+      }
+      const logObjPromise = getChallengeLogData(currChallenge.id, userData.id);
+      logObjPromise.then((logObj) => {
+        var date = new Date();
+        const disabled = logObj.dateSuccess === date.getDate();
+        setDisabledButton(disabled);
+        setLoading(false);
+      });
+    }
+    checkDisabled();
+  }, [currChallenge, nowDate])
+
+    
+  if(loadData){
+    return(
+      <IndicationText>Loading...</IndicationText>
+    )
+  }
+
+    // update user succeeded the challenge today
+    const handleSuccess = () => {
+      updateSuccessChallengeLog(userData.id, currChallenge.id);
+      // sent notification to the group members about user's success
+      notiForGroupMembers(groupMemberData, userData.id, MEMBER_SUCCESS);
+      setDisabledButton(true);
+
+      //TODO: check if forceRender is needed
+    };
+
+
   // decide which button to display
-//   var successButton =
-//     disabledButton || loading ? (
-//       <div></div>
-//     ) : (
-//       <>
-//         <IndicationText>
-//           Today you haven't documented anything yet.
-//           <br />
-//           How are you doing?
-//         </IndicationText>
-//         <div className="d-flex justify-content-around p-2">
-//           <Button width="100%" onClick={handleSuccess}>
-//             I succeeded today
-//           </Button>
-//           <br />
-//           <SecondaryButton width="100%">I didn’t make it</SecondaryButton>
-//         </div>
-//       </>
-//     );
+  var successButton =
+    disabledButton || loading ? (
+      <div></div>
+    ) : (
+      <>
+        <IndicationText>
+          Today you haven't documented anything yet.
+          <br />
+          How are you doing?
+        </IndicationText>
+        <div className="d-flex justify-content-around p-2">
+          <Button width="100%" onClick={handleSuccess}>
+            I succeeded today
+          </Button>
+          <br />
+          <SecondaryButton width="100%">I didn’t make it</SecondaryButton>
+        </div>
+      </>
+    );
 
   // display the current challenge or go to vote message
   var showCurrentChallenge = currChallenge ? (
@@ -196,7 +241,7 @@ export default function Overview() {
           </SubTitle>
           <IndicationText>{currChallenge.description}</IndicationText>
           <Marginer direction="vertical" margin="16px"></Marginer>
-          {/* {successButton} */}
+          {successButton}
         </div>
       </InfoBox>
     )
@@ -234,13 +279,9 @@ export default function Overview() {
     document.getElementById("indicationCopy").innerHTML = "&nbsp;copied!";
   };
 
+  //TODO: delete console.log()
   console.log("current challenge: ", currChallenge)
 
-  if(loadData){
-    return(
-      <IndicationText>Loading...</IndicationText>
-    )
-  }
 
   return (
     <>

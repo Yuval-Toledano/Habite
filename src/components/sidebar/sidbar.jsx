@@ -10,7 +10,7 @@ import {SidebarData} from "./sidebarData";
 
 export default function Sidebar() {
     const [hour, setHour] = useState("");
-    const {logOut, userData, groupData, groupMemberData} = useAuth();
+    const {logOut, userData} = useAuth();
     const history = useHistory();
 
     async function handleLogOut(event){
@@ -38,15 +38,13 @@ export default function Sidebar() {
             }
         };
         whatIsTheHour();
-        console.log("userData in sidebar", userData);
-        console.log("sidebar render")
+
     }, [userData, hour])
 
     const userName = userData? userData.userName : "loading..."
     const userLevel = userData? userData.level : "";
     const url = userData && userData.profilePic && userData.profilePic !== ""? userData.profilePic : "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg";
-    console.log("group data in sidebar ",groupData)
-    console.log("group member data in sidebar", groupMemberData)
+
     return (
         <div className="Sidebar col g-0">
             <Logo id="logo">Habite</Logo>

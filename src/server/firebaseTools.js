@@ -230,6 +230,15 @@ export const getGroupDocument = (groupId) => {
 };
 
 /*
+ * the function takes docID - the id of the challengeLog - and return a promise of the document of the challengeLog.
+ * the function does not return the doc, it returns the promise.
+ * USAGE: to update the document do: getChallengeLogDocument(docID).then(doc => { doc.update({...})  })
+ */
+export const getChallengeLogDocument = (challengeLogId) => {
+  return getDocument("challengeLog", challengeLogId);
+};
+
+/*
  * the function return a promise of challenge's documents.
  * the function does not return the doc, it returns the promise.
  * USAGE: to get the data of the document do: getChallengesData().then(doc => { doc is an array of challenges})
@@ -283,6 +292,7 @@ export const getVoteDocData = async (challengeId, groupId) => {
     });
   });
 };
+
 
 /**
  * The function updates the current challenge of the group
@@ -536,4 +546,27 @@ const updateVotes = async (voteObj, userId) => {
       }
     });
   });
+};
+
+/**
+ * The function update the challenge counter success of the user
+ * and send notification to the other members of the group about their friend success
+ */
+ export const updateSuccessChallengeLog = (userId, challengeId) => {
+  const logObjPromise = getChallengeLogData(challengeId, userId);
+  logObjPromise.then((logObj) => {
+    if (!logObj) {
+      console.log("logObj not found");
+    }
+    const challengeLogPromise = getChallengeLogDocument(logObj.id);
+
+    challengeLogPromise.then((doc) => {
+      var date = new Date();
+      doc.update({
+        counterSuccess: increment,
+        dateSuccess: date.getDate(),
+      });
+    });
+  });
+
 };

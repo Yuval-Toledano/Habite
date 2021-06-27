@@ -58,7 +58,8 @@ export function ChallengeCard(props) {
         if (userData == null || challenge == null) {
           return;
         }
-        setVotersPhotos("loading")
+        // //TODO: ask about how its looking
+        // setVotersPhotos([]);
         const votePromise = getVoteDocData(challenge.id, userData.groupId);
         votePromise.then(async (doc) => {
           if (doc != null) {
@@ -100,8 +101,8 @@ export function ChallengeCard(props) {
         return "Advanced";
       }
     }
-
-    const images = votersPhotos === "loading"? (<div>Loading...</div>) : (votersPhotos.length !== 0? (
+  
+    const images = votersPhotos.length > 0 ? (
       votersPhotos.map((voter, index) => {
         return (
           <SingleVoter key={index} className="single-voter">
@@ -119,7 +120,7 @@ export function ChallengeCard(props) {
             ></img>
           </SingleVoter>
         );
-      })) : (<div>Be the first one to vote for this challenge</div>))
+      })) : <div>no group member voted for this challenge</div>
     
     const button = isDisabled ? (
       <DisableButton>I'm in</DisableButton>
@@ -128,11 +129,11 @@ export function ChallengeCard(props) {
         I'm in
       </Button>
     );
-
+    
     if (!challenge) {
       return <div></div>;
     }
-    
+
     return (
       <ChallengeBoard>
         <SubTitle>
@@ -156,7 +157,7 @@ export function ChallengeCard(props) {
         {/* <Separator /> */}
         <div className="row">
           <IndicationText className="">
-            See how group members voted:
+            See who of your group members voted:
           </IndicationText>
           <div className="d-flex flex-row justify-content-between">
             <div className="">

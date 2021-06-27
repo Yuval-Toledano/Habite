@@ -3,8 +3,6 @@ import {useAuth} from "../../context/AuthContext";
 import styled from "styled-components"
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { NotificationWindow } from "./notificationWindow";
-// import { getUserDocumentData} from "../../config/firebaseTools"
-// import {auth} from "../../config/firebase"
 
 
 const NotiBarContainer = styled.div`
