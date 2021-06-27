@@ -26,6 +26,7 @@ import {
 import { LeaderBoard } from "../../components/leaderBoard/leaderBoard";
 import File_copy from "@material-ui/icons/FileCopy";
 import styled from "styled-components";
+import Chart from "../../components/chart/chart";
 
 const LeaderBoardContainer = styled.div`
   margin-top: 8px;
@@ -43,8 +44,9 @@ const NO_APPROVED_UPDATE = 2;
 const NO_CURR_UPDATE = 3;
 
 export default function Overview() {
-    const { userData, groupData, groupMemberData, forceRender, loadData } = useAuth();
+    const { userData, groupData, groupMemberData, forceRender, loadData, updateVal } = useAuth();
     const [currChallenge, setCurrChallenge] = useState();
+    const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
     const [disabledButton, setDisabledButton] = useState();
     const [loading, setLoading] = useState(true);
   const history = useHistory();
@@ -171,6 +173,31 @@ export default function Overview() {
     checkDisabled();
   }, [currChallenge, nowDate])
 
+  useEffect(() => {
+    const fetchChallengeLog = async () => {
+      if(groupMemberData == null || currChallenge == null || currChallenge === "noChallenge"){
+        return;
+      }
+      const usersChallengeLogPromise = groupMemberData.map((user) => {
+        const challengeLogPromise = getChallengeLogData(
+          currChallenge.id,
+          user.id
+        ).then((doc) => {
+          if (doc != null) {
+            return doc;
+          } else {
+            console.log("challengeLog doc not found");
+          }
+        });
+        return challengeLogPromise;
+      });
+      var challengeLogData = await Promise.all(usersChallengeLogPromise);
+      setChallengeLogSuccess(challengeLogData);
+    }
+
+    fetchChallengeLog();
+  }, [currChallenge, groupMemberData, updateVal])
+
     
   if(loadData){
     return(
@@ -279,9 +306,7 @@ export default function Overview() {
     document.getElementById("indicationCopy").innerHTML = "&nbsp;copied!";
   };
 
-  //TODO: delete console.log()
-  console.log("current challenge: ", currChallenge)
-
+  console.log("check challengeLog", challengeLogSuccess);
 
   return (
     <>
@@ -358,13 +383,8 @@ export default function Overview() {
               </div>
 
               <div className="col">
-                {/* <Chart
-                      groupMembers={groupMembers}
-                      challengeLogSuccess={challengeLogSuccess}
-                    /> */}
+                {challengeLogSuccess && <Chart challengeLog={challengeLogSuccess}/>}
               </div>
-
-              <div className="col">Legend:</div>
             </InfoBox>
           </div>
           {/* Chart place end */}
