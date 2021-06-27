@@ -20,7 +20,14 @@ import {
   notiForGroupMembers,
   generateChallengeLog,
 } from "../../server/firebaseTools";
+import { LeaderBoard } from "../../components/leaderBoard/leaderBoard";
 import File_copy from "@material-ui/icons/FileCopy";
+import styled from "styled-components";
+
+const LeaderBoardContainer = styled.div`
+  margin-top: 8px;
+  justify-content: space-evenly;
+`;
 
 // types of notifications
 const GO_VOTE = 0;
@@ -33,7 +40,7 @@ const NO_APPROVED_UPDATE = 2;
 const NO_CURR_UPDATE = 3;
 
 export default function Overview() {
-    const { userData, groupData, groupMemberData, forceRender } = useAuth();
+    const { userData, groupData, groupMemberData, forceRender, loadData } = useAuth();
     const [currChallenge, setCurrChallenge] = useState();
   const history = useHistory();
 
@@ -229,6 +236,12 @@ export default function Overview() {
 
   console.log("current challenge: ", currChallenge)
 
+  if(loadData){
+    return(
+      <IndicationText>Loading...</IndicationText>
+    )
+  }
+
   return (
     <>
       <div className="content">
@@ -283,9 +296,9 @@ export default function Overview() {
           <div className="" id="leaderboard_box">
             <InfoBox>
               <IndicationText>Leaderboard</IndicationText>
-              {/* <LeaderBoardContainer className="d-flex flex-row">
-                    <LeaderBoard group={currGroup}></LeaderBoard>
-                  </LeaderBoardContainer> */}
+              <LeaderBoardContainer className="d-flex flex-row">
+                    <LeaderBoard/>
+                  </LeaderBoardContainer>
             </InfoBox>
           </div>
           {/* Leaderboard row end */}

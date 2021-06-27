@@ -154,6 +154,16 @@ const getDocument = async (collection, id) => {
   };
 
   /*
+ * the function takes docID - the id of the vote - and return a promise of the document of the vote.
+ * the function does not return the doc, it returns the promise.
+ * USAGE: to update the document do: getVoteDocument(docID).then(doc => { doc.update({...})  })
+ */
+export const getVoteDocument = (voteId) => {
+  return getDocument("votes", voteId);
+};
+
+
+  /*
  * the function takes docID and collection name and return a promise of the document.
  * the function does not return the doc, it returns the promise.
  * USAGE: to get the data of the document do: get{*collection*}Document(docID).then(doc => { //if(doc.exists) {do something with.doc.data() or doc.id} })
@@ -235,6 +245,29 @@ export const getChallengesData = async () => {
   });
   return challengesArr;
 };
+
+
+/*
+ * the function takes challengeId and groupId - and return a promise of the document of the vote.
+ * the function does not return the doc, it returns the promise.
+ * USAGE: to get the data of the document do: getVoteDocData(challengeId, groupId).then(doc => { //if(doc != null) {do something with.doc })
+ * is it important to check if(doc != null)
+ */
+export const getVoteDocData = async (challengeId, groupId) => {
+  const voteDoc = await db
+    .collection("votes")
+    .where("challengeId", "==", challengeId)
+    .where("groupId", "==", groupId)
+    .get();
+
+  const votesArr = voteDoc.docs.map((doc) => {
+    return { ...doc.data(), id: doc.id };
+  });
+
+  return votesArr[0];
+
+};
+
 
 /**
  * The function creates a new challengeLog object
@@ -432,17 +465,75 @@ export const getChallengeLogData = async (challengeId, userId) => {
 /*
  * creates new vote from userId and challengeId, and saves it to firestore server.
  */
-export const generateVotesDocument = async (currUserData, challengeData) => {
+export const generateVotesDocument = async (currUserData, challengeData, groupMembersData) => {
   if (!currUserData || !challengeData) return;
 
   const currGroupId = currUserData.groupId;
   const challengeId = challengeData.id;
 
-  //update the user's voted challenge array
+  // update the user's voted challenge array
   var userPromise = getUserDocument(currUserData.id);
   userPromise.then((user) => {
      user.update({
       challengeVotes: firebase.firestore.FieldValue.arrayUnion(challengeId),
     });
   });
+
+  // send notification to the group members about user's vote
+  notiForGroupMembers(groupMembersData, currUserData.id, MEMBER_VOTED);
+
+  //check if group member has already voted on the challenge
+  const dataVotes = await db
+    .collection("votes")
+    .where("challengeId", "==", challengeId)
+    .where("groupId", "==", currGroupId)
+    .get();
+
+   // if no vote, then creates a new doc in votes collection with relevant info
+   if (dataVotes.empty) {
+    var votesId = [currUserData.id];
+    const res = await db.collection("votes").add({
+      groupId: currGroupId,
+      challengeId: challengeId,
+      votersId: votesId,
+      voterCounter: 1,
+    });
+  } else {
+    // add a members group vote
+    const voteIdArray = dataVotes.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id };
+    });
+
+    updateVotes(voteIdArray[0], currUserData.id);
+  }
 } 
+
+/*
+ * the function takes vote object (with all the data) and userId.
+ * updates voters, and if needed update the approvedChallenges of the group.
+ */
+const updateVotes = async (voteObj, userId) => {
+  var voteIdPromise = getVoteDocument(voteObj.id);
+
+  // updates voters
+  voteIdPromise.then((vote) => {
+    vote.update({
+      votersId: firebase.firestore.FieldValue.arrayUnion(userId),
+      voterCounter: increment,
+    });
+  });
+
+  // update the approvedChallenges of the group
+  var groupPromise = getGroupDocument(voteObj.groupId);
+  groupPromise.then((doc) => {
+    doc.get().then((group) => {
+      if (group.data().countGroup === voteObj.voterCounter + 1) {
+        doc.update({
+          approvedChallenges: firebase.firestore.FieldValue.arrayUnion(
+            voteObj.challengeId
+          ),
+        });
+      }
+    });
+  });
+};

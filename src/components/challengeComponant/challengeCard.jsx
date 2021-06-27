@@ -3,6 +3,7 @@ import { ChallengeBoard, SubTitle, IndicationText, SingleVoter, TextInPage } fro
 import { Button, DisableButton } from "../../components/button/button";
 import {useAuth} from "../../context/AuthContext";
 import {getChallengeDocumentData, generateVotesDocument, notiForGroupMembers} from "../../server/firebaseTools";
+import {getVoteDocData} from "../../server/firebaseTools";
 
 // types of notifications
 const MEMBER_VOTED = 1;
@@ -16,14 +17,12 @@ export function ChallengeCard(props) {
     const {userData, groupMemberData, forceRender, updateVal} = useAuth();
   
     useEffect(() => {
+      // set disabled button if needed
       const fetchUsersVotes = () => {
         if (userData == null) {
           return;
         }
         const userVotes = userData.challengeVotes;
-        console.log("users votes",userVotes)
-        console.log("if", userVotes &&
-        userVotes.some((challengeIds) => challengeIds === curr))
         if (
           userVotes &&
           userVotes.some((challengeIds) => challengeIds === curr)
@@ -37,6 +36,7 @@ export function ChallengeCard(props) {
     }, [userData, curr]);
   
     useEffect(() => {
+      // gets challenge data
       const fetchChallenge = () => {
         const challengePromise = getChallengeDocumentData(curr);
         challengePromise.then((doc) => {
@@ -53,44 +53,39 @@ export function ChallengeCard(props) {
       }
     }, [curr]);
   
-    // useEffect(() => {
-    //   const fetchVotersPhotos = () => {
-    //     if (currUser == null || challenge == null) {
-    //       return;
-    //     }
-    //     const votePromise = getVoteDocData(challenge.id, currUser.groupId);
-    //     votePromise.then(async (doc) => {
-    //       if (doc != null) {
-    //         const votersId = doc.votersId.filter((id) => id !== currUser.id);
+    useEffect(() => {
+      const fetchVotersPhotos = () => {
+        if (userData == null || challenge == null) {
+          return;
+        }
+        setVotersPhotos("loading")
+        const votePromise = getVoteDocData(challenge.id, userData.groupId);
+        votePromise.then(async (doc) => {
+          if (doc != null) {
+            const votersId = doc.votersId.filter((id) => id !== userData.id);
+            let images = []
+            groupMemberData.forEach((member) => {
+              console.log("voters id", votersId)
+              if (votersId.includes(member.id)){
+                images.push(member.profilePic)
+              }
+            })
+            setVotersPhotos(images);
+          } else {
+            setVotersPhotos([]);
+          }
+        })   
+      };
   
-    //         const usersPromiseArr = votersId.map((userId) => {
-    //           const userPromise = getUserDocumentData(userId);
-    //           const userData = userPromise.then((doc) => {
-    //             return { ...doc.data(), id: doc.id };
-    //           });
-    //           return userData;
-    //         });
-  
-    //         var usersData = await Promise.all(usersPromiseArr);
-    //         const usersUrlPhotoPromiseArr = usersData.map((user) =>
-    //           downloadImg(user)
-    //         );
-    //         var usersUrlPhoto = await Promise.all(usersUrlPhotoPromiseArr);
-    //         setVotersPhotos(usersUrlPhoto);
-    //       } else {
-    //         console.log("vote document does not exist");
-    //         setVotersPhotos([]);
-    //       }
-    //     });
-    //   };
-  
-    //   fetchVotersPhotos();
-    // }, [challenge, currUser]);
+      console.log("check challenge card render")
+      fetchVotersPhotos();
+    }, [challenge, userData, groupMemberData]);
   
     const handleVote = (event) => {
       event.preventDefault();
       setDisabled(true);
-      generateVotesDocument(userData, challenge);
+      // creates vote document with the user's vote
+      generateVotesDocument(userData, challenge, groupMemberData);
       //send notification to the other group members
       notiForGroupMembers(groupMemberData, userData.id, MEMBER_VOTED);
       forceRender();
@@ -105,19 +100,39 @@ export function ChallengeCard(props) {
         return "Advanced";
       }
     }
-  
-    if (!challenge) {
-      return <div></div>;
-    }
-  
+
+    const images = votersPhotos === "loading"? (<div>Loading...</div>) : (votersPhotos.length !== 0? (
+      votersPhotos.map((voter, index) => {
+        return (
+          <SingleVoter key={index} className="single-voter">
+            <img
+              src={
+                voter ||
+                "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"
+              }
+              alt="group member"
+              style={{
+                height: "56px",
+                borderRadius: "56px",
+                border: "4px #FBE536 solid",
+              }}
+            ></img>
+          </SingleVoter>
+        );
+      })) : (<div>Be the first one to vote for this challenge</div>))
+    
     const button = isDisabled ? (
       <DisableButton>I'm in</DisableButton>
-    ) : (
-      <Button onClick={handleVote}>
+      ) : (
+        <Button onClick={handleVote}>
         I'm in
       </Button>
     );
-  
+
+    if (!challenge) {
+      return <div></div>;
+    }
+    
     return (
       <ChallengeBoard>
         <SubTitle>
@@ -145,25 +160,7 @@ export function ChallengeCard(props) {
           </IndicationText>
           <div className="d-flex flex-row justify-content-between">
             <div className="">
-              {votersPhotos &&
-                votersPhotos.map((voter, index) => {
-                  return (
-                    <SingleVoter key={index} className="single-voter">
-                      <img
-                        src={
-                          voter ||
-                          "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"
-                        }
-                        alt="group member"
-                        style={{
-                          height: "56px",
-                          borderRadius: "56px",
-                          border: "4px #FBE536 solid",
-                        }}
-                      ></img>
-                    </SingleVoter>
-                  );
-                })}
+              {images}
             </div>
             <div className="in-out-buttons justify-content-end">
               {button}

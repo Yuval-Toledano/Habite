@@ -7,6 +7,7 @@ import PageTemplate from "./containers/pages/pageTemplate";
 import Overview from "./containers/pages/overview";
 import ChallengePage from "./containers/pages/challenges";
 import { HomePage } from "./containers/pages/landingPage/homePage";
+import SignIn from "./containers/pages/auth/signIn";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <AuthProvider>
         <Switch>
           <Route path="/" exact component={HomePage} />
+          <Route path="/signin" exact component={SignIn} />
           <Route path="/signup" component={SignUp}/>
           <Route path="/newUser" exact component={NewUserBegin} />
           <PageTemplate>

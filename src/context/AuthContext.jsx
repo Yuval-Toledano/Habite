@@ -95,6 +95,10 @@ export function AuthProvider({ children }) {
         )
   }
 
+  function logIn(email, password){
+    return auth.signInWithEmailAndPassword(email, password)
+  }
+
   // the function sign out the user
   function logOut() {
     return auth.signOut().then(() => {
@@ -187,8 +191,10 @@ export function AuthProvider({ children }) {
     userData,
     groupData,
     groupMemberData,
+    loadData,
     signUpNG,
     signUpJG,
+    logIn,
     logOut,
     forceRender,
   };
