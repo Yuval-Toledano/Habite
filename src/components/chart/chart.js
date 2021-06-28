@@ -55,7 +55,6 @@ export default function Chart(props) {
     const {challengeLog} = props;
     const {groupMemberData} = useAuth();
 
-    console.log("in chart", challengeLog)
     const getChartData = () => {
         if (groupMemberData == null || challengeLog == null) {return []}
         const dataForChart = groupMemberData.map((user, index) => {
@@ -65,7 +64,6 @@ export default function Chart(props) {
       }
 
     const data = getChartData();
-    console.log("data in chart", data);
 
     const chartColors = [
         "#0891A8",

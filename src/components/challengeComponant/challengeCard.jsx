@@ -66,7 +66,6 @@ export function ChallengeCard(props) {
             const votersId = doc.votersId.filter((id) => id !== userData.id);
             let images = []
             groupMemberData.forEach((member) => {
-              console.log("voters id", votersId)
               if (votersId.includes(member.id)){
                 images.push(member.profilePic)
               }
@@ -78,7 +77,6 @@ export function ChallengeCard(props) {
         })   
       };
   
-      console.log("check challenge card render")
       fetchVotersPhotos();
     }, [challenge, userData, groupMemberData]);
   

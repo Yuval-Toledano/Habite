@@ -27,6 +27,7 @@ import { LeaderBoard } from "../../components/leaderBoard/leaderBoard";
 import File_copy from "@material-ui/icons/FileCopy";
 import styled from "styled-components";
 import Chart from "../../components/chart/chart";
+import ChallengeTimer from "../../components/timer/challengeTimer";
 
 const LeaderBoardContainer = styled.div`
   margin-top: 8px;
@@ -211,6 +212,7 @@ export default function Overview() {
       // sent notification to the group members about user's success
       notiForGroupMembers(groupMemberData, userData.id, MEMBER_SUCCESS);
       setDisabledButton(true);
+      forceRender();
 
       //TODO: check if forceRender is needed
     };
@@ -267,6 +269,8 @@ export default function Overview() {
             <b>{currChallenge.challengeName}</b>
           </SubTitle>
           <IndicationText>{currChallenge.description}</IndicationText>
+          <Marginer direction="vertical" margin="16px"></Marginer>
+          <ChallengeTimer endTime={groupData.timeStampEnd2}/>
           <Marginer direction="vertical" margin="16px"></Marginer>
           {successButton}
         </div>

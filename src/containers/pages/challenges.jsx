@@ -28,7 +28,6 @@ export default function ChallengePage() {
       setLoading(false);
     };
     fetchChallenges();
-    console.log(1);
   }, []);
 
   function handleClick(id) {
