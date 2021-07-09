@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
 import {
@@ -22,12 +22,14 @@ import {
   generateChallengeLog,
   updateSuccessChallengeLog,
   getChallengeLogData,
+  getUserDocument
 } from "../../server/firebaseTools";
 import { LeaderBoard } from "../../components/leaderBoard/leaderBoard";
 import File_copy from "@material-ui/icons/FileCopy";
 import styled from "styled-components";
 import Chart from "../../components/chart/chart";
 import ChallengeTimer from "../../components/timer/challengeTimer";
+import firebase from "firebase/app";
 
 const LeaderBoardContainer = styled.div`
   margin-top: 8px;
@@ -44,19 +46,20 @@ const CLASSIC_UPDATE = 1;
 const NO_APPROVED_UPDATE = 2;
 const NO_CURR_UPDATE = 3;
 
+const increment70 = firebase.firestore.FieldValue.increment(1/2);
+
 export default function Overview() {
-    const { userData, groupData, groupMemberData, forceRender, loadData, updateVal } = useAuth();
-    const [currChallenge, setCurrChallenge] = useState();
-    const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
-    const [disabledButton, setDisabledButton] = useState();
-    const [loading, setLoading] = useState(true);
+  const { userData, groupData, groupMemberData, forceRender, loadData, updateVal, usePrevious } = useAuth();
+  const [currChallenge, setCurrChallenge] = useState();
+  const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
+  const [disabledButton, setDisabledButton] = useState(true);
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
 
+  const [successDate, setSuccessDate] = useState(); 
   const nowDate = new Date().getDate();
 
 
-    console.log("group data in overview", groupData)
-    console.log("group members data in overview", groupMemberData)
   useEffect(() => {
     // check if the the date is valid for the current challenge
     const isValidDate = () => {
@@ -66,16 +69,17 @@ export default function Overview() {
 
     //gets current challenge to show
     const fetchChallenge = () => {
+      console.log("use effect change challenge")
       if (!groupData ) {
-          console.log('fetch challenge return', groupData)
+          
         return;
       }
       const currentChallengeId = groupData.currentChallenge;
 
       if (currentChallengeId) {
-          console.log("current challenge")
         // CASE 1: valid current challenge
         if (isValidDate()) {
+          console.log("case 1")
           const challengePromise = getChallengeDocumentData(currentChallengeId);
           challengePromise.then((doc) => {
             if (doc.exists) {
@@ -85,34 +89,60 @@ export default function Overview() {
           });
         } else if (groupData.approvedChallenges.length !== 0) {
           // CASE 2: update new current challenge after curr is not valid
-          updateCurrentChallenge(groupData, CLASSIC_UPDATE);
+          
+          console.log("case 2")
+          updateCurrentChallenge(groupData, CLASSIC_UPDATE, groupMemberData, currentChallengeId, userData.id, userData.successChallenge);
+          
+          //updateScore(groupMemberData, currentChallengeId);
+          
+          groupMemberData.forEach((member) => {
+            console.log("case 2 each member: ",member)
+            const logObjPromise = getChallengeLogData(currentChallengeId, member.id);
+            logObjPromise.then((logDoc) => {
+              
+              if (!logDoc){
+                return;
+              }
+              const duration = 7;
+              const userPromise = getUserDocument(member.id);
+              userPromise.then((userDoc) => {
+              
+                if (logDoc.counterSuccess * 2 >= duration) {
+                console.log("case 2 update score here:")
+                forceRender()
+                userDoc.update({
+                score: increment70
+              });
+              
+            }
+            })
+            })
+          })
 
+          setSuccessDate(-1)
           const newChallengeId = groupData.approvedChallenges[0];
+          
           // creates current challengeLog because there is a new current challenge
           generateChallengeLog(groupMemberData, newChallengeId);
 
           // send notification on a new current challenge for the group members
           notiForGroupMembers(groupMemberData, userData.id, NEW_CHALLENGE);
-
-          // updates group members score and level if needed
-          updateScore(groupMemberData, currentChallengeId);
-
+          
           //gets the new current challenge
           const challengePromise = getChallengeDocumentData(newChallengeId);
           challengePromise.then((doc) => {
             if (doc.exists) {
               const challengeData = { ...doc.data(), id: doc.id };
               setCurrChallenge(challengeData);
+              setDisabledButton(false)
             }
           });
-        //   forceRender();
+          forceRender();
         } else {
           // CASE 3: update current challenge while the is not another challenge
+          console.log("case 3")
           updateCurrentChallenge(groupData, NO_APPROVED_UPDATE);
-
-          // updates group members score and level if needed
-          updateScore(groupMemberData, currentChallengeId);
-
+          
           //send notification go vote for challenges
           updateNoti(userData, GO_VOTE);
           setCurrChallenge("noChallenge");
@@ -122,13 +152,14 @@ export default function Overview() {
       } else {
         if (groupData.approvedChallenges.length !== 0) {
           // CASE 4: init new current challenge
+          console.log("case 4")
           updateCurrentChallenge(groupData, NO_CURR_UPDATE);
-
+          setSuccessDate(-1)
           const newChallengeId = groupData.approvedChallenges[0];
-
+          
           // creates current challengeLog because there is a new current challenge
           generateChallengeLog(groupMemberData, newChallengeId);
-
+          
           // send notification on a new current challenge for the group members
           notiForGroupMembers(groupMemberData, userData.id, NEW_CHALLENGE);
 
@@ -140,14 +171,14 @@ export default function Overview() {
               setCurrChallenge(challengeData);
             }
           });
-        //   forceRender();
+          forceRender();
         } else {
-            console.log("case 5")
           // CASE 5: render message for voting
+          console.log("case 5")
           setCurrChallenge("noChallenge");
           // send notification to the group members
           updateNoti(userData, GO_VOTE);
-        // forceRender();
+        //forceRender();
         }
       }
     };
@@ -156,24 +187,22 @@ export default function Overview() {
   }, [userData, groupData]);
 
   useEffect(() => {
-    setLoading(true);
+   
 
     //check if the user already click the success button
     const checkDisabled = () => {
       if (userData == null || currChallenge == null || currChallenge === "noChallenge"){
         return;
       }
-      const logObjPromise = getChallengeLogData(currChallenge.id, userData.id);
-      logObjPromise.then((logObj) => {
-        var date = new Date();
-        const disabled = logObj.dateSuccess === date.getDate();
-        setDisabledButton(disabled);
-        setLoading(false);
-      });
-    }
+      
+      var date = new Date();
+      const disabled = successDate === date.getDate();
+      setDisabledButton(disabled);
+      
+        }
     checkDisabled();
-  }, [currChallenge, nowDate])
-
+  }, [successDate, nowDate])
+  
   useEffect(() => {
     const fetchChallengeLog = async () => {
       if(groupMemberData == null || currChallenge == null || currChallenge === "noChallenge"){
@@ -185,6 +214,9 @@ export default function Overview() {
           user.id
         ).then((doc) => {
           if (doc != null) {
+            if (doc.userId === userData.id){
+              setSuccessDate(doc.dateSuccess)
+            } 
             return doc;
           } else {
             console.log("challengeLog doc not found");
@@ -193,7 +225,14 @@ export default function Overview() {
         return challengeLogPromise;
       });
       var challengeLogData = await Promise.all(usersChallengeLogPromise);
-      setChallengeLogSuccess(challengeLogData);
+    
+      if (challengeLogData.some(item => item === undefined)){
+        // forceRender()
+        return;
+      }
+      else {
+        setChallengeLogSuccess(challengeLogData);
+      }
     }
 
     fetchChallengeLog();
@@ -220,7 +259,7 @@ export default function Overview() {
 
   // decide which button to display
   var successButton =
-    disabledButton || loading ? (
+    disabledButton ? (
       <div></div>
     ) : (
       <>
@@ -270,7 +309,7 @@ export default function Overview() {
           </SubTitle>
           <IndicationText>{currChallenge.description}</IndicationText>
           <Marginer direction="vertical" margin="16px"></Marginer>
-          <ChallengeTimer endTime={groupData.timeStampEnd2}/>
+          {groupData && groupData.timeStampEnd2 && <ChallengeTimer/>}
           <Marginer direction="vertical" margin="16px"></Marginer>
           {successButton}
         </div>
@@ -310,8 +349,7 @@ export default function Overview() {
     document.getElementById("indicationCopy").innerHTML = "&nbsp;copied!";
   };
 
-  console.log("check challengeLog", challengeLogSuccess);
-
+  
   return (
     <>
       <div className="content">

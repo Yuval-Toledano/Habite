@@ -71,18 +71,9 @@ const NotificationIndicator = ({
         )
     }
 
-
-function usePrevious(value) {
-    const ref = useRef();
-    useEffect(() => {
-        ref.current = value;
-    });
-    return ref.current;
-}
-
     
 function NotificationBar(props) {
-    const {userData} = useAuth();
+    const {userData, usePrevious} = useAuth();
     const [show, setShow] = useState(false);
     const [showDot, setShowDot] = useState(false)
     const [notiData, setNotiData] = useState([])

@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
+import {getGroupDocument} from "../../server/firebaseTools"
+import { useAuth } from "../../context/AuthContext";
 
-export default function ChallengeTimer(props) {
-  const { endTime } = props;
 
+export default function ChallengeTimer() {
+  const { groupData } = useAuth();
+  
+  const endTime = groupData.timeStampEnd2; 
+  console.log()
   const calculateTimeLeft = () => {
     let endDate = new Date(endTime.seconds * 1000);
     let nowDate = new Date();
@@ -30,23 +35,37 @@ export default function ChallengeTimer(props) {
     return () => clearTimeout(timer);
   });
 
+  
   const timerComponents = [];
 
-  Object.keys(timeLeft).forEach((interval) => {
+  Object.keys(timeLeft).forEach((interval, index) => {
     if (!timeLeft[interval]) {
       return;
     }
 
     timerComponents.push(
-      <span>
-        <span style={{color:"#E71C7D", fontSize: "20px"}}>{timeLeft[interval]}</span> {interval}{" "}
+      <span key={index}>
+        <span style={{ color: "#E71C7D", fontSize: "20px" }}>
+          {timeLeft[interval]}
+        </span>{" "}
+        {interval}{" "}
       </span>
     );
   });
 
+  function timesUp() {
+    const groupPromise = getGroupDocument(groupData.groupId);
+    groupPromise.then(doc => {
+      doc.update({
+        finish: true,
+      })
+    })
+    return <span>Time's up!</span>
+  }
+
   return (
     <div>
-    {timerComponents.length ? timerComponents : <span>Time's up!</span>}
- </div> 
+      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+    </div>
   );
 }

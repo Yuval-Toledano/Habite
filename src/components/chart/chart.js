@@ -57,6 +57,8 @@ export default function Chart(props) {
 
     const getChartData = () => {
         if (groupMemberData == null || challengeLog == null) {return []}
+        
+        //console.log("check challengelog in chart:", challengeLog)
         const dataForChart = groupMemberData.map((user, index) => {
           return { "success": challengeLog[index].counterSuccess, "name": user.userName}
         })
