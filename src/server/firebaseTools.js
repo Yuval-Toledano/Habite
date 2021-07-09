@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import { db, auth, storage } from "../firebase";
 
+
 /** INCREMENT FUNCTIONS **/
 const increment = firebase.firestore.FieldValue.increment(1);
 const increment130 = firebase.firestore.FieldValue.increment(130);
@@ -277,22 +278,26 @@ export const getVoteDocData = async (challengeId, groupId) => {
 
 };
 
-
 /**
- * The function creates a new challengeLog object
+ * The function creates new challengeLog object
  */
  export const generateChallengeLog = (groupMembers, challengeId) => {
-  groupMembers.map(async (member) => {
-    await db.collection("challengeLog").add({
-      groupId: member.groupId,
-      userId: member.id,
-      challengeId: challengeId,
-      counterSuccess: 0,
-      dateSuccess: null,
-    });
+  
+  groupMembers.forEach((member) => {
+    const logObjPromise = getChallengeLogData(challengeId, member.id)
+    logObjPromise.then(async (logObj) => {
+      if(!logObj) {
+        await db.collection("challengeLog").add({
+          groupId: member.groupId,
+          userId: member.id,
+          challengeId: challengeId,
+          counterSuccess: 0,
+          dateSuccess: null,
+        });
+      }
+    })
   });
 };
-
 
 /**
  * The function updates the current challenge of the group
@@ -300,7 +305,7 @@ export const getVoteDocData = async (challengeId, groupId) => {
  * @param {userData} user
  * @param {update according to specific case} caseUpdate
  */
- export const updateCurrentChallenge = (group, caseUpdate) => {
+ export const updateCurrentChallenge = (group, caseUpdate, groupMemberData, currentChallengeId, currUserId,successChallenge) => {
   
   const groupPromise = getGroupDocument(group.id);
   groupPromise.then((doc) => {
@@ -323,6 +328,9 @@ export const getVoteDocData = async (challengeId, groupId) => {
         pastChallenges:
           firebase.firestore.FieldValue.arrayUnion(currentChallengeId),
       });
+      
+      console.log("here core would be updated")
+      //updateScore(groupMemberData, currentChallengeId, currUserId,successChallenge)
 
     } else if (caseUpdate === NO_APPROVED_UPDATE) {
       // CASE 3: update current challenge while the is not another challenge
@@ -379,7 +387,7 @@ export const notiForGroupMembers = async (groupMembersData, currUserId, notiId) 
   const filterNoti = currNoti.filter((noti) => noti !== notiId);
   filterNoti.push(notiId);
   
-  console.log("check if user.id is valid :")
+  
   const userPromise = getUserDocument(user.id);
   userPromise.then((doc) => {
     if (doc){
@@ -404,10 +412,9 @@ export const getChallengeLogData = async (challengeId, userId) => {
     .where("userId", "==", userId)
     .get();
 
-  const arrayObj = challengeLogRef.docs.map((doc) => {
-    return { ...doc.data(), id: doc.id };
+    const arrayObj = challengeLogRef.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id };
   });
-
   return arrayObj[0];
 };
 
@@ -417,60 +424,44 @@ export const getChallengeLogData = async (challengeId, userId) => {
  * @param {*} user 
  * @param {*} currentChallengeId 
  */
- export const updateScore = (groupMembers, currentChallengeId) => {
-  groupMembers.forEach((member) => {
-    const logObjPromise = getChallengeLogData(currentChallengeId, member.id);
-    logObjPromise.then((logDoc) => {
-      const duration = 7;
-      const challengePromise = getChallengeDocumentData(currentChallengeId);
-      challengePromise.then((challenge) => {
-        if (challenge) {
-          const challengeXP = challenge.challengeXP;
-          const increment =
-            challengeXP >= 100
-              ? (challengeXP === 100
-                ? increment100
-                : increment130)
-              : (challengeXP === 50
-              ? increment50
-              : increment70);
-          const userLevel =
-           (( member.score + challengeXP >= TO_LEVEL_2) &&
-           ( member.score + challengeXP < TO_LEVEL_3))
-              ? 2
-              :((member.score + challengeXP >= TO_LEVEL_3)
-              ? 3
-              : 1);
-              console.log("userLevel in updateScore", userLevel)
-          const userPromise = getUserDocument(member.id);
+ export const updateScore = (groupMembers, currentChallengeId, currUserId, successChallenge) => {
+  console.log("check 1 update score: ", currentChallengeId, groupMembers, successChallenge)
+  
+  const userDataPromise = getDocumentData(currUserId)
+  userDataPromise.then(doc => {
+    if (doc) {
+      const successArray = doc.data().successChallenge
+      console.log("test success array: ", successArray)
+      if (successArray){
+        const found = successArray.find(element => element === currentChallengeId);
+        console.log("test found: ", found)
+
+        if (!found){
+          const userPromise = getUserDocument(currUserId);
           userPromise.then((userDoc) => {
-            if (member.level === 1 && logDoc.counterSuccess * 2 >= duration) {
-              userDoc.update({
-                score: increment,
-                level: userLevel,
-              });
-            } else if (
-              member.level === 2 &&
-              logDoc.counterSuccess + 2 >= duration
-            ) {
-              userDoc.update({
-                score: increment,
-                level: userLevel,
-              });
-            } else if (member.level === 3 && logDoc.counterSuccess === duration) {
-              userDoc.update({
-                score: increment,
-                level: userLevel,
-              });
-            }
-          });
+            const logObjPromise = getChallengeLogData(currentChallengeId, currUserId);
+            logObjPromise.then((logDoc) => {
+              if (!logDoc){
+                return;
+              }
+              console.log("updateScore 2 : ")
+              const duration = 7;
+              if (logDoc.counterSuccess * 2 >= duration) {
+                console.log("updateScore 3: ")
+                userDoc.update({
+                score: increment70,
+                successChallenge: firebase.firestore.FieldValue.arrayUnion(currentChallengeId),
+            });
+              }
+            })
+          })
         }
-      });
-    });
-  });
-};
-
-
+      }
+    }
+  })
+ }
+  
+  
 
 /*
  * creates new vote from userId and challengeId, and saves it to firestore server.
@@ -488,9 +479,6 @@ export const generateVotesDocument = async (currUserData, challengeData, groupMe
       challengeVotes: firebase.firestore.FieldValue.arrayUnion(challengeId),
     });
   });
-
-  // send notification to the group members about user's vote
-  notiForGroupMembers(groupMembersData, currUserData.id, MEMBER_VOTED);
 
   //check if group member has already voted on the challenge
   const dataVotes = await db
@@ -513,7 +501,6 @@ export const generateVotesDocument = async (currUserData, challengeData, groupMe
     const voteIdArray = dataVotes.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
-
     updateVotes(voteIdArray[0], currUserData.id);
   }
 } 

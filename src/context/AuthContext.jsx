@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import firebase from "firebase/app";
 import { auth, db, storage} from "../firebase";
 import {
@@ -44,6 +44,7 @@ export function AuthProvider({ children }) {
                   groupId: user.user.uid,
                   userName: name,
                   profilePic: url,
+                  successChallenge: []
                 });
                 // creates group
                 db.doc(`groups/${user.user.uid}`).set({
@@ -69,7 +70,7 @@ export function AuthProvider({ children }) {
           () => {
             storage.ref(userImagePath).getDownloadURL().then((url) => {
               // creates user
-              auth.createUserWithEmailAndPassword(email, password).then((user) => {
+              auth.createUserWithEmailAndPassword(email, password).then( async (user) => {
                 db.doc(`users/${user.user.uid}`).set({
                   email: email,
                   challengeVotes: [],
@@ -79,16 +80,49 @@ export function AuthProvider({ children }) {
                   groupId: groupId,
                   userName: name,
                   profilePic: url,
+                  successChallenge: []
                 });
                 // update group
                 const groupRef = db.collection("groups").doc(groupId)
                   groupRef.update({
                     usersInGroup: firebase.firestore.FieldValue.arrayUnion(user.user.uid),
                     countGroup: increment,
-                  }).then(() => {
-                    forceRender();
-                  }).catch(err => console.log("Error with update group", err));
+                  })
+                  // .then(() => {
+                  //   console.log("check groupref: ", groupRef.get())
+                  //   groupRef.get().then(doc => {
+                  //         console.log("check doc: ", doc)
+                  //         console.log("check doc: ", doc.currentChallenge)
+                  //         if (doc.currentChallenge){
+                            
+                  //           db.collection("challengeLog").add({
+                  //           groupId: doc.id,
+                  //           userId: user.user.uid,
+                  //           challengeId: doc.currentChallenge,
+                  //           counterSuccess: 0,
+                  //           dateSuccess: null,
+                  //         });
+                  //       }
+                  //       forceRender();
+                  //     })
+                  // }).catch(err => console.log("Error with update group", err));
                   
+                  // adding challenge log if current challenge exists already
+                  //console.log("check what is groupref: ",groupRef.get())
+                  //const currChallenge = groupRef.get().currentChallenge 
+                  //console.log("check what is challenge: ",groupRef.get().currentChallenge)
+                  const data = await groupRef.get()
+                  console.log("check data: ", data)
+                  if (data.data().currentChallenge) {
+                    db.collection("challengeLog").add({
+                      groupId: data.data().id,
+                      userId: user.user.uid,
+                      challengeId: data.data().currentChallenge,
+                      counterSuccess: 0,
+                      dateSuccess: null,
+                    }).then(() => forceRender());
+                  }
+                
               }).catch(err => console.log("Error with join group: ", err));
             })
           }
@@ -113,6 +147,14 @@ export function AuthProvider({ children }) {
   function forceRender() {
     setUpdateVal((prevVal) => prevVal + 1);
   }
+
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+        ref.current = value;
+    });
+    return ref.current;}
+
 
   useEffect(() => {
     // the function load the user data from the db
@@ -171,7 +213,6 @@ export function AuthProvider({ children }) {
         setLoadData(false);
       }
     };
-    console.log("userData", userData);
     fetchGroup();
   }, [userData, updateVal]);
 
@@ -197,6 +238,7 @@ export function AuthProvider({ children }) {
     logIn,
     logOut,
     forceRender,
+    usePrevious
   };
 
   return (
