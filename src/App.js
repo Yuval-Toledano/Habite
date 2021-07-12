@@ -8,6 +8,8 @@ import Overview from "./containers/pages/overview";
 import ChallengePage from "./containers/pages/challenges";
 import { HomePage } from "./containers/pages/landingPage/homePage";
 import SignIn from "./containers/pages/auth/signIn";
+import SignUpJG from "./containers/pages/auth/SignUpJG";
+
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -46,6 +48,7 @@ function App() {
             <Route path="/signin" exact component={SignIn} />
             <Route path="/signup" component={SignUp}/>
             <Route path="/newUser" exact component={NewUserBegin} />
+            <Route exact path="/signup/:groupId" component={SignUpJG}/>
             <PageTemplate>
               <Route path="/user/overview" exact component={Overview}/>
               <Route path="/user/challenges" exact component={ChallengePage} />

@@ -4,10 +4,10 @@ import { db, auth, storage } from "../firebase";
 
 /** INCREMENT FUNCTIONS **/
 const increment = firebase.firestore.FieldValue.increment(1);
-const increment130 = firebase.firestore.FieldValue.increment(130);
-const increment50 = firebase.firestore.FieldValue.increment(50);
-const increment100 = firebase.firestore.FieldValue.increment(100);
-const increment70 = firebase.firestore.FieldValue.increment(70);
+const increment5 = firebase.firestore.FieldValue.increment(5);
+const increment10 = firebase.firestore.FieldValue.increment(10);
+const increment15 = firebase.firestore.FieldValue.increment(15);
+const increment20 = firebase.firestore.FieldValue.increment(20);
 
 /** CONSTANTS **/
 
@@ -305,7 +305,7 @@ export const getVoteDocData = async (challengeId, groupId) => {
  * @param {userData} user
  * @param {update according to specific case} caseUpdate
  */
- export const updateCurrentChallenge = (group, caseUpdate, groupMemberData, currentChallengeId, currUserId,successChallenge) => {
+ export const updateCurrentChallenge = (group, caseUpdate) => {
   
   const groupPromise = getGroupDocument(group.id);
   groupPromise.then((doc) => {
@@ -328,9 +328,6 @@ export const getVoteDocData = async (challengeId, groupId) => {
         pastChallenges:
           firebase.firestore.FieldValue.arrayUnion(currentChallengeId),
       });
-      
-      console.log("here core would be updated")
-      //updateScore(groupMemberData, currentChallengeId, currUserId,successChallenge)
 
     } else if (caseUpdate === NO_APPROVED_UPDATE) {
       // CASE 3: update current challenge while the is not another challenge
@@ -418,48 +415,46 @@ export const getChallengeLogData = async (challengeId, userId) => {
   return arrayObj[0];
 };
 
-/**
- * 
- * @param {*} groupMembers 
- * @param {*} user 
- * @param {*} currentChallengeId 
- */
- export const updateScore = (groupMembers, currentChallengeId, currUserId, successChallenge) => {
-  console.log("check 1 update score: ", currentChallengeId, groupMembers, successChallenge)
-  
-  const userDataPromise = getDocumentData(currUserId)
-  userDataPromise.then(doc => {
-    if (doc) {
-      const successArray = doc.data().successChallenge
-      console.log("test success array: ", successArray)
-      if (successArray){
-        const found = successArray.find(element => element === currentChallengeId);
-        console.log("test found: ", found)
+// /**
+//  * 
+//  * @param {*} groupMembers 
+//  * @param {*} user 
+//  * @param {*} currentChallengeId 
+//  */
+//  export const updateScore = (groupMembers, currentChallengeId, currUserId, successChallenge) => {
+//   const userDataPromise = getDocumentData(currUserId)
+//   userDataPromise.then(doc => {
+//     if (doc) {
+//       const successArray = doc.data().successChallenge
+//       console.log("test success array: ", successArray)
+//       if (successArray){
+//         const found = successArray.find(element => element === currentChallengeId);
+//         console.log("test found: ", found)
 
-        if (!found){
-          const userPromise = getUserDocument(currUserId);
-          userPromise.then((userDoc) => {
-            const logObjPromise = getChallengeLogData(currentChallengeId, currUserId);
-            logObjPromise.then((logDoc) => {
-              if (!logDoc){
-                return;
-              }
-              console.log("updateScore 2 : ")
-              const duration = 7;
-              if (logDoc.counterSuccess * 2 >= duration) {
-                console.log("updateScore 3: ")
-                userDoc.update({
-                score: increment70,
-                successChallenge: firebase.firestore.FieldValue.arrayUnion(currentChallengeId),
-            });
-              }
-            })
-          })
-        }
-      }
-    }
-  })
- }
+//         if (!found){
+//           const userPromise = getUserDocument(currUserId);
+//           userPromise.then((userDoc) => {
+//             const logObjPromise = getChallengeLogData(currentChallengeId, currUserId);
+//             logObjPromise.then((logDoc) => {
+//               if (!logDoc){
+//                 return;
+//               }
+//               console.log("updateScore 2 : ")
+//               const duration = 7;
+//               if (logDoc.counterSuccess * 2 >= duration) {
+//                 console.log("updateScore 3: ")
+//                 userDoc.update({
+//                 score: increment70,
+//                 successChallenge: firebase.firestore.FieldValue.arrayUnion(currentChallengeId),
+//             });
+//               }
+//             })
+//           })
+//         }
+//       }
+//     }
+//   })
+//  }
   
   
 
@@ -546,7 +541,6 @@ const updateVotes = async (voteObj, userId) => {
       console.log("logObj not found");
     }
     const challengeLogPromise = getChallengeLogDocument(logObj.id);
-
     challengeLogPromise.then((doc) => {
       var date = new Date();
       doc.update({
@@ -557,3 +551,35 @@ const updateVotes = async (voteObj, userId) => {
   });
 
 };
+
+
+export const updateScore = (userId, challengeId) => {
+  const challengePromise = getChallengeDocumentData(challengeId);
+  challengePromise.then((challenge) => {
+    if (challenge) {
+      const challengeXP = challenge.data().challengeXp;
+      console.log("updateScore exp: ", challengeXP)
+      const incrementScore =
+      challengeXP >= 100
+      ? (challengeXP === 100
+      ? increment15
+      : increment20)
+      : (challengeXP === 50
+      ? increment5
+      : increment10);
+
+      const userDocPromise = getUserDocument(userId)
+      if (!userDocPromise){
+        console.log("userDoc not found");
+      }
+      userDocPromise.then(doc => {
+        doc.update({
+          score: incrementScore,
+        })
+      })
+      
+    
+      }
+      
+    })
+}
