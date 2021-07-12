@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
   Title,
   SubTitle,
@@ -22,14 +22,14 @@ import {
   generateChallengeLog,
   updateSuccessChallengeLog,
   getChallengeLogData,
-  getUserDocument
 } from "../../server/firebaseTools";
 import { LeaderBoard } from "../../components/leaderBoard/leaderBoard";
 import File_copy from "@material-ui/icons/FileCopy";
 import styled from "styled-components";
 import Chart from "../../components/chart/chart";
 import ChallengeTimer from "../../components/timer/challengeTimer";
-import firebase from "firebase/app";
+import { WhatsappShareButton } from 'react-share'
+import { WhatsappIcon } from "react-share";
 
 const LeaderBoardContainer = styled.div`
   margin-top: 8px;
@@ -46,10 +46,9 @@ const CLASSIC_UPDATE = 1;
 const NO_APPROVED_UPDATE = 2;
 const NO_CURR_UPDATE = 3;
 
-const increment70 = firebase.firestore.FieldValue.increment(1/2);
 
 export default function Overview() {
-  const { userData, groupData, groupMemberData, forceRender, loadData, updateVal, usePrevious } = useAuth();
+  const { userData, groupData, groupMemberData, forceRender, loadData, updateVal} = useAuth();
   const [currChallenge, setCurrChallenge] = useState();
   const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
   const [disabledButton, setDisabledButton] = useState(true);
@@ -58,9 +57,18 @@ export default function Overview() {
 
   const [successDate, setSuccessDate] = useState(); 
   const nowDate = new Date().getDate();
+  //const [groupCode, setGroupCode] = useState()
+  const [urlJG, setURL] = useState()
+  
+  useEffect(() => {
+    if (groupData){
+      setURL(`http://localhost:3001/signup/${groupData.id}`)
+    }
+  },[groupData])
 
 
   useEffect(() => {
+
     // check if the the date is valid for the current challenge
     const isValidDate = () => {
       var date = Math.round(new Date().getTime() / 1000);
@@ -71,9 +79,9 @@ export default function Overview() {
     const fetchChallenge = () => {
       console.log("use effect change challenge")
       if (!groupData ) {
-          
         return;
       }
+      
       const currentChallengeId = groupData.currentChallenge;
 
       if (currentChallengeId) {
@@ -91,34 +99,8 @@ export default function Overview() {
           // CASE 2: update new current challenge after curr is not valid
           
           console.log("case 2")
-          updateCurrentChallenge(groupData, CLASSIC_UPDATE, groupMemberData, currentChallengeId, userData.id, userData.successChallenge);
+          updateCurrentChallenge(groupData, CLASSIC_UPDATE);
           
-          //updateScore(groupMemberData, currentChallengeId);
-          
-          groupMemberData.forEach((member) => {
-            console.log("case 2 each member: ",member)
-            const logObjPromise = getChallengeLogData(currentChallengeId, member.id);
-            logObjPromise.then((logDoc) => {
-              
-              if (!logDoc){
-                return;
-              }
-              const duration = 7;
-              const userPromise = getUserDocument(member.id);
-              userPromise.then((userDoc) => {
-              
-                if (logDoc.counterSuccess * 2 >= duration) {
-                console.log("case 2 update score here:")
-                forceRender()
-                userDoc.update({
-                score: increment70
-              });
-              
-            }
-            })
-            })
-          })
-
           setSuccessDate(-1)
           const newChallengeId = groupData.approvedChallenges[0];
           
@@ -147,7 +129,7 @@ export default function Overview() {
           updateNoti(userData, GO_VOTE);
           setCurrChallenge("noChallenge");
 
-        //   forceRender();
+          forceRender();
         }
       } else {
         if (groupData.approvedChallenges.length !== 0) {
@@ -178,7 +160,7 @@ export default function Overview() {
           setCurrChallenge("noChallenge");
           // send notification to the group members
           updateNoti(userData, GO_VOTE);
-        //forceRender();
+          //forceRender();
         }
       }
     };
@@ -187,8 +169,6 @@ export default function Overview() {
   }, [userData, groupData]);
 
   useEffect(() => {
-   
-
     //check if the user already click the success button
     const checkDisabled = () => {
       if (userData == null || currChallenge == null || currChallenge === "noChallenge"){
@@ -248,12 +228,14 @@ export default function Overview() {
     // update user succeeded the challenge today
     const handleSuccess = () => {
       updateSuccessChallengeLog(userData.id, currChallenge.id);
+      
+      //update score
+      updateScore(userData.id, currChallenge.id)
+      
       // sent notification to the group members about user's success
       notiForGroupMembers(groupMemberData, userData.id, MEMBER_SUCCESS);
       setDisabledButton(true);
       forceRender();
-
-      //TODO: check if forceRender is needed
     };
 
 
@@ -344,6 +326,11 @@ export default function Overview() {
 
 
   const copyGroupCode = () => {
+    if (groupData.id){
+      
+      
+    }
+    
     var copyText = document.getElementById("groupCodeText").innerText;
     navigator.clipboard.writeText(copyText);
     document.getElementById("indicationCopy").innerHTML = "&nbsp;copied!";
@@ -385,10 +372,15 @@ export default function Overview() {
                 <TextualButton
                   id="btn_copy"
                   onClick={copyGroupCode}
-                  color="#0890A7"
-                >
+                  color="#0890A7">
                   <File_copy />
                 </TextualButton>
+                <WhatsappShareButton
+                title="Join My Group"
+                url= {urlJG}
+                >
+                  <WhatsappIcon/>
+                </WhatsappShareButton>
                 <div id="indicationCopy" className="group_code_text"></div>
               </div>
             </InfoBox>
