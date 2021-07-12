@@ -9,6 +9,7 @@ import ChallengePage from "./containers/pages/challenges";
 import { HomePage } from "./containers/pages/landingPage/homePage";
 import SignIn from "./containers/pages/auth/signIn";
 import { MobileLanding } from "./containers/mobile/landing";
+import { StyleExamples } from "./containers/mobile/style_examples";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       <AuthProvider>
         <Switch>
           <Route path="/" exact component={HomePage} />
-          <Route path="/mobileLanding" exact component={MobileLanding} />
+          <Route path="/mobileLanding" component={MobileLanding} />
+          <Route path="/styling" component={StyleExamples} />
           <Route path="/signin" exact component={SignIn} />
           <Route path="/signup" component={SignUp}/>
           <Route path="/newUser" exact component={NewUserBegin} />
