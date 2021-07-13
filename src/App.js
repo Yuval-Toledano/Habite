@@ -11,6 +11,9 @@ import SignIn from "./containers/pages/auth/signIn";
 import { MobileLanding } from "./containers/mobile/landing";
 import { StyleExamples } from "./containers/mobile/style_examples";
 import SignUpJG from "./containers/pages/auth/SignUpJG";
+import MobileHomeTemplate from "./containers/mobile/MobileHomeTemplate";
+import MobileOverview from "./containers/mobile/MobileOverview";
+import Teal from "./components/svgs/mobileBackgrounds/Teal.svg";
 
 
 function getWindowDimensions() {
@@ -46,21 +49,20 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route path="/" exact component={HomePage} />
-            <Route path="/mobileLanding" component={MobileLanding} />
-            <Route path="/signin" exact component={SignIn} />
-            <Route path="/signup" component={SignUp}/>
-            <Route path="/newUser" exact component={NewUserBegin} />
+            <Route exact path="/" component={MobileLanding} />
+            <Route exact path="/signin" exact component={SignIn} />
+            <Route exact path="/signup" component={SignUp}/>
+            <Route exact path="/newUser" exact component={NewUserBegin} />
             <Route exact path="/signup/:groupId" component={SignUpJG}/>
-            <PageTemplate>
-              <Route path="/user/overview" exact component={Overview}/>
-              <Route path="/user/challenges" exact component={ChallengePage} />
-            </PageTemplate>
+            <MobileHomeTemplate>
+              <Route exact path="/mobile/overview" exact component={MobileOverview}/>
+              <Route exact path="/user/challenges" exact component={ChallengePage} />
+            </MobileHomeTemplate>
           </Switch>
         </AuthProvider>
       </Router>
     );
-    // needs to be the mobile routing!!! #TODO: shouldn't it be the desktop router here?
+    // end of mobile routing
   } else {
     return (
       <Router>

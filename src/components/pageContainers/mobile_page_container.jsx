@@ -7,9 +7,9 @@ const MobilePageWrapper = styled.div`
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: ${({ flexDirection }) => flexDirection? flexDirection : "column"};
+  flex-direction: ${({ flexDirection }) => flexDirection ? flexDirection : "column"};
   align-items: center;
-  background: ${({ background }) => background? background : "#FAF0E4"};
+  background: ${({ background }) => background ? background : "#FAF0E4"};
 `;
 
 export const MobileInnerPageContainer = styled.div`
@@ -18,16 +18,16 @@ export const MobileInnerPageContainer = styled.div`
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "auto")};
   min-height: ${({ maxHeight }) => (maxHeight ? maxHeight : "auto")};
   display: ${({ display }) => (display ? display : "flex")};
-  flex-direction: ${({ flexDirection }) => flexDirection? flexDirection : "column"};
+  flex-direction: ${({ flexDirection }) => flexDirection ? flexDirection : "column"};
   align-items: center;
   padding: 60px 100px;
-  background: ${({ background }) => background? background : "#FAF0E4"};
+  background: ${({ background }) => background ? background : "#FAF0E4"};
   overflow: hidden;
 `;
 
 export function MobilePageContainer(props) {
   const { background, flexDirection } = props;
-  return( 
-  <MobilePageWrapper background={background} flexDirection={flexDirection}>{props.children}</MobilePageWrapper>
+  return (
+    <MobilePageWrapper background={background} flexDirection={flexDirection}>{props.children}</MobilePageWrapper>
   );
 }
