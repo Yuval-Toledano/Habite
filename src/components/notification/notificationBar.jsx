@@ -3,6 +3,7 @@ import {useAuth} from "../../context/AuthContext";
 import styled from "styled-components"
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { NotificationWindow } from "./notificationWindow";
+import useSound from 'use-sound';
 
 
 const NotiBarContainer = styled.div`
@@ -77,6 +78,9 @@ function NotificationBar(props) {
     const [show, setShow] = useState(false);
     const [showDot, setShowDot] = useState(false)
     const [notiData, setNotiData] = useState([])
+    // error here
+    const [play] = useSound('../../audio/piano.mp3', {
+        onPlayError: () => {console.log("error audio")}})
 
     const prevNoti = usePrevious(notiData)
 
@@ -92,12 +96,16 @@ function NotificationBar(props) {
             const isNewNoti = isEqual(prevNoti, noti)
             setNotiData(noti)
             setShowDot(!isNewNoti)
+            if (isNewNoti){
+                play()
+            };
         }
         fetchNotification();
     }, [userData, prevNoti, showDot, show])
     
     const closeWindow = () => {
         setShow(!show);
+        play();
     }
 
     return (
