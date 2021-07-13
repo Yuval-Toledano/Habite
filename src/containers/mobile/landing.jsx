@@ -94,6 +94,7 @@ export function MobileLanding(props) {
                 <SvgBeerbottle />
                 <SvgBeerbottle />
                 <SvgBeerbottle />
+                <SvgBeerbottle />
               </div>
             </div>
           </div>
