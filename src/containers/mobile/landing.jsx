@@ -90,8 +90,7 @@ export function MobileLanding(props) {
           <div class="col-auto">
             <div class="d-flex flex-row justify-content-center">
               <div ClassName="StripAnimation">
-                <SvgBeerbottle />
-                <SvgBeerbottle />
+                 <SvgBeerbottle />
                 <SvgBeerbottle />
                 <SvgBeerbottle />
                 <SvgBeerbottle />
