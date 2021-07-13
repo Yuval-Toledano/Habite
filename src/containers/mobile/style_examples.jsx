@@ -7,14 +7,17 @@ export function StyleExamples(props) {
       <StyledButton type={"primary"}>primary button</StyledButton>
       <StyledButton type={"secondary"}>secondary button</StyledButton>
       <StyledButton type={"disabled"}>disabled button</StyledButton>
+
       <StyledTitle type={"title"}>Title over bright background</StyledTitle>
       <StyledTitle type={"title"} mode={"over_dark"}>Title over dark background</StyledTitle>
       <StyledTitle type={"subtitle"}>Subtitle over bright background</StyledTitle>
       <StyledTitle type={"subtitle"} mode={"over_dark"}>Subtitle over dark background</StyledTitle>
       <StyledTitle type={"landingTitle"}>Landing page subtitle</StyledTitle>
+
       <Link mode={"over_bright"}>Link over bright background</Link>
       <Link mode={"over_dark"}>Link over dark background</Link>
       <Link>Default link</Link>
+      
       <StyledText>Default text</StyledText>
       <StyledText mode={"over_dark"}>Text over dark background</StyledText>
     </MobilePageContainer>

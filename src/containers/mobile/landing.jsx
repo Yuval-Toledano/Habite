@@ -1,5 +1,5 @@
 import { MobilePageContainer } from "../../components/pageContainers/mobile_page_container";
-import { StyledButton, StyledTitle, Link, StyledText } from "../../components/designSystem/mobileDS";
+import { StyledButton, StyledTitle, Link, StyledText, Logo } from "../../components/designSystem/mobileDS";
 import { SvgIcecream, SvgBeerbottle } from "../../components/svgs/candies";
 
 export function MobileLanding(props) {
@@ -13,7 +13,7 @@ export function MobileLanding(props) {
           </div>
           <div class="col-10">
             <div class="d-flex flex-row justify-content-between">
-              <div class="p-2">Habite</div>
+              <div class="p-2"><Logo>Habite</Logo></div>
               <div class="p-2"><Link>login</Link></div>
             </div>
           </div>
@@ -90,7 +90,7 @@ export function MobileLanding(props) {
           <div class="col-auto">
             <div class="d-flex flex-row justify-content-center">
               <div ClassName="StripAnimation">
-                 <SvgBeerbottle />
+                <SvgBeerbottle />
                 <SvgBeerbottle />
                 <SvgBeerbottle />
                 <SvgBeerbottle />

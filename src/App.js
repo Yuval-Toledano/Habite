@@ -46,8 +46,7 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route path="/" exact component={HomePage} />
-            <Route path="/mobileLanding" component={MobileLanding} />
+            <Route path="/" component={MobileLanding} />
             <Route path="/signin" exact component={SignIn} />
             <Route path="/signup" component={SignUp}/>
             <Route path="/newUser" exact component={NewUserBegin} />

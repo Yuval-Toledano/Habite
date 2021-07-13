@@ -10,7 +10,7 @@ const shadow = "-2px 4px 0px rgba(160, 160, 160, 0.25)";
 
 const colors = {
     main_cta: "#E71C7D", bg: "#FAF0E4", text: "#333331", accent: "#F8F7F5", link: "#00397B",
-    shadow_main: "#E993B1", shadow_orange: "#F16643", shadow_teal: "#0891A8", shadow_yellow: "#FBE536",
+    shadow_main: "#E993B1",     : "#F16643", shadow_teal: "#0891A8", shadow_yellow: "#FBE536",
     pink_hover: "#FD35BD", light_gray: "#D8D8D8", dark_gray: "#666662"
 };
 
@@ -77,7 +77,7 @@ export const StyledText = styled.p`
   font-family: "Open sans";
   font-style: Regular;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
-  color: ${ ({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
+  color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
 `;
 
 export const Link = styled.a`
@@ -192,7 +192,23 @@ const StyledButtonWrapper = styled.button`
     }
 `;
 
-;
+const LogoWrapper = styled.h2`
+    font-family: "Oleo script";
+    font-weight: Bold;
+    font-size: ${({ size }) => (size ? size + px : typography.medium + px)};
+    text-shadow: -2px 1px 0px ${colors.shadow_main}, -4px 2px 0px ${colors.shadow_orange}, -6px 3px 0px ${colors.shadow_teal};
+    color: ${colors.shadow_yellow};
+    // -webkit-text-stroke: 0.02em ${colors.text};
+    text-transform: uppercase;
+
+    & :before {
+        content: attr(title);
+        position: absolute;
+        -webkit-text-stroke: 0.2em #000000;
+        left: 0;
+        z-index: -1;
+    }
+`;
 
 export function StyledButton(props) {
     const { type, size, color, background, onClick, width, wide } = props;
@@ -212,4 +228,14 @@ export function StyledTitle(props) {
             {props.children}
         </StyledTitleWrapper>
     );
+}
+
+export function Logo(props) {
+    const { size } = props;
+
+    return (
+        <LogoWrapper size={size}>
+            {props.children}
+        </LogoWrapper>
+    )
 }
