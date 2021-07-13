@@ -99,6 +99,10 @@ export const Link = styled.a`
   &:hover {
     color: ${colors.pink_hover};
   };
+
+  &:active {
+    color: ${colors.pink_hover};
+  };
 `;
 
 
@@ -147,7 +151,7 @@ const StyledButtonWrapper = styled.button`
                 return "none";
         };
     }};
-    outline-offset: -2px;
+    outline-offset: -1px;
     border-radius: 27px;
     padding: 0.5rem 2rem;
     width: ${({ width, wide }) => (width ? width : wide ? "100%" : "fit-content")};
@@ -186,7 +190,6 @@ const StyledButtonWrapper = styled.button`
         }
     }};
     }
-    // outline: none;
 `;
 
 ;
