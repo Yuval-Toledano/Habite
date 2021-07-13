@@ -28,7 +28,7 @@ import File_copy from "@material-ui/icons/FileCopy";
 import styled from "styled-components";
 import Chart from "../../components/chart/chart";
 import ChallengeTimer from "../../components/timer/challengeTimer";
-import { WhatsappShareButton } from 'react-share'
+import { WhatsappShareButton } from 'react-share';
 import { WhatsappIcon } from "react-share";
 
 const LeaderBoardContainer = styled.div`

@@ -424,3 +424,11 @@ a.reg-link {
   height: 100px;
   border-radius: 10px;
 }
+
+.RowBig {
+  height: 22rem;
+}
+
+.StripAnimation{
+  animation: left-to-right 10s infinite;
+}
