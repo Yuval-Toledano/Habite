@@ -8,6 +8,8 @@ import Overview from "./containers/pages/overview";
 import ChallengePage from "./containers/pages/challenges";
 import { HomePage } from "./containers/pages/landingPage/homePage";
 import SignIn from "./containers/pages/auth/signIn";
+import { MobileLanding } from "./containers/mobile/landing";
+import { StyleExamples } from "./containers/mobile/style_examples";
 import SignUpJG from "./containers/pages/auth/SignUpJG";
 
 
@@ -45,6 +47,7 @@ function App() {
         <AuthProvider>
           <Switch>
             <Route path="/" exact component={HomePage} />
+            <Route path="/mobileLanding" component={MobileLanding} />
             <Route path="/signin" exact component={SignIn} />
             <Route path="/signup" component={SignUp}/>
             <Route path="/newUser" exact component={NewUserBegin} />
@@ -57,13 +60,14 @@ function App() {
         </AuthProvider>
       </Router>
     );
-    // needs to be the mobile routing!!!
+    // needs to be the mobile routing!!! #TODO: shouldn't it be the desktop router here?
   } else {
     return (
       <Router>
         <AuthProvider>
           <Switch>
             <Route path="/" exact component={HomePage} />
+            <Route path="/styling" component={StyleExamples} />
             <Route path="/signin" exact component={SignIn} />
             <Route path="/signup" component={SignUp}/>
             <Route path="/newUser" exact component={NewUserBegin} />
