@@ -210,6 +210,29 @@ const LogoWrapper = styled.h2`
     }
 `;
 
+// images
+
+export const BackgroundCircle = styled.img`
+    width: 100%;
+    position: relative;
+    z-index: 0;
+`;
+
+// containers
+
+export const InfoBoxDiv = styled.div`
+    background-color: ${colors.accent};
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 25px 15px 15px 15px;
+    margin: 20px;
+    border-radius: 5%;
+    box-shadow: ${shadow};
+`;
+
+
 export function StyledButton(props) {
     const { type, size, color, background, onClick, width, wide } = props;
 

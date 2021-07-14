@@ -55,7 +55,8 @@ function App() {
             <Route exact path="/newUser" exact component={NewUserBegin} />
             <Route exact path="/signup/:groupId" component={SignUpJG}/>
             <MobileHomeTemplate>
-              <Route exact path="/mobile/overview" exact component={MobileOverview}/>
+              { /* <Route exact path="/mobile/overview" render={(props) => <MobileHomeTemplate background={Teal} {...props} />}/> */}
+              <Route exact path="/mobile/overview" exact component={MobileOverview} />
               <Route exact path="/user/challenges" exact component={ChallengePage} />
             </MobileHomeTemplate>
           </Switch>
