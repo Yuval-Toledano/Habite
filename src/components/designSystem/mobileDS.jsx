@@ -77,7 +77,7 @@ export const StyledText = styled.p`
   font-family: "Open sans";
   font-style: Regular;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
-  color: ${ ({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
+  color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
 `;
 
 export const Link = styled.a`
@@ -193,6 +193,29 @@ const StyledButtonWrapper = styled.button`
 `;
 
 ;
+
+// images
+
+export const BackgroundCircle = styled.img`
+    width: 100%;
+    position: relative;
+    z-index: 0;
+`;
+
+// containers
+
+export const InfoBoxDiv = styled.div`
+    background-color: ${colors.accent};
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 25px 15px 15px 15px;
+    margin: 20px;
+    border-radius: 5%;
+    box-shadow: ${shadow};
+`;
+
 
 export function StyledButton(props) {
     const { type, size, color, background, onClick, width, wide } = props;
