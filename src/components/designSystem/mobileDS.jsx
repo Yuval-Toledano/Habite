@@ -223,6 +223,7 @@ const BottombarWrapper = styled.div`
     align-items: center;
     width: 100%;
     bottom: 0px;
+    position: fixed;
 `;
 
 const BottombarButtonWrapper = styled.button`
@@ -256,7 +257,6 @@ const BottombarButtonWrapper = styled.button`
 export const BackgroundCircle = styled.img`
     width: 100%;
     position: relative;
-    z-index: 0;
 `;
 
 // containers

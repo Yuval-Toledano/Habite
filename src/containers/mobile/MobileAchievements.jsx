@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { StyledButton, StyledTitle, Link, StyledText, Logo } from "../../components/designSystem/mobileDS";
 import Orange from "../../components/svgs/mobileBackgrounds/Orange.svg";
 import { BackgroundCircle } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
