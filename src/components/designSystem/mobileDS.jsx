@@ -1,7 +1,7 @@
 // mobile design system - only for mobile
 // import this file if you work on mobile version
 
-import { MicNoneSharp, MicNoneTwoTone } from '@material-ui/icons';
+import { MicNoneSharp, MicNoneTwoTone, PinDropRounded } from '@material-ui/icons';
 import styled, { css } from 'styled-components';
 
 const px = "px";
@@ -11,7 +11,7 @@ const shadow = "-2px 4px 0px rgba(160, 160, 160, 0.25)";
 const colors = {
     main_cta: "#E71C7D", bg: "#FAF0E4", text: "#333331", accent: "#F8F7F5", link: "#00397B",
     shadow_main: "#E993B1", shadow_orange: "#F16643", shadow_teal: "#0891A8", shadow_yellow: "#FBE536",
-    pink_hover: "#FD35BD", light_gray: "#D8D8D8", dark_gray: "#666662"
+    pink_hover: "#FD35BD", light_gray: "#D8D8D8", mid_gray: "#999896", dark_gray: "#666662"
 };
 
 // typography
@@ -80,7 +80,7 @@ export const StyledText = styled.p`
   color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
 `;
 
-export const Link = styled.a`
+export const StyledLinkWrapper = styled.a`
   font-family: "Open sans";
   font-style: Bold;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
@@ -103,6 +103,11 @@ export const Link = styled.a`
   &:active {
     color: ${colors.pink_hover};
   };
+
+  &:focused {
+    color: ${colors.pink_hover};
+  };
+
 `;
 
 
@@ -192,7 +197,59 @@ const StyledButtonWrapper = styled.button`
     }
 `;
 
-;
+const LogoWrapper = styled.h2`
+    font-family: "Oleo script";
+    font-weight: Bold;
+    font-size: ${({ size }) => (size ? size + px : typography.medium + px)};
+    text-shadow: -5px 1px 0px ${colors.shadow_main}, -7px 2px 0px ${colors.shadow_orange}, -9px 3px 0px ${colors.shadow_teal};
+    color: ${colors.shadow_yellow};
+    -webkit-text-stroke: 4px ${colors.text};
+    paint-order: stroke fill;
+    text-transform: uppercase;
+
+    & :before {
+        content: attr(title);
+        position: absolute;
+        -webkit-text-stroke: 0.2em #000000;
+        left: 0;
+        z-index: -1;
+    }
+`;
+
+// menus
+
+const BottombarWrapper = styled.div`
+    align-self: bottom;
+    align-items: center;
+    width: 100%;
+    bottom: 0px;
+`;
+
+const BottombarButtonWrapper = styled.button`
+    display: inline-block;
+    color: ${colors.mid_gray};
+    background: ${colors.accent};
+    padding: 20px;
+    border: ${colors.accent};
+    width: 25%;
+
+    &:hover {
+        border-top: 5px solid ${colors.main_cta};
+        color: ${colors.main_cta};
+    }};
+
+    &:active {
+        border-top: 5px solid ${colors.main_cta};
+        color: ${colors.main_cta};
+    }};
+    }
+
+    &:focus {
+        border-top: 5px solid ${colors.main_cta};
+        color: ${colors.main_cta};
+    }};
+    }
+`;
 
 // images
 
@@ -214,6 +271,7 @@ export const InfoBoxDiv = styled.div`
     margin: 20px;
     border-radius: 5%;
     box-shadow: ${shadow};
+    position: absolute;
 `;
 // position: absolute;
 
@@ -236,4 +294,38 @@ export function StyledTitle(props) {
             {props.children}
         </StyledTitleWrapper>
     );
+}
+
+export function Link(props) {
+    const { type, onClick } = props;
+
+    return (
+        <StyledLinkWrapper type={type} onClick={onClick}>
+            {props.children}
+        </StyledLinkWrapper>
+    );
+}
+
+export function Logo(props) {
+    const { size } = props;
+
+    return (
+        <LogoWrapper size={size}>
+            {props.children}
+        </LogoWrapper>
+    )
+}
+
+export function StyledBottombar(props) {
+    const { size } = props;
+    return <BottombarWrapper className="position-absolute bottom-0 end-0">
+        {props.children}
+    </BottombarWrapper>
+}
+
+export function StyledBottombarButton(props) {
+    const { onClick, alt, icon } = props;
+    return <BottombarButtonWrapper>
+        {props.children}
+    </BottombarButtonWrapper>
 }
