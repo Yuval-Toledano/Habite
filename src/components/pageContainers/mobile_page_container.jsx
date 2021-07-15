@@ -28,6 +28,8 @@ export const MobileInnerPageContainer = styled.div`
 export function MobilePageContainer(props) {
   const { background, flexDirection } = props;
   return (
-    <MobilePageWrapper background={background} flexDirection={flexDirection}>{props.children}</MobilePageWrapper>
+    <MobilePageWrapper background={background} flexDirection={flexDirection}>
+      {props.children}
+    </MobilePageWrapper>
   );
 }

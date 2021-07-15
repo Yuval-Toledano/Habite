@@ -1,27 +1,26 @@
 import React from 'react';
-import HomeIcon from '@material-ui/icons/Home';
-import ScatterPlotIcon from '@material-ui/icons/ScatterPlot';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PersonIcon from '@material-ui/icons/Person';
+import { useHistory } from "react-router-dom";
+import { bottomsideData } from "./bottomBarData";
+import { StyledBottombarButton, StyledBottombar } from "../../../components/designSystem/mobileDS";
 
-function bottomBar(props) {
+export function Bottombar(props) {
+    const history = useHistory();
 
     return (
-        <div className="row">
-            <div className="col-3">
-                <HomeIcon />
-            </div>
-            <div className="col-3">
-                <ScatterPlotIcon />
-            </div>
-            <div className="col-3">
-                <DashboardIcon />
-            </div>
-            <div className="col-3">
-                <PersonIcon />
-            </div>
-        </div>
-    )
+        <StyledBottombar>
+            {bottomsideData.map((val, key) => {
+                return (
+                    <StyledBottombarButton
+                        key={key}
+                        id={window.location.pathname === val.link ? "active" : ""}
+                        className="rowBottombar"
+                        onClick={() => { history.push(val.link) }}
+                        alt={val.title}
+                        icon={val.icon}>
+                        {val.icon}
+                    </StyledBottombarButton>
+                );
+            })}
+        </StyledBottombar>
+    );
 }
-
-export default ProgressCategories

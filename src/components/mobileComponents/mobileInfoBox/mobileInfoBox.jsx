@@ -14,6 +14,7 @@ import { StyledTitle, StyledText, InfoBoxDiv,  } from "../../designSystem/mobile
 import LinkIcon from '@material-ui/icons/Link';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import { WhatsappShareButton } from 'react-share';
+import { colors } from "@material-ui/core";
 
 export function MobileInfoBox(props) {
 
@@ -85,7 +86,7 @@ export function MobileInfoBox(props) {
             <InfoBoxDiv className="d-flex flex-column">
                 <StyledText>My Stats</StyledText>
                 <div className="d-flex flex-row">
-                    <StyledTitle type={"subtitle"}>level {userLevel}</StyledTitle>
+                    <StyledTitle type={"subtitle"} color={"#00397B"}>level {userLevel}</StyledTitle>
                 </div>
                 <StyledTitle type={"subtitle"}>all time points {userScore}</StyledTitle>
                 <StyledTitle type={"subtitle"}>challenges completed {userChallenges}</StyledTitle>

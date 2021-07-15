@@ -1,11 +1,12 @@
 import { MobilePageContainer } from "../../components/pageContainers/mobile_page_container";
-import { StyledButton, StyledTitle, Link, StyledText } from "../../components/designSystem/mobileDS";
+import { StyledButton, StyledTitle, Link, StyledText, Logo } from "../../components/designSystem/mobileDS";
 import { SvgIcecream, SvgBeerbottle } from "../../components/svgs/candies";
+import Markunread from '@material-ui/icons/Markunread';
 
 export function MobileLanding(props) {
   return (
     <MobilePageContainer>
-      <div ClassName="container-sm container-md container-lg">
+      <div style={{ overflowX: "clip" }} ClassName="container-sm container-md container-lg">
         {/* TOPBAR START */}
         <div class="row justify-content-center">
           <div class="col-1">
@@ -13,7 +14,7 @@ export function MobileLanding(props) {
           </div>
           <div class="col-10">
             <div class="d-flex flex-row justify-content-between">
-              <div class="p-2">Habite</div>
+              <div class="p-2"><Logo>Habite</Logo></div>
               <div class="p-2"><Link>login</Link></div>
             </div>
           </div>
@@ -90,7 +91,7 @@ export function MobileLanding(props) {
           <div class="col-auto">
             <div class="d-flex flex-row justify-content-center">
               <div ClassName="StripAnimation">
-                 <SvgBeerbottle />
+                <SvgBeerbottle />
                 <SvgBeerbottle />
                 <SvgBeerbottle />
                 <SvgBeerbottle />
@@ -105,13 +106,13 @@ export function MobileLanding(props) {
         {/* STRIP END */}
         {/* MAIN CTA START */}
 
-        <div class="row justify-content-center px-2" Style={"background: #E71C7D"}>
+        <div class="row justify-content-center" Style={"background: #E71C7D"}>
           <div class="col-1">
 
           </div>
           <div class="col-auto">
             <div class="d-flex flex-col justify-content-center align-items-center RowBig">
-              <div class="p-2">
+              <div class="">
                 <p Style={"text-Align: center"}>
                   <StyledTitle type={"subtitle"} mode={"over_dark"}>So, are you up for the challenge?<br />Gather your friends &</StyledTitle>
                   <StyledTitle type={"title"} mode={"over_dark"} Style={{ textTransform: "uppercase" }}>Take control back</StyledTitle>
@@ -128,7 +129,7 @@ export function MobileLanding(props) {
         {/* MAIN CTA END */}
         {/* FOOTER START */}
 
-        <div class="row justify-content-center px-2 align-items-center RowBig" Style={"background: #00397B"}>
+        <div class="row justify-content-center align-items-center RowBig" Style={"background: #00397B"}>
           <div class="col-1">
 
           </div>
@@ -136,7 +137,8 @@ export function MobileLanding(props) {
             <StyledTitle type={"title"} mode={"over_dark"}>Habite</StyledTitle>
             <StyledText mode={"over_dark"}>Habite a safe place for those who are willing to start a healthier chapter in their lives - to intake sugar in a more responsible way or even stop consuming it.</StyledText>
             <StyledText mode={"over_dark"}>Got a question?</StyledText>
-            <Link mode={"over_dark"}>Contact us</Link>
+            <Link mode={"over_dark"}><Markunread fontSize="small"/> Contact us</Link>
+            <p></p>
             <StyledText mode={"over_dark"}>© 2021 Habite. All rights reserved. Built by TYSAN with love.</StyledText>
           </div>
           <div class="col-1">
