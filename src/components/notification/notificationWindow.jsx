@@ -21,11 +21,13 @@ export const NotificationWindow = ({ show, notiData}) => {
             
             <div className="NotiBody">
                 <ul className="NotiList">
-                {displayNoti && displayNoti.map((val, key) => {
+                {displayNoti && displayNoti.map((val, key) => 
+                    {
                     return (
                     <li key={key} className="row">
                         <div className="NotiListTitle"><StyledText>{NotificationData[val].title}</StyledText></div>
                         <div className="NotiListData">
+                        {/* check the text*/}
                         <StyledText>
                         {NotificationData[val].data}
                         </StyledText>
