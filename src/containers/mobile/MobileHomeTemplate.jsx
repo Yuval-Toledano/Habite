@@ -3,6 +3,8 @@ import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
 import NotificationBar from "../../components/MobileNotification/MobileBar";
 
 
+
+
 function MobileHomeTemplate({ children }) {
 
     return (
