@@ -6,7 +6,7 @@ import Markunread from '@material-ui/icons/Markunread';
 export function MobileLanding(props) {
   return (
     <MobilePageContainer>
-      <div ClassName="container-sm container-md container-lg">
+      <div style={{ overflowX: "clip" }} ClassName="container-sm container-md container-lg">
         {/* TOPBAR START */}
         <div class="row justify-content-center">
           <div class="col-1">
@@ -106,7 +106,7 @@ export function MobileLanding(props) {
         {/* STRIP END */}
         {/* MAIN CTA START */}
 
-        <div class="row justify-content-center px-2" Style={"background: #E71C7D"}>
+        <div class="row justify-content-center" Style={"background: #E71C7D"}>
           <div class="col-1">
 
           </div>
@@ -129,7 +129,7 @@ export function MobileLanding(props) {
         {/* MAIN CTA END */}
         {/* FOOTER START */}
 
-        <div class="row justify-content-center px-2 align-items-center RowBig" Style={"background: #00397B"}>
+        <div class="row justify-content-center align-items-center RowBig" Style={"background: #00397B"}>
           <div class="col-1">
 
           </div>
