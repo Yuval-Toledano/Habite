@@ -1,5 +1,6 @@
 import React from 'react'
 import { H4, IndicationText} from '../designSystem/common'
+import { StyledButton, StyledTitle, Link, StyledText } from "../designSystem/mobileDS";
 import './notificationWindow.css'
 import { NotificationData } from './notificationData.js'
 
@@ -23,8 +24,13 @@ export const NotificationWindow = ({ show, notiData}) => {
                 {displayNoti && displayNoti.map((val, key) => {
                     return (
                     <li key={key} className="row">
-                        <div className="NotiListTitle"><IndicationText>{NotificationData[val].title}</IndicationText></div>
-                        <div className="NotiListData">{NotificationData[val].data}</div>
+                        <div className="NotiListTitle"><StyledText>{NotificationData[val].title}</StyledText></div>
+                        <div className="NotiListData">
+                        <StyledText>
+                        {NotificationData[val].data}
+                        </StyledText>
+                        
+                        </div>
                     </li>);
                     })}
                 </ul>
