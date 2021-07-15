@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect} from 'react'
 import {useAuth} from "../../context/AuthContext";
 import styled from "styled-components"
 import { StyledButton, StyledTitle, Link, StyledText } from "../../components/designSystem/mobileDS";
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import { NotificationWindow } from "./notificationWindow";
+import { NotificationWindow } from "./MobileNotiWindow";
 import useSound from 'use-sound';
 
 const colors = {
@@ -15,13 +15,14 @@ const colors = {
 
 
 const NotiBarContainer = styled.div`
-    height: 60px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 0 60px;
+    padding: 0 10px;
     margin-left: 0px;
-    background:`+colors.color+` ;
+    background: #0891A8;
+    border-bottom: 1px dashed rgba(231, 28, 150, 0.2);
 `;
 
 const RedDot = styled.div`
@@ -52,7 +53,7 @@ const Dot = () => (
   )
 
 const JoinFriends = () => (
-    <div>
+    <div className="groupIcon">
         <GroupAddIcon className="iconDesign"/>
     </div>
 )
@@ -76,9 +77,7 @@ const NotificationIndicator = ({
     }
     return (
         <div>
-            <div
-            className="notiButton"
-            >
+            <div className="notiButton">
             <div style={divStyle}>
                 {dot}
                 <Bell />
@@ -94,7 +93,7 @@ function NotificationBar(props) {
     const [show, setShow] = useState(false);
     const [showDot, setShowDot] = useState(false)
     const [notiData, setNotiData] = useState([])
-    const [color, setColor] = useState("");
+    const [color, setColor] = useState("shadow_teal");
     
     // error here
     const [play] = useSound('../../audio/piano.mp3', {
@@ -102,8 +101,7 @@ function NotificationBar(props) {
 
     const prevNoti = usePrevious(notiData)
     
-    
-    //shadow_main: "#E993B1", shadow_orange: "#F16643", shadow_teal: "#0891A8", shadow_yellow: "#FBE536",
+
     useEffect(() => { 
         const whatIsTheHour = () => {
             var date = new Date();
@@ -148,18 +146,17 @@ function NotificationBar(props) {
     }
 
     return (
+            
             <NotiBarContainer>
+                <button className="JoinButton" style={{border:"none"}}>
+                    <div>
+                        <JoinFriends/>
+                    </div>
+                </button>
                 <BellContainer>
                     <button className="BellButton" style={{border:"none"}} onClick={closeWindow}><NotificationIndicator showDot={showDot} onClick={()=> setShowDot(false)}/></button>                        
                     <NotificationWindow show={show} showDot={setShowDot} notiData={notiData} closeWindow={closeWindow}/>
                 </BellContainer>
-                <JoinFriends>
-                    <button className="BellButton" style={{border:"none"}}>
-                        <div>
-                            <JoinFriends/>
-                        </div>
-                    </button>
-                </JoinFriends>
             </NotiBarContainer>
         );
     }
