@@ -8,9 +8,8 @@ export default function MobileOverview() {
     return (
         <div>
             <div className="d-flex flex-column">
-                <BackgroundCircle src={Teal} alt="Upper background color" />
-                <MobileInfoBox subtitle="Challenge is on!" title="Surprise sugar attack-sauce" text="Find a sauce that contains more sugar than you thought (look at the ingridients!) and replace it #1" />
-                <MobileInfoBox subtitle="Challenge is on!" title="Surprise sugar attack-sauce" text="Find a sauce that contains more sugar than you thought (look at the ingridients!) and replace it #1" />
+                <BackgroundCircle className="col 12" src={Teal} alt="Upper background color" />
+                <MobileInfoBox type="statBox" />
                 <h1>This is the mobile overview page</h1>
             </div>
             <Bottombar />
