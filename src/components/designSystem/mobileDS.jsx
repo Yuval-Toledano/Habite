@@ -80,7 +80,7 @@ export const StyledText = styled.p`
   color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
 `;
 
-export const Link = styled.a`
+export const StyledLinkWrapper = styled.a`
   font-family: "Open sans";
   font-style: Bold;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
@@ -196,9 +196,10 @@ const LogoWrapper = styled.h2`
     font-family: "Oleo script";
     font-weight: Bold;
     font-size: ${({ size }) => (size ? size + px : typography.medium + px)};
-    text-shadow: -2px 1px 0px ${colors.shadow_main}, -4px 2px 0px ${colors.shadow_orange}, -6px 3px 0px ${colors.shadow_teal};
+    text-shadow: -5px 1px 0px ${colors.shadow_main}, -7px 2px 0px ${colors.shadow_orange}, -9px 3px 0px ${colors.shadow_teal};
     color: ${colors.shadow_yellow};
-    // -webkit-text-stroke: 0.02em ${colors.text};
+    -webkit-text-stroke: 4px ${colors.text};
+    paint-order: stroke fill;
     text-transform: uppercase;
 
     & :before {
@@ -230,6 +231,7 @@ export const InfoBoxDiv = styled.div`
     margin: 20px;
     border-radius: 5%;
     box-shadow: ${shadow};
+    position: absolute;
 `;
 
 
@@ -250,6 +252,16 @@ export function StyledTitle(props) {
         <StyledTitleWrapper type={type} mode={mode} size={size} color={color}>
             {props.children}
         </StyledTitleWrapper>
+    );
+}
+
+export function Link(props) {
+    const { type, onClick } = props;
+
+    return (
+        <StyledLinkWrapper type={type} onClick={onClick}>
+            {props.children}
+        </StyledLinkWrapper>
     );
 }
 
