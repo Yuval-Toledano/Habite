@@ -4,7 +4,7 @@ import ScatterPlotIcon from '@material-ui/icons/ScatterPlot';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PersonIcon from '@material-ui/icons/Person';
 
-function bottomBar(props) {
+function BottomBar(props) {
 
     return (
         <div className="row">
