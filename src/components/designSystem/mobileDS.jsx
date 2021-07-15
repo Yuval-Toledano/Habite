@@ -215,6 +215,7 @@ export const InfoBoxDiv = styled.div`
     border-radius: 5%;
     box-shadow: ${shadow};
 `;
+// position: absolute;
 
 
 export function StyledButton(props) {
