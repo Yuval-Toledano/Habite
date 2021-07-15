@@ -1,9 +1,18 @@
 .BellButton {
     cursor: pointer;
     border: none;
-    background-color: #F8F7F5;
+    position: relative;
+    right: 5px;
+    background-color:#0891A8;
 }
 
+.JoinButton {
+    cursor: pointer;
+    border: none;
+    position: relative;
+    right: 120px;
+    background-color:#0891A8;
+}
 
 .NotiWrapper{
     background:#F8F7F5;
@@ -16,9 +25,25 @@
     z-index: 11;
     float: center;
     border-radius: 8px;
-    border: 1px solid #E4DCD3;
+    border: none;
     box-shadow: -5px 5px 5px 0px lightgrey;
 }
+
+.MobileNotiWrapper{
+    background:#F8F7F5;
+    width: 80%;
+    height: 90%;
+    top: 50px;
+    right: 10px;
+    display: flex;
+    position: absolute;
+    z-index: 11;
+    float: center;
+    border-radius: 8px;
+    border: none;
+    box-shadow: -5px 5px 5px 0px lightgrey;
+}
+
 
 .NotiHeader{
     padding: 10px;
@@ -64,3 +89,9 @@
     color: #FAF0E4;
     border-radius: 15px;
   }
+
+/* 
+.groupIcon{
+    background-color: #E71C96;
+    float: left;
+} */

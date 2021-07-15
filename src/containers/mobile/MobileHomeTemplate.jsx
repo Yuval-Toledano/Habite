@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, state } from "react";
 import { Children } from "react";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
+import NotificationBar from "../../components/MobileNotification/MobileBar";
 
 function MobileHomeTemplate({ children }) {
 
@@ -9,6 +10,7 @@ function MobileHomeTemplate({ children }) {
             <div className="row justify-content-end w-100 h-100 g-0">
                 <img src={Teal} alt="Upper background color" />
                 {/* NotificationBar starts here */}
+                
                 {/* NotificationBar ends here */}
 
                 {/* Page content starts here */}
