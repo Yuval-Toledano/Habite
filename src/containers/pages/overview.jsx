@@ -41,7 +41,6 @@ const GO_VOTE = 0;
 const MEMBER_VOTED = 1;
 const MEMBER_SUCCESS = 2;
 const NEW_CHALLENGE = 3;
-
 const CLASSIC_UPDATE = 1;
 const NO_APPROVED_UPDATE = 2;
 const NO_CURR_UPDATE = 3;
