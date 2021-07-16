@@ -10,28 +10,45 @@ import {
     updateSuccessChallengeLog,
     getChallengeLogData,
   } from "../../../server/firebaseTools";
-import { StyledTitle, StyledText, InfoBoxDiv,  } from "../../designSystem/mobileDS";
+import { StyledTitle, StyledText, InfoBoxDiv, StyledButton } from "../../designSystem/mobileDS";
 import LinkIcon from '@material-ui/icons/Link';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import { WhatsappShareButton } from 'react-share';
-import { colors } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import ChallengeTimer from "../../timer/challengeTimer";
 
 export function MobileInfoBox(props) {
 
     const { type } = props;
     const { userData, groupData, groupMemberData, forceRender, loadData, updateVal} = useAuth();
+    const [currChallenge, setCurrChallenge] = useState();
+    const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
+    const [disabledButton, setDisabledButton] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const history = useHistory();
+    const [successDate, setSuccessDate] = useState(); 
+    const nowDate = new Date().getDate();
     const groupId = groupData? groupData.id : "No group Id"
     const groupCount = groupData? groupData.countGroup : "No group count"
     const userScore = userData? userData.score : "Loading score"
     const userLevel = userData? userData.level : "Loading level"
     const userChallenges = userData? userData.successChallenge.length : "Loading challenges"
     const [urlJG, setURL] = useState()
+    
+    // types of notifications
+    const GO_VOTE = 0;
+    const MEMBER_VOTED = 1;
+    const MEMBER_SUCCESS = 2;
+    const NEW_CHALLENGE = 3;
+    const CLASSIC_UPDATE = 1;
+    const NO_APPROVED_UPDATE = 2;
+    const NO_CURR_UPDATE = 3;
 
     // generate the whatsapp link for sharing the group code
     useEffect(() => {
         if (groupData){
-          setURL(`http://localhost:3001/signup/${groupData.id}`)
-          console.log("Whatapp share function")
+            console.log("Whatapp share function")
+            setURL(`http://localhost:3001/signup/${groupData.id}`)
         }
       },[groupData])
 
@@ -57,7 +74,7 @@ export function MobileInfoBox(props) {
                         title="Join My Group"
                         url= {urlJG}
                         >
-                        <WhatsAppIcon style={{fill: "#E71C7D"}} onClick={()=>{console.log("Whatapp share function")}}/>
+                        <WhatsAppIcon style={{fill: "#E71C7D"}}/>
                         </WhatsappShareButton>
                     </div>
                 </InfoBoxDiv>
@@ -75,7 +92,7 @@ export function MobileInfoBox(props) {
                         title="Join My Group"
                         url= {urlJG}
                         >
-                        <WhatsAppIcon style={{fill: "#E71C7D"}} onClick={()=>{console.log("Whatapp share function")}}/>
+                        <WhatsAppIcon style={{fill: "#E71C7D"}}/>
                         </WhatsappShareButton>
                     </div>
                 </InfoBoxDiv>
@@ -85,11 +102,24 @@ export function MobileInfoBox(props) {
         return (
             <InfoBoxDiv className="d-flex flex-column">
                 <StyledText>My Stats</StyledText>
-                <div className="d-flex flex-row">
-                    <StyledTitle type={"subtitle"} color={"#00397B"}>level {userLevel}</StyledTitle>
+                <div className="d-flex flex-row justify-content-between">
+                    <StyledTitle type={"subtitle"}>Level</StyledTitle>
+                    <StyledTitle type={"subtitle"} color={"#00397B"}>{userLevel}</StyledTitle>
                 </div>
-                <StyledTitle type={"subtitle"}>all time points {userScore}</StyledTitle>
-                <StyledTitle type={"subtitle"}>challenges completed {userChallenges}</StyledTitle>
+                <div className="d-flex flex-row justify-content-between">
+                    <StyledTitle type={"subtitle"}>All time points</StyledTitle>
+                    <StyledTitle type={"subtitle"} color={"#00397B"}>{userScore}</StyledTitle>
+                </div>
+                <div className="d-flex flex-row justify-content-between">
+                    <StyledTitle type={"subtitle"}>Challenges completed</StyledTitle>
+                    <StyledTitle type={"subtitle"} color={"#00397B"}>{userChallenges}</StyledTitle>
+                </div>
+            </InfoBoxDiv>
+        );
+    } else if (type === "currChallenge") {
+        return (
+            <InfoBoxDiv className="d-flex flex-column">
+                <StyledText>CurrChallnge</StyledText>
             </InfoBoxDiv>
         );
     }
