@@ -13,6 +13,9 @@ import { StyleExamples } from "./containers/mobile/style_examples";
 import SignUpJG from "./containers/pages/auth/SignUpJG";
 import MobileHomeTemplate from "./containers/mobile/MobileHomeTemplate";
 import MobileOverview from "./containers/mobile/MobileOverview";
+import MobileChallenges from "./containers/mobile/MobileChallenges";
+import MobileAchievements from "./containers/mobile/MobileAchievements";
+import MobileRules from "./containers/mobile/Rules";
 import Teal from "./components/svgs/mobileBackgrounds/Teal.svg";
 
 
@@ -55,8 +58,11 @@ function App() {
             <Route exact path="/newUser" exact component={NewUserBegin} />
             <Route exact path="/signup/:groupId" component={SignUpJG}/>
             <MobileHomeTemplate>
-              <Route exact path="/mobile/overview" exact component={MobileOverview}/>
-              <Route exact path="/user/challenges" exact component={ChallengePage} />
+              { /* <Route exact path="/mobile/overview" render={(props) => <MobileHomeTemplate background={Teal} {...props} />}/> */}
+              <Route exact path="/mobile/overview" exact component={MobileOverview} />
+              <Route exact path="/mobile/challenges" exact component={MobileChallenges} />
+              <Route exact path="/mobile/achievements" exact component={MobileAchievements} />
+              <Route exact path="/mobile/rulesOfGame" exact component={MobileRules} />
             </MobileHomeTemplate>
           </Switch>
         </AuthProvider>
