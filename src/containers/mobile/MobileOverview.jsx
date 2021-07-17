@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
 import { BackgroundCircle } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
+import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
 
 export default function MobileOverview() {
     return (

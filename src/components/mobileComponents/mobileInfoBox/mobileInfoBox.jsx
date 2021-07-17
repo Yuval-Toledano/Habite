@@ -28,12 +28,12 @@ export function MobileInfoBox(props) {
     const history = useHistory();
     const [successDate, setSuccessDate] = useState(); 
     const nowDate = new Date().getDate();
-    const groupId = groupData? groupData.id : "No group Id"
-    const groupCount = groupData? groupData.countGroup : "No group count"
-    const userScore = userData? userData.score : "Loading score"
-    const userLevel = userData? userData.level : "Loading level"
-    const userChallenges = userData? userData.successChallenge.length : "Loading challenges"
-    const [urlJG, setURL] = useState()
+    const groupId = groupData? groupData.id : "No group Id";
+    const groupCount = groupData? groupData.countGroup : "No group count";
+    const userScore = userData? userData.score : "Loading score";
+    const userLevel = userData? userData.level : "Loading level";
+    const userChallenges = userData? userData.successChallenge.length : "Loading challenges";
+    const [urlJG, setURL] = useState();
     
     // types of notifications
     const GO_VOTE = 0;
@@ -59,6 +59,129 @@ export function MobileInfoBox(props) {
             console.log("copied!");
         }
       };
+
+    // Start of currChallenge choosing proccess
+    useEffect(() => {
+
+        // check if the the date is valid for the current challenge
+        const isValidDate = () => {
+          var date = Math.round(new Date().getTime() / 1000);
+          return !(groupData.timeStampEnd2.seconds < date);
+        };
+    
+        //gets current challenge to show
+        const fetchChallenge = () => {
+          console.log("use effect change challenge")
+          if (!groupData ) {
+            return;
+          }
+          
+          const currentChallengeId = groupData.currentChallenge;
+    
+          if (currentChallengeId) {
+            // CASE 1: valid current challenge
+            if (isValidDate()) {
+              console.log("case 1")
+              const challengePromise = getChallengeDocumentData(currentChallengeId);
+              challengePromise.then((doc) => {
+                if (doc.exists) {
+                  const challengeData = { ...doc.data(), id: doc.id };
+                  setCurrChallenge(challengeData);
+                }
+              });
+            } else if (groupData.approvedChallenges.length !== 0) {
+              // CASE 2: update new current challenge after curr is not valid
+              
+              console.log("case 2")
+              updateCurrentChallenge(groupData, CLASSIC_UPDATE);
+              
+              setSuccessDate(-1)
+              const newChallengeId = groupData.approvedChallenges[0];
+              
+              // creates current challengeLog because there is a new current challenge
+              generateChallengeLog(groupMemberData, newChallengeId);
+    
+              // send notification on a new current challenge for the group members
+              notiForGroupMembers(groupMemberData, userData.id, NEW_CHALLENGE);
+              
+              //gets the new current challenge
+              const challengePromise = getChallengeDocumentData(newChallengeId);
+              challengePromise.then((doc) => {
+                if (doc.exists) {
+                  const challengeData = { ...doc.data(), id: doc.id };
+                  setCurrChallenge(challengeData);
+                  setDisabledButton(false)
+                }
+              });
+              forceRender();
+            } else {
+              // CASE 3: update current challenge while the is not another challenge
+              console.log("case 3")
+              updateCurrentChallenge(groupData, NO_APPROVED_UPDATE);
+              
+              //send notification go vote for challenges
+              updateNoti(userData, GO_VOTE);
+              setCurrChallenge("noChallenge");
+    
+              forceRender();
+            }
+          } else {
+            if (groupData.approvedChallenges.length !== 0) {
+              // CASE 4: init new current challenge
+              console.log("case 4")
+              updateCurrentChallenge(groupData, NO_CURR_UPDATE);
+              setSuccessDate(-1)
+              const newChallengeId = groupData.approvedChallenges[0];
+              
+              // creates current challengeLog because there is a new current challenge
+              generateChallengeLog(groupMemberData, newChallengeId);
+              
+              // send notification on a new current challenge for the group members
+              notiForGroupMembers(groupMemberData, userData.id, NEW_CHALLENGE);
+    
+              //gets the new current challenge
+              const challengePromise = getChallengeDocumentData(newChallengeId);
+              challengePromise.then((doc) => {
+                if (doc.exists) {
+                  const challengeData = { ...doc.data(), id: doc.id };
+                  setCurrChallenge(challengeData);
+                }
+              });
+              forceRender();
+            } else {
+              // CASE 5: render message for voting
+              console.log("case 5")
+              setCurrChallenge("noChallenge");
+              // send notification to the group members
+              updateNoti(userData, GO_VOTE);
+              //forceRender();
+            }
+          }
+        };
+    
+        fetchChallenge();
+      }, [userData, groupData]);
+
+    // Last step of currChallenge proccess
+    var whatToDisplay = groupData ? (
+    groupData.countGroup === 1 ? (
+        <InfoBox id="current_challenge_box">
+        <div className="row">
+            <IndicationText>current challenge</IndicationText>
+            <SubTitle>
+            <b>Your group is empty 😭</b>
+            </SubTitle>
+            <IndicationText>
+            Invite your friends to start the journey
+            </IndicationText>
+        </div>
+        </InfoBox>
+    ) : (
+        showCurrentChallenge
+    )
+    ) : (
+    <InfoBox></InfoBox>
+    );
 
     if (type === "groupAdd") {
         // Add members to group when there is only 1 member
@@ -119,7 +242,7 @@ export function MobileInfoBox(props) {
     } else if (type === "currChallenge") {
         return (
             <InfoBoxDiv className="d-flex flex-column">
-                <StyledText>CurrChallnge</StyledText>
+                {whatToDisplay}
             </InfoBoxDiv>
         );
     }
