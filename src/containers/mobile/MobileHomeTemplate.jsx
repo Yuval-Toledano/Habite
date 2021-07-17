@@ -13,7 +13,7 @@ function MobileHomeTemplate({ children }) {
                 {/* NotificationBar ends here */}
 
                 {/* Page content starts here */}
-                <div className="col-12">{children}</div>
+                <div>{children}</div>
                 {/* Page content end here */}
 
                 {/* BottomBar starts here */}

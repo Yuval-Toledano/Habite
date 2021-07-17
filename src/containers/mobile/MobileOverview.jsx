@@ -6,11 +6,11 @@ import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeade
 
 export default function MobileOverview() {
     return (
-        <div>
-            <div className="d-flex flex-column">
-                <BackgroundCircle className="col 12" src={Teal} alt="Upper background color" />
+        <>
+            <BackgroundCircle className="col 12" src={Teal} alt="Upper background color" />
+            <div className="position-absolute">
                 <MobileInfoBox type="currChallenge" />
             </div>
-        </div>
+        </>
     );
 }

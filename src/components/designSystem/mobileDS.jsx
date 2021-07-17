@@ -275,15 +275,14 @@ export const LeaderBoardPhotoWrapper = styled.img`
 
 export const InfoBoxDiv = styled.div`
     background-color: ${colors.accent};
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     align-items: center;
     text-align: center;
     padding: 25px 15px 15px 15px;
     margin: 20px;
     border-radius: 5%;
-    box-shadow: ${shadow};
-    position: absolute;
+    box-shadow: ${shadow}
 `;
 
 export const LeaderboardDivWrapper = styled.div`
