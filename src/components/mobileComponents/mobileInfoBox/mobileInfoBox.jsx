@@ -162,25 +162,158 @@ export function MobileInfoBox(props) {
         fetchChallenge();
       }, [userData, groupData]);
 
+    // second challenge useEffect to determine if challenge was filled today
+    useEffect(() => {
+      //check if the user already click the success button
+      const checkDisabled = () => {
+        if (userData == null || currChallenge == null || currChallenge === "noChallenge"){
+          return;
+        }
+        
+        var date = new Date();
+        const disabled = successDate === date.getDate();
+        setDisabledButton(disabled);
+        
+          }
+      checkDisabled();
+    }, [successDate, nowDate]);
+
+    // third challenge useEffect for pulling full challenge data
+    useEffect(() => {
+      const fetchChallengeLog = async () => {
+        if(groupMemberData == null || currChallenge == null || currChallenge === "noChallenge"){
+          return;
+        }
+        const usersChallengeLogPromise = groupMemberData.map((user) => {
+          const challengeLogPromise = getChallengeLogData(
+            currChallenge.id,
+            user.id
+          ).then((doc) => {
+            if (doc != null) {
+              if (doc.userId === userData.id){
+                setSuccessDate(doc.dateSuccess)
+              } 
+              return doc;
+            } else {
+              console.log("challengeLog doc not found");
+            }
+          });
+          return challengeLogPromise;
+        });
+        var challengeLogData = await Promise.all(usersChallengeLogPromise);
+      
+        if (challengeLogData.some(item => item === undefined)){
+          // forceRender()
+          return;
+        }
+        else {
+          setChallengeLogSuccess(challengeLogData);
+        }
+      }
+  
+      fetchChallengeLog();
+    }, [currChallenge, groupMemberData, updateVal]);
+
+    if(loadData){
+      return(
+        <StyledText>Loading...</StyledText>
+      )
+    }
+
+    // update user succeeded the challenge today
+    const handleSuccess = () => {
+      updateSuccessChallengeLog(userData.id, currChallenge.id);
+      
+      //update score
+      updateScore(userData.id, currChallenge.id)
+      
+      // sent notification to the group members about user's success
+      notiForGroupMembers(groupMemberData, userData.id, MEMBER_SUCCESS);
+      setDisabledButton(true);
+      forceRender();
+    };
+
+    // decide which button to display
+    var successButton =
+    disabledButton ? (
+      <div></div>
+    ) : (
+      <>
+        <StyledText>
+          Today you haven't documented anything yet.
+          <br />
+          How are you doing?
+        </StyledText>
+        <div className="d-flex justify-content-around p-2">
+          <StyledButton type="primary" onClick={handleSuccess}>
+            I succeeded today
+          </StyledButton>
+          <br />
+          <StyledButton type="secondary">I didn’t make it</StyledButton >
+        </div>
+      </>
+    );
+
+    // display the current challenge or go to vote message
+    var showCurrentChallenge = currChallenge ? (
+      currChallenge === "noChallenge" ? (
+        <InfoBoxDiv id="current_challenge_box">
+          <div className="row">
+            <StyledText>Current challenge</StyledText>
+            <StyledTitle type={"subtitle"}>
+              <b>No challenge selected</b>
+            </StyledTitle>
+            <StyledText>Suggest your group a new challenge!</StyledText>
+            <div className="d-flex justify-content-end p-2">
+              <StyledButton
+                type="primary"
+                onClick={() => {
+                  history.push("/user/challenges");
+                }}
+              >
+                Choose a challenge
+              </StyledButton>
+            </div>
+          </div>
+        </InfoBoxDiv>
+      ) : (
+        <InfoBoxDiv id="current_challenge_box">
+          <div className="row">
+            <StyledText>Current challenge</StyledText>
+            <StyledTitle type={"subtitle"}>
+              <b>{currChallenge.challengeName}</b>
+            </StyledTitle>
+            <StyledText>{currChallenge.description}</StyledText>
+            {groupData && groupData.timeStampEnd2 && <ChallengeTimer/>}
+            {successButton}
+          </div>
+        </InfoBoxDiv>
+      )
+    ) : (
+      <InfoBoxDiv>
+        <StyledText>Loading...</StyledText>
+      </InfoBoxDiv>
+    );
+
     // Last step of currChallenge proccess
     var whatToDisplay = groupData ? (
     groupData.countGroup === 1 ? (
-        <InfoBox id="current_challenge_box">
+        <InfoBoxDiv id="current_challenge_box">
         <div className="row">
-            <IndicationText>current challenge</IndicationText>
-            <SubTitle>
+            <StyledText>current challenge</StyledText>
+            <StyledTitle type={"subtitle"}>
             <b>Your group is empty 😭</b>
-            </SubTitle>
-            <IndicationText>
+            </StyledTitle>
+            <StyledText>
             Invite your friends to start the journey
-            </IndicationText>
+            </StyledText>
         </div>
-        </InfoBox>
+        </InfoBoxDiv>
     ) : (
         showCurrentChallenge
     )
     ) : (
-    <InfoBox></InfoBox>
+    <InfoBoxDiv></InfoBoxDiv>
     );
 
     if (type === "groupAdd") {

@@ -180,7 +180,7 @@ export default function Overview() {
       
         }
     checkDisabled();
-  }, [successDate, nowDate])
+  }, [successDate, nowDate]);
   
   useEffect(() => {
     const fetchChallengeLog = async () => {
@@ -215,7 +215,7 @@ export default function Overview() {
     }
 
     fetchChallengeLog();
-  }, [currChallenge, groupMemberData, updateVal])
+  }, [currChallenge, groupMemberData, updateVal]);
 
     
   if(loadData){
@@ -224,18 +224,18 @@ export default function Overview() {
     )
   }
 
-    // update user succeeded the challenge today
-    const handleSuccess = () => {
-      updateSuccessChallengeLog(userData.id, currChallenge.id);
-      
-      //update score
-      updateScore(userData.id, currChallenge.id)
-      
-      // sent notification to the group members about user's success
-      notiForGroupMembers(groupMemberData, userData.id, MEMBER_SUCCESS);
-      setDisabledButton(true);
-      forceRender();
-    };
+  // update user succeeded the challenge today
+  const handleSuccess = () => {
+    updateSuccessChallengeLog(userData.id, currChallenge.id);
+    
+    //update score
+    updateScore(userData.id, currChallenge.id)
+    
+    // sent notification to the group members about user's success
+    notiForGroupMembers(groupMemberData, userData.id, MEMBER_SUCCESS);
+    setDisabledButton(true);
+    forceRender();
+  };
 
 
   // decide which button to display
