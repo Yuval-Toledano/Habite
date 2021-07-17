@@ -259,6 +259,18 @@ export const BackgroundCircle = styled.img`
     position: relative;
 `;
 
+export const LeaderBoardPhotoWrapper = styled.img`
+    height: 45px;
+    width: 45px;
+    border-radius: 56px;
+    border: ${props => {
+        switch (props.color) {
+            default:
+                return (props.color)
+        }
+    }};
+`;
+
 // containers
 
 export const InfoBoxDiv = styled.div`
@@ -273,6 +285,41 @@ export const InfoBoxDiv = styled.div`
     box-shadow: ${shadow};
     position: absolute;
 `;
+
+export const LeaderboardDivWrapper = styled.div`
+    background-color: ${colors.accent};
+    padding: 5px 5px 5px 5px;
+    width: 85%;
+    border-radius: 5%;
+    border: ${props => {
+        switch (props.color) {
+            default:
+                return (props.color)
+        }
+    }};
+`;
+
+export const LeaderboardContainer = styled.div`
+    display: flex;
+    position: relative;
+    align-items: center;
+`;
+
+export function LeaderBoardPhoto(props) {
+    const { color, src } = props;
+    return (
+        <LeaderBoardPhotoWrapper src={src} color={color}></LeaderBoardPhotoWrapper>
+    )
+}
+
+export function LeaderboardDiv(props) {
+    const { color} = props;
+    return (
+        <LeaderboardDivWrapper color={color} className="d-flex flex-row m-1 d-flex justify-content-around">
+            {props.children}
+        </LeaderboardDivWrapper>
+    )
+}
 
 
 export function StyledButton(props) {
