@@ -267,6 +267,7 @@ export function MobileInfoBox(props) {
             <div className="d-flex justify-content-end p-2">
               <StyledButton
                 type="primary"
+                wide="true"
                 onClick={() => {
                   history.push("/user/challenges");
                 }}
@@ -374,9 +375,9 @@ export function MobileInfoBox(props) {
         );
     } else if (type === "currChallenge") {
         return (
-            <InfoBoxDiv className="d-flex flex-column">
-                {whatToDisplay}
-            </InfoBoxDiv>
+          <div>
+            {whatToDisplay}
+          </div>
         );
     }
 
