@@ -357,18 +357,18 @@ export function MobileInfoBox(props) {
         }
     } else if (type === "statBox") {
         return (
-            <InfoBoxDiv className="d-flex flex-column">
+            <InfoBoxDiv className="d-flex flex-column justify-content-between">
                 <StyledText>My Stats</StyledText>
-                <div className="d-flex flex-row justify-content-between">
-                    <StyledTitle type={"subtitle"}>Level</StyledTitle>
+                <div className="d-flex flex-row justify-content-around">
+                    <StyledTitle type={"subtitle"}>Level&nbsp;</StyledTitle>
                     <StyledTitle type={"subtitle"} color={"#00397B"}>{userLevel}</StyledTitle>
                 </div>
                 <div className="d-flex flex-row justify-content-between">
-                    <StyledTitle type={"subtitle"}>All time points</StyledTitle>
+                    <StyledTitle type={"subtitle"}>Total points&nbsp;</StyledTitle>
                     <StyledTitle type={"subtitle"} color={"#00397B"}>{userScore}</StyledTitle>
                 </div>
                 <div className="d-flex flex-row justify-content-between">
-                    <StyledTitle type={"subtitle"}>Challenges completed</StyledTitle>
+                    <StyledTitle type={"subtitle"}>Total challenges&nbsp;</StyledTitle>
                     <StyledTitle type={"subtitle"} color={"#00397B"}>{userChallenges}</StyledTitle>
                 </div>
             </InfoBoxDiv>

@@ -9,9 +9,12 @@ export default function MobileOverview() {
     return (
         <>
             <FlyingBox zindx={1} top={50}>
+                <MobileInfoBox type="groupAdd" />
+                <MobileInfoBox type="statBox" />
                 <MobileInfoBox type="currChallenge" />
                 <TopThree />
             </FlyingBox>
+            
             <BackgroundCircle src={Teal} alt="Upper background color" />
         </>
     );

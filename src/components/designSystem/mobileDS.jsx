@@ -325,7 +325,7 @@ export const InfoBoxDiv = styled.div`
     padding: 25px 15px 15px 15px;
     margin: 20px;
     border-radius: 5%;
-    box-shadow: ${shadow}
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 2;
 `;
