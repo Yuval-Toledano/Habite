@@ -1,28 +1,24 @@
 .BellButton {
     cursor: pointer;
     border: none;
-    position: relative;
-    right: 5px;
-    background-color:#0891A8;
+    background-color:transparent;
 }
 
 .JoinButton {
     cursor: pointer;
     border: none;
-    position: relative;
-    right: 120px;
-    background-color:#0891A8;
+    background-color:transparent;
 }
 
 .NotiWrapper{
     background:#F8F7F5;
-    width: 23%;
+    width: 25%;
     height: 90%;
     top: 50px;
     right: 10px;
     display: flex;
     position: absolute;
-    z-index: 11;
+    z-index: 10;
     float: center;
     border-radius: 8px;
     border: none;
@@ -32,12 +28,13 @@
 .MobileNotiWrapper{
     background:#F8F7F5;
     width: 80%;
-    height: 90%;
-    top: 50px;
-    right: 10px;
+    height: 80%;
+    top: 3rem;
+    right: 1.5rem;
+    padding: 1rem;
     display: flex;
     position: absolute;
-    z-index: 11;
+    z-index: 10;
     float: center;
     border-radius: 8px;
     border: none;
@@ -46,28 +43,31 @@
 
 
 .NotiHeader{
-    padding: 10px;
-    height: 20%;
-    flex-direction: row;
-    
+    padding: 0.2rem;
 }
 
 
+.iconDesignMobile{
+    color: #F8F7F5;
+    border-style:none;
+    width: 29px;
+    height: 29px;
+    position: relative;
+}
+
 .iconDesign{
-    color: white;
+    color: #00397B;
     border-style:none;
     width: 29px;
     height: 29px;
 }
 
 .NotiBody{
-    padding: 10px;
+    padding: 1rem;
 }
 
 .NotiList{
-    padding: 10px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding: 0rem;
 }
 
 
@@ -79,19 +79,13 @@
 }
 
 .NotiListData{
-    padding-bottom: 10px;
-    margin: 5px;
+    color: #333331;
+    padding: 0.5rem;
 }
 
-.NotiList .NotiListData:hover{
+.NotiListData:hover, .NotiListData:focus, .NotiListData:active{
     cursor: pointer;
-    background-color: #E71C96;
-    color: #FAF0E4;
-    border-radius: 15px;
+    background-color: #FD35BD;
+    color: #F8F7F5;
+    border-radius: 8px;
   }
-
-/* 
-.groupIcon{
-    background-color: #E71C96;
-    float: left;
-} */

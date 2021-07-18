@@ -219,11 +219,10 @@ const LogoWrapper = styled.h2`
 // menus
 
 const BottombarWrapper = styled.div`
-    align-self: bottom;
     align-items: center;
     width: 100%;
-    bottom: 0px;
     position: fixed;
+    z-index: 8;
 `;
 
 const BottombarButtonWrapper = styled.button`
@@ -257,6 +256,7 @@ const BottombarButtonWrapper = styled.button`
 export const BackgroundCircle = styled.img`
     width: 100%;
     position: relative;
+    z-index: 0;
 `;
 
 export const LeaderBoardPhotoWrapper = styled.img`
@@ -273,6 +273,12 @@ export const LeaderBoardPhotoWrapper = styled.img`
 
 // containers
 
+export const FlyingBoxWrapper = styled.div`
+    z-index: ${({ zindx }) => (zindx ? zindx : zindx)};
+    position: absolute;
+    top: ${({ top }) => (top ? top + px : 0 + px)};
+`;
+
 export const InfoBoxDiv = styled.div`
     background-color: ${colors.accent};
     overflow: visible;
@@ -283,6 +289,8 @@ export const InfoBoxDiv = styled.div`
     margin: 20px;
     border-radius: 5%;
     box-shadow: ${shadow}
+    position: relative;
+    z-index: 2;
 `;
 
 export const LeaderboardDivWrapper = styled.div`
@@ -363,7 +371,7 @@ export function Logo(props) {
 
 export function StyledBottombar(props) {
     const { size } = props;
-    return <BottombarWrapper className="position-absolute bottom-0 end-0">
+    return <BottombarWrapper className="bottom-0 end-0">
         {props.children}
     </BottombarWrapper>
 }
@@ -373,4 +381,11 @@ export function StyledBottombarButton(props) {
     return <BottombarButtonWrapper>
         {props.children}
     </BottombarButtonWrapper>
+}
+
+export function FlyingBox(props) {
+    const { zindx, top } = props;
+    return <FlyingBoxWrapper zindx={zindx} top={top}>
+        {props.children}
+    </FlyingBoxWrapper>
 }

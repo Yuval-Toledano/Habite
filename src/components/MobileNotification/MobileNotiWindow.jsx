@@ -1,7 +1,9 @@
-import React from 'react'
-import { H4, IndicationText} from '../designSystem/common'
-import '../notification/notificationWindow.css'
-import { NotificationData } from '../notification/notificationData.js'
+import React from 'react';
+import { H4, IndicationText} from '../designSystem/common';
+import '../notification/notificationWindow.css';
+import { NotificationData } from '../notification/notificationData.js';
+import { StyledButton, StyledTitle, Link, StyledText } from "../../components/designSystem/mobileDS";
+
 
 
 
@@ -16,15 +18,15 @@ export const NotificationWindow = ({ show, notiData}) => {
             style={{visibility: show ? 'visible' : 'hidden'}}
             >
             <div className="NotiHeader">
-                <H4><b>Notifications</b></H4>
+                <StyledTitle type={"subtitle"}>Notifications</StyledTitle>
             
             <div className="NotiBody">
                 <ul className="NotiList">
                 {displayNoti && displayNoti.map((val, key) => {
                     return (
                     <li key={key} className="row">
-                        <div className="NotiListTitle"><IndicationText>{NotificationData[val].title}</IndicationText></div>
-                        <div className="NotiListData">{NotificationData[val].data}</div>
+                        <div className="NotiListTitle"><StyledText>{NotificationData[val].title}</StyledText></div>
+                        <div className="NotiListData"><StyledText>{NotificationData[val].data}</StyledText></div>
                     </li>);
                     })}
                 </ul>
