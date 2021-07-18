@@ -12,7 +12,6 @@ export default function MobileOverview() {
                 <MobileInfoBox type="groupAdd" />
                 <MobileInfoBox type="statBox" />
                 <MobileInfoBox type="currChallenge" />
-                <MobileInfoBox type="currChallenge" />
             </FlyingBox>
             
             <BackgroundCircle src={Teal} alt="Upper background color" />
