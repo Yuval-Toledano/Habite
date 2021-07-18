@@ -1,7 +1,20 @@
 import { MobilePageContainer } from "../../components/pageContainers/mobile_page_container";
-import { StyledButton, StyledTitle, Link, StyledText, Logo } from "../../components/designSystem/mobileDS";
+import { StyledButton, StyledTitle, StyledLink, StyledText, Logo } from "../../components/designSystem/mobileDS";
 import { SvgIcecream, SvgBeerbottle } from "../../components/svgs/candies";
 import Markunread from '@material-ui/icons/Markunread';
+import { Link } from "react-router-dom";
+
+
+function sendMail(event) {
+  event.preventDefault();
+  var link = "mailto:hellohabite@gmail.com"
+    + "&subject=" + encodeURIComponent("Hi there!")
+    ;
+
+  window.location.href = link;
+  // document.location.href = "mailto:hellohabite@gmail.com";
+};
+
 
 export function MobileLanding(props) {
   return (
@@ -15,7 +28,13 @@ export function MobileLanding(props) {
           <div class="col-10">
             <div class="d-flex flex-row justify-content-between">
               <div class="p-2"><Logo>Habite</Logo></div>
-              <div class="p-2"><Link>login</Link></div>
+              <div class="p-2">
+                <Link to={"/signin"}>
+                  <StyledLink mode={"main"}>
+                    login
+                  </StyledLink>
+                </Link>
+              </div>
             </div>
           </div>
           <div class="col-1">
@@ -36,7 +55,8 @@ export function MobileLanding(props) {
             <div class="d-flex flex-col justify-content-between">
               <div class="p-2"><StyledTitle type={"subtitle"}>Regaining control back on your mind and life, together!</StyledTitle>
                 <StyledText>Habite is a safe place for those who are willing to change their nutrition habits and start a healthier chapter in their lives - to intake sugar in a more responsible way or even stop consuming it. We made the process of sugar-sobriety totaly digital and sharable, so you’ll have fun on the way to regain the control of your mind and life back to yourself.</StyledText>
-                <StyledButton type={"primary"} wide={true}>Get sugar free now</StyledButton></div>
+                <Link to={"/signup"}><StyledButton type={"primary"} wide={true}>Get sugar free now</StyledButton></Link>
+              </div>
             </div>
           </div>
           <div class="col-1">
@@ -117,7 +137,7 @@ export function MobileLanding(props) {
                   <StyledTitle type={"subtitle"} mode={"over_dark"}>So, are you up for the challenge?<br />Gather your friends &</StyledTitle>
                   <StyledTitle type={"title"} mode={"over_dark"} Style={{ textTransform: "uppercase" }}>Take control back</StyledTitle>
                   <span>&nbsp;</span>
-                  <StyledButton type={"secondary"} wide={true}>Sign up now</StyledButton>
+                  <Link to={"/signup"}><StyledButton type={"secondary"} wide={true} onClick={"/signup"}>Sign up now</StyledButton></Link>
                 </p>
               </div>
             </div>
@@ -137,7 +157,7 @@ export function MobileLanding(props) {
             <StyledTitle type={"title"} mode={"over_dark"}>Habite</StyledTitle>
             <StyledText mode={"over_dark"}>Habite a safe place for those who are willing to start a healthier chapter in their lives - to intake sugar in a more responsible way or even stop consuming it.</StyledText>
             <StyledText mode={"over_dark"}>Got a question?</StyledText>
-            <Link mode={"over_dark"}><Markunread fontSize="small"/> Contact us</Link>
+            <StyledLink mode={"over_dark"} onClick={sendMail} id="contactus"><Markunread fontSize="small" /> Contact us</StyledLink>
             <p></p>
             <StyledText mode={"over_dark"}>© 2021 Habite. All rights reserved. Built by TYSAN with love.</StyledText>
           </div>
@@ -148,6 +168,6 @@ export function MobileLanding(props) {
 
         {/* FOOTER END */}
       </div>
-    </MobilePageContainer>
+    </MobilePageContainer >
   );
 }
