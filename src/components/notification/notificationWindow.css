@@ -27,10 +27,10 @@
 
 .MobileNotiWrapper{
     background:#F8F7F5;
-    width: 80%;
-    height: 80%;
+    width: 90%;
+    height: auto;
     top: 3rem;
-    right: 1.5rem;
+    right: 5%;
     padding: 1rem;
     display: flex;
     position: absolute;
