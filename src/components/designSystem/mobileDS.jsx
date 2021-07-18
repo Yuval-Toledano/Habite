@@ -2,7 +2,7 @@
 // import this file if you work on mobile version
 
 import { MicNoneSharp, MicNoneTwoTone, PinDropRounded } from '@material-ui/icons';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const px = "px";
 const rem = "rem";
