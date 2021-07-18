@@ -5,8 +5,8 @@ import { Bottombar } from "../../components/mobileComponents/bottomBar/bottomBar
 function MobileHomeTemplate({ children }) {
 
     return (
-        <div className="pageTemplate container-fluid p-0 g-0" id="wrapper">
-            <div className="">
+        <div className="" id="wrapper">
+            
                 {/* NotificationBar starts here */}
                 <NotificationBar/>
                 {/* NotificationBar ends here */}
@@ -18,7 +18,7 @@ function MobileHomeTemplate({ children }) {
                 {/* BottomBar starts here */}
                 <Bottombar />
                 {/* BottomBar ends here */}
-            </div>
+            
         </div>
     );
 }
