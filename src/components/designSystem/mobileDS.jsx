@@ -271,6 +271,43 @@ export const LeaderBoardPhotoWrapper = styled.img`
     }};
 `;
 
+export const TopThreeMiddle= styled.img`
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 2px #F16643 solid;
+`;
+
+export const TopThreeLeft = styled.img`
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    border: 2px #0891A8 solid;
+`;
+
+export const TopThreeRight = styled.img`
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    border: 2px #E993B1 solid;
+`;
+
+export const FirstPlaceCircle = styled.img`
+    height: 32px;
+    width: 32px;
+    margin-top: -15px;
+`;
+
+export const GeneralPlaceCircle = styled.img`
+    height: 28px;
+    width: 28px;
+    margin-top: -15px;
+`;
+
+export const FirstCrown = styled.img`
+    margin-bottom: -13px;
+`;
+
 // containers
 
 export const FlyingBoxWrapper = styled.div`

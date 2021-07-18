@@ -3,6 +3,7 @@ import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
 import { BackgroundCircle, FlyingBox } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
+import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
 
 export default function MobileOverview() {
     return (
