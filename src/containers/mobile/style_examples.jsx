@@ -1,5 +1,5 @@
 import { MobilePageContainer } from "../../components/pageContainers/mobile_page_container";
-import { StyledButton, StyledTitle, Link, StyledText } from "../../components/designSystem/mobileDS";
+import { StyledButton, StyledTitle, StyledLink, StyledText } from "../../components/designSystem/mobileDS";
 
 export function StyleExamples(props) {
   return (
@@ -14,9 +14,9 @@ export function StyleExamples(props) {
       <StyledTitle type={"subtitle"} mode={"over_dark"}>Subtitle over dark background</StyledTitle>
       <StyledTitle type={"landingTitle"}>Landing page subtitle</StyledTitle>
 
-      <Link mode={"over_bright"}>Link over bright background</Link>
-      <Link mode={"over_dark"}>Link over dark background</Link>
-      <Link>Default link</Link>
+      <StyledLink>Default link</StyledLink>
+      <StyledLink mode={"over_bright"}>Link over bright background</StyledLink>
+      <StyledLink mode={"over_dark"}>Link over dark background</StyledLink>
       
       <StyledText>Default text</StyledText>
       <StyledText mode={"over_dark"}>Text over dark background</StyledText>

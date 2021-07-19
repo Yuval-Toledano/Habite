@@ -14,6 +14,7 @@ const colors = {
     pink_hover: "#FD35BD", light_gray: "#D8D8D8", mid_gray: "#999896", dark_gray: "#666662"
 };
 
+
 // typography
 
 const typography = {
@@ -90,8 +91,11 @@ export const StyledLinkWrapper = styled.a`
                 return colors.text;
             case 'over_dark':
                 return colors.accent;
-            default:
+            case 'main':
                 return colors.main_cta;
+            default:
+                return colors.link;
+
         }
     }
     )};
@@ -314,6 +318,8 @@ export const FlyingBoxWrapper = styled.div`
     z-index: ${({ zindx }) => (zindx ? zindx : zindx)};
     position: absolute;
     top: ${({ top }) => (top ? top + px : 0 + px)};
+    height: ${({ height }) => (height ? height + "%" : "calc(100vh - 16%)")};
+    overflow: scroll;
 `;
 
 export const InfoBoxDiv = styled.div`
@@ -322,8 +328,8 @@ export const InfoBoxDiv = styled.div`
     display: flex;
     align-items: center;
     text-align: center;
-    padding: 25px 15px 15px 15px;
-    margin: 20px;
+    padding: 2rem;
+    margin: 1.5rem;
     border-radius: 5%;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     position: relative;
@@ -386,11 +392,11 @@ export function StyledTitle(props) {
     );
 }
 
-export function Link(props) {
-    const { type, onClick } = props;
+export function StyledLink(props) {
+    const { mode, onClick } = props;
 
     return (
-        <StyledLinkWrapper type={type} onClick={onClick}>
+        <StyledLinkWrapper mode={mode} onClick={onClick}>
             {props.children}
         </StyledLinkWrapper>
     );
@@ -421,8 +427,8 @@ export function StyledBottombarButton(props) {
 }
 
 export function FlyingBox(props) {
-    const { zindx, top } = props;
-    return <FlyingBoxWrapper zindx={zindx} top={top}>
+    const { zindx, top, height } = props;
+    return <FlyingBoxWrapper zindx={zindx} top={top} height={height}>
         {props.children}
     </FlyingBoxWrapper>
 }
