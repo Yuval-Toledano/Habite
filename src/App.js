@@ -63,6 +63,7 @@ function App() {
             <Route exact path="/newUser" component={MobileNewUserBegin} />
             <MobileHomeTemplate>
               { /* <Route exact path="/mobile/overview" render={(props) => <MobileHomeTemplate background={Teal} {...props} />}/> */}
+
               <Route exact path="/mobile/overview" component={MobileOverview} />
               <Route exact path="/mobile/challenges" component={MobileChallenges} />
               <Route exact path="/mobile/achievements" component={MobileAchievements} />
