@@ -11,7 +11,7 @@ export function Bottombar(props) {
         <StyledBottombar>
             {bottomsideData.map((val, key) => {
                 return (
-                    <Link to={val.link}>
+                    <Link to={val.link} key={key}>
                         <StyledBottombarButton
                             key={key}
                             id={window.location.pathname === val.link ? "active" : ""}

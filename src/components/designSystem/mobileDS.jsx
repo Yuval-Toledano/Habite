@@ -81,7 +81,7 @@ export const StyledText = styled.p`
   color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
 `;
 
-export const StyledLinkWrapper = styled.a`
+export const StyledLinkWrapper = styled.div`
   font-family: "Open sans";
   font-style: Bold;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};

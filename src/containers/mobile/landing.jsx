@@ -30,7 +30,7 @@ export function MobileLanding(props) {
             <div className="d-flex flex-row justify-content-between">
               <div className="p-2"><Logo>Habite</Logo></div>
               <div className="p-2">
-                <Link to={"/signin"}>
+                <Link to={"/signin"} style={{color: "#E71C7D"}}>
                   <StyledLink mode={"main"}>
                     login
                   </StyledLink>
@@ -134,12 +134,12 @@ export function MobileLanding(props) {
           <div className="col-auto">
             <div className="d-flex flex-col justify-content-center align-items-center RowBig">
               <div className="">
-                <p style={{textAlign: "center"}}>
+                <div style={{textAlign: "center"}}>
                   <StyledTitle type={"subtitle"} mode={"over_dark"}>So, are you up for the challenge?<br />Gather your friends &</StyledTitle>
                   <StyledTitle type={"title"} mode={"over_dark"} style={{ textTransform: "uppercase" }}>Take control back</StyledTitle>
                   <span>&nbsp;</span>
-                  <Link to={"/signup"}><StyledButton type={"secondary"} wide={true} onClick={"/signup"}>Sign up now</StyledButton></Link>
-                </p>
+                  <Link to={"/signup"}><StyledButton type={"secondary"} wide={true}>Sign up now</StyledButton></Link>
+                </div>
               </div>
             </div>
           </div>
