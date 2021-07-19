@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import { useHistory, useParams} from "react-router-dom";
 import {PageContainer, InnerPageContainer} from "../../../components/pageContainers/pageContainer"
-import { StyledButton, StyledTitle, Link, StyledText } from "../../../components/designSystem/mobileDS"
+import { StyledButton, StyledTitle, StyledLink, StyledText } from "../../../components/designSystem/mobileDS"
 
 
 export default function MobileSignUpJG(props) {
@@ -88,7 +88,7 @@ export default function MobileSignUpJG(props) {
                   </form>
                   <div className="text-center my-2">
                       <small>Already have an account?{" "}
-                        <Link to="/signin" className="reg-link">Log in</Link>
+                        <StyledLink to="/signin" className="reg-link">Log in</StyledLink>
                       </small>
                   </div>
                 </div>
