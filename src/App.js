@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import {AuthProvider} from "./context/AuthContext"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import SignUp from "./containers/pages/auth/signUp";
 import NewUserBegin from "./containers/pages/auth/newUserBegin";
 import PageTemplate from "./containers/pages/pageTemplate";
@@ -27,29 +27,30 @@ function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
-    height
+    height,
   };
 }
 
 function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
 
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return windowDimensions;
 }
 
 function App() {
+  var dimentions = useWindowDimensions();
 
-  var dimentions = useWindowDimensions()
-  
   if (dimentions.width < 500) {
     // needs to be the mobile routing!!!
     return (
@@ -62,8 +63,6 @@ function App() {
             <Route exact path="/signup/:groupId" component={MobileSignUpJG}/>
             <Route exact path="/newUser" component={MobileNewUserBegin} />
             <MobileHomeTemplate>
-              { /* <Route exact path="/mobile/overview" render={(props) => <MobileHomeTemplate background={Teal} {...props} />}/> */}
-
               <Route exact path="/mobile/overview" component={MobileOverview} />
               <Route exact path="/mobile/challenges" component={MobileChallenges} />
               <Route exact path="/mobile/achievements" component={MobileAchievements} />
@@ -95,6 +94,6 @@ function App() {
       </Router>
     );
   }
-  }
+}
 
 export default App;
