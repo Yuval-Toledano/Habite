@@ -197,6 +197,11 @@ const StyledButtonWrapper = styled.button`
     }
 `;
 
+export const ChallengeButton = styled.button`
+    background: ${colors.accent};
+    border: none;
+`;
+
 const LogoWrapper = styled.h2`
     font-family: "Oleo script";
     font-weight: Bold;
@@ -304,6 +309,14 @@ export const GeneralPlaceCircle = styled.img`
     margin-top: -15px;
 `;
 
+export const VoterPhoto = styled.img`
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 3px #FBE536 solid;
+    margin: 0px 3px 10px 3px;
+`;
+
 export const FirstCrown = styled.img`
     margin-bottom: -13px;
 `;
@@ -324,6 +337,20 @@ export const InfoBoxDiv = styled.div`
     text-align: center;
     padding: 25px 15px 15px 15px;
     margin: 20px;
+    border-radius: 5%;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 2;
+`;
+
+export const SingleChallengeDiv = styled.div`
+    background-color: ${colors.accent};
+    overflow: visible;
+    width: 90%;
+    display: flex;
+    text-align: center;
+    padding: 15px 15px 0px 15px;
+    margin: 12px;
     border-radius: 5%;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     position: relative;
