@@ -1,11 +1,13 @@
 import React, {useRef, useState} from 'react';
 import {useHistory, useLocation} from "react-router-dom";
-import {TextInPage, StandAloneTitle, IndicationText } from "../../../components/designSystem/common";
+import {IndicationText } from "../../../components/designSystem/common";
 import {PageContainer, InnerPageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
 import {storage} from "../../../firebase";
+import { StyledButton, StyledTitle, StyledText } from "../../../components/designSystem/mobileDS"
 
-export default function NewUserBegin(props) {
+
+export default function MobileNewUserBegin(props) {
   //const [email, setEmail] = useState()
   //const password = location.state.password
   //const typeSignUp = location.state.type
@@ -46,8 +48,8 @@ export default function NewUserBegin(props) {
             {/* TODO: add here a rendering of the logo (white) */}
             <div className="rounded p-4 bg-offwhite">
               <div className="page-headline justify-content-start">
-                <div><TextInPage>Welcome,</TextInPage></div>
-                <div><StandAloneTitle>Tell us a bit about yourself</StandAloneTitle></div>
+                <div><StyledText>Welcome,</StyledText></div>
+                <div><StyledTitle>Tell us a bit about yourself</StyledTitle></div>
                 <div><IndicationText>This will help us personalize your experience</IndicationText></div>
     
               </div>
@@ -60,7 +62,7 @@ export default function NewUserBegin(props) {
                     {/* name input start */}
                     <div className="form-group mb-2">
                       <label htmlFor="name" className="form-label">
-                        <TextInPage><small>What's your name?</small></TextInPage>
+                        <StyledText><small>What's your name?</small></StyledText>
                       </label>
                       <input
                         type="text"
@@ -75,7 +77,7 @@ export default function NewUserBegin(props) {
                     {/* motivation input start */}
                     <div className="form-group mb-2">
                       <label htmlFor="userMotivationn" className="form-label">
-                        <TextInPage><small>What’s your motivation to changing your habit?</small></TextInPage>
+                        <StyledText><small>What’s your motivation to changing your habit?</small></StyledText>
                       </label>
                       <input
                         type="text"
@@ -89,7 +91,7 @@ export default function NewUserBegin(props) {
                     {/* profile picture input start */}
                     <div className="form-group mb-2">
                       <label htmlFor="userProfilePic" className="form-label">
-                        <TextInPage><small>Profile picture</small></TextInPage>
+                        <StyledText><small>Profile picture</small></StyledText>
                       </label>
                       <input
                         type="file"
@@ -113,16 +115,16 @@ export default function NewUserBegin(props) {
                         id="userAgreement"
                       />
                       <label htmlFor="userAgreement" className="form-label">
-                        <TextInPage><small>&nbsp;Yes! I’m willing to change my sugar intake habits!</small></TextInPage>
+                        <StyledText><small>&nbsp;Yes! I’m willing to change my sugar intake habits!</small></StyledText>
                       </label>
                     </div>
                     {/* willing check end */}
     
                     {/* cta button start */}
-                    <button
+                    <StyledButton type={"primary"}
                       className="Button-primary float-md-end" onClick={handleSubmit}>
                       Continue
-                    </button>
+                    </StyledButton>
                     {/* cta button end */}
                   </form>
                   {/* form - name and motivation adding */}
