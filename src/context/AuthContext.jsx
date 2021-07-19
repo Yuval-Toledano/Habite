@@ -133,6 +133,19 @@ export function AuthProvider({ children }) {
     return auth.signInWithEmailAndPassword(email, password)
   }
 
+  function isLogin(){
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+    // User is signed in.
+      return true
+    } else {
+    // No user is signed in.
+      return false
+  }
+  }
+  
+
   // the function sign out the user
   function logOut() {
     return auth.signOut().then(() => {
@@ -236,6 +249,7 @@ export function AuthProvider({ children }) {
     signUpNG,
     signUpJG,
     logIn,
+    isLogin,
     logOut,
     forceRender,
     usePrevious
