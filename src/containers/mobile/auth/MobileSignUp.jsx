@@ -1,33 +1,28 @@
 import React, {useRef, useState} from 'react';
-import {Link, useHistory, useParams} from "react-router-dom";
-import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
+import {useHistory} from "react-router-dom";
 import {PageContainer, InnerPageContainer} from "../../../components/pageContainers/pageContainer"
+import { Marginer } from '../../../components/marginer/marginer';
+import { StyledButton, StyledTitle, Link, StyledText } from "../../../components/designSystem/mobileDS"
 
-
-export default function SignUpJG(props) {
-    const WG_emailRef = useRef();
-    const WG_passwordRef = useRef();
-    const { groupId } = useParams();
+export default function MobileSignUpNG(props) {
+    const NG_emailRef = useRef();
+    const NG_passwordRef = useRef();
     const [loading, setLoading] = useState(false);
 
     const history = useHistory();
 
-   
-    // The function handles submit 'join group' form
-    async function handleSubmitJG(event) {
-        
+    // The function handles submit 'no group' form
+    async function handleSubmitNG(event){
         event.preventDefault();
         //setLoading(true);
-        //await signUpJG(WG_emailRef.current.value, WG_passwordRef.current.value, groupCodeRef.current.value);
+        //await signUpNG(NG_emailRef.current.value, NG_passwordRef.current.value);
         //setLoading(false);
         history.push( {
           pathname: "/newUser",
           state: {
-            userMail: WG_emailRef.current.value,
-            password: WG_passwordRef.current.value,
-            groupID: groupId,
-            type: 'JG'}})
-        
+            userMail: NG_emailRef.current.value,
+            password: NG_passwordRef.current.value,
+            type: 'NG'}})
     }
 
     return (
@@ -35,66 +30,69 @@ export default function SignUpJG(props) {
         <InnerPageContainer flexDirection="row" className="justify-content-center" display="grid" background="transparent">
           <div className="rounded p-4 bg-offwhite">
             <div className="page-headline d-flex justify-content-center">
-              <TextInPage>Sign up to <span className="logo-small">Habite</span></TextInPage>
+              <StyledTitle>Sign up to <span className="logo-small">Habite</span></StyledTitle>
             </div>
             {/* forms wrapper start */}
             <div className="forms p-4">
-              {/* form 2 - join group user start */}
-              <div className="form-2">
-                {/* <h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1> */}
-                <StandAloneTitle>Join your Group!</StandAloneTitle>
+              {/* form 1 - groupless user start */}
+              <div className="form-1 p-2">
+                <StyledText>Create a New Group</StyledText>
                 <div className="mx-auto md:w-2/4">
-                  {/* TODO: here was error div */}
-                  <form onSubmit={handleSubmitJG} >
+                {/* {TODO: here was error div} */}
+  
+                  <form onSubmit={handleSubmitNG} method="POST">
                     {/* email input start */}
                     <div className="form-group">
-                      <label htmlFor="userEmailWg" className="form-label">
+                      <label htmlFor="userEmailNg" className="form-label">
                         <small>Email:</small>
                       </label>
                       <input
                         type="email"
                         className="form-control rounded-pill"
-                        name="userEmailWg"
+                        name="userEmailNg"
                         placeholder="E.g. archie@riverdale.com"
-                        id="userEmailWg"
-                        ref={WG_emailRef}
+                        id="userEmailNg"
+                        ref={NG_emailRef}
                       />
                     </div>
                     {/* email input end */}
                     {/* password input start */}
                     <div className="form-group mt-2">
-                      <label htmlFor="userPasswordWg" className="form-label">
-                        <small>Password</small>
+                      <label htmlFor="userPasswordNg" className="form-label">
+                        <small>Password:</small>
                       </label>
                       <input
                         type="password"
                         className="form-control rounded-pill"
-                        name="userPasswordWg"
+                        name="userPasswordNg"
                         placeholder=""
-                        id="userPasswordWg"
-                        ref={WG_passwordRef}
+                        id="userPasswordNg"
+                        ref={NG_passwordRef}
                       />
                     </div>
                     {/* password input end */}
-                    {/* sign up button start */}  
-                    <button
-                      className="Button-primary Button-wide"
-                      type="submit"
-                    >
-                      Join your friends
-                    </button>
-                    {/* sign up button end */}
+                    {/* Marginer start */}
+                    <Marginer direction="vertical" margin={68} />
+                    {/* Marginer end */}
+                    {/* sign up button start */}
   
+                    <StyledButton type={"primary"}
+                      className="Button-primary Button-wide"
+                      >Create a group
+                    </StyledButton>
+                    {/* sign up button end */}
                   </form>
                   <div className="text-center my-2">
-                      <small>Already have an account?{" "}
+                    <small>Already have an account?{" "}
                         <Link to="/signin" className="reg-link">Log in</Link>
-                      </small>
+                    </small>
+                    </div>
+                
                   </div>
-                </div>
               </div>
-              {/* form 2 - join group user end */}
-              {/* forms wrapper end */}
+              {/* form 1 - groupless user end */}
+
+                  
             </div>
           </div>
         </InnerPageContainer>

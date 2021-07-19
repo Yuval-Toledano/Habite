@@ -1,10 +1,10 @@
 import React, {useRef, useState} from 'react';
-import {Link, useHistory, useParams} from "react-router-dom";
-import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
+import { useHistory, useParams} from "react-router-dom";
 import {PageContainer, InnerPageContainer} from "../../../components/pageContainers/pageContainer"
+import { StyledButton, StyledTitle, Link, StyledText } from "../../../components/designSystem/mobileDS"
 
 
-export default function SignUpJG(props) {
+export default function MobileSignUpJG(props) {
     const WG_emailRef = useRef();
     const WG_passwordRef = useRef();
     const { groupId } = useParams();
@@ -12,10 +12,9 @@ export default function SignUpJG(props) {
 
     const history = useHistory();
 
-   
+    
     // The function handles submit 'join group' form
     async function handleSubmitJG(event) {
-        
         event.preventDefault();
         //setLoading(true);
         //await signUpJG(WG_emailRef.current.value, WG_passwordRef.current.value, groupCodeRef.current.value);
@@ -35,14 +34,15 @@ export default function SignUpJG(props) {
         <InnerPageContainer flexDirection="row" className="justify-content-center" display="grid" background="transparent">
           <div className="rounded p-4 bg-offwhite">
             <div className="page-headline d-flex justify-content-center">
-              <TextInPage>Sign up to <span className="logo-small">Habite</span></TextInPage>
+              <StyledTitle>Sign up to <span className="logo-small">Habite</span></StyledTitle>
             </div>
             {/* forms wrapper start */}
             <div className="forms p-4">
+              
               {/* form 2 - join group user start */}
               <div className="form-2">
                 {/* <h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1> */}
-                <StandAloneTitle>Join your Group!</StandAloneTitle>
+                <StyledText>Join your group!</StyledText>
                 <div className="mx-auto md:w-2/4">
                   {/* TODO: here was error div */}
                   <form onSubmit={handleSubmitJG} >
@@ -76,13 +76,13 @@ export default function SignUpJG(props) {
                       />
                     </div>
                     {/* password input end */}
-                    {/* sign up button start */}  
-                    <button
+                    {/* sign up button start */}
+  
+                    <StyledButton type={"primary"}
                       className="Button-primary Button-wide"
-                      type="submit"
                     >
                       Join your friends
-                    </button>
+                    </StyledButton>
                     {/* sign up button end */}
   
                   </form>
