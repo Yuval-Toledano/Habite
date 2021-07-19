@@ -379,6 +379,10 @@ export function MobileInfoBox(props) {
         {whatToDisplay}
       </div>
     );
+  } else {
+    return (
+      <div>default</div>
+    )
   }
 
 }
