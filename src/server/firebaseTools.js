@@ -519,7 +519,7 @@ const updateVotes = async (voteObj, userId) => {
   var groupPromise = getGroupDocument(voteObj.groupId);
   groupPromise.then((doc) => {
     doc.get().then((group) => {
-      if (group.data().countGroup === voteObj.voterCounter + 1) {
+      if (group.data().countGroup > ((voteObj.voterCounter + 1)/2)) {
         doc.update({
           approvedChallenges: firebase.firestore.FieldValue.arrayUnion(
             voteObj.challengeId

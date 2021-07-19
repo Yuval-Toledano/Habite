@@ -17,7 +17,11 @@ import MobileChallenges from "./containers/mobile/MobileChallenges";
 import MobileAchievements from "./containers/mobile/MobileAchievements";
 import MobileRules from "./containers/mobile/Rules";
 import Teal from "./components/svgs/mobileBackgrounds/Teal.svg";
-
+import PrivateRoute from "./components/PrivateRoute"
+import PublicRoute from "./components/PublicRoute"
+import MobileSignUpNG from "./containers/mobile/auth/MobileSignUp"
+import MobileSignUpJG from "./containers/mobile/auth/MobileSignUpJG"
+import MobileNewUserBegin from "./containers/mobile/auth/MobileNewUser"
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -52,18 +56,19 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route exact path="/" component={MobileLanding} />
-            <Route exact path="/signin" exact component={SignIn} />
-            <Route exact path="/signup" component={SignUp}/>
-            <Route exact path="/newUser" exact component={NewUserBegin} />
-            <Route exact path="/signup/:groupId" component={SignUpJG}/>
+          <Route exact path="/" component={MobileLanding} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/signup" component={MobileSignUpNG}/>
+            <Route exact path="/signup/:groupId" component={MobileSignUpJG}/>
+            <Route exact path="/newUser" component={MobileNewUserBegin} />
             <MobileHomeTemplate>
               { /* <Route exact path="/mobile/overview" render={(props) => <MobileHomeTemplate background={Teal} {...props} />}/> */}
-              <Route exact path="/mobile/overview" exact component={MobileOverview} />
-              <Route exact path="/mobile/challenges" exact component={MobileChallenges} />
-              <Route exact path="/mobile/achievements" exact component={MobileAchievements} />
-              <Route exact path="/mobile/rulesOfGame" exact component={MobileRules} />
+              <Route exact path="/mobile/overview" component={MobileOverview} />
+              <Route exact path="/mobile/challenges" component={MobileChallenges} />
+              <Route exact path="/mobile/achievements" component={MobileAchievements} />
+              <Route exact path="/mobile/rulesOfGame" component={MobileRules} />
             </MobileHomeTemplate>
+            
           </Switch>
         </AuthProvider>
       </Router>
@@ -74,15 +79,16 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route path="/" exact component={HomePage} />
-            <Route path="/styling" component={StyleExamples} />
-            <Route path="/signin" exact component={SignIn} />
-            <Route path="/signup" component={SignUp}/>
-            <Route path="/newUser" exact component={NewUserBegin} />
-            <PageTemplate>
-              <Route path="/user/overview" exact component={Overview}/>
-              <Route path="/user/challenges" exact component={ChallengePage} />
-            </PageTemplate>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/styling" component={StyleExamples} />
+          <Route path="/signin" exact component={SignIn} />
+          <Route path="/signup" component={SignUp}/>
+          <Route path="/signup/:groupId" component={SignUpJG}/>
+          <Route path="/newUser" exact component={NewUserBegin} />
+          <PageTemplate>
+            <Route path="/user/overview" exact component={Overview}/>
+            <Route path="/user/challenges" exact component={ChallengePage} />
+          </PageTemplate>
           </Switch>
         </AuthProvider>
       </Router>
