@@ -47,7 +47,7 @@ export function MobileInfoBox(props) {
   // generate the whatsapp link for sharing the group code
   useEffect(() => {
     if (groupData) {
-      setURL(`http://localhost:3001/signup/${groupData.id}`)
+      setURL(`https://habite-fd756.web.app/signup/${groupData.id}`)
     }
   }, [groupData])
 

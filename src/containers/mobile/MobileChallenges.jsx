@@ -1,13 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Yellow from "../../components/svgs/mobileBackgrounds/Yellow.svg";
-import { BackgroundCircle, FlyingBox, StyledTitle, StyledText, StyledButton } from "../../components/designSystem/mobileDS";
+import { BackgroundCircle, FlyingBox, StyledTitle } from "../../components/designSystem/mobileDS";
 import { ChallengesDiv } from "../../components/mobileComponents/Challenges/ChallengesDiv";
-import { Button, DisableButton } from "../../components/button/button";
-import {getChallengeDocumentData, generateVotesDocument, notiForGroupMembers} from "../../server/firebaseTools";
-import {getVoteDocData} from "../../server/firebaseTools";
-
-// types of notifications
-const MEMBER_VOTED = 1;
 
 export default function MobileChallenges() {
     return (

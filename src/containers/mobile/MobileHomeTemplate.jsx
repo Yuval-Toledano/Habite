@@ -1,4 +1,4 @@
-import React, { children } from "react";
+import React from "react";
 import NotificationBar from "../../components/MobileNotification/MobileBar";
 import { Bottombar } from "../../components/mobileComponents/bottomBar/bottomBar";
 

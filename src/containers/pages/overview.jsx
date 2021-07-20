@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Title,
   SubTitle,
@@ -38,7 +38,6 @@ const LeaderBoardContainer = styled.div`
 
 // types of notifications
 const GO_VOTE = 0;
-const MEMBER_VOTED = 1;
 const MEMBER_SUCCESS = 2;
 const NEW_CHALLENGE = 3;
 const CLASSIC_UPDATE = 1;
@@ -51,7 +50,6 @@ export default function Overview() {
   const [currChallenge, setCurrChallenge] = useState();
   const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
   const [disabledButton, setDisabledButton] = useState(true);
-  const [loading, setLoading] = useState(true);
   const history = useHistory();
 
   const [successDate, setSuccessDate] = useState(); 

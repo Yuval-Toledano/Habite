@@ -5,7 +5,6 @@ import { GroupProgressCard } from "../../components/progressComponents/progressG
 import { BadgeProgressCard } from "../../components/progressComponents/progressBadgeCard";
 import { Title, SubTitle } from "../../components/designSystem/common";
 import { Separator } from '../../components/marginer/marginer';
-import { Group } from "@material-ui/icons";
 
 function ProgressPage() {
 
