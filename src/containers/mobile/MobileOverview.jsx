@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
-import { BackgroundCircle, FlyingBox, StyledText, StyledTitle } from "../../components/designSystem/mobileDS";
+import { BackgroundCircle, FlyingBox } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
 import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
