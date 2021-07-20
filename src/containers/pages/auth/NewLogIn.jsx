@@ -4,8 +4,6 @@ import {TextInPage, StandAloneTitle} from "../../../components/designSystem/comm
 import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
 import { Marginer } from "../../../components/marginer/marginer";
-//import "./signup.css"
-
 
 export default function Login(props) {
     const emailRef = useRef();

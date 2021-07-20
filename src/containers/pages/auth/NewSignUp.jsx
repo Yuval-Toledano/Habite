@@ -4,8 +4,6 @@ import {TextInPage, StandAloneTitle} from "../../../components/designSystem/comm
 import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
 
-
-
 export default function NewSignUp(props) {
     const emailRef = useRef();
     const passwordRef = useRef();
