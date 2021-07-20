@@ -17,7 +17,7 @@ export function TopThree() {
         const topThreeMembers = sortedGroupMemberData.slice(0, 3);
 
         return (
-            <div className="d-flex flex-row justify-content-center align-items-end">
+            <div className="d-flex flex-row justify-content-center align-items-end mb-3">
                 <div className="d-flex flex-column mx-3 align-items-center">
                     <TopThreeLeft src={topThreeMembers[1].profilePic} alt="Second place member"></TopThreeLeft>
                     <GeneralPlaceCircle src={SecondCircle} alt="Second place circle"/>

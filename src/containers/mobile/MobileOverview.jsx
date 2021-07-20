@@ -11,12 +11,10 @@ export default function MobileOverview() {
         <>
             <FlyingBox zindx={1} top={50}>
                 <MobileUserDetailsHeader></MobileUserDetailsHeader>
+                <MobileInfoBox type="currChallenge" />
                 <TopThree />
                 <MobileLeaderboard/>
                 <MobileInfoBox type="groupAdd" />
-                <MobileInfoBox type="statBox" />
-                <MobileInfoBox type="currChallenge" />
-                <TopThree />
             </FlyingBox>
 
             <BackgroundCircle src={Teal} alt="Upper background color" />
