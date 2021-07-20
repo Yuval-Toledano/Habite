@@ -256,7 +256,58 @@ export const ProgressCategoriesTitle = styled.h2`
 `;
 
 export const ProgressCategoriesIconDiv = styled.div`
-height: 3.2rem;
-width: 3.2rem;
+  height: 3.2rem;
+  width: 3.2rem;
+  border-radius: 50%;
+`;
+
+/* PROGRESS PAGE CSS */
+
+export const BadgeCollectionDiv = styled.div`
+  background-color: #FFFFFF;
+  border: 1px solid #E4DCD3;
+  border-radius: 10px;
+  padding: 1.5rem 1.5rem 1rem 1.5rem;
+  // font-family: 'Quicksand';
+  // margin: 16px;
+  border: 3px solid #E993B1;
+  max-width: 100%;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+`;
+
+export const BadgePosterDiv = styled.div`
+  min-height: 25rem;
+  text-align: center;
+`;
+
+export const BadgePoster = styled.div`
+  min-width: 18rem;
+  max-height: 21rem;
+`;
+
+export const BadgeStars = styled.div`
+  min-height: 2.2rem;
+  align-content: center;
+`;
+
+export const BadgeTitle = styled.div`
+  font-size: 1rem !important;
+  line-height: 160%;
+`;
+
+export const CurrPeronalAvatarDiv = styled.div`
+background-color: #FAF0E4;
+height: 8rem;
+width: 8rem;
+border-radius: 50%;
+border: 0.2rem solid #E993B1;
+`;
+
+export const PrevPeronalAvatarDiv = styled.div`
+background-color: #FAF0E4;
+height: 6rem;
+width: 6rem;
 border-radius: 50%;
 `;

@@ -47,7 +47,6 @@ export function MobileInfoBox(props) {
   // generate the whatsapp link for sharing the group code
   useEffect(() => {
     if (groupData) {
-      console.log("Whatapp share function")
       setURL(`http://localhost:3001/signup/${groupData.id}`)
     }
   }, [groupData])
@@ -320,7 +319,6 @@ export function MobileInfoBox(props) {
   if (type === "groupAdd") {
     // Add members to group when there is only 1 member
     if (groupCount === 1) {
-      console.log("1 member!")
       return (
         <InfoBoxDiv className="d-flex flex-column">
           <StyledText>Oh no, looks like your your group is empty</StyledText>
@@ -338,7 +336,6 @@ export function MobileInfoBox(props) {
       );
     } else {
       // Add members to group when there are at least 2 members
-      console.log("more than 1 member!")
       return (
         <InfoBoxDiv className="d-flex flex-column">
           <StyledText>Share group code</StyledText>
