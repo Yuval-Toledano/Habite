@@ -28,12 +28,12 @@ export default function MobileSignUpNG(props) {
     return (
         <PageContainer flexDirection="row" background="#E993B1">
         <InnerPageContainer flexDirection="row" className="justify-content-center" display="grid" background="transparent">
-          <div className="rounded p-4 bg-offwhite">
+          <div className="rounded p-5 bg-offwhite">
             <div className="page-headline d-flex justify-content-center">
               <StyledTitle>Sign up to <span className="logo-small">Habite</span></StyledTitle>
             </div>
             {/* forms wrapper start */}
-            <div className="forms p-4">
+            <div className="forms p-4 ">
               {/* form 1 - groupless user start */}
               <div className="form-1 p-2">
                 <StyledText>Create a New Group</StyledText>
