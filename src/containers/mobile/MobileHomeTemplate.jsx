@@ -12,11 +12,13 @@ function MobileHomeTemplate({ children }) {
                 {/* NotificationBar ends here */}
 
                 {/* Page content starts here */}
-                {children}
+                <div>
+                    {children}
+                </div>
                 {/* Page content end here */}
 
                 {/* BottomBar starts here */}
-                <Bottombar />
+                <Bottombar/>
                 {/* BottomBar ends here */}
             
         </div>

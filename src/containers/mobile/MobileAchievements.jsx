@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { StyledButton, StyledTitle, Link, StyledText, Logo } from "../../components/designSystem/mobileDS";
+import React from "react";
+import { StyledTitle } from "../../components/designSystem/mobileDS";
 import Orange from "../../components/svgs/mobileBackgrounds/Orange.svg";
-import { BackgroundCircle } from "../../components/designSystem/mobileDS";
+import { BackgroundCircle, FlyingBox } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
-import { Bottombar } from "../../components/mobileComponents/bottomBar/bottomBar";
+import { MobileBadges } from "../../components/mobileComponents/mobileBadges/mobileBadges"
 
 export default function MobileAchievements() {
     return (
         <>
-            <div className="d-flex flex-column">
-                <BackgroundCircle src={Orange} alt="Upper background color" />
-                <MobileInfoBox subtitle="Challenge is on!" title="Surprise sugar attack-sauce" text="Find a sauce that contains more sugar than you thought (look at the ingridients!) and replace it #1" />
-                <MobileInfoBox subtitle="Challenge is on!" title="Surprise sugar attack-sauce" text="Find a sauce that contains more sugar than you thought (look at the ingridients!) and replace it #1" />
-                <h1>This is the mobile achievements page</h1>
-            </div>
-            <Bottombar />
+            <FlyingBox zindx={1} top={50}>
+                <div className="d-flex flex-column">
+                    <div className="d-flex flex-row justify-content-center">
+                        <StyledTitle type={"title"} mode={"over_dark"}>Achievements</StyledTitle>
+                    </div>
+                    <MobileInfoBox type="statBox" />
+                    <div className="d-flex flex-row justify-content-center">
+                        <MobileBadges/>
+                    </div>
+                </div>
+            </FlyingBox>
+
+            <BackgroundCircle src={Orange} alt="Upper background color" />
         </>
     );
 }

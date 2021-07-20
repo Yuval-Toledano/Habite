@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { auth, db, generateVotesDocument } from "../../firebase"
-import { SubTitle, IndicationText, BadgeTitle, BadgeCollectionDiv, BadgePosterDiv, BadgePoster, BadgeStars} from "../designSystem/common";
+import React from "react";
+import { SubTitle, BadgeTitle, BadgeCollectionDiv, BadgePosterDiv, BadgePoster, BadgeStars} from "../designSystem/common";
 import { Separator } from '../../components/marginer/marginer';
-import { Marginer } from "../../components/marginer/marginer";
 import SpoonFull from '../../components/svgs/Badges/sugarSpoonPoster.svg';
 import Bottle from '../../components/svgs/Badges/bottlePoster.svg';
 import NonGuilty from '../../components/svgs/Badges/dessertPoster.svg';
@@ -31,7 +29,7 @@ return (
                 </BadgeStars>
             </div>
             <div className="d-flex flex-column justify-content-center align-content-center m-2">
-                <BadgeTitle className="d-flex mb-2">Bye Bye Sugary Drinks Challenge Series: 1 out of 3</BadgeTitle>
+                <BadgeTitle className="d-flex mb-2">Non-Guilty Pleasure Challenge Series: 2 out of 3</BadgeTitle>
                 <BadgePoster className="d-flex flex-column justify-content-center"><img src={NonGuilty} alt="Spoon full poster"/></BadgePoster>
                 <BadgeStars className="d-flex flex-row justify-content-center">
                     <img src={FilledStar} alt="filled star" />
