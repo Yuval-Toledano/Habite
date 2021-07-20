@@ -16,11 +16,22 @@ export default function NewSignUp(props) {
     const {signUpNG} = useAuth();
     const history = useHistory();
 
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     
     // The function handles submit form
      async function handleSubmit(event) {
         event.preventDefault();
-        await signUpNG(emailRef.current.value, passwordRef.current.value, nameRef.current.value, image);
+        try {
+            setError("");
+            setLoading(true);
+            await signUpNG(emailRef.current.value, passwordRef.current.value, nameRef.current.value, image);
+            history.push("user/overview");
+          } catch {
+            setError("Failed to sign up")
+            console.log(error);
+          }
+          setLoading(false);
         history.push("/user/overview")
     }
 
@@ -42,7 +53,7 @@ return (
                 <div className="subTitle-container">
                     <StandAloneTitle>Create a Group</StandAloneTitle>
                 </div>
-                <form method="POST">
+                <form onSubmit={handleSubmit} method="POST">
                     {/* name input start */}
                     <div className="user-details">
                         <div className="input-box">
@@ -109,7 +120,8 @@ return (
                 <button
                     className="Button-primary Button-wide"
                     type="submit"
-                    onClick={handleSubmit}>Create a group
+                    disabled={loading}
+                    >Create a group
                 </button>
                 
                 </form>
