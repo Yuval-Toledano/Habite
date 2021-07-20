@@ -1,10 +1,8 @@
-import React, {useRef, useState, useParams} from 'react';
-import { useHistory , Link} from "react-router-dom";
+import React, {useRef, useState} from 'react';
+import { useHistory , Link, useParams} from "react-router-dom";
 import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
 import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
-
-
 
 export default function NewSignUpJG(props) {
     const emailRef = useRef();
@@ -13,9 +11,11 @@ export default function NewSignUpJG(props) {
     const imageRef = useRef();
     const [image, setImage] = useState(null);
     
+    const { groupId }  = useParams();
+
     const { signUpJG } = useAuth();
     const history = useHistory();
-    const { groupId } = useParams();
+    
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -24,6 +24,7 @@ export default function NewSignUpJG(props) {
     // The function handles submit form
      async function handleSubmit(event) {
         event.preventDefault();
+        console.log("check: ",groupId)
         try {
             setError("");
             setLoading(true);
@@ -123,7 +124,7 @@ return (
                     className="Button-primary Button-wide"
                     type="submit"
                     disabled={loading}
-                    >Create a group
+                    >Join your group
                 </button>
                 
                 </form>

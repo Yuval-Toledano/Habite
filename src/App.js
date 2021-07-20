@@ -64,7 +64,7 @@ function App() {
           <Route exact path="/" component={MobileLanding} />
             <Route path="/signup" exact component={NewSignUp} />
             <Route path="/login" exact component={Login} />
-            <Route exact path="/signup/:groupId" component={NewSignUpJG}/>
+            <Route path="/signup/:groupId" component={NewSignUpJG}/>
             <MobileHomeTemplate>
               <Route exact path="/mobile/overview" component={MobileOverview} />
               <Route exact path="/mobile/challenges" component={MobileChallenges} />
@@ -86,7 +86,7 @@ function App() {
           <Route path="/styling" component={StyleExamples} />
           <Route path="/signup" exact component={NewSignUp} />
           <Route path="/login" exact component={Login} />
-          <Route exact path="/signup/:groupId" component={NewSignUpJG}/>
+          <Route path="/signup/:groupId" component={NewSignUpJG}/>
           <PageTemplate>
             <Route path="/user/overview" exact component={Overview}/>
             <Route path="/user/challenges" exact component={ChallengePage} />
