@@ -271,14 +271,12 @@ export const BadgeCollectionDiv = styled.div`
   // font-family: 'Quicksand';
   // margin: 16px;
   border: 3px solid #E993B1;
-  max-width: 100%;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
 `;
 
 export const BadgePosterDiv = styled.div`
-  min-height: 25rem;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
   text-align: center;
 `;
 

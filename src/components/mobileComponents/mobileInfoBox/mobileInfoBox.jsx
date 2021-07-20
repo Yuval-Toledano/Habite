@@ -16,6 +16,9 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import { WhatsappShareButton } from 'react-share';
 import { useHistory } from "react-router-dom";
 import ChallengeTimer from "../../timer/challengeTimer";
+import SugarPile from "../../svgs/avatars/1-sugarPile.svg";
+import SugarCube from "../../svgs/avatars/2-sugarCube.svg";
+import Marshmellow from "../../svgs/avatars/3-marshmellow.svg";
 
 export function MobileInfoBox(props) {
 
@@ -30,9 +33,9 @@ export function MobileInfoBox(props) {
   const nowDate = new Date().getDate();
   const groupId = groupData ? groupData.id : "No group Id";
   const groupCount = groupData ? groupData.countGroup : "No group count";
-  const userScore = userData ? userData.score : "Loading score";
-  const userLevel = userData ? userData.level : "Loading level";
-  const userChallenges = userData ? userData.successChallenge.length : "Loading challenges";
+  const userScore = userData ? userData.score : <StyledText>Loading score...</StyledText>;
+  const userLevel = userData ? userData.level : <StyledText>Loading level...</StyledText>;
+  const userChallenges = userData ? userData.successChallenge.length : <StyledText>Loading challenges...</StyledText>;
   const [urlJG, setURL] = useState();
 
   // types of notifications
@@ -353,12 +356,27 @@ export function MobileInfoBox(props) {
       );
     }
   } else if (type === "statBox") {
+
+    function GetAvatar() {
+      if (userLevel == "1") {
+        return SugarPile
+      }
+      else if (userLevel == "2") {
+        return SugarCube
+      }
+      else if (userLevel == "3") {
+        return Marshmellow
+      }
+      else {
+        return ""
+      }
+    }
     return (
       <InfoBoxDiv className="d-flex flex-column justify-content-between">
         <StyledText>My Stats</StyledText>
-        <div className="d-flex flex-row justify-content-between w-75">
+        <div className="d-flex flex-row justify-content-between align-items-center w-75">
           <StyledTitle type={"subtitle"}>Level&nbsp;</StyledTitle>
-          <StyledTitle type={"subtitle"} color={"#00397B"}>{userLevel}</StyledTitle>
+          <img src={GetAvatar()} className="d-flex w-25"/>
         </div>
         <div className="d-flex flex-row justify-content-between w-75">
           <StyledTitle type={"subtitle"}>Total points&nbsp;</StyledTitle>

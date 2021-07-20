@@ -333,7 +333,7 @@ export const InfoBoxDiv = styled.div`
     display: flex;
     align-items: center;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     margin: 1.5rem;
     border-radius: 5%;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
@@ -372,6 +372,18 @@ export const SingleChallengeDiv = styled.div`
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 2;
+`;
+
+export const MobileBadgeDiv = styled.div`
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    text-align: center;
+    width: 85%;
 `;
 
 export function LeaderBoardPhoto(props) {
