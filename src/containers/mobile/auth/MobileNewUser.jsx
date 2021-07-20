@@ -46,7 +46,7 @@ export default function MobileNewUserBegin(props) {
           <InnerPageContainer className="fly-above cover-all justify-content-center" display="grid" background="rgba(0,0,0,0.4)">
             {/* <div className='pageAuth d-flex justify-content-center align-self-center' id='wrapper'> */}
             {/* TODO: add here a rendering of the logo (white) */}
-            <div className="rounded p-4 bg-offwhite">
+            <div className="rounded p-5 bg-offwhite">
               <div className="page-headline justify-content-start">
                 <div><StyledText>Welcome,</StyledText></div>
                 <div><StyledTitle>Tell us a bit about yourself</StyledTitle></div>
@@ -54,7 +54,7 @@ export default function MobileNewUserBegin(props) {
     
               </div>
               {/* forms wrapper start */}
-              <div className="forms mt-4">
+              <div className="forms mt-5">
                 <div className="">
                   {/* TODO: here was an error div */}
                   {/* form - name and motivation adding */}

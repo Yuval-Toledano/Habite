@@ -22,6 +22,10 @@ import PublicRoute from "./components/PublicRoute"
 import MobileSignUpNG from "./containers/mobile/auth/MobileSignUp"
 import MobileSignUpJG from "./containers/mobile/auth/MobileSignUpJG"
 import MobileNewUserBegin from "./containers/mobile/auth/MobileNewUser"
+import NewSignUp from "./containers/pages/auth/NewSignUp"
+import MobileNewSignUp from "./containers/mobile/auth/MobileTestSignUp.jsx"
+import Login from "./containers/pages/auth/NewLogIn";
+import NewSignUpJG from "./containers/pages/auth/NewSignUpJG";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -57,10 +61,9 @@ function App() {
         <AuthProvider>
           <Switch>
           <Route exact path="/" component={MobileLanding} />
-            <Route exact path="/signin" component={SignIn} />
-            <Route exact path="/signup" component={MobileSignUpNG}/>
-            <Route exact path="/signup/:groupId" component={MobileSignUpJG}/>
-            <Route exact path="/newUser" component={MobileNewUserBegin} />
+            <Route path="/signup" exact component={NewSignUp} />
+            <Route path="/login" exact component={Login} />
+            <Route exact path="/signup/:groupId" component={NewSignUpJG}/>
             <MobileHomeTemplate>
               { /* <Route exact path="/mobile/overview" render={(props) => <MobileHomeTemplate background={Teal} {...props} />}/> */}
               <Route exact path="/mobile/overview" component={MobileOverview} />
@@ -81,10 +84,9 @@ function App() {
           <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/styling" component={StyleExamples} />
-          <Route path="/signin" exact component={SignIn} />
-          <Route path="/signup" component={SignUp}/>
-          <Route path="/signup/:groupId" component={SignUpJG}/>
-          <Route path="/newUser" exact component={NewUserBegin} />
+          <Route path="/signup" exact component={NewSignUp} />
+          <Route path="/login" exact component={Login} />
+          <Route exact path="/signup/:groupId" component={NewSignUpJG}/>
           <PageTemplate>
             <Route path="/user/overview" exact component={Overview}/>
             <Route path="/user/challenges" exact component={ChallengePage} />
