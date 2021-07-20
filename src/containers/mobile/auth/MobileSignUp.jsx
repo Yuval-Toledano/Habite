@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import {PageContainer, InnerPageContainer} from "../../../components/pageContainers/pageContainer"
 import { Marginer } from '../../../components/marginer/marginer';
-import { StyledButton, StyledTitle, Link, StyledText } from "../../../components/designSystem/mobileDS"
+import { StyledButton, StyledTitle, StyledLink, StyledText } from "../../../components/designSystem/mobileDS"
 
 export default function MobileSignUpNG(props) {
     const NG_emailRef = useRef();
@@ -84,7 +84,7 @@ export default function MobileSignUpNG(props) {
                   </form>
                   <div className="text-center my-2">
                     <small>Already have an account?{" "}
-                        <Link to="/signin" className="reg-link">Log in</Link>
+                        <StyledLink to="/signin" className="reg-link">Log in</StyledLink>
                     </small>
                     </div>
                 

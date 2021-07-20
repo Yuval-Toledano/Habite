@@ -2,7 +2,7 @@
 // import this file if you work on mobile version
 
 import { MicNoneSharp, MicNoneTwoTone, PinDropRounded } from '@material-ui/icons';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const px = "px";
 const rem = "rem";
@@ -13,6 +13,7 @@ const colors = {
     shadow_main: "#E993B1", shadow_orange: "#F16643", shadow_teal: "#0891A8", shadow_yellow: "#FBE536",
     pink_hover: "#FD35BD", light_gray: "#D8D8D8", mid_gray: "#999896", dark_gray: "#666662"
 };
+
 
 // typography
 
@@ -80,7 +81,7 @@ export const StyledText = styled.p`
   color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
 `;
 
-export const StyledLinkWrapper = styled.a`
+export const StyledLinkWrapper = styled.div`
   font-family: "Open sans";
   font-style: Bold;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
@@ -90,8 +91,11 @@ export const StyledLinkWrapper = styled.a`
                 return colors.text;
             case 'over_dark':
                 return colors.accent;
-            default:
+            case 'main':
                 return colors.main_cta;
+            default:
+                return colors.link;
+
         }
     }
     )};
@@ -197,6 +201,11 @@ const StyledButtonWrapper = styled.button`
     }
 `;
 
+export const ChallengeButton = styled.button`
+    background: ${colors.accent};
+    border: none;
+`;
+
 const LogoWrapper = styled.h2`
     font-family: "Oleo script";
     font-weight: Bold;
@@ -219,10 +228,10 @@ const LogoWrapper = styled.h2`
 // menus
 
 const BottombarWrapper = styled.div`
-    align-self: bottom;
     align-items: center;
     width: 100%;
-    bottom: 0px;
+    position: fixed;
+    z-index: 8;
 `;
 
 const BottombarButtonWrapper = styled.button`
@@ -271,7 +280,60 @@ export const LeaderBoardPhotoWrapper = styled.img`
     }};
 `;
 
+export const TopThreeMiddle= styled.img`
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 2px #F16643 solid;
+`;
+
+export const TopThreeLeft = styled.img`
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    border: 2px #0891A8 solid;
+`;
+
+export const TopThreeRight = styled.img`
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    border: 2px #E993B1 solid;
+`;
+
+export const FirstPlaceCircle = styled.img`
+    height: 32px;
+    width: 32px;
+    margin-top: -15px;
+`;
+
+export const GeneralPlaceCircle = styled.img`
+    height: 28px;
+    width: 28px;
+    margin-top: -15px;
+`;
+
+export const VoterPhoto = styled.img`
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 3px #FBE536 solid;
+    margin: 0px 3px 10px 3px;
+`;
+
+export const FirstCrown = styled.img`
+    margin-bottom: -13px;
+`;
+
 // containers
+
+export const FlyingBoxWrapper = styled.div`
+    z-index: ${({ zindx }) => (zindx ? zindx : zindx)};
+    position: absolute;
+    top: ${({ top }) => (top ? top + px : 0 + px)};
+    height: ${({ height }) => (height ? height + "%" : "calc(100vh - 16%)")};
+    overflow: scroll;
+`;
 
 export const InfoBoxDiv = styled.div`
     background-color: ${colors.accent};
@@ -279,10 +341,26 @@ export const InfoBoxDiv = styled.div`
     display: flex;
     align-items: center;
     text-align: center;
-    padding: 25px 15px 15px 15px;
-    margin: 20px;
+    padding: 2rem;
+    margin: 1.5rem;
     border-radius: 5%;
-    box-shadow: ${shadow}
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 2;
+`;
+
+export const SingleChallengeDiv = styled.div`
+    background-color: ${colors.accent};
+    overflow: visible;
+    width: 90%;
+    display: flex;
+    text-align: center;
+    padding: 15px 15px 0px 15px;
+    margin: 12px;
+    border-radius: 5%;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 2;
 `;
 
 export const LeaderboardDivWrapper = styled.div`
@@ -341,11 +419,11 @@ export function StyledTitle(props) {
     );
 }
 
-export function Link(props) {
-    const { type, onClick } = props;
+export function StyledLink(props) {
+    const { mode, onClick } = props;
 
     return (
-        <StyledLinkWrapper type={type} onClick={onClick}>
+        <StyledLinkWrapper mode={mode} onClick={onClick}>
             {props.children}
         </StyledLinkWrapper>
     );
@@ -363,7 +441,7 @@ export function Logo(props) {
 
 export function StyledBottombar(props) {
     const { size } = props;
-    return <BottombarWrapper className="position-absolute bottom-0 end-0">
+    return <BottombarWrapper className="bottom-0 end-0">
         {props.children}
     </BottombarWrapper>
 }
@@ -373,4 +451,11 @@ export function StyledBottombarButton(props) {
     return <BottombarButtonWrapper>
         {props.children}
     </BottombarButtonWrapper>
+}
+
+export function FlyingBox(props) {
+    const { zindx, top, height } = props;
+    return <FlyingBoxWrapper zindx={zindx} top={top} height={height}>
+        {props.children}
+    </FlyingBoxWrapper>
 }
