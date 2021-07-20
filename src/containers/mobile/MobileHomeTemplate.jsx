@@ -24,3 +24,4 @@ function MobileHomeTemplate({ children }) {
 }
 
 export default MobileHomeTemplate;
+

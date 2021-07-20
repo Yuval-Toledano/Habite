@@ -32,7 +32,6 @@ const RedDot = styled.div`
     position: absolute;
     top: 5;
     left: 2;
-
 `;
 
 const BellContainer = styled.div`

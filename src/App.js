@@ -6,6 +6,7 @@ import NewUserBegin from "./containers/pages/auth/newUserBegin";
 import PageTemplate from "./containers/pages/pageTemplate";
 import Overview from "./containers/pages/overview";
 import ChallengePage from "./containers/pages/challenges";
+import ProgressPage from "./containers/pages/progress";
 import { HomePage } from "./containers/pages/landingPage/homePage";
 import SignIn from "./containers/pages/auth/signIn";
 import { MobileLanding } from "./containers/mobile/landing";
@@ -67,11 +68,18 @@ function App() {
             <Route path="/signup/:groupId" component={NewSignUpJG}/>
             <MobileHomeTemplate>
               <Route exact path="/mobile/overview" component={MobileOverview} />
-              <Route exact path="/mobile/challenges" component={MobileChallenges} />
-              <Route exact path="/mobile/achievements" component={MobileAchievements} />
+              <Route
+                exact
+                path="/mobile/challenges"
+                component={MobileChallenges}
+              />
+              <Route
+                exact
+                path="/mobile/achievements"
+                component={MobileAchievements}
+              />
               <Route exact path="/mobile/rulesOfGame" component={MobileRules} />
             </MobileHomeTemplate>
-            
           </Switch>
         </AuthProvider>
       </Router>
@@ -90,6 +98,7 @@ function App() {
           <PageTemplate>
             <Route path="/user/overview" exact component={Overview}/>
             <Route path="/user/challenges" exact component={ChallengePage} />
+            <Route path="/user/progress" exact component={ProgressPage} />
           </PageTemplate>
           </Switch>
         </AuthProvider>

@@ -81,7 +81,7 @@ export const StyledText = styled.p`
   color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
 `;
 
-export const StyledLinkWrapper = styled.div`
+export const StyledLinkWrapper = styled.a`
   font-family: "Open sans";
   font-style: Bold;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
@@ -95,7 +95,6 @@ export const StyledLinkWrapper = styled.div`
                 return colors.main_cta;
             default:
                 return colors.link;
-
         }
     }
     )};
@@ -103,15 +102,12 @@ export const StyledLinkWrapper = styled.div`
   &:hover {
     color: ${colors.pink_hover};
   };
-
   &:active {
     color: ${colors.pink_hover};
   };
-
   &:focused {
     color: ${colors.pink_hover};
   };
-
 `;
 
 
@@ -169,7 +165,6 @@ const StyledButtonWrapper = styled.button`
     -webkit-touch-callout: none;
     -moz-user-select: none;
     -ms-user-select: none;
-
     &:hover {
         box-shadow: ${props => {
         switch (props.type) {
@@ -201,11 +196,6 @@ const StyledButtonWrapper = styled.button`
     }
 `;
 
-export const ChallengeButton = styled.button`
-    background: ${colors.accent};
-    border: none;
-`;
-
 const LogoWrapper = styled.h2`
     font-family: "Oleo script";
     font-weight: Bold;
@@ -215,7 +205,6 @@ const LogoWrapper = styled.h2`
     -webkit-text-stroke: 4px ${colors.text};
     paint-order: stroke fill;
     text-transform: uppercase;
-
     & :before {
         content: attr(title);
         position: absolute;
@@ -223,6 +212,11 @@ const LogoWrapper = styled.h2`
         left: 0;
         z-index: -1;
     }
+`;
+
+export const ChallengeButton = styled.button`
+    background: ${colors.accent};
+    border: none;
 `;
 
 // menus
@@ -241,18 +235,15 @@ const BottombarButtonWrapper = styled.button`
     padding: 20px;
     border: ${colors.accent};
     width: 25%;
-
     &:hover {
         border-top: 5px solid ${colors.main_cta};
         color: ${colors.main_cta};
     }};
-
     &:active {
         border-top: 5px solid ${colors.main_cta};
         color: ${colors.main_cta};
     }};
     }
-
     &:focus {
         border-top: 5px solid ${colors.main_cta};
         color: ${colors.main_cta};
@@ -313,16 +304,16 @@ export const GeneralPlaceCircle = styled.img`
     margin-top: -15px;
 `;
 
+export const FirstCrown = styled.img`
+    margin-bottom: -13px;
+`;
+
 export const VoterPhoto = styled.img`
     height: 40px;
     width: 40px;
     border-radius: 50%;
     border: 3px #FBE536 solid;
     margin: 0px 3px 10px 3px;
-`;
-
-export const FirstCrown = styled.img`
-    margin-bottom: -13px;
 `;
 
 // containers
@@ -333,6 +324,7 @@ export const FlyingBoxWrapper = styled.div`
     top: ${({ top }) => (top ? top + px : 0 + px)};
     height: ${({ height }) => (height ? height + "%" : "calc(100vh - 16%)")};
     overflow: scroll;
+    width: 100%;
 `;
 
 export const InfoBoxDiv = styled.div`
@@ -343,20 +335,6 @@ export const InfoBoxDiv = styled.div`
     text-align: center;
     padding: 2rem;
     margin: 1.5rem;
-    border-radius: 5%;
-    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
-    position: relative;
-    z-index: 2;
-`;
-
-export const SingleChallengeDiv = styled.div`
-    background-color: ${colors.accent};
-    overflow: visible;
-    width: 90%;
-    display: flex;
-    text-align: center;
-    padding: 15px 15px 0px 15px;
-    margin: 12px;
     border-radius: 5%;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     position: relative;
@@ -380,6 +358,20 @@ export const LeaderboardContainer = styled.div`
     display: flex;
     position: relative;
     align-items: center;
+`;
+
+export const SingleChallengeDiv = styled.div`
+    background-color: ${colors.accent};
+    overflow: visible;
+    width: 90%;
+    display: flex;
+    text-align: center;
+    padding: 15px 15px 0px 15px;
+    margin: 12px;
+    border-radius: 5%;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 2;
 `;
 
 export function LeaderBoardPhoto(props) {
