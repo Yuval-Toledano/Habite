@@ -96,7 +96,6 @@ export const StyledLinkWrapper = styled.a`
                 return colors.main_cta;
             default:
                 return colors.link;
-
         }
     }
     )};
@@ -104,15 +103,12 @@ export const StyledLinkWrapper = styled.a`
   &:hover {
     color: ${colors.pink_hover};
   };
-
   &:active {
     color: ${colors.pink_hover};
   };
-
   &:focused {
     color: ${colors.pink_hover};
   };
-
 `;
 
 
@@ -170,7 +166,6 @@ const StyledButtonWrapper = styled.button`
     -webkit-touch-callout: none;
     -moz-user-select: none;
     -ms-user-select: none;
-
     &:hover {
         box-shadow: ${props => {
         switch (props.type) {
@@ -211,7 +206,6 @@ const LogoWrapper = styled.h2`
     -webkit-text-stroke: 4px ${colors.text};
     paint-order: stroke fill;
     text-transform: uppercase;
-
     & :before {
         content: attr(title);
         position: absolute;
@@ -219,6 +213,11 @@ const LogoWrapper = styled.h2`
         left: 0;
         z-index: -1;
     }
+`;
+
+export const ChallengeButton = styled.button`
+    background: ${colors.accent};
+    border: none;
 `;
 
 // menus
@@ -237,18 +236,15 @@ const BottombarButtonWrapper = styled.button`
     padding: 20px;
     border: ${colors.accent};
     width: 25%;
-
     &:hover {
         border-top: 5px solid ${colors.main_cta};
         color: ${colors.main_cta};
     }};
-
     &:active {
         border-top: 5px solid ${colors.main_cta};
         color: ${colors.main_cta};
     }};
     }
-
     &:focus {
         border-top: 5px solid ${colors.main_cta};
         color: ${colors.main_cta};
@@ -313,6 +309,14 @@ export const FirstCrown = styled.img`
     margin-bottom: -13px;
 `;
 
+export const VoterPhoto = styled.img`
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 3px #FBE536 solid;
+    margin: 0px 3px 10px 3px;
+`;
+
 // containers
 
 export const FlyingBoxWrapper = styled.div`
@@ -330,7 +334,7 @@ export const InfoBoxDiv = styled.div`
     display: flex;
     align-items: center;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     margin: 1.5rem;
     border-radius: 5%;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
@@ -355,6 +359,32 @@ export const LeaderboardContainer = styled.div`
     display: flex;
     position: relative;
     align-items: center;
+`;
+
+export const SingleChallengeDiv = styled.div`
+    background-color: ${colors.accent};
+    overflow: visible;
+    width: 90%;
+    display: flex;
+    text-align: center;
+    padding: 15px 15px 0px 15px;
+    margin: 12px;
+    border-radius: 5%;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 2;
+`;
+
+export const MobileBadgeDiv = styled.div`
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    text-align: center;
+    width: 85%;
 `;
 
 export function LeaderBoardPhoto(props) {

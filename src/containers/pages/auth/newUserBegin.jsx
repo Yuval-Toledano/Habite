@@ -1,4 +1,3 @@
-import { Email } from '@material-ui/icons';
 import React, {useRef, useState} from 'react';
 import {useHistory, useLocation} from "react-router-dom";
 import {TextInPage, StandAloneTitle, IndicationText } from "../../../components/designSystem/common";

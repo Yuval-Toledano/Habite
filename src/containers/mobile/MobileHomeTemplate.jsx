@@ -1,4 +1,4 @@
-import React, { children } from "react";
+import React from "react";
 import NotificationBar from "../../components/MobileNotification/MobileBar";
 import { Bottombar } from "../../components/mobileComponents/bottomBar/bottomBar";
 import { ModeCommentTwoTone } from "@material-ui/icons";
@@ -15,11 +15,13 @@ function MobileHomeTemplate({ children }) {
                 {/* NotificationBar ends here */}
 
                 {/* Page content starts here */}
-                {children}
+                <div>
+                    {children}
+                </div>
                 {/* Page content end here */}
 
                 {/* BottomBar starts here */}
-                <Bottombar />
+                <Bottombar/>
                 {/* BottomBar ends here */}
             
         </div>
@@ -27,3 +29,4 @@ function MobileHomeTemplate({ children }) {
 }
 
 export default MobileHomeTemplate;
+

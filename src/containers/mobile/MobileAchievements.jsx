@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import React from "react";
+import { StyledTitle } from "../../components/designSystem/mobileDS";
 import Orange from "../../components/svgs/mobileBackgrounds/Orange.svg";
-import { BackgroundCircle, FlyingBox, StyledText, StyledTitle } from "../../components/designSystem/mobileDS";
+import { BackgroundCircle, FlyingBox } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
-import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
-import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
-import { MobileUserDetailsHeader } from "../../components/mobileUserDetailesHeader/mobileUserDetailsHeader";
+import { MobileBadges } from "../../components/mobileComponents/mobileBadges/mobileBadges"
 
 export default function MobileAchievements() {
 
     return (
         <>
             <FlyingBox zindx={1} top={50}>
-                <StyledTitle type={"title"} mode={"over_dark"}>Achievements</StyledTitle>
-                <MobileInfoBox type="statBox" />
-                <div>&nbsp;</div>
+                <div className="d-flex flex-column">
+                    <div className="d-flex flex-row justify-content-center">
+                        <StyledTitle type={"title"} mode={"over_dark"}>Achievements</StyledTitle>
+                    </div>
+                    <MobileInfoBox type="statBox" />
+                    <div className="d-flex flex-row justify-content-center">
+                        <MobileBadges/>
+                    </div>
+                </div>
             </FlyingBox>
 
             <BackgroundCircle src={Orange} alt="Upper background color" />

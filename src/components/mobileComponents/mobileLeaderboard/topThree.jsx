@@ -17,17 +17,17 @@ export function TopThree() {
         const topThreeMembers = sortedGroupMemberData.slice(0, 3);
 
         return (
-            <div className="d-flex flex-row justify-content-between align-items-end">
-                <div className="d-flex flex-column m-2 align-items-center">
+            <div className="d-flex flex-row justify-content-center align-items-end mb-3">
+                <div className="d-flex flex-column mx-3 align-items-center">
                     <TopThreeLeft src={topThreeMembers[1].profilePic} alt="Second place member"></TopThreeLeft>
                     <GeneralPlaceCircle src={SecondCircle} alt="Second place circle"/>
                 </div>
-                <div className="d-flex flex-column m-2 align-items-center">
+                <div className="d-flex flex-column mx-3 align-items-center">
                     <FirstCrown src={Crown}/>
                     <TopThreeMiddle src={topThreeMembers[0].profilePic} alt="First place member"></TopThreeMiddle>
                     <FirstPlaceCircle src={FirstCircle} alt="First place circle"/>
                 </div>
-                <div className="d-flex flex-column m-2 align-items-center">
+                <div className="d-flex flex-column mx-3 align-items-center">
                     <TopThreeRight src={topThreeMembers[2].profilePic} alt="Third place member"></TopThreeRight>
                     <GeneralPlaceCircle src={ThirdCircle} alt="Third place circle"/>
                 </div>

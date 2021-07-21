@@ -1,4 +1,4 @@
-import React, { children } from "react";
+import React from 'react';
 import { MobilePageContainer } from "../../components/pageContainers/mobile_page_container";
 import { StyledButton, StyledTitle, StyledLink, StyledText, Logo } from "../../components/designSystem/mobileDS";
 import { SvgIcecream, SvgBeerbottle } from "../../components/svgs/candies";
@@ -20,7 +20,7 @@ function sendMail(event) {
 export function MobileLanding(props) {
   return (
     <MobilePageContainer>
-      <div style={{ overflowX: "clip" }} classNameName="container-sm container-md container-lg">
+      <div style={{ overflowX: "clip" }} className="container-sm container-md container-lg">
         {/* TOPBAR START */}
         <div className="row justify-content-center">
           <div className="col-1">
@@ -30,7 +30,7 @@ export function MobileLanding(props) {
             <div className="d-flex flex-row justify-content-between">
               <div className="p-2"><Logo>Habite</Logo></div>
               <div className="p-2">
-                <Link to={"/signin"}>
+                <Link to={"/login"} style={{color: "#E71C7D"}}>
                   <StyledLink mode={"main"}>
                     login
                   </StyledLink>
@@ -72,7 +72,7 @@ export function MobileLanding(props) {
         <div className="row justify-content-center">
           <div className="col-auto">
             <div className="d-flex flex-row justify-content-between">
-              <div classNameName="StripAnimation">
+              <div className="StripAnimation">
                 <SvgIcecream />
                 <SvgIcecream />
                 <SvgIcecream />
@@ -93,7 +93,7 @@ export function MobileLanding(props) {
           <div className="col-auto">
             <div className="d-flex flex-col justify-content-between py-4">
               <div className="p-2">
-                <div classNameName="slide">
+                <div className="slide">
                   <StyledTitle type={"landingTitle"}>How?</StyledTitle>
                   <StyledText>Awareness is the biggest step towards the change you desire</StyledText>
                 </div>
@@ -111,7 +111,7 @@ export function MobileLanding(props) {
         <div className="row justify-content-center">
           <div className="col-auto">
             <div className="d-flex flex-row justify-content-center">
-              <div classNameName="StripAnimation">
+              <div className="StripAnimation">
                 <SvgBeerbottle />
                 <SvgBeerbottle />
                 <SvgBeerbottle />
@@ -127,19 +127,19 @@ export function MobileLanding(props) {
         {/* STRIP END */}
         {/* MAIN CTA START */}
 
-        <div className="row justify-content-center" Style={"background: #E71C7D"}>
+        <div className="row justify-content-center" style={{background: "#E71C7D"}}>
           <div className="col-1">
 
           </div>
           <div className="col-auto">
             <div className="d-flex flex-col justify-content-center align-items-center RowBig">
               <div className="">
-                <p Style={"text-Align: center"}>
+                <div style={{textAlign: "center"}}>
                   <StyledTitle type={"subtitle"} mode={"over_dark"}>So, are you up for the challenge?<br />Gather your friends &</StyledTitle>
-                  <StyledTitle type={"title"} mode={"over_dark"} Style={{ textTransform: "uppercase" }}>Take control back</StyledTitle>
+                  <StyledTitle type={"title"} mode={"over_dark"} style={{ textTransform: "uppercase" }}>Take control back</StyledTitle>
                   <span>&nbsp;</span>
-                  <Link to={"/signup"}><StyledButton type={"secondary"} wide={true} onClick={"/signup"}>Sign up now</StyledButton></Link>
-                </p>
+                  <Link to={"/signup"}><StyledButton type={"secondary"} wide={true}>Sign up now</StyledButton></Link>
+                </div>
               </div>
             </div>
           </div>
@@ -150,11 +150,11 @@ export function MobileLanding(props) {
         {/* MAIN CTA END */}
         {/* FOOTER START */}
 
-        <div className="row justify-content-center align-items-center RowBig" Style={"background: #00397B"}>
+        <div className="row justify-content-center align-items-center RowBig" style={{background: "#00397B"}}>
           <div className="col-1">
 
           </div>
-          <div className="col-10" Style={"text-Align: center"}>
+          <div className="col-10" style={{textAlign: "center"}}>
             <StyledTitle type={"title"} mode={"over_dark"}>Habite</StyledTitle>
             <StyledText mode={"over_dark"}>Habite a safe place for those who are willing to start a healthier chapter in their lives - to intake sugar in a more responsible way or even stop consuming it.</StyledText>
             <StyledText mode={"over_dark"}>Got a question?</StyledText>

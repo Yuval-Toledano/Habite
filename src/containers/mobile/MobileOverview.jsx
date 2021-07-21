@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
 import { BackgroundCircle, FlyingBox } from "../../components/designSystem/mobileDS";
@@ -10,18 +9,33 @@ import { MobileUserDetailsHeader } from "../../components/mobileUserDetailesHead
 
 export default function MobileOverview() {
 
-    return (
-        <>
-            <FlyingBox zindx={1} top={50}>
-                <MobileUserDetailsHeader></MobileUserDetailsHeader>
-                <MobileInfoBox type="groupAdd" />
-                <MobileInfoBox type="currChallenge" />
-                <TopThree />
-                <MobileLeaderboard />
-                <div>&nbsp;</div>
-            </FlyingBox>
+    const { groupData } = useAuth();
+    const groupCount = groupData ? groupData.countGroup : "No group count";
 
-            <BackgroundCircle src={Teal} alt="Upper background color" />
-        </>
-    );
+    if (groupCount > 1) {
+        return (
+            <>
+                <FlyingBox zindx={1} top={50}>
+                    <MobileUserDetailsHeader></MobileUserDetailsHeader>
+                    <MobileInfoBox type="currChallenge" />
+                    <TopThree />
+                    <MobileLeaderboard/>
+                    <MobileInfoBox type="groupAdd" />
+                </FlyingBox>
+    
+                <BackgroundCircle src={Teal} alt="Upper background color" />
+            </>
+        );
+    } else {
+        return (
+            <>
+                <FlyingBox zindx={1} top={50}>
+                    <MobileUserDetailsHeader></MobileUserDetailsHeader>
+                    <MobileInfoBox type="groupAdd" />
+                </FlyingBox>
+    
+                <BackgroundCircle src={Teal} alt="Upper background color" />
+            </>
+        );
+    }
 }
