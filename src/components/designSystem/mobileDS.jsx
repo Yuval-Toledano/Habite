@@ -386,6 +386,25 @@ export const MobileBadgeDiv = styled.div`
     width: 85%;
 `;
 
+export const RulesPageDiv = styled.div`
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    width: 85%;
+`;
+
+export const SingleRuleDiv = styled.div`
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    border: 2px solid ${colors.main_cta};
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    min-width: 75%;
+`;
+
 export function LeaderBoardPhoto(props) {
     const { color, src } = props;
     return (
