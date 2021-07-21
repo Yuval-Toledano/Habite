@@ -27,7 +27,6 @@ export function MobileInfoBox(props) {
   const [currChallenge, setCurrChallenge] = useState();
   const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
   const [disabledButton, setDisabledButton] = useState(true);
-  const [loading, setLoading] = useState(true);
   const history = useHistory();
   const [successDate, setSuccessDate] = useState();
   const nowDate = new Date().getDate();
@@ -40,7 +39,6 @@ export function MobileInfoBox(props) {
 
   // types of notifications
   const GO_VOTE = 0;
-  const MEMBER_VOTED = 1;
   const MEMBER_SUCCESS = 2;
   const NEW_CHALLENGE = 3;
   const CLASSIC_UPDATE = 1;
@@ -58,7 +56,7 @@ export function MobileInfoBox(props) {
   const copyGroupCode = () => {
     if (groupData) {
       navigator.clipboard.writeText(groupId);
-      console.log("copied!");
+      document.getElementById("indicationCopy").innerHTML = "&nbsp;copied!";
     }
   };
 
@@ -327,13 +325,18 @@ export function MobileInfoBox(props) {
           <StyledText>Oh no, looks like your your group is empty</StyledText>
           <StyledTitle type={"subtitle"}>Invite friends to the group</StyledTitle>
           <div className="d-flex flex-row justify-content-evenly w-50 pt-3 pb-">
-            <LinkIcon style={{ fill: "#E71C7D" }} fontSize="large" onClick={() => { copyGroupCode() }} />
+            <LinkIcon style={{ fill: "#E71C7D", cursor:'pointer' }} 
+            fontSize="large" 
+            onClick={() => { copyGroupCode()}} />
             <WhatsappShareButton
               title="Join My Group"
               url={urlJG}
             >
               <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
             </WhatsappShareButton>
+          </div>
+          <div>
+            <StyledText id="indicationCopy" className="group_code_text"></StyledText>
           </div>
         </InfoBoxDiv>
       );
@@ -344,7 +347,9 @@ export function MobileInfoBox(props) {
           <StyledText>Share group code</StyledText>
           <StyledTitle type={"subtitle"}>Make your group bigger and stronger</StyledTitle>
           <div className="d-flex flex-row justify-content-between">
-            <LinkIcon style={{ fill: "#E71C7D" }} onClick={() => { copyGroupCode() }} />
+          <LinkIcon style={{ fill: "#E71C7D", cursor:'pointer' }} 
+            fontSize="large" 
+            onClick={() => { copyGroupCode() }} />
             <WhatsappShareButton
               title="Join My Group"
               url={urlJG}
