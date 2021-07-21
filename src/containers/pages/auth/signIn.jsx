@@ -23,7 +23,7 @@ export default function SignIn() {
       setError("");
       setLoading(true);
       await logIn(emailRef.current.value, passwordRef.current.value);
-      history.push("user/overview");
+      history.push("/overview");
     } catch {
       setError("Failed to log in");
     }

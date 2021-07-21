@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
-import { BackgroundCircle, FlyingBox, StyledText, StyledTitle } from "../../components/designSystem/mobileDS";
+import { BackgroundCircle, FlyingBox } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
 import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
@@ -15,9 +15,9 @@ export default function MobileOverview() {
             <FlyingBox zindx={1} top={50}>
                 <MobileUserDetailsHeader></MobileUserDetailsHeader>
                 <MobileInfoBox type="groupAdd" />
-                <MobileInfoBox type="statBox" />
                 <MobileInfoBox type="currChallenge" />
                 <TopThree />
+                <MobileLeaderboard />
                 <div>&nbsp;</div>
             </FlyingBox>
 

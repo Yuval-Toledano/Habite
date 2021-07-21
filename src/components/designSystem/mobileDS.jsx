@@ -72,6 +72,7 @@ export const StyledTitleWrapper = styled.h1`
         }
     }
     )};
+    justify-self: center;
 `;
 
 export const StyledText = styled.p`
@@ -320,6 +321,7 @@ export const FlyingBoxWrapper = styled.div`
     top: ${({ top }) => (top ? top + px : 0 + px)};
     height: ${({ height }) => (height ? height + "%" : "calc(100vh - 16%)")};
     overflow: scroll;
+    width: 100%;
 `;
 
 export const InfoBoxDiv = styled.div`
@@ -383,10 +385,10 @@ export function StyledButton(props) {
 }
 
 export function StyledTitle(props) {
-    const { type, size, color, mode } = props;
+    const { type, size, color, mode, just } = props;
 
     return (
-        <StyledTitleWrapper type={type} mode={mode} size={size} color={color}>
+        <StyledTitleWrapper type={type} mode={mode} size={size} color={color} just={just}>
             {props.children}
         </StyledTitleWrapper>
     );
