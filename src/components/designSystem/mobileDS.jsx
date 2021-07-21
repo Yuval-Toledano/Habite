@@ -341,6 +341,10 @@ export const InfoBoxDiv = styled.div`
     z-index: 2;
 `;
 
+export const InfoBoxBar = styled.div`
+    background-color: ${colors.accent};
+`
+
 export const LeaderboardDivWrapper = styled.div`
     background-color: ${colors.accent};
     padding: 5px 5px 5px 5px;

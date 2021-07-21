@@ -371,7 +371,8 @@ export function MobileInfoBox(props) {
           </div>
         </InfoBoxDiv>
       );
-    } else {
+    } 
+    else {
       // Add members to group when there are at least 2 members
       return (
         <InfoBoxDiv className="d-flex flex-column">
@@ -391,7 +392,28 @@ export function MobileInfoBox(props) {
         </InfoBoxDiv>
       );
     }
-  } else if (type === "statBox") {
+  } 
+  else if (type === "groupAddBar") {
+    return (
+      <div>
+        <StyledTitle type={"subtitle"}>Invite friends to the group</StyledTitle>
+        <div className="d-flex flex-row justify-content-evenly w-50 pt-1 mx-5 pb-">
+          <LinkIcon style={{ fill: "#E71C7D", cursor:'pointer' }} 
+          fontSize="large" 
+          onClick={() => { copyGroupCode()}} />
+          <WhatsappShareButton
+            title="Join My Group"
+            url={urlJG}>
+            <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
+          </WhatsappShareButton>
+        </div>
+        <div>
+          <StyledText id="indicationCopy" className="group_code_text"></StyledText>
+        </div>
+      </div>
+    );
+  }
+  else if (type === "statBox") {
 
     function GetAvatar() {
       if (userLevel == "1") {

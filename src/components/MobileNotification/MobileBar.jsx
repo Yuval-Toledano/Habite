@@ -5,7 +5,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { NotificationWindow } from "./MobileNotiWindow";
 import useSound from 'use-sound';
-
+import { JoinFriendsWindow } from "../joinFriends/joinWindow"
 
 const NotiBarContainer = styled.div`
     display: inline-flex;
@@ -53,6 +53,14 @@ const JoinFriends = () => (
 
 const defaultOnClick = () => alert("onClick is undefined")
 
+const JoinFriendsIndicator = ({onClick = defaultOnClick}) => {
+    return (
+        <div>
+            <JoinFriends/>
+        </div>
+    )
+}
+
 const NotificationIndicator = ({
     showDot = false,
     onClick = defaultOnClick,
@@ -85,7 +93,7 @@ function NotificationBar(props) {
     const [show, setShow] = useState(false);
     const [showDot, setShowDot] = useState(false)
     const [notiData, setNotiData] = useState([])
-    const [color, setColor] = useState("shadow_teal");
+    const [showJoin, setShowJoin] = useState(false)
 
     // error here
     const [play] = useSound('../../audio/piano.mp3', {
@@ -93,26 +101,6 @@ function NotificationBar(props) {
     })
 
     const prevNoti = usePrevious(notiData)
-
-
-    useEffect(() => {
-        const whatIsTheHour = () => {
-            var date = new Date();
-            const nowHour = date.getHours();
-            if (nowHour >= 5 && nowHour < 12) {
-                setColor("shadow_main");
-            } else if (nowHour >= 12 && nowHour < 17) {
-                setColor("shadow_orange");
-            } else if (nowHour >= 17 && nowHour < 20) {
-                setColor("shadow_teal");
-            } else {
-                setColor("shadow_yellow");
-            }
-        };
-        whatIsTheHour();
-
-    }, [userData, color])
-
 
     useEffect(() => {
         const isEqual = (notiPrev, notiNew) => {
@@ -138,13 +126,17 @@ function NotificationBar(props) {
         play();
     }
 
+    const closeWindowJoin = () => {
+        setShowJoin(!showJoin);
+        play();
+    }
+
     return (
 
         <NotiBarContainer className="w-100">
-            <button className="JoinButton" style={{ border: "none" }}>
-                <div>
-                    <JoinFriends />
-                </div>
+            <button className="JoinButton" style={{ border: "none" }} onClick={closeWindowJoin}>
+                <JoinFriendsIndicator/>
+                <JoinFriendsWindow showJoin={showJoin} closeWindowJoin={closeWindowJoin}/>
             </button>
             <BellContainer>
                 <button className="BellButton" style={{ border: "none" }} onClick={closeWindow}><NotificationIndicator showDot={showDot} onClick={() => setShowDot(false)} /></button>
