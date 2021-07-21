@@ -1,9 +1,34 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import { useHistory,Link } from "react-router-dom";
 import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
 import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
 import { Marginer } from "../../../components/marginer/marginer";
+
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+  
+  function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(
+      getWindowDimensions()
+    );
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    return windowDimensions;
+  }
 
 export default function Login(props) {
     const emailRef = useRef();
@@ -13,7 +38,7 @@ export default function Login(props) {
     const history = useHistory();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-
+    const dimentions = useWindowDimensions();
     
   async function handleSubmit(e) {
     e.preventDefault();
@@ -21,7 +46,11 @@ export default function Login(props) {
       setError("");
       setLoading(true);
       await logIn(emailRef.current.value, passwordRef.current.value);
-      history.push("user/overview");
+      if (dimentions.width < 500) {
+        history.push("mobile/overview");
+      } else {
+        history.push("user/overview");
+      }
     } catch {
       setError("Failed to log in")
       console.log(error);

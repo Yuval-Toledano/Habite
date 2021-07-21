@@ -30,7 +30,7 @@ export function MobileLanding(props) {
             <div className="d-flex flex-row justify-content-between">
               <div className="p-2"><Logo>Habite</Logo></div>
               <div className="p-2">
-                <Link to={"/signin"} style={{color: "#E71C7D"}}>
+                <Link to={"/login"} style={{color: "#E71C7D"}}>
                   <StyledLink mode={"main"}>
                     login
                   </StyledLink>
