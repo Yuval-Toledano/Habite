@@ -1,8 +1,33 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import { useHistory, Link } from "react-router-dom";
 import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
 import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
+
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+  
+  function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(
+      getWindowDimensions()
+    );
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    return windowDimensions;
+  }
 
 export default function NewSignUp(props) {
     const emailRef = useRef();
@@ -16,6 +41,7 @@ export default function NewSignUp(props) {
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const dimentions = useWindowDimensions();
     
     // The function handles submit form
      async function handleSubmit(event) {
@@ -24,13 +50,21 @@ export default function NewSignUp(props) {
             setError("");
             setLoading(true);
             await signUpNG(emailRef.current.value, passwordRef.current.value, nameRef.current.value, image);
-            history.push("user/overview");
+            if (dimentions.width < 500) {
+                history.push("/overview");
+              } else {
+                history.push("user/overview");
+              }
           } catch {
             setError("Failed to sign up")
             console.log(error);
           }
           setLoading(false);
-        history.push("/user/overview")
+          if (dimentions.width < 500) {
+            history.push("mobile/overview");
+          } else {
+            history.push("user/overview");
+          }
     }
 
     // The function handles submit image
