@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useAuth } from "../../../context/AuthContext";
-import { StyledTitle, StyledText, LeaderboardDiv, LeaderboardContainer, LeaderBoardPhoto } from "../../designSystem/mobileDS";
+import { StyledTitle, StyledTextCentered, StyledNameTag, LeaderboardDiv, LeaderboardContainer, LeaderBoardPhoto } from "../../designSystem/mobileDS";
 
 export function MobileLeaderboard() {
 
@@ -38,8 +38,8 @@ export function MobileLeaderboard() {
                       alt="profile pic"
                       color={photoBorderString}
                     ></LeaderBoardPhoto>
-                      <StyledText className="d-flex flex-column justify-content-around align-items-center">{member.userName}</StyledText>
-                      <StyledText className="d-flex flex-column justify-content-around align-items-center">{member.score}</StyledText>
+                      <StyledTextCentered className="d-flex flex-column justify-content-around align-items-bottom">{member.userName}</StyledTextCentered>
+                      <StyledTextCentered className="d-flex flex-column justify-content-around align-items-center">{member.score}</StyledTextCentered>
                   </LeaderboardDiv>
               );
             })}

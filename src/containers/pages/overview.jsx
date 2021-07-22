@@ -29,7 +29,7 @@ import styled from "styled-components";
 import Chart from "../../components/chart/chart";
 import ChallengeTimer from "../../components/timer/challengeTimer";
 import { WhatsappShareButton } from 'react-share';
-import { WhatsappIcon } from "react-share";
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
 const LeaderBoardContainer = styled.div`
   margin-top: 8px;
@@ -376,7 +376,7 @@ export default function Overview() {
                 title="Join My Group"
                 url= {urlJG}
                 >
-                  <WhatsappIcon/>
+                  <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
                 </WhatsappShareButton>
                 <div id="indicationCopy" className="group_code_text"></div>
               </div>

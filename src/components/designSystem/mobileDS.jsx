@@ -82,6 +82,14 @@ export const StyledText = styled.p`
   color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
 `;
 
+export const StyledTextCentered = styled.p`
+  font-family: "Open sans";
+  font-style: Regular;
+  font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
+  color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
+  margin-bottom: 0;
+`;
+
 export const StyledLinkWrapper = styled.a`
   font-family: "Open sans";
   font-style: Bold;
@@ -346,7 +354,7 @@ export const LeaderboardDivWrapper = styled.div`
     background-color: ${colors.accent};
     padding: 5px 5px 5px 5px;
     width: 85%;
-    border-radius: 5%;
+    border-radius: 20px;
     border: ${props => {
         switch (props.color) {
             default:
