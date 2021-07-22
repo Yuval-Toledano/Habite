@@ -20,7 +20,7 @@ export function MobileLeaderboard() {
           {sortedGroupMemberData &&
             sortedGroupMemberData.map((member) => {
               // getting the user color and creating the border string
-              if (borderColor > 4) {
+              if (borderColor > 3) {
                 borderColor = 1;
               } else {
                 borderColor++;
@@ -33,8 +33,7 @@ export function MobileLeaderboard() {
                   className="d-flex align-items-center">
                     <LeaderBoardPhoto
                       src={
-                        member.profilePic ||
-                        "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"
+                        member.profilePic
                       }
                       className="picLeaderBox"
                       alt="profile pic"

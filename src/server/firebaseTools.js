@@ -1,7 +1,6 @@
 import firebase from "firebase/app";
 import { db, auth, storage } from "../firebase";
 
-
 /** INCREMENT FUNCTIONS **/
 const increment = firebase.firestore.FieldValue.increment(1);
 const increment5 = firebase.firestore.FieldValue.increment(5);
@@ -23,8 +22,6 @@ const GO_VOTE = 0;
 const MEMBER_VOTED = 1;
 const MEMBER_SUCCESS = 2;
 const NEW_CHALLENGE = 3;
-
-
 
 /************************** AUTH FUNCTIONS **************************/
 
@@ -102,36 +99,40 @@ export const generateUserInGroupDocument = async (userId, groupCode) => {
 /*
  * update user info to user's document.
  */
-export const updatedUserInfo = (userName, profilePic, userId) => {  
-    // add profile picture to firebase storage.
-    const userImagePath = "users/" + userId + "/profile.jpg";
-    const uploadTask = storage.ref(userImagePath).put(profilePic);  
-    uploadTask.on("state_changed", 
-    snapshot => {}, 
-    error => {console.log("ERROR with upload profile picture ", error)},
+export const updatedUserInfo = (userName, profilePic, userId) => {
+  // add profile picture to firebase storage.
+  const userImagePath = "users/" + userId + "/profile.jpg";
+  const uploadTask = storage.ref(userImagePath).put(profilePic);
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {},
+    (error) => {
+      console.log("ERROR with upload profile picture ", error);
+    },
     () => {
-        storage.ref(userImagePath).getDownloadURL().then((url) => {
-            var userPromise = getUserDocument(auth.currentUser.uid);
-            userPromise.then((user) => {
-              user.update({
-                  userName: userName,
-                  profilePic: url,
-                })
-                .then(() => {
-                  console.log("Document successfully updated!");
-                })
-                .catch((error) => {
-                  // The document probably doesn't exist.
-                  console.error("Error updating document: ", error);
-                });
-            });
-
-        })
+      storage
+        .ref(userImagePath)
+        .getDownloadURL()
+        .then((url) => {
+          var userPromise = getUserDocument(auth.currentUser.uid);
+          userPromise.then((user) => {
+            user
+              .update({
+                userName: userName,
+                profilePic: url,
+              })
+              .then(() => {
+                console.log("Document successfully updated!");
+              })
+              .catch((error) => {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+              });
+          });
+        });
     }
-    )
-  
-  };
-
+  );
+};
 
 /************************** GET & UPDATE FUNCTIONS **************************/
 
@@ -141,20 +142,20 @@ export const updatedUserInfo = (userName, profilePic, userId) => {
  * USAGE: to update the document do: get{*collection*}Document(docID).then((doc) => { doc.update({...}) })
  */
 const getDocument = async (collection, id) => {
-    const promiseDoc = await db.collection(collection).doc(id);
-    return promiseDoc;
-  };
-  
-  /*
-   * the function takes docID - the id of the user - and return a promise of the document of the user.
-   * the function does not return the doc, it returns the promise.
-   * USAGE: to update the document do: getUserDocument(docID).then(doc => { doc.update({...})  })
-   */
-  export const getUserDocument = (userId) => {
-    return getDocument("users", userId);
-  };
+  const promiseDoc = await db.collection(collection).doc(id);
+  return promiseDoc;
+};
 
-  /*
+/*
+ * the function takes docID - the id of the user - and return a promise of the document of the user.
+ * the function does not return the doc, it returns the promise.
+ * USAGE: to update the document do: getUserDocument(docID).then(doc => { doc.update({...})  })
+ */
+export const getUserDocument = (userId) => {
+  return getDocument("users", userId);
+};
+
+/*
  * the function takes docID - the id of the vote - and return a promise of the document of the vote.
  * the function does not return the doc, it returns the promise.
  * USAGE: to update the document do: getVoteDocument(docID).then(doc => { doc.update({...})  })
@@ -163,55 +164,54 @@ export const getVoteDocument = (voteId) => {
   return getDocument("votes", voteId);
 };
 
-
-  /*
+/*
  * the function takes docID and collection name and return a promise of the document.
  * the function does not return the doc, it returns the promise.
  * USAGE: to get the data of the document do: get{*collection*}Document(docID).then(doc => { //if(doc.exists) {do something with.doc.data() or doc.id} })
  */
 export const getDocumentData = async (collection, id) => {
-    const promiseDoc = await db.collection(collection).doc(id).get();
-    return promiseDoc;
-  };
-  
-  /*
-   * the function takes docID - the id of the user - and return a promise of the document of the user.
-   * the function does not return the doc, it returns the promise.
-   * USAGE: to get the data of the document do: getUserDocument(docID).then(doc => { //if(doc.exists) {do something with.doc.data() or doc.id} })
-   */
-  export const getUserDocumentData = (userId) => {
-    return getDocumentData("users", userId);
-  };
-  
-  /*
-   * the function takes docID - the id of the group - and return a promise of the document of the group.
-   * the function does not return the doc, it returns the promise.
-   * USAGE: to get the data of the document do: getGroupDocumentData(docID).then(doc => { //if(doc.exists) {do something with.doc.data() or doc.id} })
-   */
-  export const getGroupDocumentData = (groupId) => {
-    return getDocumentData("groups", groupId);
-  };
+  const promiseDoc = await db.collection(collection).doc(id).get();
+  return promiseDoc;
+};
 
-  /*
+/*
+ * the function takes docID - the id of the user - and return a promise of the document of the user.
+ * the function does not return the doc, it returns the promise.
+ * USAGE: to get the data of the document do: getUserDocument(docID).then(doc => { //if(doc.exists) {do something with.doc.data() or doc.id} })
+ */
+export const getUserDocumentData = (userId) => {
+  return getDocumentData("users", userId);
+};
+
+/*
+ * the function takes docID - the id of the group - and return a promise of the document of the group.
+ * the function does not return the doc, it returns the promise.
+ * USAGE: to get the data of the document do: getGroupDocumentData(docID).then(doc => { //if(doc.exists) {do something with.doc.data() or doc.id} })
+ */
+export const getGroupDocumentData = (groupId) => {
+  return getDocumentData("groups", groupId);
+};
+
+/*
  * the function takes docID - the id of the group - and return a promise of the document of the group members.
  * the function does not return the doc, it returns the promise.
  * USAGE: to get the data of the document do: getGroupMembersData(docID).then(doc => { //if(doc.exists) {do something with.doc.data() or doc.id} })
  */
 export const getGroupMembersData = async (groupId) => {
-    // get all the members of the group
-    const usersData = await db
-      .collection("users")
-      .where("groupId", "==", groupId)
-      .get();
-  
-    // get the data of all the members of the group
-    const arrGroupMemberData = usersData.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
-    });
-    return arrGroupMemberData;
-  };
+  // get all the members of the group
+  const usersData = await db
+    .collection("users")
+    .where("groupId", "==", groupId)
+    .get();
 
-  /*
+  // get the data of all the members of the group
+  const arrGroupMemberData = usersData.docs.map((doc) => {
+    return { ...doc.data(), id: doc.id };
+  });
+  return arrGroupMemberData;
+};
+
+/*
  * the function takes docID - the id of the challenge - and return a promise of the document of the challenge.
  * the function does not return the doc, it returns the promise.
  * USAGE: to get the data of the document do: getChallengeDocumentData(docID).then(doc => { //if(doc.exists) {do something with.doc.data() or doc.id} })
@@ -219,7 +219,6 @@ export const getGroupMembersData = async (groupId) => {
 export const getChallengeDocumentData = (challengeId) => {
   return getDocumentData("challenges-autogenerated-ids", challengeId);
 };
-
 
 /*
  * the function takes docID - the id of the group - and return a promise of the document of the user.
@@ -256,7 +255,6 @@ export const getChallengesData = async () => {
   return challengesArr;
 };
 
-
 /*
  * the function takes challengeId and groupId - and return a promise of the document of the vote.
  * the function does not return the doc, it returns the promise.
@@ -275,18 +273,16 @@ export const getVoteDocData = async (challengeId, groupId) => {
   });
 
   return votesArr[0];
-
 };
 
 /**
  * The function creates new challengeLog object
  */
- export const generateChallengeLog = (groupMembers, challengeId) => {
-  
+export const generateChallengeLog = (groupMembers, challengeId) => {
   groupMembers.forEach((member) => {
-    const logObjPromise = getChallengeLogData(challengeId, member.id)
+    const logObjPromise = getChallengeLogData(challengeId, member.id);
     logObjPromise.then(async (logObj) => {
-      if(!logObj) {
+      if (!logObj) {
         await db.collection("challengeLog").add({
           groupId: member.groupId,
           userId: member.id,
@@ -295,7 +291,7 @@ export const getVoteDocData = async (challengeId, groupId) => {
           dateSuccess: null,
         });
       }
-    })
+    });
   });
 };
 
@@ -305,8 +301,7 @@ export const getVoteDocData = async (challengeId, groupId) => {
  * @param {userData} user
  * @param {update according to specific case} caseUpdate
  */
- export const updateCurrentChallenge = (group, caseUpdate) => {
-  
+export const updateCurrentChallenge = (group, caseUpdate) => {
   const groupPromise = getGroupDocument(group.id);
   groupPromise.then((doc) => {
     var dateStart = new Date();
@@ -328,7 +323,6 @@ export const getVoteDocData = async (challengeId, groupId) => {
         pastChallenges:
           firebase.firestore.FieldValue.arrayUnion(currentChallengeId),
       });
-
     } else if (caseUpdate === NO_APPROVED_UPDATE) {
       // CASE 3: update current challenge while the is not another challenge
       const currentChallengeId = group.currentChallenge;
@@ -341,7 +335,6 @@ export const getVoteDocData = async (challengeId, groupId) => {
         pastChallenges:
           firebase.firestore.FieldValue.arrayUnion(currentChallengeId),
       });
-
     } else if (caseUpdate === NO_CURR_UPDATE) {
       // CASE 4: init new current challenge
       const nextCurrentChallengeId = group.approvedChallenges[0];
@@ -362,32 +355,34 @@ export const getVoteDocData = async (challengeId, groupId) => {
 /*
  * update the notifications of the group members.
  */
-export const notiForGroupMembers = async (groupMembersData, currUserId, notiId) => {
-
+export const notiForGroupMembers = async (
+  groupMembersData,
+  currUserId,
+  notiId
+) => {
   //get all the members of the group except the the current user
   const filteredGroupMembers = groupMembersData.filter(
     (member) => member.id !== currUserId
   );
 
-  const groupMembers = (notiId === NEW_CHALLENGE) ? groupMembersData : filteredGroupMembers;
+  const groupMembers =
+    notiId === NEW_CHALLENGE ? groupMembersData : filteredGroupMembers;
   groupMembers.map((user) => updateNoti(user, notiId));
 };
-
 
 /**
  * The function updates the notification cache of the user
  * @param {user data} user
  * @param {notification id} notiId
  */
- export const updateNoti = (user, notiId) => {
+export const updateNoti = (user, notiId) => {
   const currNoti = user.notification;
   const filterNoti = currNoti.filter((noti) => noti !== notiId);
   filterNoti.push(notiId);
-  
-  
+
   const userPromise = getUserDocument(user.id);
   userPromise.then((doc) => {
-    if (doc){
+    if (doc) {
       doc.update({
         notification: filterNoti,
       });
@@ -395,31 +390,29 @@ export const notiForGroupMembers = async (groupMembersData, currUserId, notiId) 
   });
 };
 
-
 /*
  * the function takes challengeId and userId - and return a promise of the document of the challengeLog.
  * the function does not return the doc, it returns the promise.
  * USAGE: to get the data of the document do: getChallengeLogData(challengeId, userId).then(doc => { //if(doc.exists) {do something with.doc.field} })
  */
 export const getChallengeLogData = async (challengeId, userId) => {
-  
   const challengeLogRef = await db
     .collection("challengeLog")
     .where("challengeId", "==", challengeId)
     .where("userId", "==", userId)
     .get();
 
-    const arrayObj = challengeLogRef.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
+  const arrayObj = challengeLogRef.docs.map((doc) => {
+    return { ...doc.data(), id: doc.id };
   });
   return arrayObj[0];
 };
 
 // /**
-//  * 
-//  * @param {*} groupMembers 
-//  * @param {*} user 
-//  * @param {*} currentChallengeId 
+//  *
+//  * @param {*} groupMembers
+//  * @param {*} user
+//  * @param {*} currentChallengeId
 //  */
 //  export const updateScore = (groupMembers, currentChallengeId, currUserId, successChallenge) => {
 //   const userDataPromise = getDocumentData(currUserId)
@@ -455,13 +448,15 @@ export const getChallengeLogData = async (challengeId, userId) => {
 //     }
 //   })
 //  }
-  
-  
 
 /*
  * creates new vote from userId and challengeId, and saves it to firestore server.
  */
-export const generateVotesDocument = async (currUserData, challengeData, groupMembersData) => {
+export const generateVotesDocument = async (
+  currUserData,
+  challengeData,
+  groupMembersData
+) => {
   if (!currUserData || !challengeData) return;
 
   const currGroupId = currUserData.groupId;
@@ -470,7 +465,7 @@ export const generateVotesDocument = async (currUserData, challengeData, groupMe
   // update the user's voted challenge array
   var userPromise = getUserDocument(currUserData.id);
   userPromise.then((user) => {
-     user.update({
+    user.update({
       challengeVotes: firebase.firestore.FieldValue.arrayUnion(challengeId),
     });
   });
@@ -482,8 +477,8 @@ export const generateVotesDocument = async (currUserData, challengeData, groupMe
     .where("groupId", "==", currGroupId)
     .get();
 
-   // if no vote, then creates a new doc in votes collection with relevant info
-   if (dataVotes.empty) {
+  // if no vote, then creates a new doc in votes collection with relevant info
+  if (dataVotes.empty) {
     var votesId = [currUserData.id];
     const res = await db.collection("votes").add({
       groupId: currGroupId,
@@ -498,7 +493,7 @@ export const generateVotesDocument = async (currUserData, challengeData, groupMe
     });
     updateVotes(voteIdArray[0], currUserData.id);
   }
-} 
+};
 
 /*
  * the function takes vote object (with all the data) and userId.
@@ -519,7 +514,7 @@ const updateVotes = async (voteObj, userId) => {
   var groupPromise = getGroupDocument(voteObj.groupId);
   groupPromise.then((doc) => {
     doc.get().then((group) => {
-      if (group.data().countGroup > ((voteObj.voterCounter + 1)/2)) {
+      if (group.data().countGroup > (voteObj.voterCounter + 1) / 2) {
         doc.update({
           approvedChallenges: firebase.firestore.FieldValue.arrayUnion(
             voteObj.challengeId
@@ -534,7 +529,7 @@ const updateVotes = async (voteObj, userId) => {
  * The function update the challenge counter success of the user
  * and send notification to the other members of the group about their friend success
  */
- export const updateSuccessChallengeLog = (userId, challengeId) => {
+export const updateSuccessChallengeLog = (userId, challengeId) => {
   const logObjPromise = getChallengeLogData(challengeId, userId);
   logObjPromise.then((logObj) => {
     if (!logObj) {
@@ -549,37 +544,32 @@ const updateVotes = async (voteObj, userId) => {
       });
     });
   });
-
 };
-
 
 export const updateScore = (userId, challengeId) => {
   const challengePromise = getChallengeDocumentData(challengeId);
   challengePromise.then((challenge) => {
     if (challenge) {
       const challengeXP = challenge.data().challengeXp;
-      console.log("updateScore exp: ", challengeXP)
+      console.log("updateScore exp: ", challengeXP);
       const incrementScore =
-      challengeXP >= 100
-      ? (challengeXP === 100
-      ? increment15
-      : increment20)
-      : (challengeXP === 50
-      ? increment5
-      : increment10);
+        challengeXP >= 100
+          ? challengeXP === 100
+            ? increment15
+            : increment20
+          : challengeXP === 50
+          ? increment5
+          : increment10;
 
-      const userDocPromise = getUserDocument(userId)
-      if (!userDocPromise){
+      const userDocPromise = getUserDocument(userId);
+      if (!userDocPromise) {
         console.log("userDoc not found");
       }
-      userDocPromise.then(doc => {
+      userDocPromise.then((doc) => {
         doc.update({
           score: incrementScore,
-        })
-      })
-      
-    
-      }
-      
-    })
-}
+        });
+      });
+    }
+  });
+};
