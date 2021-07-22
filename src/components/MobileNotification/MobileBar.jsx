@@ -36,7 +36,7 @@ const BellContainer = styled.div`
 
 const Bell = () => (
     <div>
-        <NotificationsIcon className="iconDesignMobile" />
+        <NotificationsIcon className="iconDesignMobile"/>
     </div>
 )
 

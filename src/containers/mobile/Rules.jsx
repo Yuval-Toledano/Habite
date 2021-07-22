@@ -1,12 +1,18 @@
 import React from "react";
 import { FlyingBox, SingleRuleDiv, StyledTitle, StyledText } from "../../components/designSystem/mobileDS";
 import Pink from "../../components/svgs/mobileBackgrounds/Pink.svg";
+import NotificationBar from "../../components/MobileNotification/MobileBar";
 import { BackgroundCircle } from "../../components/designSystem/mobileDS";
 import SugarCube from "../../components/svgs/avatars/2-sugarCube.svg";
+
 
 export default function MobileRules() {
     return (
         <>
+            {/* NotificationBar starts here */}
+            <NotificationBar/>
+            {/* NotificationBar ends here */}
+
             <FlyingBox zindx={1} top={50}>
                 <div className="d-flex flex-column align-items-center">
                     <StyledTitle type="title">Game Rules</StyledTitle>

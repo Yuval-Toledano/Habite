@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useHistory, useParams } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import SignUp from "./containers/pages/auth/signUp";
 import NewUserBegin from "./containers/pages/auth/newUserBegin";
@@ -58,6 +58,7 @@ function App() {
 
   if (dimentions.width < 500) {
     // needs to be the mobile routing!!!
+    
     return (
       <Router>
         <AuthProvider>
@@ -67,18 +68,29 @@ function App() {
             <Route path="/login" exact component={Login} />
             <Route path="/signup/:groupId" component={NewSignUpJG}/>
             <MobileHomeTemplate>
-              <Route exact path="/mobile/overview" component={MobileOverview} />
+              <Route 
+                exact 
+                mode="white"
+                path="/mobile/overview" 
+                component={MobileOverview}
+                 />
               <Route
                 exact
                 path="/mobile/challenges"
                 component={MobileChallenges}
+                mode="black"
               />
               <Route
                 exact
                 path="/mobile/achievements"
                 component={MobileAchievements}
+                mode="white"
               />
-              <Route exact path="/mobile/rulesOfGame" component={MobileRules} />
+              <Route 
+                exact 
+                path="/mobile/rulesOfGame" 
+                component={MobileRules}
+                mode="black" />
             </MobileHomeTemplate>
           </Switch>
         </AuthProvider>

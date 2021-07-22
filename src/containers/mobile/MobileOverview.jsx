@@ -2,13 +2,17 @@ import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
+import NotificationBar from "../../components/MobileNotification/MobileBar";
 import { BackgroundCircle, FlyingBox, StyledButton, StyledText } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
 import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
 import { MobileUserDetailsHeader } from "../../components/mobileUserDetailesHeader/mobileUserDetailsHeader";
+import "../../index.css"
+import styled from "styled-components"
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import BugReportIcon from '@material-ui/icons/BugReport';
+
 
 export default function MobileOverview() {
 
@@ -34,7 +38,10 @@ export default function MobileOverview() {
 
     if (groupCount > 1) {
         return (
-            <>
+            <div>
+                {/* NotificationBar starts here */}
+                <NotificationBar/>
+                {/* NotificationBar ends here */}
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader/>
                     <MobileInfoBox type="currChallenge" />
@@ -48,11 +55,15 @@ export default function MobileOverview() {
                 </FlyingBox>
     
                 <BackgroundCircle src={Teal} alt="Upper background color" />
-            </>
+            </div>
         );
     } else {
         return (
-            <>
+            <div>
+                {/* NotificationBar starts here */}
+                <NotificationBar/>
+                {/* NotificationBar ends here */}
+
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader/>
                     <MobileInfoBox type="groupAdd" />
@@ -63,7 +74,7 @@ export default function MobileOverview() {
                 </FlyingBox>
     
                 <BackgroundCircle src={Teal} alt="Upper background color" />
-            </>
+            </div>
         );
     }
 }
