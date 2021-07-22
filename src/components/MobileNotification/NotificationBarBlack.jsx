@@ -36,7 +36,7 @@ const BellContainer = styled.div`
 
 const Bell = () => (
     <div>
-        <NotificationsIcon className="iconDesignMobile"/>
+        <NotificationsIcon className="iconDesignMobile" style={{ color: "black" }}/>
     </div>
 )
 
@@ -46,7 +46,7 @@ const Dot = () => (
 
 const JoinFriends = () => (
     <div className="groupIcon">
-        <GroupAddIcon className="iconDesignMobile" />
+        <GroupAddIcon className="iconDesignMobile" style={{ color: "black" }}/>
     </div>
 )
 
@@ -88,7 +88,7 @@ const NotificationIndicator = ({
 }
 
 
-function NotificationBar(props) {
+function NotificationBarBlack(props) {
     const { userData, usePrevious } = useAuth();
     const [show, setShow] = useState(false);
     const [showDot, setShowDot] = useState(false)
@@ -146,4 +146,4 @@ function NotificationBar(props) {
     );
 }
 
-export default NotificationBar;
+export default NotificationBarBlack;
