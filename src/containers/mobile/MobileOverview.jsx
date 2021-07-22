@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
-import NotificationBar from "../../components/MobileNotification/MobileBar";
+import NotificationBarWhite from "../../components/MobileNotification/NotificationBarWhite";
 import { BackgroundCircle, FlyingBox, StyledButton, StyledText } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
@@ -40,7 +40,7 @@ export default function MobileOverview() {
         return (
             <div>
                 {/* NotificationBar starts here */}
-                <NotificationBar/>
+                <NotificationBarWhite/>
                 {/* NotificationBar ends here */}
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader/>
@@ -61,7 +61,7 @@ export default function MobileOverview() {
         return (
             <div>
                 {/* NotificationBar starts here */}
-                <NotificationBar/>
+                <NotificationBarWhite/>
                 {/* NotificationBar ends here */}
 
                 <FlyingBox zindx={1} top={50}>
