@@ -1,19 +1,11 @@
 import React from "react";
-import NotificationBar from "../../components/MobileNotification/MobileBar";
 import { Bottombar } from "../../components/mobileComponents/bottomBar/bottomBar";
-import { ModeCommentTwoTone } from "@material-ui/icons";
 
 function MobileHomeTemplate({ children }) {
-    const mode = children.mode;
-    console.log("This is mode of pagetemplate:" + mode);
+
 
     return (
-        <div className="" id="wrapper" mode={mode}>
-            
-                {/* NotificationBar starts here */}
-                <NotificationBar/>
-                {/* NotificationBar ends here */}
-
+        <div className="" id="wrapper" style={{overflow: "hidden"}}>
                 {/* Page content starts here */}
                 <div>
                     {children}
@@ -29,4 +21,3 @@ function MobileHomeTemplate({ children }) {
 }
 
 export default MobileHomeTemplate;
-

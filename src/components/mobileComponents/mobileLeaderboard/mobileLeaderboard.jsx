@@ -28,8 +28,10 @@ export function MobileLeaderboard() {
               const photoBorderString = `2px ${colors[borderColor]} solid`;
               return (
                   // to change the layout of the LeaderboardDiv go to the relevant function in mobileDS!
-                  <LeaderboardDiv key={member.id} color={photoBorderString}>
-                    <LeaderBoardPhoto className="d-flex flex-column justify-content-around align-items-center"
+                  <LeaderboardDiv key={member.id} 
+                  color={photoBorderString} 
+                  className="d-flex align-items-center">
+                    <LeaderBoardPhoto
                       src={
                         member.profilePic ||
                         "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"

@@ -332,8 +332,8 @@ export const FlyingBoxWrapper = styled.div`
     position: absolute;
     top: ${({ top }) => (top ? top + px : 0 + px)};
     height: ${({ height }) => (height ? height + "%" : "calc(100vh - 16%)")};
-    overflow: scroll;
     width: 100%;
+    overflow-x: hidden
 `;
 
 export const InfoBoxDiv = styled.div`
@@ -350,11 +350,15 @@ export const InfoBoxDiv = styled.div`
     z-index: 2;
 `;
 
+export const InfoBoxBar = styled.div`
+    background-color: ${colors.accent};
+`
+
 export const LeaderboardDivWrapper = styled.div`
     background-color: ${colors.accent};
     padding: 5px 5px 5px 5px;
     width: 85%;
-    border-radius: 20px;
+    border-radius: 20%;
     border: ${props => {
         switch (props.color) {
             default:
@@ -392,6 +396,15 @@ export const MobileBadgeDiv = styled.div`
     scroll-behavior: smooth;
     scrollbar-width: thin;
     text-align: center;
+    width: 85%;
+`;
+
+
+export const SingleRuleDiv = styled.div`
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    padding: 15px;
     width: 85%;
 `;
 

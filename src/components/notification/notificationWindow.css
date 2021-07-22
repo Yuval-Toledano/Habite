@@ -36,9 +36,10 @@
     position: absolute;
     z-index: 10;
     float: center;
-    border-radius: 8px;
-    border: none;
-    box-shadow: -5px 5px 5px 0px lightgrey;
+    border-radius: 5%;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);;
+
+
 }
 
 

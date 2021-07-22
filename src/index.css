@@ -1,19 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Mukta+Malar&family=Oleo+Script:wght@700&family=Oswald&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&family=Oswald&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mukta+Malar&family=Oleo+Script:wght@700&family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 /* @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap");
 
-
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
+  min-height: 600px;
+  min-width: 320px;
   background-color: #FAF0E4;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: #E993B1 #333331;
+  scrollbar-color: #e993b1 #333331;
 }
 
 * {
@@ -24,16 +26,16 @@ body {
   height: inherit;
   margin: 0;
   padding: 0;
-  font-family: "Open sans", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Open sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FAF0E4;
+  background-color: #faf0e4;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -42,37 +44,37 @@ code {
   height: 100vh;
   display: flex;
   flex-direction: row;
+
 }
 
 .pageTemplate {
-  background-color: #FAF0E4;
+  background-color: #faf0e4;
 }
 
 .Sidebar {
   position: fixed;
   height: 100%;
   width: 250px;
-  background-color: #F8F7F5;
-  border-right: 5px solid #E71C96;
+  background-color: #f8f7f5;
+  border-right: 5px solid #e71c96;
   top: 0; /* Stay at the top */
   left: 0;
   overflow: hidden;
-  
+
   border-bottom-right-radius: 10px;
 }
 
-.TextBar{
+.TextBar {
   padding: 25% 0% 15% 20%;
   margin-bottom: 20%;
-  border-bottom: solid 1px #E4DCD3;
+  border-bottom: solid 1px #e4dcd3;
 }
 
-#logo{
+#logo {
   padding: 10% 0% 0% 20%;
 }
 
-
-.SidebarList .rowSidebar{
+.SidebarList .rowSidebar {
   width: 100%;
   height: 45px;
   list-style-type: none;
@@ -84,32 +86,32 @@ code {
   text-align: center;
 }
 
-.sidebarTitle .sidebarIcon{
+.sidebarTitle .sidebarIcon {
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.SidebarList .rowSidebar:hover{
+.SidebarList .rowSidebar:hover {
   cursor: pointer;
-  background-color: #E71C96;
-  color: #FAF0E4;
+  background-color: #e71c96;
+  color: #faf0e4;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
 }
 
-.SidebarList #active{
-  background-color: #E71C96;
+.SidebarList #active {
+  background-color: #e71c96;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
 }
 
-.SidebarList #active #sidebarTitle  {
-  color: #FAF0E4;
+.SidebarList #active #sidebarTitle {
+  color: #faf0e4;
 }
 
-.SidebarList #active #sidebarIcon  {
-  color: #FAF0E4;
+.SidebarList #active #sidebarIcon {
+  color: #faf0e4;
 }
 
 .row #icon {
@@ -127,65 +129,61 @@ code {
   flex: 100%;
 }
 
-.rowSidebar #sidebarTitle:hover  {
-  color: #FAF0E4;
+.rowSidebar #sidebarTitle:hover {
+  color: #faf0e4;
 }
 
-.pTextSidebar{
+.pTextSidebar {
   text-align: center;
 }
 
 .pending {
-  color: #E71C96;
+  color: #e71c96;
 }
 
 .score {
-  color: #0891A8;
+  color: #0891a8;
 }
 
 .done {
-  color: #0891A8
+  color: #0891a8;
 }
-
-
-
 
 .MainTable {
   display: grid;
   align-items: center;
   border: 1px solid#EEE4D7;
   border-radius: 12px;
-  background-color: #F8F7F5;
-  box-shadow: 5px 5px 5px, rgba(0 ,0 ,0 , 0.15);
+  background-color: #f8f7f5;
+  box-shadow: 5px 5px 5px, rgba(0, 0, 0, 0.15);
 }
 
-.table { 
+.table {
   /* margin: 20px 0; */
   /* font-size: 0.7em; */
   min-width: 400px;
   border-collapse: collapse;
   /* text-align: center; */
   overflow: scroll;
-  border: 2px solid rgba(0 ,0 ,0 , 0.15);
+  border: 2px solid rgba(0, 0, 0, 0.15);
 }
 
-.table td th{
-  border: 1px solid rgba(0 ,0 ,0 , 0.15);
-
+.table td th {
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.table .th{
-  border: 1px solid rgba(0 ,0 ,0 , 0.15);
+.table .th {
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 th {
   padding: 8px 0px 8px 16px;
   color: #333331;
-  background-color: #EEE4D7;
+  background-color: #eee4d7;
 }
 
 tr:not(:last-child) {
-  border-bottom: 1px solid rgba(0 ,0 ,0 , 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 td {
@@ -194,40 +192,38 @@ td {
   padding: 15px;
   color: #333331;
   padding: 8px 8px 0px 8px;
-  text-align:start;
-  vertical-align:top;
+  text-align: start;
+  vertical-align: top;
 }
 
 table th:first-child {
-  border-radius:12px 0px 0px 0px;
+  border-radius: 12px 0px 0px 0px;
 }
 
-table th:last-child{
-  border-radius:0px 12px 0px 0px;
+table th:last-child {
+  border-radius: 0px 12px 0px 0px;
   padding-right: 10px;
 }
 
-
-.votebutton{
-  color: #E71C96;
+.votebutton {
+  color: #e71c96;
   text-decoration: underline;
   cursor: pointer;
 }
 
-table tr:last-child{
-  border-radius:12px 12px 0px 0px;
+table tr:last-child {
+  border-radius: 12px 12px 0px 0px;
 }
-
 
 /* This is the challenge pade inner scroll section */
 /* This is for Firefox */
-.challengeBoxDiv{
+.challengeBoxDiv {
   min-height: 30rem;
   max-height: 30rem;
   overflow-y: scroll;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: #DDC6A7 #E7DED2;
+  scrollbar-color: #ddc6a7 #e7ded2;
 }
 
 /* This is for otherbrowsers (chrome, edge, etc) */
@@ -238,17 +234,17 @@ table tr:last-child{
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #E7DED2;
+  background: #e7ded2;
   height: 0.5rem;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #DDC6A7; 
+  background: #ddc6a7;
   height: 0.5rem;
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #B3A087; 
+  background: #b3a087;
   height: 0.5rem;
 }
 
@@ -256,7 +252,6 @@ table tr:last-child{
 /* !!!!!!!!!!!!!!!!!!!!!!!!! */
 /* Write above this line! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!! */
-
 
 /* Noam's room of requirements */
 /* please don't delete, it doesn't affect anything but my changes for now */
@@ -286,7 +281,7 @@ a.Big-link {
 .Button-primary {
   border: none;
   outline: none;
-  color: #FAF0E4;
+  color: #faf0e4;
   padding: 0.5em 2em;
   margin-top: 1em;
   margin-bottom: 0.5em;
@@ -294,7 +289,7 @@ a.Big-link {
   font-weight: 500;
   border-radius: 27px;
   box-shadow: -2px 4px 0px rgba(160, 160, 160, 0.25);
-  background: #E71C7D;
+  background: #e71c7d;
   font-family: "Oswald";
   transition: all 200ms ease-in-out;
   -webkit-user-select: none;
@@ -305,21 +300,21 @@ a.Big-link {
 }
 
 .Button-primary:hover {
-    background-color: #FD35BD;
-    color: #FFF4E6;
-    box-shadow: 0px 0px 0px ;
+  background-color: #fd35bd;
+  color: #fff4e6;
+  box-shadow: 0px 0px 0px;
 }
 
 .Button-primary:focus {
-    outline: none;
+  outline: none;
 }
 
 .Button-secondary {
   border: none;
   outline: none;
-  color: #E71C7D;
+  color: #e71c7d;
   background: transparent;
-  border: #E71C7D 2px solid;
+  border: #e71c7d 2px solid;
   padding: 0.5em 2em;
   margin-bottom: 0.5em;
   font-size: 18px;
@@ -335,13 +330,13 @@ a.Big-link {
 }
 
 .Button-secondary:hover {
-    color: #FAF0E4;
-    background: #E71C7D;
-    box-shadow: 0px 0px 0px;
+  color: #faf0e4;
+  background: #e71c7d;
+  box-shadow: 0px 0px 0px;
 }
 
 .Button-secondary:focus {
-    outline: none;
+  outline: none;
 }
 
 .fly-above {
@@ -349,8 +344,8 @@ a.Big-link {
 }
 
 .cover-all {
-  height: calc( 100vh );
-  width: calc( 100vw );
+  height: calc(100vh);
+  width: calc(100vw);
 }
 
 .forms {
@@ -358,37 +353,37 @@ a.Big-link {
 }
 
 .lightpink {
-  background-color: #E993B1;
+  background-color: #e993b1;
 }
 
 .bg-offwhite {
-  background-color: #FAF0E4;
+  background-color: #faf0e4;
 }
 
-.form-1,.form-2
-{
-    min-height: 330px;   
+.form-1,
+.form-2 {
+  min-height: 330px;
 }
 
 a.reg-link {
-  color: #E71C7D;
+  color: #e71c7d;
   text-decoration: underline;
 }
 
 .this_user {
-  color: #E993B1;
+  color: #e993b1;
 }
 
 .first {
-  color: #FBE536;
+  color: #fbe536;
 }
 
 .second {
-  color: #F16643;
+  color: #f16643;
 }
 
 .third {
-  color: #0891A8;
+  color: #0891a8;
 }
 
 .group_code_div {
@@ -398,7 +393,7 @@ a.reg-link {
   max-width: 320px;
   align-self: center;
   padding: 8px;
-  padding-right:2px;
+  padding-right: 2px;
 }
 
 .group_code_text {
@@ -406,17 +401,15 @@ a.reg-link {
   font-family: Oswald;
   font-weight: 500;
   padding: 8px;
-  font-size:  18px;
+  font-size: 18px;
   align-self: center;
 }
 
 .profile_pic {
   text-align: center;
-  width: 100px;
-  height: 100px;
-  max-width: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
-  border: 4px #E993B1 solid;
 }
 
 .picLeaderBox {
@@ -429,7 +422,6 @@ a.reg-link {
   height: 22rem;
 }
 
-.StripAnimation{
+.StripAnimation {
   animation: left-to-right 10s infinite;
 }
-

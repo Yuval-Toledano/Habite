@@ -1,0 +1,22 @@
+.join-container{
+    background:#F8F7F5;
+    width: 70%;
+    height: auto;
+    top: 3rem;
+    left: 5%;
+    padding: 1rem;
+    display: flex;
+    position: absolute;
+    z-index: 10;
+    float: center;
+    border-radius: 8px;
+    border: none;
+    border-radius: 5%;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    
+}
+.text-container{
+    padding-top: 10px;
+    align-items: center;
+    text-align: center;
+}

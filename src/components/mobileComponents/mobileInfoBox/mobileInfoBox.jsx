@@ -13,6 +13,8 @@ import {
 import { StyledTitle, StyledText, InfoBoxDiv, StyledButton } from "../../designSystem/mobileDS";
 import LinkIcon from '@material-ui/icons/Link';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import MoodIcon from '@material-ui/icons/Mood';
+import MoodBadIcon from '@material-ui/icons/MoodBad';
 import { WhatsappShareButton } from 'react-share';
 import { useHistory } from "react-router-dom";
 import ChallengeTimer from "../../timer/challengeTimer";
@@ -27,7 +29,6 @@ export function MobileInfoBox(props) {
   const [currChallenge, setCurrChallenge] = useState();
   const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
   const [disabledButton, setDisabledButton] = useState(true);
-  const [loading, setLoading] = useState(true);
   const history = useHistory();
   const [successDate, setSuccessDate] = useState();
   const nowDate = new Date().getDate();
@@ -37,15 +38,41 @@ export function MobileInfoBox(props) {
   const userLevel = userData ? userData.level : <StyledText>Loading level...</StyledText>;
   const userChallenges = userData ? userData.successChallenge.length : <StyledText>Loading challenges...</StyledText>;
   const [urlJG, setURL] = useState();
+  const dimentions = useWindowDimensions();
 
   // types of notifications
   const GO_VOTE = 0;
-  const MEMBER_VOTED = 1;
   const MEMBER_SUCCESS = 2;
   const NEW_CHALLENGE = 3;
   const CLASSIC_UPDATE = 1;
   const NO_APPROVED_UPDATE = 2;
   const NO_CURR_UPDATE = 3;
+
+  // get window dimensions to route desktop and mobile when needed
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+  
+  function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(
+      getWindowDimensions()
+    );
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    return windowDimensions;
+  }
 
   // generate the whatsapp link for sharing the group code
   useEffect(() => {
@@ -58,7 +85,7 @@ export function MobileInfoBox(props) {
   const copyGroupCode = () => {
     if (groupData) {
       navigator.clipboard.writeText(groupId);
-      console.log("copied!");
+      document.getElementById("indicationCopy").innerHTML = "&nbsp;copied!";
     }
   };
 
@@ -241,17 +268,15 @@ export function MobileInfoBox(props) {
       <div></div>
     ) : (
       <>
-        <StyledText>
-          Today you haven't documented anything yet.
-          <br />
-          How are you doing?
+        <StyledText className="d-flex justify-content-center mt-2">
+          Managed to keep up today?
         </StyledText>
-        <div className="d-flex justify-content-around p-2">
+        <div className="d-flex flex-row justify-content-around p-2">
           <StyledButton type="primary" onClick={handleSuccess}>
-            I succeeded today
+            <MoodIcon />
           </StyledButton>
           <br />
-          <StyledButton type="secondary">I didn’t make it</StyledButton >
+          <StyledButton type="secondary"><MoodBadIcon/></StyledButton >
         </div>
       </>
     );
@@ -271,7 +296,11 @@ export function MobileInfoBox(props) {
               type="primary"
               wide="true"
               onClick={() => {
-                history.push("/user/challenges");
+                if (dimentions.width < 500) {
+                  history.push("/mobile/challenges");
+                } else {
+                  history.push("/user/challenges");
+                }
               }}
             >
               Choose a challenge
@@ -283,10 +312,10 @@ export function MobileInfoBox(props) {
       <InfoBoxDiv id="current_challenge_box">
         <div className="row">
           <StyledText>Current challenge</StyledText>
-          <StyledTitle type={"subtitle"}>
+          <StyledTitle type={"subtitle"} size="22">
             <b>{currChallenge.challengeName}</b>
           </StyledTitle>
-          <StyledText>{currChallenge.description}</StyledText>
+          <StyledText size="15">{currChallenge.description}</StyledText>
           {groupData && groupData.timeStampEnd2 && <ChallengeTimer />}
           {successButton}
         </div>
@@ -327,7 +356,9 @@ export function MobileInfoBox(props) {
           <StyledText>Oh no, looks like your your group is empty</StyledText>
           <StyledTitle type={"subtitle"}>Invite friends to the group</StyledTitle>
           <div className="d-flex flex-row justify-content-evenly w-50 pt-3 pb-">
-            <LinkIcon style={{ fill: "#E71C7D" }} fontSize="large" onClick={() => { copyGroupCode() }} />
+            <LinkIcon style={{ fill: "#E71C7D", cursor:'pointer' }} 
+            fontSize="large" 
+            onClick={() => { copyGroupCode()}} />
             <WhatsappShareButton
               title="Join My Group"
               url={urlJG}
@@ -335,16 +366,22 @@ export function MobileInfoBox(props) {
               <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
             </WhatsappShareButton>
           </div>
+          <div>
+            <StyledText id="indicationCopy" className="group_code_text"></StyledText>
+          </div>
         </InfoBoxDiv>
       );
-    } else {
+    } 
+    else {
       // Add members to group when there are at least 2 members
       return (
         <InfoBoxDiv className="d-flex flex-column">
           <StyledText>Share group code</StyledText>
           <StyledTitle type={"subtitle"}>Make your group bigger and stronger</StyledTitle>
           <div className="d-flex flex-row justify-content-between">
-            <LinkIcon style={{ fill: "#E71C7D" }} onClick={() => { copyGroupCode() }} />
+          <LinkIcon style={{ fill: "#E71C7D", cursor:'pointer' }} 
+            fontSize="large" 
+            onClick={() => { copyGroupCode() }} />
             <WhatsappShareButton
               title="Join My Group"
               url={urlJG}
@@ -355,7 +392,28 @@ export function MobileInfoBox(props) {
         </InfoBoxDiv>
       );
     }
-  } else if (type === "statBox") {
+  } 
+  else if (type === "groupAddBar") {
+    return (
+      <div>
+        <StyledTitle type={"subtitle"}>Invite friends to the group</StyledTitle>
+        <div className="d-flex flex-row justify-content-evenly w-50 pt-1 mx-5 pb-">
+          <LinkIcon style={{ fill: "#E71C7D", cursor:'pointer' }} 
+          fontSize="large" 
+          onClick={() => { copyGroupCode()}} />
+          <WhatsappShareButton
+            title="Join My Group"
+            url={urlJG}>
+            <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
+          </WhatsappShareButton>
+        </div>
+        <div>
+          <StyledText id="indicationCopy" className="group_code_text"></StyledText>
+        </div>
+      </div>
+    );
+  }
+  else if (type === "statBox") {
 
     function GetAvatar() {
       if (userLevel == "1") {
@@ -374,15 +432,15 @@ export function MobileInfoBox(props) {
     return (
       <InfoBoxDiv className="d-flex flex-column justify-content-between">
         <StyledText>My Stats</StyledText>
-        <div className="d-flex flex-row justify-content-between align-items-center w-75">
+        <div className="d-flex flex-row justify-content-between align-items-center w-100 px-3 py-1">
           <StyledTitle type={"subtitle"}>Level&nbsp;</StyledTitle>
           <img src={GetAvatar()} className="d-flex w-25"/>
         </div>
-        <div className="d-flex flex-row justify-content-between w-75">
+        <div className="d-flex flex-row justify-content-between w-100 px-3 py-1">
           <StyledTitle type={"subtitle"}>Total points&nbsp;</StyledTitle>
-          <StyledTitle type={"subtitle"} color={"#00397B"}>{userScore}</StyledTitle>
+          <StyledTitle className="d-flex m-3" type={"subtitle"} color={"#00397B"}>{userScore}</StyledTitle>
         </div>
-        <div className="d-flex flex-row justify-content-between w-75">
+        <div className="d-flex flex-row justify-content-between w-100 px-3 py-1">
           <StyledTitle type={"subtitle"}>Total challenges&nbsp;</StyledTitle>
           <StyledTitle type={"subtitle"} color={"#00397B"}>{userChallenges}</StyledTitle>
         </div>
