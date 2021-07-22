@@ -323,8 +323,8 @@ export const FlyingBoxWrapper = styled.div`
     position: absolute;
     top: ${({ top }) => (top ? top + px : 0 + px)};
     height: ${({ height }) => (height ? height + "%" : "calc(100vh - 16%)")};
-    overflow: scroll;
     width: 100%;
+    overflow-x: hidden
 `;
 
 export const InfoBoxDiv = styled.div`

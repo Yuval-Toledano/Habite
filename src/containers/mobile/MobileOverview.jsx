@@ -1,11 +1,14 @@
 import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
+import NotificationBar from "../../components/MobileNotification/MobileBar";
 import { BackgroundCircle, FlyingBox } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
 import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
 import { MobileUserDetailsHeader } from "../../components/mobileUserDetailesHeader/mobileUserDetailsHeader";
+import "../../index.css"
+import styled from "styled-components"
 
 export default function MobileOverview() {
 
@@ -14,7 +17,10 @@ export default function MobileOverview() {
 
     if (groupCount > 1) {
         return (
-            <>
+            <div>
+                {/* NotificationBar starts here */}
+                <NotificationBar/>
+                {/* NotificationBar ends here */}
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader></MobileUserDetailsHeader>
                     <MobileInfoBox type="currChallenge" />
@@ -24,18 +30,22 @@ export default function MobileOverview() {
                 </FlyingBox>
     
                 <BackgroundCircle src={Teal} alt="Upper background color" />
-            </>
+            </div>
         );
     } else {
         return (
-            <>
+            <div>
+                {/* NotificationBar starts here */}
+                <NotificationBar/>
+                {/* NotificationBar ends here */}
+
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader></MobileUserDetailsHeader>
                     <MobileInfoBox type="groupAdd" />
                 </FlyingBox>
     
                 <BackgroundCircle src={Teal} alt="Upper background color" />
-            </>
+            </div>
         );
     }
 }

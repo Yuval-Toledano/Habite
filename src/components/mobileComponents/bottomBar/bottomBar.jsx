@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export function Bottombar(props) {
     const history = useHistory();
 
+
     return (
         <StyledBottombar>
             {bottomsideData.map((val, key) => {
@@ -16,7 +17,10 @@ export function Bottombar(props) {
                             key={key}
                             id={window.location.pathname === val.link ? "active" : ""}
                             className="rowBottombar"
-                            onClick={() => { history.push(val.link) }}
+                            onClick={() => { 
+                                history.push({
+                                    pathname: val.link,
+                                    state: {mode: "test" }})}}
                             alt={val.title}
                             icon={val.icon}>
                             {val.icon}
