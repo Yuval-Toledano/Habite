@@ -14,7 +14,7 @@ export default function MobileRules() {
             {/* NotificationBar ends here */}
 
             <FlyingBox zindx={1} top={50}>
-                <div className="d-flex flex-column align-items-center">
+                <div className="d-flex flex-column align-items-center mb-4">
                     <StyledTitle type="title">Game Rules</StyledTitle>
                     <SingleRuleDiv className="d-flex flex-column m-2">
                         <StyledTitle type="subtitle" size="20">1. Form a new group or join an existing one</StyledTitle>
