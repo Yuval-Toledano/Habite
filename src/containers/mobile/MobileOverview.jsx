@@ -65,7 +65,7 @@ export default function MobileOverview() {
 
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader/>
-                    <MobileInfoBox type="groupAdd" />
+                    {/* <MobileInfoBox type="groupAdd" /> */}
                     <div className="d-flex flex-row justify-content-center m-2">
                         <StyledButton type="secondary" color="rgba(231, 28, 125, 0.6)" onClick={(event) => handleLogOut(event)}><ExitToAppIcon />&nbsp;logout</StyledButton>
                         <StyledButton type="secondary" color="rgba(231, 28, 125, 0.6)" onClick={() => openInNewTab(bugLink)}><BugReportIcon />&nbsp;Report</StyledButton>
