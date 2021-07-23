@@ -60,7 +60,7 @@ export default function NewSignUp(props) {
     }
 
     // The function handles submit image
-    async function handleUploadImage(e){
+    function handleUploadImage(e){
         if(e.target.files[0]){
           setImage(e.target.files[0])
         }

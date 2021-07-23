@@ -4,6 +4,7 @@ import {TextInPage, StandAloneTitle} from "../../../components/designSystem/comm
 import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
 
+
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
