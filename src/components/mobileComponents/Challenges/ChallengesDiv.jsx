@@ -106,7 +106,7 @@ export function SingleChallenge(props) {
             <StyledText size="15">{curr.description}</StyledText>
             <div className="votes and buttons d-flex flex-row justify-content-between">
               <div className="d-flex flex-row">{images}</div>
-              {isDisabled ? <StyledText>Alreay Voted</StyledText> :
+              {isDisabled ? <StyledText>Already voted</StyledText> :
                 <StyledButton type="primary" onClick={handleVote} ><ThumbUpIcon style={{ color: "#ffffff"}}/></StyledButton>
               }
             </div>

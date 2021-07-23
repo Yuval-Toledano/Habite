@@ -80,7 +80,7 @@ return (
         </div>
             <div className="container">
                 <div className="subTitle-container">
-                    <StandAloneTitle>Join a Group</StandAloneTitle>
+                    <StandAloneTitle>Join the group</StandAloneTitle>
                 </div>
                 <form onSubmit={handleSubmit} method="POST">
                     {/* name input start */}

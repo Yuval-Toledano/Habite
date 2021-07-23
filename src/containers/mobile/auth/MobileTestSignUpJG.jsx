@@ -13,6 +13,7 @@ export default function MobileNewSignUpJG(props) {
     const imageRef = useRef();
     const [image, setImage] = useState(null);
     const { groupId } = useParams();
+    // const { groupBossName } = ; //TODO: add user name-go to groupID collection which is the same as the user who 
     
     const {signUpJG} = useAuth();
     const history = useHistory();
@@ -41,7 +42,7 @@ return (
         </div>
             <div className="container">
                 <div className="subTitle-container">
-                    <StandAloneTitle>Join a Group</StandAloneTitle>
+                    <StandAloneTitle>Join {groupBossName} group</StandAloneTitle>
                 </div>
                 <form method="POST">
                     {/* name input start */}
