@@ -5,7 +5,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { NotificationWindow } from "./MobileNotiWindow";
 import useSound from 'use-sound';
-import { JoinFriendsWindow } from "../joinFriends/joinWindow"
+import { JoinFriendsWindow } from "../joinFriends/joinWindow";
+import { JoinFriendsBG } from "../joinFriends/joinBG";
 
 const NotiBarContainer = styled.div`
     display: inline-flex;
@@ -36,7 +37,7 @@ const BellContainer = styled.div`
 
 const Bell = () => (
     <div>
-        <NotificationsIcon className="iconDesignMobile" style={{ color: "black" }}/>
+        <NotificationsIcon className="iconDesignMobile" style={{ color: "black" }} />
     </div>
 )
 
@@ -46,17 +47,17 @@ const Dot = () => (
 
 const JoinFriends = () => (
     <div className="groupIcon">
-        <GroupAddIcon className="iconDesignMobile" style={{ color: "black" }}/>
+        <GroupAddIcon className="iconDesignMobile" style={{ color: "black" }} />
     </div>
 )
 
 
 const defaultOnClick = () => alert("onClick is undefined")
 
-const JoinFriendsIndicator = ({onClick = defaultOnClick}) => {
+const JoinFriendsIndicator = ({ onClick = defaultOnClick }) => {
     return (
         <div>
-            <JoinFriends/>
+            <JoinFriends />
         </div>
     )
 }
@@ -132,17 +133,19 @@ function NotificationBarBlack(props) {
     }
 
     return (
-
-        <NotiBarContainer className="w-100">
-            <button className="JoinButton" style={{ border: "none" }} onClick={closeWindowJoin}>
-                <JoinFriendsIndicator/>
-                <JoinFriendsWindow showJoin={showJoin} closeWindowJoin={closeWindowJoin}/>
-            </button>
-            <BellContainer>
-                <button className="BellButton" style={{ border: "none" }} onClick={closeWindow}><NotificationIndicator showDot={showDot} onClick={() => setShowDot(false)} /></button>
-                <NotificationWindow show={show} showDot={setShowDot} notiData={notiData} closeWindow={closeWindow} />
-            </BellContainer>
-        </NotiBarContainer>
+        <>
+            <JoinFriendsBG showJoin={showJoin} closeWindowJoin={closeWindowJoin} />
+            <NotiBarContainer className="w-100">
+                <button className="JoinButton" style={{ border: "none" }} onClick={closeWindowJoin}>
+                    <JoinFriendsIndicator />
+                    <JoinFriendsWindow showJoin={showJoin} closeWindowJoin={closeWindowJoin} />
+                </button>
+                <BellContainer>
+                    <button className="BellButton" style={{ border: "none" }} onClick={closeWindow}><NotificationIndicator showDot={showDot} onClick={() => setShowDot(false)} /></button>
+                    <NotificationWindow show={show} showDot={setShowDot} notiData={notiData} closeWindow={closeWindow} />
+                </BellContainer>
+            </NotiBarContainer>
+        </>
     );
 }
 

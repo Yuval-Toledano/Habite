@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, useHistory, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useHistory, useParams, Redirect } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PageTemplate from "./containers/pages/pageTemplate";
 import Overview from "./containers/pages/overview";
@@ -46,9 +46,10 @@ function useWindowDimensions() {
 function App() {
   var dimentions = useWindowDimensions();
 
+
   if (dimentions.width < 500) {
     // needs to be the mobile routing!!!
-    
+
     return (
       <Router>
         <AuthProvider>
@@ -58,12 +59,12 @@ function App() {
             <Route path="/login" exact component={Login} />
             <Route path="/signup/:groupId" component={SignUpJG}/>
             <MobileHomeTemplate>
-              <Route 
-                exact 
+              <Route
+                exact
                 mode="white"
-                path="/overview" 
+                path="/overview"
                 component={MobileOverview}
-                 />
+              />
               <Route
                 exact
                 path="/challenges"
@@ -76,14 +77,16 @@ function App() {
                 component={MobileAchievements}
                 mode="white"
               />
-              <Route 
-                exact 
-                path="/rulesOfGame" 
+              <Route
+                exact
+                path="/rulesOfGame"
                 component={MobileRules}
                 mode="black" />
             </MobileHomeTemplate>
           </Switch>
         </AuthProvider>
+        {/* <Route path='/404' component={NotFoundPage} />
+        <Redirect from='*' exactto='/404' /> */}
       </Router>
     );
     // end of mobile routing
