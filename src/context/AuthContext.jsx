@@ -38,7 +38,7 @@ export function AuthProvider({ children }) {
                 db.doc(`users/${user.user.uid}`).set({
                   email: email,
                   challengeVotes: [],
-                  notification: [],
+                  notification: [4],
                   score: 0,
                   level: 1,
                   groupId: user.user.uid,
@@ -74,7 +74,7 @@ export function AuthProvider({ children }) {
                 db.doc(`users/${user.user.uid}`).set({
                   email: email,
                   challengeVotes: [],
-                  notification: [],
+                  notification: [4],
                   score: 0,
                   level: 1,
                   groupId: groupId,

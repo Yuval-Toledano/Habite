@@ -72,6 +72,7 @@ export const StyledTitleWrapper = styled.h1`
         }
     }
     )};
+    justify-self: center;
 `;
 
 export const StyledText = styled.p`
@@ -79,6 +80,14 @@ export const StyledText = styled.p`
   font-style: Regular;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
   color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
+`;
+
+export const StyledTextCentered = styled.p`
+  font-family: "Open sans";
+  font-style: Regular;
+  font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
+  color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
+  margin-bottom: 0;
 `;
 
 export const StyledLinkWrapper = styled.a`
@@ -147,16 +156,14 @@ const StyledButtonWrapper = styled.button`
                 return shadow;
         }
     }};
-    border: none;
-    outline: ${props => {
+    border: ${props => {
         switch (props.type) {
             case 'secondary':
-                return colors.main_cta + " solid 2px";
+                return "2px solid " + colors.main_cta;
             default:
                 return "none";
         };
     }};
-    outline-offset: -1px;
     border-radius: 27px;
     padding: 0.5rem 2rem;
     width: ${({ width, wide }) => (width ? width : wide ? "100%" : "fit-content")};
@@ -347,9 +354,9 @@ export const InfoBoxBar = styled.div`
 
 export const LeaderboardDivWrapper = styled.div`
     background-color: ${colors.accent};
-    padding: 5px 5px 5px 5px;
     width: 85%;
-    border-radius: 20%;
+    padding: 5px 5px 5px 5px;
+    border-radius: 45px;
     border: ${props => {
         switch (props.color) {
             default:
@@ -367,11 +374,11 @@ export const LeaderboardContainer = styled.div`
 export const SingleChallengeDiv = styled.div`
     background-color: ${colors.accent};
     overflow: visible;
-    width: 90%;
+    min-width: 95%;
     display: flex;
     text-align: center;
     padding: 15px 15px 0px 15px;
-    margin: 12px;
+    margin: 10px;
     border-radius: 5%;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     position: relative;
@@ -427,10 +434,10 @@ export function StyledButton(props) {
 }
 
 export function StyledTitle(props) {
-    const { type, size, color, mode } = props;
+    const { type, size, color, mode, just } = props;
 
     return (
-        <StyledTitleWrapper type={type} mode={mode} size={size} color={color}>
+        <StyledTitleWrapper type={type} mode={mode} size={size} color={color} just={just}>
             {props.children}
         </StyledTitleWrapper>
     );

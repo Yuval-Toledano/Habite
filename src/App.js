@@ -61,24 +61,24 @@ function App() {
               <Route 
                 exact 
                 mode="white"
-                path="/mobile/overview" 
+                path="/overview" 
                 component={MobileOverview}
                  />
               <Route
                 exact
-                path="/mobile/challenges"
+                path="/challenges"
                 component={MobileChallenges}
                 mode="black"
               />
               <Route
                 exact
-                path="/mobile/achievements"
+                path="/achievements"
                 component={MobileAchievements}
                 mode="white"
               />
               <Route 
                 exact 
-                path="/mobile/rulesOfGame" 
+                path="/rulesOfGame" 
                 component={MobileRules}
                 mode="black" />
             </MobileHomeTemplate>
@@ -98,9 +98,9 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/signup/:groupId" component={SignUpJG}/>
           <PageTemplate>
-            <Route path="/user/overview" exact component={Overview}/>
-            <Route path="/user/challenges" exact component={ChallengePage} />
-            <Route path="/user/progress" exact component={ProgressPage} />
+            <Route path="/overview" exact component={Overview}/>
+            <Route path="/challenges" exact component={ChallengePage} />
+            <Route path="/progress" exact component={ProgressPage} />
           </PageTemplate>
           </Switch>
         </AuthProvider>

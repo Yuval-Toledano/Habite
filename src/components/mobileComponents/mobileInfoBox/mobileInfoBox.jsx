@@ -84,8 +84,8 @@ export function MobileInfoBox(props) {
   // copy the group code to clipboard
   const copyGroupCode = () => {
     if (groupData) {
-      navigator.clipboard.writeText(groupId);
-      document.getElementById("indicationCopy").innerHTML = "&nbsp;copied!";
+      navigator.clipboard.writeText(`https://habite-fd756.web.app/signup/${groupData.id}`);
+      document.getElementById("indicationCopy").innerHTML = "&nbsp;Link copied!";
     }
   };
 
@@ -296,11 +296,7 @@ export function MobileInfoBox(props) {
               type="primary"
               wide="true"
               onClick={() => {
-                if (dimentions.width < 500) {
-                  history.push("/mobile/challenges");
-                } else {
-                  history.push("/user/challenges");
-                }
+                history.push("/challenges");
               }}
             >
               Choose a challenge
@@ -386,7 +382,7 @@ export function MobileInfoBox(props) {
               title="Join My Group"
               url={urlJG}
             >
-              <WhatsAppIcon style={{ fill: "#E71C7D" }} />
+              <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large"  />
             </WhatsappShareButton>
           </div>
         </InfoBoxDiv>
