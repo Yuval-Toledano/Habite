@@ -10,14 +10,14 @@ import {SidebarData} from "./sidebarData";
 
 export default function Sidebar() {
     const [hour, setHour] = useState("");
-    const {logOut, userData, forceRender} = useAuth();
+    const {logOut, userData} = useAuth();
     const history = useHistory();
 
-    async function handleLogOut(){
-        console.log("in handleLogOut")
+    async function handleLogOut(event){
+        event.preventDefault();
         try {
             await logOut();
-            history.push("/signin")
+            history.push("/")
         } catch(err){
             console.error("Error with logout ", err)
         }
@@ -38,13 +38,12 @@ export default function Sidebar() {
             }
         };
         whatIsTheHour();
-        console.log("userData in sidebar", userData);
-        console.log("sidebar render")
-    }, [userData])
 
-    const userName = userData? userData.userName : "stranger"
+    }, [userData, hour])
+
+    const userName = userData? userData.userName : "loading..."
     const userLevel = userData? userData.level : "";
-    const url = userData? userData.profilePic : "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg";
+    const url = userData && userData.profilePic && userData.profilePic !== ""? userData.profilePic : "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg";
 
     return (
         <div className="Sidebar col g-0">
@@ -87,7 +86,7 @@ export default function Sidebar() {
                 })}
             </ul>
             <div className='row justify-content-center m-2 align-items-end'>
-                <TextualButton color="rgba(231, 28, 125, 0.6)" onClick={handleLogOut}><ExitToAppIcon />&nbsp;logout</TextualButton>
+                <TextualButton color="rgba(231, 28, 125, 0.6)" onClick={(event) => handleLogOut(event)}><ExitToAppIcon />&nbsp;logout</TextualButton>
             </div>
         </div>
     )

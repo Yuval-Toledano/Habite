@@ -13,6 +13,14 @@ const VerticalMargin = styled.span`
     typeof margin === "string" ? margin : `${margin}px`};
 `;
 
+const Separator = styled.span`
+    background: #E4DCD3;    
+    width: 100%;
+    height: 1px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+    display:inline-block;
+`;
 function Marginer(props) {
   const { direction } = props;
 
@@ -26,4 +34,4 @@ Marginer.defaultProps = {
   direction: "horizontal",
 };
 
-export { Marginer };
+export { Marginer, Separator};
