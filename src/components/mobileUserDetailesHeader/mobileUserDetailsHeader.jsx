@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import { StyledText, StyledTitle } from "../../components/designSystem/mobileDS";
 
 export const MobileUserDetailsHeaderWrapper = styled.div`
-    width: 100;
-    padding: 0px 20%;
+    
 `;
 
 export function MobileUserDetailsHeader({ props }) {
@@ -48,22 +47,21 @@ export function MobileUserDetailsHeader({ props }) {
     const userScore = userData ? userData.score : 0;
 
     return (
-        <MobileUserDetailsHeaderWrapper>
-            <div className="d-flex justify-content-start flex-row">
+        <MobileUserDetailsHeaderWrapper className="d-flex flex-row justify-content-center">
+            <div className="d-flex flex-column">
                 <StyledText mode={"over_dark"} id="text1">Good {hour} 👋</StyledText>
+                <StyledTitle type={"title"} mode={"over_dark"} id="text2">{userName}</StyledTitle>
+                <StyledText mode={"over_dark"} id="text1" className='mt-1'>Score: {userScore}</StyledText>
             </div>
-            <div className="d-flex justify-content-between flex-row">
-                <div className='align-self-center'>
-                    <StyledTitle type={"title"} mode={"over_dark"} id="text2">{userName}</StyledTitle>
-                    <StyledText mode={"over_dark"} id="text1" className='mt-1'>Score: {userScore}</StyledText>
-                </div>
-                <div className="align-self-end">
-                    <img
-                        src={url}
-                        className="mb-2 profile_pic"
-                        alt="profile pic"
-                    ></img>
-                </div>
+            <div className="d-flex flex-column w-25">
+                <img
+                    src={url}
+                    className="m-3 profile_pic"
+                    alt="profile pic"
+                    style={{
+                        border: "4px #e993b1 solid"
+                    }}
+                ></img>
             </div>
         </MobileUserDetailsHeaderWrapper>
     );
