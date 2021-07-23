@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase"
 import { getGroupDocumentData, getGroupMembersData, getUserDocumentData } from "../../server/firebaseTools";
-import { VoteBox, SubTitle, IndicationText } from "../designSystem/common";
+import { VoteBox, SubTitle } from "../designSystem/common";
 import { GroupStatBox } from "./groupStatBox";
 import { Separator } from '../../components/marginer/marginer';
 import { GroupAvatarRow } from "./groupAvatarRow";
