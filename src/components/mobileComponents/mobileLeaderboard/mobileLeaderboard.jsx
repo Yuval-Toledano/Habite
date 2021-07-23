@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { useAuth } from "../../../context/AuthContext";
-import { StyledTitle, StyledTextCentered, StyledNameTag, LeaderboardDiv, LeaderboardContainer, LeaderBoardPhoto } from "../../designSystem/mobileDS";
+import { StyledTextCentered, StyledNameTag, LeaderboardDiv, LeaderboardContainer, LeaderBoardPhoto } from "../../designSystem/mobileDS";
 
 export function MobileLeaderboard() {
 

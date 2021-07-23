@@ -1,12 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import {auth, db} from "../../firebase"
-import { ProgressCategoriesData } from "./progressCategoriesData";
+import React from 'react'
 import { ProgressCategoriesTitle, ProgressCategoriesIconDiv} from '../designSystem/common';
 import { ProgressSidebarButton } from "../../components/button/button";
 import StarIcon from "@material-ui/icons/Star";
 import WidgetsIcon from "@material-ui/icons/Widgets";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
-import ViewQuiltIcon from "@material-ui/icons/ViewQuilt";
 
 
 function ProgressCategories(props) {

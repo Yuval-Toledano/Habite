@@ -9,7 +9,6 @@ import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeade
 import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
 import { MobileUserDetailsHeader } from "../../components/mobileUserDetailesHeader/mobileUserDetailsHeader";
 import "../../index.css"
-import styled from "styled-components"
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import BugReportIcon from '@material-ui/icons/BugReport';
 

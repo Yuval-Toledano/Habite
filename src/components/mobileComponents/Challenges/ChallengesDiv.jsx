@@ -2,15 +2,10 @@ import React, {useEffect, useState} from "react";
 import {getChallengesData} from "../../../server/firebaseTools";
 import {useAuth} from "../../../context/AuthContext";
 import { SingleChallengeDiv, ChallengeButton, StyledButton, StyledText, StyledTitle, VoterPhoto } from "../../designSystem/mobileDS";
-import {getChallengeDocumentData, generateVotesDocument, notiForGroupMembers, getVoteDocData} from "../../../server/firebaseTools";
+import { generateVotesDocument, notiForGroupMembers, getVoteDocData} from "../../../server/firebaseTools";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ThumbDownIcon from '@material-ui/icons/ThumbDown';
-import { Marginer, Separator } from "../../marginer/marginer";
-
-import { DisableButton } from "../../button/button";
-import { SingleVoter } from "../../designSystem/common";
 
 // types of notifications
 const MEMBER_VOTED = 1;
@@ -122,20 +117,13 @@ export function SingleChallenge(props) {
 
 export function ChallengesDiv() {
 
-    const [currentChallenge, setCurrentChallenge] = useState(null);
     const [challenges, setChallenges] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [active, setActiveMode] = useState(null);
-    const [isFirst, setFirst] = useState(true);
-    const [clicked, setClicked] = useState(null);
-    const {forceRender} = useAuth();
 
     //gets the  10 challenges from db order by level
     useEffect(() => {
         const fetchChallenges = async () => {
           const challengesPromise = getChallengesData();
           challengesPromise.then((doc) => setChallenges(doc));
-          setLoading(false);
         };
         fetchChallenges();
       }, []);

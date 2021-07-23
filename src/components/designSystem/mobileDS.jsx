@@ -374,11 +374,11 @@ export const LeaderboardContainer = styled.div`
 export const SingleChallengeDiv = styled.div`
     background-color: ${colors.accent};
     overflow: visible;
-    width: 90%;
+    min-width: 95%;
     display: flex;
     text-align: center;
     padding: 15px 15px 0px 15px;
-    margin: 12px;
+    margin: 10px;
     border-radius: 5%;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     position: relative;
