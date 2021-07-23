@@ -104,6 +104,7 @@ function App() {
           </Switch>
         </AuthProvider>
       </Router>
+      
     );
   }
 }
