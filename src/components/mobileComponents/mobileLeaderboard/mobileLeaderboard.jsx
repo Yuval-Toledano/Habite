@@ -7,6 +7,7 @@ export function MobileLeaderboard() {
     const { groupMemberData } = useAuth();
     const sortedGroupMemberData = [].concat(groupMemberData)
     sortedGroupMemberData.sort((a, b) => (a.score < b.score) ? 1 : -1)
+    
 
     // variables for the user color
     const colors = {
@@ -33,7 +34,7 @@ export function MobileLeaderboard() {
                   className="d-flex flex-row align-items-center">
                     <LeaderBoardPhoto
                       src={
-                        member.profilePic
+                        member.profilePic || "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"
                       }
                       className="picLeaderBox"
                       alt="profile pic"
