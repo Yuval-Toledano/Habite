@@ -1,7 +1,7 @@
 import React from "react";
 import { FlyingBox, SingleRuleDiv, StyledTitle, StyledText } from "../../components/designSystem/mobileDS";
 import Pink from "../../components/svgs/mobileBackgrounds/Pink.svg";
-import NotificationBar from "../../components/MobileNotification/MobileBar";
+import NotificationBarBlack from "../../components/MobileNotification/NotificationBarBlack";
 import { BackgroundCircle } from "../../components/designSystem/mobileDS";
 import SugarCube from "../../components/svgs/avatars/2-sugarCube.svg";
 
@@ -10,7 +10,7 @@ export default function MobileRules() {
     return (
         <>
             {/* NotificationBar starts here */}
-            <NotificationBar/>
+            <NotificationBarBlack/>
             {/* NotificationBar ends here */}
 
             <FlyingBox zindx={1} top={50}>

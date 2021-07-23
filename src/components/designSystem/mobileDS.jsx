@@ -156,16 +156,14 @@ const StyledButtonWrapper = styled.button`
                 return shadow;
         }
     }};
-    border: none;
-    outline: ${props => {
+    border: ${props => {
         switch (props.type) {
             case 'secondary':
-                return colors.main_cta + " solid 2px";
+                return "2px solid " + colors.main_cta;
             default:
                 return "none";
         };
     }};
-    outline-offset: -1px;
     border-radius: 27px;
     padding: 0.5rem 2rem;
     width: ${({ width, wide }) => (width ? width : wide ? "100%" : "fit-content")};
