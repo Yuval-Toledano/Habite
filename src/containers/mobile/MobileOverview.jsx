@@ -47,7 +47,7 @@ export default function MobileOverview() {
                     <MobileInfoBox type="currChallenge" />
                     <TopThree />
                     <MobileLeaderboard/>
-                    <div className="d-flex flex-row justify-content-center m-2">
+                    <div className="d-flex flex-row justify-content-center m-2 mb-4">
                         <StyledButton type="secondary" color="rgba(231, 28, 125, 0.6)" onClick={() => openInNewTab(bugLink)}><BugReportIcon />&nbsp;Report</StyledButton>
                         <StyledButton type="secondary" color="rgba(231, 28, 125, 0.6)" onClick={(event) => handleLogOut(event)}><ExitToAppIcon />&nbsp;logout</StyledButton>
                     </div>

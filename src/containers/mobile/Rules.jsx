@@ -1,8 +1,8 @@
 import React from "react";
 import { FlyingBox, SingleRuleDiv, StyledTitle, StyledText } from "../../components/designSystem/mobileDS";
-import Pink from "../../components/svgs/mobileBackgrounds/Pink.svg";
+import BGpink from "../../components/svgs/mobileBackgrounds/BGpink.svg";
 import NotificationBarBlack from "../../components/MobileNotification/NotificationBarBlack";
-import { BackgroundCircle } from "../../components/designSystem/mobileDS";
+import { BackgroundCircleRules, BackgroundRules } from "../../components/designSystem/mobileDS";
 import SugarCube from "../../components/svgs/avatars/2-sugarCube.svg";
 
 
@@ -38,7 +38,7 @@ export default function MobileRules() {
                 </div>
             </FlyingBox>
 
-            <BackgroundCircle src={Pink} alt="Upper background color" />
+            <BackgroundRules alt="Upper background color" />
         </>
     );
 }

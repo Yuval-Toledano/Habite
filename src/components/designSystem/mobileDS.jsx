@@ -164,6 +164,7 @@ const StyledButtonWrapper = styled.button`
                 return "none";
         };
     }};
+
     border-radius: 27px;
     padding: 0.5rem 2rem;
     width: ${({ width, wide }) => (width ? width : wide ? "100%" : "fit-content")};
@@ -207,10 +208,9 @@ const LogoWrapper = styled.h2`
     font-family: "Oleo script";
     font-weight: Bold;
     font-size: ${({ size }) => (size ? size + px : typography.medium + px)};
-    text-shadow: -5px 1px 0px ${colors.shadow_main}, -7px 2px 0px ${colors.shadow_orange}, -9px 3px 0px ${colors.shadow_teal};
+    text-shadow: -1px 1px 0px ${colors.text},-1px -1px 0px ${colors.text},1px -1px 0px ${colors.text},1px 1px 0px ${colors.text}, -4px 1px 0px ${colors.shadow_main}, -6px 2px 0px ${colors.shadow_orange}, -8px 3px 0px ${colors.shadow_teal};
     color: ${colors.shadow_yellow};
-    -webkit-text-stroke: 4px ${colors.text};
-    paint-order: stroke fill;
+    paint-order: fill stroke;
     text-transform: uppercase;
     & :before {
         content: attr(title);
@@ -262,6 +262,29 @@ const BottombarButtonWrapper = styled.button`
 
 export const BackgroundCircle = styled.img`
     width: 100%;
+    position: relative;
+    z-index: 0;
+`;
+
+export const BackgroundCircleRules = styled.img`
+    width: 100%;
+    height: calc(100vh) *100%;
+    position: relative;
+    z-index: 0;
+`;
+
+export const BackgroundRules = styled.div`
+    width: 100%;
+    height: calc(100vh);
+    background-color: ${colors.shadow_main};
+    position: relative;
+    z-index: 0;
+`;
+
+export const BackgroundRegular = styled.div`
+    padding-bottom: 30px;
+    width: 100%;
+    background-color: transparent;
     position: relative;
     z-index: 0;
 `;
@@ -331,7 +354,7 @@ export const FlyingBoxWrapper = styled.div`
     top: ${({ top }) => (top ? top + px : 0 + px)};
     height: ${({ height }) => (height ? height + "%" : "calc(100vh - 16%)")};
     width: 100%;
-    overflow-x: hidden
+    overflow-x: scroll;
 `;
 
 export const InfoBoxDiv = styled.div`
@@ -342,7 +365,7 @@ export const InfoBoxDiv = styled.div`
     text-align: center;
     padding: 1rem;
     margin: 1.5rem;
-    border-radius: 5%;
+    border-radius: 20px;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 2;
@@ -355,8 +378,9 @@ export const InfoBoxBar = styled.div`
 export const LeaderboardDivWrapper = styled.div`
     background-color: ${colors.accent};
     padding: 5px 5px 5px 5px;
+    margin-bottom: 0.5rem !important;
     width: 85%;
-    border-radius: 20%;
+    border-radius: 20px;
     border: ${props => {
         switch (props.color) {
             default:

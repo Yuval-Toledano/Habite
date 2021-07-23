@@ -10,6 +10,7 @@ export const MobileUserDetailsHeaderWrapper = styled.div`
 
 export function MobileUserDetailsHeader({ props }) {
     const [hour, setHour] = useState("");
+    const [userScore, setUserScore] = useState(0)
     const { logOut, userData } = useAuth();
     const history = useHistory();
 
@@ -42,9 +43,13 @@ export function MobileUserDetailsHeader({ props }) {
     }, [userData, hour])
 
     const userName = userData ? userData.userName : "loading..."
-    const userLevel = userData ? userData.level : "";
     const url = userData && userData.profilePic && userData.profilePic !== "" ? userData.profilePic : "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg";
-    const userScore = userData ? userData.score : 0;
+
+    useEffect(()=> {
+        if (userData){
+            setUserScore(userData.score)
+        }
+    }, [userData]);
 
     return (
         <MobileUserDetailsHeaderWrapper className="d-flex flex-row justify-content-center">

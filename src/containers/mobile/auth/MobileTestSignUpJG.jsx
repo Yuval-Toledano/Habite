@@ -42,7 +42,7 @@ return (
         </div>
             <div className="container">
                 <div className="subTitle-container">
-                    <StandAloneTitle>Join {groupBossName} group</StandAloneTitle>
+                    <StandAloneTitle>Join this group</StandAloneTitle>
                 </div>
                 <form method="POST">
                     {/* name input start */}
