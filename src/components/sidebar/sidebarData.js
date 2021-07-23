@@ -7,17 +7,17 @@ export const SidebarData = [
     {
         title: "Overview",
         icon: <DashboardIcon />,
-        link: "/user/overview"
+        link: "/overview"
     },
     {
         title: "Progress",
         icon: <TrendingUpIcon />,
-        link: "/user/progress"
+        link: "/progress"
     },
     {
         title: "Challenges",
         icon: <PlaylistAddCheckIcon />,
-        link: "/user/challenges"
+        link: "/challenges"
     },
 
 ]

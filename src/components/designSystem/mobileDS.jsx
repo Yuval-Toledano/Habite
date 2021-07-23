@@ -72,6 +72,7 @@ export const StyledTitleWrapper = styled.h1`
         }
     }
     )};
+    justify-self: center;
 `;
 
 export const StyledText = styled.p`
@@ -79,6 +80,14 @@ export const StyledText = styled.p`
   font-style: Regular;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
   color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
+`;
+
+export const StyledTextCentered = styled.p`
+  font-family: "Open sans";
+  font-style: Regular;
+  font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
+  color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
+  margin-bottom: 0;
 `;
 
 export const StyledLinkWrapper = styled.a`
@@ -425,10 +434,10 @@ export function StyledButton(props) {
 }
 
 export function StyledTitle(props) {
-    const { type, size, color, mode } = props;
+    const { type, size, color, mode, just } = props;
 
     return (
-        <StyledTitleWrapper type={type} mode={mode} size={size} color={color}>
+        <StyledTitleWrapper type={type} mode={mode} size={size} color={color} just={just}>
             {props.children}
         </StyledTitleWrapper>
     );

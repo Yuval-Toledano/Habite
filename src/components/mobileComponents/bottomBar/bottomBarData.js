@@ -5,25 +5,25 @@ export const bottomsideData = [
   {
     title: "Home",
     icon: <Home />,
-    link: "/mobile/overview",
+    link: "/overview",
     mode: "white",
   },
   {
     title: "Challenges",
     icon: <ScatterPlot />,
-    link: "/mobile/challenges",
+    link: "/challenges",
     mode: "black",
   },
   {
     title: "Achievements",
     icon: <Dashboard />,
-    link: "/mobile/achievements",
+    link: "/achievements",
     mode: "white",
   },
   {
     title: "Rules",
     icon: <Info />,
-    link: "/mobile/rulesOfGame",
+    link: "/rulesOfGame",
     mode: "black",
   },
 ];

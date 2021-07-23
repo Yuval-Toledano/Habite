@@ -29,7 +29,7 @@ import styled from "styled-components";
 import Chart from "../../components/chart/chart";
 import ChallengeTimer from "../../components/timer/challengeTimer";
 import { WhatsappShareButton } from 'react-share';
-import { WhatsappIcon } from "react-share";
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
 const LeaderBoardContainer = styled.div`
   margin-top: 8px;
@@ -271,7 +271,7 @@ export default function Overview() {
             <Button
               width="100%"
               onClick={() => {
-                history.push("/user/challenges");
+                history.push("/challenges");
               }}
             >
               Choose a challenge
@@ -375,8 +375,9 @@ export default function Overview() {
                 <WhatsappShareButton
                 title="Join My Group"
                 url= {urlJG}
+                className="onHoverIconChange"
                 >
-                  <WhatsappIcon/>
+                  <WhatsAppIcon style={{ fill: "#0890A7", onHover: "#FD35BD" }} fontSize="medium" />
                 </WhatsappShareButton>
                 <div id="indicationCopy" className="group_code_text"></div>
               </div>

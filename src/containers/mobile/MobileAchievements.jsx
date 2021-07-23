@@ -8,6 +8,7 @@ import { MobileBadges } from "../../components/mobileComponents/mobileBadges/mob
 
 
 export default function MobileAchievements() {
+
     return (
         <>
             {/* NotificationBar starts here */}

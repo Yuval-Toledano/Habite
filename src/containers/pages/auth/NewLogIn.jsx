@@ -46,11 +46,7 @@ export default function Login(props) {
       setError("");
       setLoading(true);
       await logIn(emailRef.current.value, passwordRef.current.value);
-      if (dimentions.width < 500) {
-        history.push("mobile/overview");
-      } else {
-        history.push("user/overview");
-      }
+      history.push("/overview");
     } catch {
       setError("Failed to log in")
       console.log(error);

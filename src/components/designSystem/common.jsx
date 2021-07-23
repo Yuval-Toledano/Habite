@@ -309,3 +309,9 @@ height: 6rem;
 width: 6rem;
 border-radius: 50%;
 `;
+
+export const onHoverIconChange = styled.div`
+  hover {
+    color: #FD35BD;
+  }
+`;

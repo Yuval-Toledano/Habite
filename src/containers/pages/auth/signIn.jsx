@@ -23,7 +23,7 @@ export default function SignIn() {
       setError("");
       setLoading(true);
       await logIn(emailRef.current.value, passwordRef.current.value);
-      history.push("user/overview");
+      history.push("/overview");
     } catch {
       setError("Failed to log in");
     }
@@ -95,13 +95,15 @@ export default function SignIn() {
                   <Marginer direction="vertical" margin={20} />
 
                   {/* Log in button start */}
-                  <button
-                    disabled={loading}
-                    type="submit"
-                    className="Button-primary Button-wide"
-                  >
-                    Log in
-                  </button>
+                  <Link to="/login">
+                    <button
+                      disabled={loading}
+                      type="submit"
+                      className="Button-primary Button-wide"
+                    >
+                      Log in
+                    </button>
+                  </Link>
                   {/* Log in button end */}
                 </form>
                 {/* forms wrapper end */}
