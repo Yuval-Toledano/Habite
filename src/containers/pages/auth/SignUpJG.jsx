@@ -1,106 +1,139 @@
 import React, {useRef, useState} from 'react';
-import {Link, useHistory, useParams} from "react-router-dom";
+import { useHistory , Link, useParams} from "react-router-dom";
 import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
-import {PageContainer, InnerPageContainer} from "../../../components/pageContainers/pageContainer"
-
+import {PageContainer} from "../../../components/pageContainers/pageContainer"
+import {useAuth} from "../../../context/AuthContext";
 
 export default function SignUpJG(props) {
-    const WG_emailRef = useRef();
-    const WG_passwordRef = useRef();
-    const { groupId } = useParams();
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const nameRef = useRef();
+    const imageRef = useRef();
+    const [image, setImage] = useState(null);
+    
+    const { groupId }  = useParams();
+
+    const { signUpJG } = useAuth();
+    const history = useHistory();
+    
+
+    const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const history = useHistory();
-
-   
-    // The function handles submit 'join group' form
-    async function handleSubmitJG(event) {
-        
+    
+    // The function handles submit form
+    async function handleSubmit(event) {
         event.preventDefault();
-        //setLoading(true);
-        //await signUpJG(WG_emailRef.current.value, WG_passwordRef.current.value, groupCodeRef.current.value);
-        //setLoading(false);
-        history.push( {
-          pathname: "/newUser",
-          state: {
-            userMail: WG_emailRef.current.value,
-            password: WG_passwordRef.current.value,
-            groupID: groupId,
-            type: 'JG'}})
-        
+        console.log("check: ",groupId)
+        try {
+            setError("");
+            setLoading(true);
+            await signUpJG(emailRef.current.value, passwordRef.current.value, groupId, nameRef.current.value, image);
+            history.push("user/overview");
+        } catch {
+            setError("Failed to sign up")
+            console.log(error);
+        }
+        setLoading(false);
+        history.push("/user/overview")
     }
 
-    return (
-        <PageContainer flexDirection="row" background="#E993B1">
-        <InnerPageContainer flexDirection="row" className="justify-content-center" display="grid" background="transparent">
-          <div className="rounded p-4 bg-offwhite">
-            <div className="page-headline d-flex justify-content-center">
-              <TextInPage>Sign up to <span className="logo-small">Habite</span></TextInPage>
+    // The function handles submit image
+    async function handleUploadImage(e){
+        if(e.target.files[0]){
+          setImage(e.target.files[0])
+        }
+      }
+
+return (
+    <PageContainer flexDirection="row" background="#E993B1">
+        <div className="title-container">
+            <div className="title">
+                <span className="logo-small" style={{color:"white"}}>Habite</span>
             </div>
-            {/* forms wrapper start */}
-            <div className="forms p-4">
-              {/* form 2 - join group user start */}
-              <div className="form-2">
-                {/* <h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1> */}
-                <StandAloneTitle>Join your Group!</StandAloneTitle>
-                <div className="mx-auto md:w-2/4">
-                  {/* TODO: here was error div */}
-                  <form onSubmit={handleSubmitJG} >
-                    {/* email input start */}
-                    <div className="form-group">
-                      <label htmlFor="userEmailWg" className="form-label">
-                        <small>Email:</small>
-                      </label>
-                      <input
-                        type="email"
-                        className="form-control rounded-pill"
-                        name="userEmailWg"
-                        placeholder="E.g. archie@riverdale.com"
-                        id="userEmailWg"
-                        ref={WG_emailRef}
-                      />
-                    </div>
-                    {/* email input end */}
-                    {/* password input start */}
-                    <div className="form-group mt-2">
-                      <label htmlFor="userPasswordWg" className="form-label">
-                        <small>Password</small>
-                      </label>
-                      <input
-                        type="password"
-                        className="form-control rounded-pill"
-                        name="userPasswordWg"
-                        placeholder=""
-                        id="userPasswordWg"
-                        ref={WG_passwordRef}
-                      />
-                    </div>
-                    {/* password input end */}
-                    {/* sign up button start */}  
-                    <button
-                      className="Button-primary Button-wide"
-                      type="submit"
-                    >
-                      Join your friends
-                    </button>
-                    {/* sign up button end */}
-  
-                  </form>
-                  <div className="text-center my-2">
-                      <small>Already have an account?{" "}
-                        <Link to="/signin" className="reg-link">Log in</Link>
-                      </small>
-                  </div>
+        </div>
+            <div className="container">
+                <div className="subTitle-container">
+                    <StandAloneTitle>Join a Group</StandAloneTitle>
                 </div>
-              </div>
-              {/* form 2 - join group user end */}
-              {/* forms wrapper end */}
+                <form onSubmit={handleSubmit} method="POST">
+                    {/* name input start */}
+                    <div className="user-details">
+                        <div className="input-box">
+                            <TextInPage><small>
+                            <span className="details">Name</span>
+                            </small></TextInPage>
+                            <input 
+                            type="text"
+                            name="userName"
+                            id="userName"
+                            ref={nameRef}
+                            required>
+                            </input>
+                        </div>
+                    </div>
+                    {/* email input start */}
+                    <div className="user-details">
+                        <div className="input-box">
+                            <TextInPage><small>
+                            <span className="details">Email</span>
+                            </small></TextInPage>    
+                            <input 
+                            type="text"
+                            name="userEmail"
+                            id="userEmail"
+                            ref={emailRef}
+                            required 
+                            placeholder="E.g. example@mail.com">
+                            </input>
+                        </div>
+                    </div>
+                    {/* password input start */}
+                    <div className="user-details">
+                        <div className="input-box">
+                            <TextInPage><small>
+                            <span className="details">Password</span>
+                            </small></TextInPage>   
+                            <input 
+                            type="password"
+                            name="userPassword"
+                            id="userPassword"
+                            ref={passwordRef}
+                            placeholder="thestrongestpasswordinthe" 
+                            required></input>
+                        </div>
+                    </div>
+                    {/* profilepic input start */}
+                    <div className="user-details">
+                        <div className="input-box">
+                                <TextInPage><small>
+                                <span className="details">Profile Picture</span>
+                                </small></TextInPage>
+                            <input 
+                            type="file"
+                            accept="image/*"
+                            id="userProfilePic"
+                            ref={imageRef}
+                            className="form-control rounded-pill"
+                            onChange={(e) => handleUploadImage(e)}
+                            placeholder="need to fix"
+                        ></input>
+                        </div>
+                    </div>    
+                <button
+                    className="Button-primary Button-wide"
+                    type="submit"
+                    disabled={loading}
+                    >Join your group
+                </button>
+                
+                </form>
             </div>
-          </div>
-        </InnerPageContainer>
-      </PageContainer>
-    );
-    
-};
-
-
+        <div className="login-container">
+            <small>Already have an account?{" "}
+                <Link to="/login" className="reg-link" style={{color:"white"}}>Log in</Link>
+            </small>    
+        </div>
+    </PageContainer>
+);
+}
