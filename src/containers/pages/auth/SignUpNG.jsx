@@ -1,33 +1,67 @@
-import React, {useRef, useState, useParams} from 'react';
-import { useHistory } from "react-router-dom";
-import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
-import {PageContainer} from "../../../components/pageContainers/pageContainer"
-import {useAuth} from "../../../context/AuthContext";
-import "./mobileSignUp.css"
+import React, { useRef, useState, useEffect } from 'react';
+import { useHistory, Link } from "react-router-dom";
+import { TextInPage, StandAloneTitle } from "../../../components/designSystem/common";
+import { PageContainer } from "../../../components/pageContainers/pageContainer"
+import { useAuth } from "../../../context/AuthContext";
+import "./auth.css";
 
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+  
+  function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(
+      getWindowDimensions()
+    );
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    return windowDimensions;
+  }
 
-export default function MobileNewSignUpJG(props) {
+export default function SignUpNG(props) {
     const emailRef = useRef();
     const passwordRef = useRef();
     const nameRef = useRef();
     const imageRef = useRef();
     const [image, setImage] = useState(null);
-    const { groupId } = useParams();
-    // const { groupBossName } = ; //TODO: add user name-go to groupID collection which is the same as the user who 
     
-    const {signUpJG} = useAuth();
+    const { signUpNG } = useAuth();
     const history = useHistory();
 
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const dimentions = useWindowDimensions();
     
     // The function handles submit form
      async function handleSubmit(event) {
         event.preventDefault();
-        await signUpJG(emailRef.current.value, passwordRef.current.value, groupId, nameRef.current.value, image)
-        history.push("/overview")
+        try {
+            setError("");
+            setLoading(true);
+            await signUpNG(emailRef.current.value, passwordRef.current.value, nameRef.current.value, image);
+            history.push("/overview");
+          } catch {
+            setError("Failed to sign up")
+            console.log(error);
+          }
+          setLoading(false);
+          history.push("/overview");
     }
 
     // The function handles submit image
-    async function handleUploadImage(e){
+    function handleUploadImage(e){
         if(e.target.files[0]){
           setImage(e.target.files[0])
         }
@@ -42,9 +76,9 @@ return (
         </div>
             <div className="container">
                 <div className="subTitle-container">
-                    {/* <StandAloneTitle>Join {groupBossName} group</StandAloneTitle> */}
+                    <StandAloneTitle>Create a Group</StandAloneTitle>
                 </div>
-                <form method="POST">
+                <form onSubmit={handleSubmit} method="POST">
                     {/* name input start */}
                     <div className="user-details">
                         <div className="input-box">
@@ -111,13 +145,16 @@ return (
                 <button
                     className="Button-primary Button-wide"
                     type="submit"
-                    onClick={handleSubmit}>Create a group
+                    disabled={loading}
+                    >Create a group
                 </button>
                 
                 </form>
             </div>
         <div className="login-container">
-            <TextInPage style={{color:"white"}}>Log in</TextInPage>
+            <small>Already have an account?{" "}
+                <Link to="/login" className="reg-link" style={{color:"white"}}>Log in</Link>
+            </small>
         </div>
     </PageContainer>
 );

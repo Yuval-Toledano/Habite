@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { StyledText, InfoBoxDiv, TopThreeMiddle, TopThreeLeft, TopThreeRight, FirstPlaceCircle, GeneralPlaceCircle, FirstCrown } from "../../designSystem/mobileDS";
 import FirstCircle from "../../svgs/topThreeSvgs/FirstCircle.svg";

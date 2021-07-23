@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { useAuth } from "../../../context/AuthContext";
-import { StyledTitle, StyledTextCentered, StyledNameTag, LeaderboardDiv, LeaderboardContainer, LeaderBoardPhoto } from "../../designSystem/mobileDS";
+import { StyledTextCentered, StyledNameTag, LeaderboardDiv, LeaderboardContainer, LeaderBoardPhoto } from "../../designSystem/mobileDS";
 
 export function MobileLeaderboard() {
 
@@ -31,7 +31,7 @@ export function MobileLeaderboard() {
                   // to change the layout of the LeaderboardDiv go to the relevant function in mobileDS!
                   <LeaderboardDiv key={member.id} 
                   color={photoBorderString} 
-                  className="d-flex align-items-center">
+                  className="d-flex flex-row align-items-center">
                     <LeaderBoardPhoto
                       src={
                         member.profilePic || "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"
@@ -40,8 +40,8 @@ export function MobileLeaderboard() {
                       alt="profile pic"
                       color={photoBorderString}
                     ></LeaderBoardPhoto>
-                      <StyledTextCentered className="d-flex flex-column justify-content-around align-items-bottom">{member.userName}</StyledTextCentered>
-                      <StyledTextCentered className="d-flex flex-column justify-content-around align-items-center">{member.score}</StyledTextCentered>
+                      <StyledTextCentered className="d-flex flex-column justify-content-around align-items-bottom" size="16"><b>{member.userName}</b></StyledTextCentered>
+                      <StyledTextCentered className="d-flex flex-column justify-content-around align-items-center" size="16">{member.score}</StyledTextCentered>
                   </LeaderboardDiv>
               );
             })}
