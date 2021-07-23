@@ -22,7 +22,7 @@ export default function MobileNewSignUpJG(props) {
      async function handleSubmit(event) {
         event.preventDefault();
         await signUpJG(emailRef.current.value, passwordRef.current.value, groupId, nameRef.current.value, image)
-        history.push("/user/overview")
+        history.push("/overview")
     }
 
     // The function handles submit image

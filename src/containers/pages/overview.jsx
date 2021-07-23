@@ -271,7 +271,7 @@ export default function Overview() {
             <Button
               width="100%"
               onClick={() => {
-                history.push("/user/challenges");
+                history.push("/challenges");
               }}
             >
               Choose a challenge
@@ -375,8 +375,9 @@ export default function Overview() {
                 <WhatsappShareButton
                 title="Join My Group"
                 url= {urlJG}
+                className="onHoverIconChange"
                 >
-                  <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
+                  <WhatsAppIcon style={{ fill: "#0890A7", onHover: "#FD35BD" }} fontSize="medium" />
                 </WhatsappShareButton>
                 <div id="indicationCopy" className="group_code_text"></div>
               </div>

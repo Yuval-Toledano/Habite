@@ -30,7 +30,7 @@ export default function NewUserBegin(props) {
           await signUpJG(location.state.userMail, location.state.password, location.state.groupID, nameRef.current.value, image)
         }
         //await updateUserInfo(nameRef.current.value, imageRef.current.value)
-        history.push("/user/overview")
+        history.push("/overview")
     }
 
     async function handleUploadImage(e){

@@ -21,7 +21,7 @@ export default function MobileNewSignUp(props) {
      async function handleSubmit(event) {
         event.preventDefault();
         await signUpNG(emailRef.current.value, passwordRef.current.value, nameRef.current.value, image);
-        history.push("/user/overview")
+        history.push("/overview")
     }
 
     // The function handles submit image

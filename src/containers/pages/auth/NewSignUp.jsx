@@ -50,21 +50,13 @@ export default function NewSignUp(props) {
             setError("");
             setLoading(true);
             await signUpNG(emailRef.current.value, passwordRef.current.value, nameRef.current.value, image);
-            if (dimentions.width < 500) {
-                history.push("/overview");
-              } else {
-                history.push("user/overview");
-              }
+            history.push("/overview");
           } catch {
             setError("Failed to sign up")
             console.log(error);
           }
           setLoading(false);
-          if (dimentions.width < 500) {
-            history.push("mobile/overview");
-          } else {
-            history.push("user/overview");
-          }
+          history.push("/overview");
     }
 
     // The function handles submit image

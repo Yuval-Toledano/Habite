@@ -160,7 +160,7 @@ export function MobileLanding(props) {
             <StyledText mode={"over_dark"}>Got a question?</StyledText>
             <StyledLink mode={"over_dark"} onClick={sendMail} id="contactus"><Markunread fontSize="small" /> Contact us</StyledLink>
             <p></p>
-            <StyledText mode={"over_dark"}>© 2021 Habite. All rights reserved. Built by TYSAN with love.</StyledText>
+            <StyledText mode={"over_dark"}>© 2021 Habite. All rights reserved. Built by TYSAN with love 🧡</StyledText>
           </div>
           <div className="col-1">
 

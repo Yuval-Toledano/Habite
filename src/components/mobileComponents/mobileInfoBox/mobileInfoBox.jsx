@@ -296,11 +296,7 @@ export function MobileInfoBox(props) {
               type="primary"
               wide="true"
               onClick={() => {
-                if (dimentions.width < 500) {
-                  history.push("/mobile/challenges");
-                } else {
-                  history.push("/user/challenges");
-                }
+                history.push("/challenges");
               }}
             >
               Choose a challenge
