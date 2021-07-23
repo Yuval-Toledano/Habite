@@ -13,6 +13,7 @@ import MobileOverview from "./containers/mobile/MobileOverview";
 import MobileChallenges from "./containers/mobile/MobileChallenges";
 import MobileAchievements from "./containers/mobile/MobileAchievements";
 import MobileRules from "./containers/mobile/Rules";
+// sign up/log in proccess
 import SignUpNG from "./containers/pages/auth/SignUpNG"
 import SignUpJG from "./containers/pages/auth/SignUpJG";
 import Login from "./containers/pages/auth/LogIn";
@@ -104,7 +105,7 @@ function App() {
           </Switch>
         </AuthProvider>
       </Router>
-      
+
     );
   }
 }
