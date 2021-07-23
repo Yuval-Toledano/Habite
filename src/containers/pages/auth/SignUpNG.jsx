@@ -3,6 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import { TextInPage, StandAloneTitle } from "../../../components/designSystem/common";
 import { PageContainer } from "../../../components/pageContainers/pageContainer"
 import { useAuth } from "../../../context/AuthContext";
+import "./auth.css";
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;

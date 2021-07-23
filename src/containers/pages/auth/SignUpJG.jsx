@@ -3,6 +3,7 @@ import { useHistory , Link, useParams} from "react-router-dom";
 import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
 import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
+import "./auth.css";
 
 export default function SignUpJG(props) {
     const emailRef = useRef();
