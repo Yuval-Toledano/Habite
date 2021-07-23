@@ -21,16 +21,24 @@ export default function SignUpJG(props) {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    function validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
     
     // The function handles submit form
     async function handleSubmit(event) {
         event.preventDefault();
-        console.log("check: ",groupId)
+        
+        if(!validateEmail(emailRef.current.value)){
+            return setError("The email address is badly formatted.")
+        }
+
         try {
             setError("");
             setLoading(true);
             await signUpJG(emailRef.current.value, passwordRef.current.value, groupId, nameRef.current.value, image);
-            history.push("user/overview");
         } catch {
             setError("Failed to sign up")
             console.log(error);
@@ -80,7 +88,7 @@ return (
                             <span className="details">Email</span>
                             </small></TextInPage>    
                             <input 
-                            type="text"
+                            type="email"
                             name="userEmail"
                             id="userEmail"
                             ref={emailRef}
