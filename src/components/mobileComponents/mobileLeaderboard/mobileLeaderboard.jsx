@@ -40,8 +40,8 @@ export function MobileLeaderboard() {
                       alt="profile pic"
                       color={photoBorderString}
                     ></LeaderBoardPhoto>
-                      <StyledTextCentered className="d-flex flex-column justify-content-around align-items-bottom" size="16"><b>{member.userName}</b></StyledTextCentered>
-                      <StyledTextCentered className="d-flex flex-column justify-content-around align-items-center" size="16">{member.score}</StyledTextCentered>
+                      <StyledTextCentered className="d-flex flex-column justify-content-center" size="16"><b>{member.userName}</b></StyledTextCentered>
+                      <StyledTextCentered className="d-flex flex-column justify-content-center" size="16">{member.score}</StyledTextCentered>
                   </LeaderboardDiv>
               );
             })}
