@@ -354,9 +354,9 @@ export const InfoBoxBar = styled.div`
 
 export const LeaderboardDivWrapper = styled.div`
     background-color: ${colors.accent};
-    padding: 5px 5px 5px 5px;
     width: 85%;
-    border-radius: 20%;
+    padding: 5px 5px 5px 5px;
+    border-radius: 45px;
     border: ${props => {
         switch (props.color) {
             default:
