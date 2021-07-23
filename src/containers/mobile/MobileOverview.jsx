@@ -9,7 +9,6 @@ import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeade
 import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
 import { MobileUserDetailsHeader } from "../../components/mobileUserDetailesHeader/mobileUserDetailsHeader";
 import "../../index.css"
-import styled from "styled-components"
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import BugReportIcon from '@material-ui/icons/BugReport';
 
@@ -51,7 +50,6 @@ export default function MobileOverview() {
                         <StyledButton type="secondary" color="rgba(231, 28, 125, 0.6)" onClick={() => openInNewTab(bugLink)}><BugReportIcon />&nbsp;Report</StyledButton>
                         <StyledButton type="secondary" color="rgba(231, 28, 125, 0.6)" onClick={(event) => handleLogOut(event)}><ExitToAppIcon />&nbsp;logout</StyledButton>
                     </div>
-                    {/* <MobileInfoBox type="groupAdd" /> */}
                 </FlyingBox>
     
                 <BackgroundCircle src={Teal} alt="Upper background color" />

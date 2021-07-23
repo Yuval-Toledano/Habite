@@ -13,10 +13,10 @@ import MobileOverview from "./containers/mobile/MobileOverview";
 import MobileChallenges from "./containers/mobile/MobileChallenges";
 import MobileAchievements from "./containers/mobile/MobileAchievements";
 import MobileRules from "./containers/mobile/Rules";
-import NewSignUp from "./containers/pages/auth/NewSignUp";
-import Login from "./containers/pages/auth/NewLogIn";
-import NewSignUpJG from "./containers/pages/auth/NewSignUpJG";
-import NotFoundPage from "./containers/pages/NotFoundPage";
+// sign up/log in proccess
+import SignUpNG from "./containers/pages/auth/SignUpNG"
+import SignUpJG from "./containers/pages/auth/SignUpJG";
+import Login from "./containers/pages/auth/LogIn";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -54,10 +54,10 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route exact path="/" component={MobileLanding} />
-            <Route exact path="/signup" exact component={NewSignUp} />
-            <Route exact path="/login" exact component={Login} />
-            <Route exact path="/signup/:groupId" component={NewSignUpJG} />
+          <Route exact path="/" component={MobileLanding} />
+            <Route path="/signup" exact component={SignUpNG} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/signup/:groupId" component={SignUpJG}/>
             <MobileHomeTemplate>
               <Route
                 exact
@@ -95,19 +95,20 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <Route path="/" exact component={HomePage} />
-            <Route exact path="/styling" component={StyleExamples} />
-            <Route exact path="/signup" exact component={NewSignUp} />
-            <Route exact path="/login" exact component={Login} />
-            <Route exact path="/signup/:groupId" component={NewSignUpJG} />
-            <PageTemplate>
-              <Route exact path="/overview" exact component={Overview} />
-              <Route exact path="/challenges" exact component={ChallengePage} />
-              <Route exact path="/progress" exact component={ProgressPage} />
-            </PageTemplate>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/styling" component={StyleExamples} />
+          <Route path="/signup" exact component={SignUpNG} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup/:groupId" component={SignUpJG}/>
+          <PageTemplate>
+            <Route path="/overview" exact component={Overview}/>
+            <Route path="/challenges" exact component={ChallengePage} />
+            <Route path="/progress" exact component={ProgressPage} />
+          </PageTemplate>
           </Switch>
         </AuthProvider>
       </Router>
+
     );
   }
 }

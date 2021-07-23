@@ -1,8 +1,7 @@
 import React from 'react';
-import { H4, IndicationText} from '../designSystem/common';
 import '../notification/notificationWindow.css';
 import { NotificationData } from '../notification/notificationData.js';
-import { StyledButton, StyledTitle, Link, StyledText } from "../../components/designSystem/mobileDS";
+import { StyledTitle, StyledText } from "../../components/designSystem/mobileDS";
 
 
 

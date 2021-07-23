@@ -2,7 +2,6 @@ import React from 'react';
 import SugarPile from "../../components/svgs/avatars/1-sugarPile.svg";
 import SugarCube from "../../components/svgs/avatars/2-sugarCube.svg";
 import Marshmellow from "../../components/svgs/avatars/3-marshmellow.svg";
-import Dots from "../../components/svgs/avatars/AvatarProgressDots.svg";
 import { PrevPeronalAvatarDiv, CurrPeronalAvatarDiv, IndicationText } from "../designSystem/common";
 
 export function GroupAvatarRow(props) {

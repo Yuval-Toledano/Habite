@@ -1,5 +1,4 @@
 import React from "react";
-import { Separator } from '../../marginer/marginer';
 import SpoonFull from '../../../components/svgs/Badges/sugarSpoonPoster.svg';
 import Bottle from '../../../components/svgs/Badges/bottlePoster.svg';
 import NonGuilty from '../../../components/svgs/Badges/dessertPoster.svg';

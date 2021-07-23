@@ -1,8 +1,9 @@
-import React, {useRef, useState, useEffect} from 'react';
-import { useHistory , Link, useParams} from "react-router-dom";
-import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
-import {PageContainer} from "../../../components/pageContainers/pageContainer"
-import {useAuth} from "../../../context/AuthContext";
+import React, { useRef, useState, useEffect } from 'react';
+import { useHistory, Link } from "react-router-dom";
+import { TextInPage, StandAloneTitle } from "../../../components/designSystem/common";
+import { PageContainer } from "../../../components/pageContainers/pageContainer"
+import { useAuth } from "../../../context/AuthContext";
+import "./auth.css";
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -29,32 +30,27 @@ function getWindowDimensions() {
     return windowDimensions;
   }
 
-export default function NewSignUpJG(props) {
+export default function SignUpNG(props) {
     const emailRef = useRef();
     const passwordRef = useRef();
     const nameRef = useRef();
     const imageRef = useRef();
     const [image, setImage] = useState(null);
     
-    const { groupId }  = useParams();
-
-    const { signUpJG } = useAuth();
+    const { signUpNG } = useAuth();
     const history = useHistory();
-    const dimentions = useWindowDimensions();
-    
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-
+    const dimentions = useWindowDimensions();
     
     // The function handles submit form
      async function handleSubmit(event) {
         event.preventDefault();
-        console.log("check: ",groupId)
         try {
             setError("");
             setLoading(true);
-            await signUpJG(emailRef.current.value, passwordRef.current.value, groupId, nameRef.current.value, image);
+            await signUpNG(emailRef.current.value, passwordRef.current.value, nameRef.current.value, image);
             history.push("/overview");
           } catch {
             setError("Failed to sign up")
@@ -65,7 +61,7 @@ export default function NewSignUpJG(props) {
     }
 
     // The function handles submit image
-    async function handleUploadImage(e){
+    function handleUploadImage(e){
         if(e.target.files[0]){
           setImage(e.target.files[0])
         }
@@ -80,7 +76,7 @@ return (
         </div>
             <div className="container">
                 <div className="subTitle-container">
-                    <StandAloneTitle>Join the group</StandAloneTitle>
+                    <StandAloneTitle>Create a Group</StandAloneTitle>
                 </div>
                 <form onSubmit={handleSubmit} method="POST">
                     {/* name input start */}
@@ -150,7 +146,7 @@ return (
                     className="Button-primary Button-wide"
                     type="submit"
                     disabled={loading}
-                    >Join your group
+                    >Create a group
                 </button>
                 
                 </form>
@@ -158,7 +154,7 @@ return (
         <div className="login-container">
             <small>Already have an account?{" "}
                 <Link to="/login" className="reg-link" style={{color:"white"}}>Log in</Link>
-            </small>    
+            </small>
         </div>
     </PageContainer>
 );

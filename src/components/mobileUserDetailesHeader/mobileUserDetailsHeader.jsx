@@ -11,18 +11,8 @@ export const MobileUserDetailsHeaderWrapper = styled.div`
 export function MobileUserDetailsHeader({ props }) {
     const [hour, setHour] = useState("");
     const [userScore, setUserScore] = useState(0)
-    const { logOut, userData } = useAuth();
-    const history = useHistory();
+    const { userData } = useAuth();
 
-    async function handleLogOut(event) {
-        event.preventDefault();
-        try {
-            await logOut();
-            history.push("/")
-        } catch (err) {
-            console.error("Error with logout ", err)
-        }
-    }
 
     useEffect(() => {
         const whatIsTheHour = () => {
@@ -39,18 +29,13 @@ export function MobileUserDetailsHeader({ props }) {
             }
         };
         whatIsTheHour();
-
-    }, [userData, hour])
+        const score = userData ? userData.score : userScore
+        setUserScore(score)
+    }, [userData, hour, userScore])
 
     const userName = userData ? userData.userName : "loading..."
-    const url = userData && userData.profilePic && userData.profilePic !== "" ? userData.profilePic : "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg";
-
-    useEffect(()=> {
-        if (userData){
-            setUserScore(userData.score)
-        }
-    }, [userData]);
-
+    const url = (userData && userData.profilePic) ? userData.profilePic : "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg";
+    
     return (
         <MobileUserDetailsHeaderWrapper className="d-flex flex-row justify-content-center">
             <div className="d-flex flex-column">

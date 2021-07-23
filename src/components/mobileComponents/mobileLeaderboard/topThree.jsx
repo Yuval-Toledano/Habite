@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { StyledText, InfoBoxDiv, TopThreeMiddle, TopThreeLeft, TopThreeRight, FirstPlaceCircle, GeneralPlaceCircle, FirstCrown } from "../../designSystem/mobileDS";
 import FirstCircle from "../../svgs/topThreeSvgs/FirstCircle.svg";
@@ -19,16 +19,16 @@ export function TopThree() {
         return (
             <div className="d-flex flex-row justify-content-center align-items-end mb-3">
                 <div className="d-flex flex-column mx-3 align-items-center">
-                    <TopThreeLeft src={topThreeMembers[1].profilePic} alt="Second place member"></TopThreeLeft>
+                    <TopThreeLeft src={topThreeMembers[1].profilePic || "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"} alt="Second place member"></TopThreeLeft>
                     <GeneralPlaceCircle src={SecondCircle} alt="Second place circle"/>
                 </div>
                 <div className="d-flex flex-column mx-3 align-items-center">
                     <FirstCrown src={Crown}/>
-                    <TopThreeMiddle src={topThreeMembers[0].profilePic} alt="First place member"></TopThreeMiddle>
+                    <TopThreeMiddle src={topThreeMembers[0].profilePic || "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"} alt="First place member"></TopThreeMiddle>
                     <FirstPlaceCircle src={FirstCircle} alt="First place circle"/>
                 </div>
                 <div className="d-flex flex-column mx-3 align-items-center">
-                    <TopThreeRight src={topThreeMembers[2].profilePic} alt="Third place member"></TopThreeRight>
+                    <TopThreeRight src={topThreeMembers[2].profilePic || "https://st.depositphotos.com/1779253/5140/v/950/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg"} alt="Third place member"></TopThreeRight>
                     <GeneralPlaceCircle src={ThirdCircle} alt="Third place circle"/>
                 </div>
             </div>

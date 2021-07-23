@@ -34,6 +34,7 @@ export function AuthProvider({ children }) {
           () => {
             storage.ref(userImagePath).getDownloadURL().then((url) => {
               // creates user
+              const photo = pic? url : null;
               auth.createUserWithEmailAndPassword(email, password).then((user) => {
                 db.doc(`users/${user.user.uid}`).set({
                   email: email,
@@ -43,7 +44,7 @@ export function AuthProvider({ children }) {
                   level: 1,
                   groupId: user.user.uid,
                   userName: name,
-                  profilePic: url,
+                  profilePic: photo,
                   successChallenge: []
                 });
                 // creates group
@@ -70,6 +71,7 @@ export function AuthProvider({ children }) {
           () => {
             storage.ref(userImagePath).getDownloadURL().then((url) => {
               // creates user
+              const photo = pic? url : null;
               auth.createUserWithEmailAndPassword(email, password).then( async (user) => {
                 db.doc(`users/${user.user.uid}`).set({
                   email: email,
@@ -79,7 +81,7 @@ export function AuthProvider({ children }) {
                   level: 1,
                   groupId: groupId,
                   userName: name,
-                  profilePic: url,
+                  profilePic: photo,
                   successChallenge: []
                 });
                 // update group
