@@ -1,11 +1,10 @@
 import React from "react";
-import {
-  ChallengeBoxContainer,
-  IndicationText,
-  SubTitle,
-} from "../designSystem/common";
+import {ChallengeBoxContainer, IndicationText, SubTitle} from "../designSystem/common";
 import { Marginer } from "../marginer/marginer";
 
+/**
+ * web challenge (brief) container component
+ */
 export function ChallengeBox(props) {
   const {background, onClick, challenge} = props;
 

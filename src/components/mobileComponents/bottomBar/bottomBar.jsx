@@ -4,9 +4,11 @@ import { BottomSideData } from "./bottomBarData";
 import { StyledBottombarButton, StyledBottombar } from "../../../components/designSystem/mobileDS";
 import { Link } from "react-router-dom";
 
+/**
+ * mobile bottom bar component
+ */
 export function Bottombar(props) {
     const history = useHistory();
-
 
     return (
         <StyledBottombar>

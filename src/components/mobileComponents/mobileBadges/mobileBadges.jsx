@@ -6,6 +6,9 @@ import FilledStar from '../../../components/svgs/Badges/filledStar.svg';
 import Star from '../../../components/svgs/Badges/unfilledStar.svg';
 import { MobileBadgeDiv, StyledText } from "../../designSystem/mobileDS";
 
+/**
+ * mobile badge component
+ */
 export function MobileBadges(props) {
 
 return (

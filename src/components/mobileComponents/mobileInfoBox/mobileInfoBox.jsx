@@ -40,13 +40,15 @@ export function MobileInfoBox(props) {
   const [urlJG, setURL] = useState();
   // const dimentions = useWindowDimensions();
 
-  // types of notifications
+  /****************** TYPE OF NOTIFICATION ******************/
   const GO_VOTE = 0;
   const MEMBER_SUCCESS = 2;
   const NEW_CHALLENGE = 3;
   const CLASSIC_UPDATE = 1;
   const NO_APPROVED_UPDATE = 2;
   const NO_CURR_UPDATE = 3;
+
+  /****************** WINDOW DIMENSIONS ******************/
 
   // get window dimensions to route desktop and mobile when needed
   function getWindowDimensions() {
@@ -89,7 +91,7 @@ export function MobileInfoBox(props) {
     }
   };
 
-  // Start of currChallenge choosing proccess
+  // Start of currChallenge choosing process
   useEffect(() => {
 
     // check if the the date is valid for the current challenge
@@ -100,7 +102,6 @@ export function MobileInfoBox(props) {
 
     //gets current challenge to show
     const fetchChallenge = () => {
-      // console.log("use effect change challenge")
       if (!groupData) {
         return;
       }
@@ -183,7 +184,7 @@ export function MobileInfoBox(props) {
           setCurrChallenge("noChallenge");
           // send notification to the group members
           updateNoti(userData, GO_VOTE);
-          //forceRender();
+
         }
       }
     };
@@ -202,12 +203,11 @@ export function MobileInfoBox(props) {
       var date = new Date();
       const disabled = successDate === date.getDate();
       setDisabledButton(disabled);
-
     }
     checkDisabled();
   }, [successDate, nowDate]);
 
-  // third challenge useEffect for pulling full challenge data
+
   useEffect(() => {
     const fetchChallengeLog = async () => {
       if (groupMemberData == null || currChallenge == null || currChallenge === "noChallenge") {
@@ -248,7 +248,7 @@ export function MobileInfoBox(props) {
     )
   }
 
-  // update user succeeded the challenge today
+  /* update user succeeded the challenge today */
   const handleSuccess = () => {
     updateSuccessChallengeLog(userData.id, currChallenge.id);
 
@@ -322,7 +322,7 @@ export function MobileInfoBox(props) {
     </InfoBoxDiv>
   );
 
-  // Last step of currChallenge proccess
+  // Last step of currChallenge process. current challenge box object
   var whatToDisplay = groupData ? (
     groupData.countGroup === 1 ? (
       <InfoBoxDiv id="current_challenge_box">
@@ -343,7 +343,9 @@ export function MobileInfoBox(props) {
     <InfoBoxDiv></InfoBoxDiv>
   );
 
+  // styled mobile info box for invite friends to the group
   if (type === "groupAdd") {
+
     // Add members to group when there is only 1 member
     if (groupCount === 1) {
       return (
@@ -366,9 +368,10 @@ export function MobileInfoBox(props) {
           </div>
         </InfoBoxDiv>
       );
-    }
-    else {
-      // Add members to group when there are at least 2 members
+    } 
+
+    // Add members to group when there are at least 2 members
+    } else {
       return (
         <InfoBoxDiv className="d-flex flex-column">
           <StyledText>Share group code</StyledText>
@@ -388,6 +391,7 @@ export function MobileInfoBox(props) {
       );
     }
   }
+  // styled mobile info box popup for invite friends to the group
   else if (type === "groupAddBar") {
     if (groupCount === 1) {
       return (
@@ -407,7 +411,6 @@ export function MobileInfoBox(props) {
           <div>
             <StyledText id="indicationCopy" className="group_code_text"></StyledText>
           </div>
-        </div>
       );
     }
     else {
@@ -432,35 +435,19 @@ export function MobileInfoBox(props) {
         </div>
       );
     }
-    // return (
-    //   <div>
-    //     <StyledTitle type={"subtitle"}>Invite friends to the group</StyledTitle>
-    //     <div className="d-flex flex-row justify-content-evenly w-50 pt-1 mx-5 pb-">
-    //       <LinkIcon style={{ fill: "#E71C7D", cursor: 'pointer' }}
-    //         fontSize="large"
-    //         onClick={() => { copyGroupCode() }} />
-    //       <WhatsappShareButton
-    //         title="Join My Group"
-    //         url={urlJG}>
-    //         <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
-    //       </WhatsappShareButton>
-    //     </div>
-    //     <div>
-    //       <StyledText id="indicationCopy" className="group_code_text"></StyledText>
-    //     </div>
-    //   </div>
-    // );
   }
+
+  // styled mobile info box for user statistics in achievement page
   else if (type === "statBox") {
 
     function GetAvatar() {
-      if (userLevel == "1") {
+      if (userLevel === "1") {
         return SugarPile
       }
-      else if (userLevel == "2") {
+      else if (userLevel === "2") {
         return SugarCube
       }
-      else if (userLevel == "3") {
+      else if (userLevel === "3") {
         return Marshmellow
       }
       else {
@@ -484,12 +471,16 @@ export function MobileInfoBox(props) {
         </div>
       </InfoBoxDiv>
     );
+
+  // styled mobile info box for current challenge
   } else if (type === "currChallenge") {
     return (
       <div>
         {whatToDisplay}
       </div>
     );
+    
+  // styled default mobile info box 
   } else {
     return (
       <div>default</div>

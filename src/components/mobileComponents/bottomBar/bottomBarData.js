@@ -1,7 +1,10 @@
 import React from "react";
 import { Home, ScatterPlot, Dashboard, Info } from "@material-ui/icons";
 
-export const BottomSideData = [
+/**
+ * mobile bottom bar icons
+ */
+export const bottomsideData = [
   {
     title: "Home",
     icon: <Home />,

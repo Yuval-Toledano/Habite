@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useState, useEffect} from 'react';
+import { auth } from "../../firebase"
+import { getUserDocumentData } from "../../server/firebaseTools";
 import { SubTitle, BadgeTitle, BadgeCollectionDiv, BadgePosterDiv, BadgePoster, BadgeStars} from "../designSystem/common";
 import { Separator } from '../../components/marginer/marginer';
 import SpoonFull from '../../components/svgs/Badges/sugarSpoonPoster.svg';
@@ -9,45 +11,73 @@ import Star from '../../components/svgs/Badges/unfilledStar.svg';
 
 export function BadgeProgressCard(props) {
 
-return (
-  <BadgeCollectionDiv>
-      <div className="d-flex flex-column">
-        <SubTitle>
-          <b>Take a look at your achievements so far:</b>
-        </SubTitle>
-        <Separator className="mt-2"/>
-        <BadgePosterDiv className="BadgePosterDiv d-flex flex-row">
-            <div className="d-flex flex-column align-content-start m-2">
-                <div className="d-flex flex-row justify-content-center">
-                    <BadgeTitle className="d-flex mb-2">Reduce Sugar Spoon Challenge Series: 3 out of 3</BadgeTitle>
+    const badgesArr = {"pEJUfZGBTNMObhPGPY0P": SpoonFull, "fJxrW00NGZqDVLcxhAv1": Bottle,
+    "gp0L3ZobXb6cYT5oRGc4": NonGuilty}
+    const [currUser, setCurrUser] = useState();
+
+    useEffect(() => {
+        const loginUser = auth.currentUser;
+        if (!loginUser) {
+          console.log("no user is logged in");
+          return;
+        }
+    
+        // The function gets the data of the user from the database
+        const fetchUser = (userId) => {
+          const userPromise = getUserDocumentData(userId);
+          userPromise.then((doc) => {
+            if (doc.exists) {
+              const userData = { ...doc.data(), id: doc.id };
+              setCurrUser(userData);
+              
+            }
+          });
+        };
+    
+        fetchUser(loginUser.uid);      
+      }, []);
+
+    console.log(currUser)
+
+    return (
+    <BadgeCollectionDiv>
+        <div className="d-flex flex-column">
+            <SubTitle>
+            <b>Take a look at your achievements so far:</b>
+            </SubTitle>
+            <Separator className="mt-2"/>
+            <BadgePosterDiv className="BadgePosterDiv d-flex flex-row">
+                <div className="d-flex flex-column align-content-start m-2">
+                    <div className="d-flex flex-row justify-content-center">
+                        <BadgeTitle className="d-flex mb-2">Reduce Sugar Spoon Challenge Series: 3 out of 3</BadgeTitle>
+                    </div>
+                    <BadgePoster className="d-flex flex-column justify-content-center"><img src={SpoonFull} alt="Spoon full poster"/></BadgePoster>
+                    <BadgeStars className="d-flex flex-row justify-content-center">
+                        <img src={FilledStar} alt="filled star" />
+                        <img src={FilledStar} alt="filled star" />
+                        <img src={FilledStar} alt="filled star" />
+                    </BadgeStars>
                 </div>
-                <BadgePoster className="d-flex flex-column justify-content-center"><img src={SpoonFull} alt="Spoon full poster"/></BadgePoster>
-                <BadgeStars className="d-flex flex-row justify-content-center">
-                    <img src={FilledStar} alt="filled star" />
-                    <img src={FilledStar} alt="filled star" />
-                    <img src={FilledStar} alt="filled star" />
-                </BadgeStars>
-            </div>
-            <div className="d-flex flex-column justify-content-center align-content-center m-2">
-                <BadgeTitle className="d-flex mb-2">Non-Guilty Pleasure Challenge Series: 2 out of 3</BadgeTitle>
-                <BadgePoster className="d-flex flex-column justify-content-center"><img src={NonGuilty} alt="Spoon full poster"/></BadgePoster>
-                <BadgeStars className="d-flex flex-row justify-content-center">
-                    <img src={FilledStar} alt="filled star" />
-                    <img src={FilledStar} alt="filled star" />
-                    <img src={Star} alt="star" />
-                </BadgeStars>
-            </div>
-            <div className="d-flex flex-column justify-content-center align-content-center m-2">
-                <BadgeTitle className="d-flex mb-2">Bye Bye Sugary Drinks Challenge Series: 1 out of 3</BadgeTitle>
-                <BadgePoster className="d-flex flex-column justify-content-center"><img src={Bottle} alt="Spoon full poster"/></BadgePoster>
-                <BadgeStars className="d-flex flex-row justify-content-center">
-                    <img src={FilledStar} alt="filled star" />
-                    <img src={Star} alt="star" />
-                    <img src={Star} alt="star" />
-                </BadgeStars>
-            </div>
-        </BadgePosterDiv>
-      </div>
-  </BadgeCollectionDiv>
-);
-}
+                <div className="d-flex flex-column justify-content-center align-content-center m-2">
+                    <BadgeTitle className="d-flex mb-2">Non-Guilty Pleasure Challenge Series: 2 out of 3</BadgeTitle>
+                    <BadgePoster className="d-flex flex-column justify-content-center"><img src={NonGuilty} alt="Spoon full poster"/></BadgePoster>
+                    <BadgeStars className="d-flex flex-row justify-content-center">
+                        <img src={FilledStar} alt="filled star" />
+                        <img src={FilledStar} alt="filled star" />
+                        <img src={Star} alt="star" />
+                    </BadgeStars>
+                </div>
+                <div className="d-flex flex-column justify-content-center align-content-center m-2">
+                    <BadgeTitle className="d-flex mb-2">Bye Bye Sugary Drinks Challenge Series: 1 out of 3</BadgeTitle>
+                    <BadgePoster className="d-flex flex-column justify-content-center"><img src={Bottle} alt="Spoon full poster"/></BadgePoster>
+                    <BadgeStars className="d-flex flex-row justify-content-center">
+                        <img src={FilledStar} alt="filled star" />
+                        <img src={Star} alt="star" />
+                        <img src={Star} alt="star" />
+                    </BadgeStars>
+                </div>
+            </BadgePosterDiv>
+        </div>
+    </BadgeCollectionDiv>
+    );
+    }

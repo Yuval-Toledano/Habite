@@ -60,7 +60,7 @@ export function PersonalProgressCard(props) {
       <VoteBox>
       <div className="row">
         <SubTitle>
-          <b>Keep going little Marshmello!</b>
+          <b>Nice work, keep going!</b>
         </SubTitle>
         <Separator className="mt-2"/>
         <div className="Row">
