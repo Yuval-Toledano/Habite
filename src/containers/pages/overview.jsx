@@ -320,7 +320,7 @@ export default function Overview() {
     <InfoBox></InfoBox>
   );
 
-
+  // copy the group code to clipboard
   const copyGroupCode = () => {
     var copyText = document.getElementById("groupCodeText").innerText;
     navigator.clipboard.writeText(copyText);

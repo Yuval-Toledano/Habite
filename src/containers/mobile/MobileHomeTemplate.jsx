@@ -5,7 +5,7 @@ import { Bottombar } from "../../components/mobileComponents/bottomBar/bottomBar
 function MobileHomeTemplate({ children }) {
 
     return (
-        <div className="" id="wrapper" style={{overflow: "hidden"}}>
+        <div className="" id="wrapper">
                 {/* Page content starts here */}
                 <div>
                     {children}

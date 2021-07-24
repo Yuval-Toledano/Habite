@@ -25,7 +25,7 @@ function ProgressPage() {
     return (
         <>
             <div className="content">
-                {/* Page header */}
+                {/* Page header start */}
                 <div className="header">
                     <Title>Progress</Title>
                     <SubTitle size={16}>
@@ -35,15 +35,16 @@ function ProgressPage() {
                     <Separator />
                 </div>
             </div>
-            {/* Page content ends here */}
+            {/* Page header end */}
             <div className="row">
                 <div className="col-3 progressCategories">
-                    <ProgressCategories personal={PersonalCard} badge={BadgeCard} group={GroupCard}/>
+                    <ProgressCategories personal={PersonalCard} badge={BadgeCard} group={GroupCard} />
                 </div>
                 <div className="col-9 progressCard">
                     {progressCard}
                 </div>
             </div>
+            {/* Page content ends here */}
         </>
     );
 }

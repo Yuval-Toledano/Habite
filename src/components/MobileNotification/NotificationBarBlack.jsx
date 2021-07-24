@@ -64,7 +64,7 @@ const JoinFriendsIndicator = ({ onClick = defaultOnClick }) => {
     )
 }
 
-// notofocation component's flag
+// notification component's flag
 const NotificationIndicator = ({
     showDot = false,
     onClick = defaultOnClick,
