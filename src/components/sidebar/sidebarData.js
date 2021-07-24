@@ -10,14 +10,13 @@ export const SidebarData = [
         link: "/overview"
     },
     {
-        title: "Progress",
-        icon: <TrendingUpIcon />,
-        link: "/progress"
-    },
-    {
         title: "Challenges",
         icon: <PlaylistAddCheckIcon />,
         link: "/challenges"
     },
-
+    {
+        title: "Progress",
+        icon: <TrendingUpIcon />,
+        link: "/progress"
+    }
 ]
