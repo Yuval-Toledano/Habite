@@ -441,13 +441,13 @@ export function MobileInfoBox(props) {
   else if (type === "statBox") {
 
     function GetAvatar() {
-      if (userLevel === "1") {
+      if (userLevel === 1) {
         return SugarPile
       }
-      else if (userLevel === "2") {
+      else if (userLevel === 2) {
         return SugarCube
       }
-      else if (userLevel === "3") {
+      else if (userLevel === 3) {
         return Marshmellow
       }
       else {
@@ -459,7 +459,7 @@ export function MobileInfoBox(props) {
         <StyledText>My Stats</StyledText>
         <div className="d-flex flex-row justify-content-between align-items-center w-100 px-3 py-1">
           <StyledTitle type={"subtitle"}>Level&nbsp;</StyledTitle>
-          <img src={GetAvatar()} className="d-flex w-25" alt="user's avatar" />
+          <img src={GetAvatar(userLevel)} className="d-flex w-25" alt="user's avatar" />
         </div>
         <div className="d-flex flex-row justify-content-between w-100 px-3 py-1">
           <StyledTitle type={"subtitle"}>Total points&nbsp;</StyledTitle>

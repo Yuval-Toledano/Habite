@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PageTemplate from "./containers/pages/pageTemplate";
 import Overview from "./containers/pages/overview";
@@ -19,7 +19,6 @@ import Login from "./containers/pages/auth/LogIn";
 import PrivateRoute from "./components/privateRoute/privateRoute";
 import NotFoundPage from "./containers/pages/NotFoundPage";
 
-
 /****************** WINDOW DIMENSIONS ******************/
 
 function getWindowDimensions() {
@@ -37,7 +36,6 @@ function useWindowDimensions() {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
-
 
   useEffect(() => {
     function handleResize() {
@@ -73,10 +71,8 @@ function App() {
   var dimensions = useWindowDimensions();
 
   if (ValidPaths.indexOf(currPath) > -1) {
-
     //mobile
     if (dimensions.width < 500) {
-
       return (
         <Router>
           <AuthProvider>
@@ -96,9 +92,8 @@ function App() {
         </Router>
       );
 
-    // web
+      // web
     } else {
-
       return (
         <Router>
           <AuthProvider>
@@ -110,7 +105,11 @@ function App() {
               <Route path="/signup/:groupId" component={SignUpJG} />
               <PageTemplate>
                 <PrivateRoute path="/overview" exact component={Overview} />
-                <PrivateRoute path="/challenges" exact component={ChallengePage} />
+                <PrivateRoute
+                  path="/challenges"
+                  exact
+                  component={ChallengePage}
+                />
                 <PrivateRoute path="/progress" exact component={ProgressPage} />
               </PageTemplate>
             </Switch>
@@ -119,9 +118,8 @@ function App() {
       );
     }
 
-  //invalid path
+    //invalid path
   } else {
-
     return (
       <Router>
         <Switch>

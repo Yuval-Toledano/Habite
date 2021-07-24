@@ -3,9 +3,10 @@ import { StatBoxContainer, StatBoxNumber, StatBoxText } from "../designSystem/co
 import TrophyLogo from "../../components/svgs/Trophy.svg";
 
 /**
- * group member statistic component
+ * Single Group Stat Box component
  */
 export function GroupStatBox(props) {
+    // the component takes the data as props and positions it in the component
     return (
         <StatBoxContainer>
             <div className="row">
