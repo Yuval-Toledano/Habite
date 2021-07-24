@@ -44,7 +44,7 @@ export default function MobileOverview() {
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader/>
                     <MobileInfoBox type="currChallenge" />
-                    <div><StyledTextCentered>My group scoreboard 🏆</StyledTextCentered></div>
+                    <div style={{textAlign: 'center', height: '5%'}}><StyledTextCentered>My group scoreboard 🏆</StyledTextCentered></div>
                     <TopThree />
                     <MobileLeaderboard/>
                     <div className="d-flex flex-row justify-content-center m-2 mb-4">
