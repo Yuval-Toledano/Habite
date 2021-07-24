@@ -66,8 +66,7 @@ function App() {
     "/challenges",
     "/progress",
     "/rulesOfGame",
-    "/styling",
-    "/progress",
+    "/styling"
   ];
 
   const currPath = window.location.pathname;

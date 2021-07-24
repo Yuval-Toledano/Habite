@@ -5,16 +5,14 @@ import { SvgIcecream, SvgBeerbottle } from "../../components/svgs/candies";
 import Markunread from '@material-ui/icons/Markunread';
 import { Link } from "react-router-dom";
 
-
+// contact habite team through email
 function sendMail(event) {
   event.preventDefault();
   var link = "mailto:hellohabite@gmail.com";
-
   window.location.href = link;
-  // document.location.href = "mailto:hellohabite@gmail.com";
 };
 
-
+// Mobile landing container
 export function MobileLanding(props) {
   return (
     <MobilePageContainer>
