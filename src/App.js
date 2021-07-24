@@ -70,7 +70,7 @@ function App() {
   const currPath = window.location.pathname;
   var dimensions = useWindowDimensions();
 
-  if (ValidPaths.indexOf(currPath) > -1) {
+  if ((ValidPaths.indexOf(currPath) > -1) || (currPath.startsWith("/signup/"))) {
     //mobile
     if (dimensions.width < 500) {
       return (
