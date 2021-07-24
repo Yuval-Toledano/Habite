@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
   const [groupData, setGroupData] = useState();
   const [groupMemberData, setGroupMemberData] = useState();
   const [loadData, setLoadData] = useState(true);
-
+  const [error, setError] = useState("")
   const [updateVal, setUpdateVal] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -56,7 +56,9 @@ export function AuthProvider({ children }) {
                   pastChallenges: [],
             })
           }
-        )
+        ).catch(err => {
+          setError(err.message)
+        })
         })})  
   }
 
@@ -90,29 +92,6 @@ export function AuthProvider({ children }) {
                     usersInGroup: firebase.firestore.FieldValue.arrayUnion(user.user.uid),
                     countGroup: increment,
                   })
-                  // .then(() => {
-                  //   console.log("check groupref: ", groupRef.get())
-                  //   groupRef.get().then(doc => {
-                  //         console.log("check doc: ", doc)
-                  //         console.log("check doc: ", doc.currentChallenge)
-                  //         if (doc.currentChallenge){
-                            
-                  //           db.collection("challengeLog").add({
-                  //           groupId: doc.id,
-                  //           userId: user.user.uid,
-                  //           challengeId: doc.currentChallenge,
-                  //           counterSuccess: 0,
-                  //           dateSuccess: null,
-                  //         });
-                  //       }
-                  //       forceRender();
-                  //     })
-                  // }).catch(err => console.log("Error with update group", err));
-                  
-                  // adding challenge log if current challenge exists already
-                  //console.log("check what is groupref: ",groupRef.get())
-                  //const currChallenge = groupRef.get().currentChallenge 
-                  //console.log("check what is challenge: ",groupRef.get().currentChallenge)
                   const data = await groupRef.get()
                   console.log("check data: ", data)
                   if (data.data().currentChallenge) {
@@ -248,6 +227,7 @@ export function AuthProvider({ children }) {
     groupData,
     groupMemberData,
     loadData,
+    error,
     signUpNG,
     signUpJG,
     logIn,
