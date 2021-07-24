@@ -6,7 +6,6 @@ import { GroupStatBox } from "./groupStatBox";
 import { Separator } from '../../components/marginer/marginer';
 import { GroupAvatarRow } from "./groupAvatarRow";
 
-
 export function GroupProgressCard(props) {
 
   const [currUser, setCurrUser] = useState();
@@ -88,7 +87,7 @@ export function GroupProgressCard(props) {
           <b>Who’s the sweetest?</b>
         </SubTitle>
         <Separator className="mt-2"/>
-        <div className="Row d-flex justify-content-end">
+        <div className="d-flex justify-content-start" style={{ overflowX: "hidden" }}>
           <GroupAvatarRow />
         </div>
         <Separator className="mt-4"/>
