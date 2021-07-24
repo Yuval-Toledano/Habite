@@ -368,10 +368,9 @@ export function MobileInfoBox(props) {
           </div>
         </InfoBoxDiv>
       );
-    } 
-
+    }
     // Add members to group when there are at least 2 members
-    } else {
+    else {
       return (
         <InfoBoxDiv className="d-flex flex-column">
           <StyledText>Share group code</StyledText>
@@ -411,6 +410,7 @@ export function MobileInfoBox(props) {
           <div>
             <StyledText id="indicationCopy" className="group_code_text"></StyledText>
           </div>
+        </div>
       );
     }
     else {
@@ -472,15 +472,15 @@ export function MobileInfoBox(props) {
       </InfoBoxDiv>
     );
 
-  // styled mobile info box for current challenge
+    // styled mobile info box for current challenge
   } else if (type === "currChallenge") {
     return (
       <div>
         {whatToDisplay}
       </div>
     );
-    
-  // styled default mobile info box 
+
+    // styled default mobile info box 
   } else {
     return (
       <div>default</div>
