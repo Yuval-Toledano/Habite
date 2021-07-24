@@ -22,6 +22,7 @@ export function AuthProvider({ children }) {
   const [error, setError] = useState("")
   const [updateVal, setUpdateVal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [loadUser, setLoadUser] = useState(false);
 
   // The function creates new user and new group documents
   async function signUpNG(email, password, name, pic) {
@@ -214,6 +215,8 @@ export function AuthProvider({ children }) {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if(user){
         setUserId(user.uid)
+        setCurrUser(user);
+        setLoadUser(true);
       }
       setCurrUser(user);
       setLoading(false);
@@ -223,6 +226,8 @@ export function AuthProvider({ children }) {
 
   const value = {
     currUser,
+    loadUser,
+    loading,
     userData,
     groupData,
     groupMemberData,
