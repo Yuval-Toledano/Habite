@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&family=Oswald&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
-/* @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap'); */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap");
 
@@ -10,12 +9,8 @@ html,
 body {
   width: 100%;
   height: 100%;
-  min-height: 105%;
-  min-width: 320px;
   background-color: #FAF0E4;
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: #e993b1 #333331;
 }
 
 * {
@@ -339,51 +334,9 @@ a.Big-link {
   outline: none;
 }
 
-.fly-above {
-  z-index: 1;
-}
-
-.cover-all {
-  height: calc(100vh);
-  width: calc(100vw);
-}
-
-.forms {
-  display: inline-flex;
-}
-
-.lightpink {
-  background-color: #e993b1;
-}
-
-.bg-offwhite {
-  background-color: #faf0e4;
-}
-
-.form-1,
-.form-2 {
-  min-height: 330px;
-}
-
 a.reg-link {
   color: #e71c7d;
   text-decoration: underline;
-}
-
-.this_user {
-  color: #e993b1;
-}
-
-.first {
-  color: #fbe536;
-}
-
-.second {
-  color: #f16643;
-}
-
-.third {
-  color: #0891a8;
 }
 
 .group_code_div {
@@ -420,8 +373,4 @@ a.reg-link {
 
 .RowBig {
   height: 22rem;
-}
-
-.StripAnimation {
-  animation: left-to-right 10s infinite;
 }

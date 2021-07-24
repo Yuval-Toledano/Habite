@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import { bottomsideData } from "./bottomBarData";
+import { BottomSideData } from "./bottomBarData";
 import { StyledBottombarButton, StyledBottombar } from "../../../components/designSystem/mobileDS";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ export function Bottombar(props) {
 
     return (
         <StyledBottombar>
-            {bottomsideData.map((val, key) => {
+            {BottomSideData.map((val, key) => {
                 return (
                     <Link to={val.link} key={key}>
                         <StyledBottombarButton

@@ -46,10 +46,10 @@ export function Navbar(props) {
   return (
     <NavbarContainer>
       <NavbarLinksContainer>
-        <NavbarLinks>ABOUT</NavbarLinks>
+        {/* <NavbarLinks>ABOUT</NavbarLinks>
         <Marginer direction="horizontal" margin={25} />
         <NavbarLinks>WHO ARE WE</NavbarLinks>
-        <Marginer direction="horizontal" margin={25} />
+        <Marginer direction="horizontal" margin={25} /> */}
         <Link to="/signup">
           <Button size={18}>SIGN UP</Button>
         </Link>

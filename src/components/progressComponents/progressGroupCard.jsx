@@ -6,7 +6,6 @@ import { GroupStatBox } from "./groupStatBox";
 import { Separator } from '../../components/marginer/marginer';
 import { GroupAvatarRow } from "./groupAvatarRow";
 
-
 export function GroupProgressCard(props) {
 
   const [currUser, setCurrUser] = useState();
@@ -88,7 +87,7 @@ export function GroupProgressCard(props) {
           <b>Who’s the sweetest?</b>
         </SubTitle>
         <Separator className="mt-2"/>
-        <div className="Row d-flex justify-content-end">
+        <div className="d-flex justify-content-start" style={{ overflowX: "hidden" }}>
           <GroupAvatarRow />
         </div>
         <Separator className="mt-4"/>
@@ -98,17 +97,17 @@ export function GroupProgressCard(props) {
               <GroupStatBox className="" title={challenges} subtitle="Challenges completed by all group members"/>
             </div>
             <div className="col-6">
-              <GroupStatBox className="" title="7" subtitle="Days of joint group streak"/>
-            </div>
-          </div>
-          <div className="StatRow row">
-            <div className="col-6">
                 <GroupStatBox className="" title={sumGroupScore()} subtitle="Points earned by the group members"/>
             </div>
-            <div className="col-6">
-              <GroupStatBox className="" title="2" subtitle="Takeovers of the top spot in the last month"/>
-            </div>
+            {/* <div className="col-6">
+              <GroupStatBox className="" title="7" subtitle="Days of joint group streak"/>
+            </div> */}
           </div>
+          {/* <div className="StatRow row"> */}
+            {/* <div className="col-6">
+              <GroupStatBox className="" title="2" subtitle="Takeovers of the top spot in the last month"/>
+            </div> */}
+          {/* </div> */}
         </div>
       </div>
       </VoteBox>

@@ -44,8 +44,6 @@ export function ChallengeCard(props) {
         challengePromise.then((doc) => {
           if (doc.exists) {
             setChallenge({ ...doc.data(), id: doc.id });
-          } else {
-            console.log("document does not exist");
           }
         });
       };

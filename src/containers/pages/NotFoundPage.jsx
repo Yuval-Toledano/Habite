@@ -1,27 +1,40 @@
 import React from "react";
 import Gramophone from '../../images/Gramophone.svg';
-import { FlyingBox, BackgroundRegular, StyledButton, StyledTitle, StyledTextCentered } from "../../components/designSystem/mobileDS";
-import { Link } from "react-router-dom";
+import { StyledButton, StyledTitle, StyledTextCentered, StyledLink } from "../../components/designSystem/mobileDS";
 import { useHistory } from "react-router-dom";
+
+function sendMail(event) {
+    event.preventDefault();
+    var link = "mailto:hellohabite@gmail.com";
+
+    window.location.href = link;
+    // document.location.href = "mailto:hellohabite@gmail.com";
+};
 
 export default function NotFoundPage() {
     const history = useHistory();
 
     return (
-        <>
-            <FlyingBox zindx={1} top={50}>
-                <div className="d-flex flex-column align-items-center justify-content-center">
-                    <img src={Gramophone} width={'50%'} />
-                    <div style={{ margin: '10%', display: 'grid', justifySelf: 'center' }}>
-                        <StyledTitle type={"title"}>Page not found</StyledTitle>
-                        <p></p>
-                        <StyledTextCentered>We're sorry, this page probably doesn't exist...</StyledTextCentered>
-                        <p></p>
-                        <StyledButton type={"primary"} wide={true} onClick={() => history.goBack()}>Go back</StyledButton>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+            <div className="d-flex flex-column justify-content-center align-items-center align-self-center">
+
+                <div><p></p><p></p></div>
+
+                <div className="d-flex flex-column justify-content-center align-items-center">
+                    <div className="d-flex flex-column justify-content-center align-items-center">
+                        <img src={Gramophone} width={"60%"} alt="This is a gramophone illustration" />
                     </div>
+                    <p></p>
+                    <StyledTitle type={"title"}>Page not found</StyledTitle>
+                    <p></p>
+                    <StyledTextCentered style={{ textAlign: 'center' }}>We're sorry, this page probably doesn't exist...</StyledTextCentered>
+                    <p></p>
+                    <StyledButton type={"primary"} wide={true} onClick={() => history.goBack()}>Go back</StyledButton>
+                    <p>&nbsp;</p>
+                    <div><StyledTextCentered style={{ textAlign: 'center' }}>or <StyledLink mode={'main'} onClick={sendMail}>contact us</StyledLink></StyledTextCentered></div>
                 </div>
-            </FlyingBox>
-            <BackgroundRegular alt="Upper background color" />
-        </>
+
+            </div>
+        </div>
     );
 }
