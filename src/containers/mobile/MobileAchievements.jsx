@@ -17,7 +17,7 @@ export default function MobileAchievements() {
             <FlyingBox zindx={1} top={50}>
                 <div className="d-flex flex-column mb-4">
                     <div className="d-flex flex-row justify-content-center">
-                        <StyledTitle type={"title"} mode={"over_dark"}>Achievements</StyledTitle>
+                        <StyledTitle type={"title"} mode={"over_dark"}>Progress</StyledTitle>
                     </div>
                     <MobileInfoBox type="statBox" />
                     <div className="d-flex flex-row justify-content-center">
