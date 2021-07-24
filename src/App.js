@@ -64,7 +64,7 @@ function App() {
     "/challenges",
     "/progress",
     "/rulesOfGame",
-    "/styling",
+    "/styling"
   ];
 
   const currPath = window.location.pathname;
@@ -82,30 +82,10 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup/:groupId" component={SignUpJG} />
               <MobileHomeTemplate>
-                <PrivateRoute
-                  exact
-                  mode="white"
-                  path="/overview"
-                  component={MobileOverview}
-                />
-                <PrivateRoute
-                  exact
-                  path="/challenges"
-                  component={MobileChallenges}
-                  mode="black"
-                />
-                <PrivateRoute
-                  exact
-                  path="/progress"
-                  component={MobileAchievements}
-                  mode="white"
-                />
-                <Route
-                  exact
-                  path="/rulesOfGame"
-                  component={MobileRules}
-                  mode="black"
-                />
+                <PrivateRoute exact mode="white" path="/overview" component={MobileOverview} />
+                <PrivateRoute exact path="/challenges" component={MobileChallenges} mode="black" />
+                <PrivateRoute exact path="/progress" component={MobileAchievements} mode="white" />
+                <Route exact path="/rulesOfGame" component={MobileRules} mode="black" />
               </MobileHomeTemplate>
             </Switch>
           </AuthProvider>

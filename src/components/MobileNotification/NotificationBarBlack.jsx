@@ -7,7 +7,7 @@ import { NotificationWindow } from "./MobileNotiWindow";
 import { JoinFriendsWindow } from "../joinFriends/joinWindow";
 import { JoinFriendsBG } from "../joinFriends/joinBG";
 
-/****************** STYLED NOTIFICATION ICON BLACK ******************/
+/****************** STYLED NOTIFICATION BAR ELEMENTS ******************/
 
 const NotiBarContainer = styled.div`
     display: inline-flex;
@@ -18,7 +18,7 @@ const NotiBarContainer = styled.div`
     position: fixed;
     top: 0;
     z-index: 2;
-    `;
+`;
 
 const RedDot = styled.div`
     height: 9px;
@@ -31,30 +31,31 @@ const RedDot = styled.div`
 `;
 
 const BellContainer = styled.div`
-//   display: flex;
 //   align-items: center;
 `;
 
-
+// bell component
 const Bell = () => (
     <div>
         <NotificationsIcon className="iconDesignMobile" style={{ color: "black" }} />
     </div>
 )
 
+// bell's notification component
 const Dot = () => (
     <RedDot></RedDot>
 )
 
+// add members to group component
 const JoinFriends = () => (
     <div className="groupIcon">
         <GroupAddIcon className="iconDesignMobile" style={{ color: "black" }} />
     </div>
 )
 
-
 const defaultOnClick = () => alert("onClick is undefined")
 
+// add members to group component's flag
 const JoinFriendsIndicator = ({ onClick = defaultOnClick }) => {
     return (
         <div>
@@ -63,6 +64,7 @@ const JoinFriendsIndicator = ({ onClick = defaultOnClick }) => {
     )
 }
 
+// notification component's flag
 const NotificationIndicator = ({
     showDot = false,
     onClick = defaultOnClick,
@@ -89,16 +91,14 @@ const NotificationIndicator = ({
     )
 }
 
-
+// notifocation bar on bright background
 function NotificationBarBlack(props) {
     const { userData, usePrevious } = useAuth();
     const [show, setShow] = useState(false);
-    const [showDot, setShowDot] = useState(false)
-    const [notiData, setNotiData] = useState([])
-    const [showJoin, setShowJoin] = useState(false)
-
-
-    const prevNoti = usePrevious(notiData)
+    const [showDot, setShowDot] = useState(false);
+    const [notiData, setNotiData] = useState([]);
+    const [showJoin, setShowJoin] = useState(false);
+    const prevNoti = usePrevious(notiData);
 
     useEffect(() => {
         const isEqual = (notiPrev, notiNew) => {
@@ -117,11 +117,13 @@ function NotificationBarBlack(props) {
         fetchNotification();
     }, [userData, prevNoti, showDot, show]);
 
+    // close notification window
     const closeWindow = () => {
         setShow(!show);
 
     }
 
+    // close add member window
     const closeWindowJoin = () => {
         setShowJoin(!showJoin);
 

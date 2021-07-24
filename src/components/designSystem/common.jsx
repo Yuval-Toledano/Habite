@@ -129,7 +129,6 @@ export const IndicationText = styled.h5`
 /**** CONTAINERS ****/
 export const ContentContainer = styled.div`
   width: 100%;
-  max-width: ${deviceSize.laptop}px;
   padding: 50px;
 `;
 

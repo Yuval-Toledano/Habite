@@ -6,10 +6,9 @@ import SugarCube from "../../components/svgs/avatars/2-sugarCube.svg";
 import Marshmellow from "../../components/svgs/avatars/3-marshmellow.svg";
 import { PrevPeronalAvatarDiv, CurrPeronalAvatarDiv, IndicationText } from "../designSystem/common";
 
-
 /**
- * GroupAvatarRow component
- */
+ * web avatars display
+ **/
 export function GroupAvatarRow(props) {
 
     // variables for the user and group data

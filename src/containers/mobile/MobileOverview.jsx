@@ -12,12 +12,13 @@ import "../../index.css"
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import BugReportIcon from '@material-ui/icons/BugReport';
 
-
+// Mobile overview container
 export default function MobileOverview() {
 
     const { groupData, logOut } = useAuth();
     const history = useHistory();
     const groupCount = groupData ? groupData.countGroup : "No group count";
+
     // to send users to the bug report page
     const openInNewTab = (url) => {
         const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
@@ -25,6 +26,7 @@ export default function MobileOverview() {
       }
     const bugLink = "https://docs.google.com/forms/d/e/1FAIpQLSejCMRe7KhMYlhLTL9ves71UXPS3TP5hkX8DGrermyF98QAjw/viewform"
 
+    // logout user
     async function handleLogOut(event){
         event.preventDefault();
         try {
@@ -35,6 +37,7 @@ export default function MobileOverview() {
         }
     }
 
+    // if there are more than 1 member in the group, show the group window with challenges and scoreboard
     if (groupCount > 1) {
         return (
             <div>
@@ -44,7 +47,7 @@ export default function MobileOverview() {
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader/>
                     <MobileInfoBox type="currChallenge" />
-                    <div><StyledTextCentered>My group scoreboard 🏆</StyledTextCentered></div>
+                    <div style={{textAlign: 'center', height: '5%'}}><StyledTextCentered>My group scoreboard 🏆</StyledTextCentered></div>
                     <TopThree />
                     <MobileLeaderboard/>
                     <div className="d-flex flex-row justify-content-center m-2 mb-4">
@@ -56,6 +59,7 @@ export default function MobileOverview() {
                 <BackgroundCircle src={Teal} alt="Upper background color" />
             </div>
         );
+    // else, encourage user to invite their friends to the group
     } else {
         return (
             <div>

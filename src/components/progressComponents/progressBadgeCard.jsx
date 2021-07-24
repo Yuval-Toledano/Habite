@@ -8,6 +8,9 @@ import SpoonFull from '../../components/svgs/Badges/sugarSpoonPoster.svg';
 import Bottle from '../../components/svgs/Badges/bottlePoster.svg';
 import NonGuilty from '../../components/svgs/Badges/dessertPoster.svg';
 
+/**
+ * web user badges
+ */
 export function BadgeProgressCard(props) {
 
     const badgesArr = {"pEJUfZGBTNMObhPGPY0P": SpoonFull, "fJxrW00NGZqDVLcxhAv1": Bottle,

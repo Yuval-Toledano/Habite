@@ -72,15 +72,14 @@ const NotificationIndicator = ({
         )
     }
 
-    
+/**
+ * web notification component
+ */
 function NotificationBar(props) {
     const {userData, usePrevious} = useAuth();
     const [show, setShow] = useState(false);
     const [showDot, setShowDot] = useState(false)
     const [notiData, setNotiData] = useState([])
-    // error here
-    const [play] = useSound('../../audio/piano.mp3', {
-        onPlayError: () => {console.log("error audio")}})
 
     const prevNoti = usePrevious(notiData)
 
@@ -96,16 +95,12 @@ function NotificationBar(props) {
             const isNewNoti = isEqual(prevNoti, noti)
             setNotiData(noti)
             setShowDot(!isNewNoti)
-            if (isNewNoti){
-                play()
-            };
         }
         fetchNotification();
     }, [userData, prevNoti, showDot, show])
     
     const closeWindow = () => {
         setShow(!show);
-        play();
     }
 
     return (

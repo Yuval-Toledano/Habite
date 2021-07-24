@@ -8,7 +8,7 @@ import Dots from "../../components/svgs/avatars/AvatarProgressDots.svg";
 import { PrevPeronalAvatarDiv, CurrPeronalAvatarDiv, IndicationText } from "../designSystem/common";
 
 /**
- * Personal avatar row component
+ * display personal avatar
  */
 export function PersonalAvatarRow(props) {
 

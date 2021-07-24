@@ -6,8 +6,9 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {useAuth} from "../../context/AuthContext";
 import {SidebarData} from "./sidebarData";
 
-
-
+/**
+ * web side bar component
+ */
 export default function Sidebar() {
     const [hour, setHour] = useState("");
     const {logOut, userData} = useAuth();
