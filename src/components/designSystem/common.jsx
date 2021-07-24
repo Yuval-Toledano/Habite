@@ -149,7 +149,7 @@ font-size: 12px;
 `;
 
 export const VoteBox = styled.div`
-  background-color: #FFFFFF;
+  background-color: #F8F7F5;
   border: 1px solid #E4DCD3;
   border-radius: 10px;
   padding: 24px;
@@ -268,7 +268,7 @@ export const ProgressCategoriesIconDiv = styled.div`
 /**** PROGRESS PAGE CSS ****/
 
 export const BadgeCollectionDiv = styled.div`
-  background-color: #FFFFFF;
+  background-color: #F8F7F5;
   border: 1px solid #E4DCD3;
   border-radius: 10px;
   padding: 1.5rem 1.5rem 1rem 1.5rem;

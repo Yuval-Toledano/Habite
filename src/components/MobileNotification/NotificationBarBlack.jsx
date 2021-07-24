@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { useAuth } from "../../context/AuthContext";
 import styled from "styled-components"
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -6,6 +6,7 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { NotificationWindow } from "./MobileNotiWindow";
 import { JoinFriendsWindow } from "../joinFriends/joinWindow";
 import { JoinFriendsBG } from "../joinFriends/joinBG";
+import { StyledTitle } from "../../components/designSystem/mobileDS";
 
 /****************** STYLED NOTIFICATION BAR ELEMENTS ******************/
 
@@ -132,11 +133,14 @@ function NotificationBarBlack(props) {
     return (
         <>
             <JoinFriendsBG showJoin={showJoin} closeWindowJoin={closeWindowJoin} />
-            <NotiBarContainer className="w-100">
+            <NotiBarContainer className="w-100 d-flex align-items-start">
                 <button className="JoinButton" style={{ border: "none" }} onClick={closeWindowJoin}>
                     <JoinFriendsIndicator />
                     <JoinFriendsWindow showJoin={showJoin} closeWindowJoin={closeWindowJoin} />
                 </button>
+                <div>
+                    <StyledTitle type={"little"}>Habite</StyledTitle>
+                </div>
                 <BellContainer>
                     <button className="BellButton" style={{ border: "none" }} onClick={closeWindow}><NotificationIndicator showDot={showDot} onClick={() => setShowDot(false)} /></button>
                     <NotificationWindow show={show} showDot={setShowDot} notiData={notiData} closeWindow={closeWindow} />

@@ -31,6 +31,7 @@ export const StyledTitleWrapper = styled.h1`
         switch (props.type) {
             case 'title':
             case 'landingTitle':
+            case 'little':
                 return "Oleo script";
             case 'subtitle':
                 return "Oswald";
@@ -53,6 +54,8 @@ export const StyledTitleWrapper = styled.h1`
             case 'subtitle':
             case 'landingTitle':
                 return typography.line_height_2 + px;
+            case 'little':
+                return '32px';
             default:
                 return "16px";
         }
@@ -64,6 +67,8 @@ export const StyledTitleWrapper = styled.h1`
             case 'subtitle':
             case 'landingTitle':
                 return typography.medium + px;
+            case 'little':
+                return typography.small + px;
             default:
                 return props.size + px;
         }
@@ -77,6 +82,8 @@ export const StyledTitleWrapper = styled.h1`
                 return (props.mode === "over_dark" ? colors.accent : colors.text);
             case 'landingTitle':
                 return colors.main_cta;
+            case 'little':
+                return (props.mode === "over_dark" ? colors.accent : colors.main_cta);
             default:
                 return colors.shadow_teal;
         }
@@ -466,7 +473,7 @@ export const SingleChallengeDiv = styled.div`
 `;
 
 export const MobileBadgeDiv = styled.div`
-    background-color: #FFFFFF;
+    background-color: #F8F7F5;
     border-radius: 10px;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     padding: 15px;
@@ -479,7 +486,7 @@ export const MobileBadgeDiv = styled.div`
 
 
 export const SingleRuleDiv = styled.div`
-    background-color: #FFFFFF;
+    background-color: #F8F7F5;
     border-radius: 10px;
     box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
     padding: 15px;
