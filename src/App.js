@@ -21,7 +21,11 @@ import MobileRules from "./containers/mobile/Rules";
 import SignUpNG from "./containers/pages/auth/SignUpNG";
 import SignUpJG from "./containers/pages/auth/SignUpJG";
 import Login from "./containers/pages/auth/LogIn";
+
+import PrivateRoute from "./components/privateRoute/privateRoute";
+
 import NotFoundPage from "./containers/pages/NotFoundPage";
+
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -78,19 +82,19 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup/:groupId" component={SignUpJG} />
               <MobileHomeTemplate>
-                <Route
+                <PrivateRoute
                   exact
                   mode="white"
                   path="/overview"
                   component={MobileOverview}
                 />
-                <Route
+                <PrivateRoute
                   exact
                   path="/challenges"
                   component={MobileChallenges}
                   mode="black"
                 />
-                <Route
+                <PrivateRoute
                   exact
                   path="/progress"
                   component={MobileAchievements}
@@ -119,9 +123,9 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup/:groupId" component={SignUpJG} />
               <PageTemplate>
-                <Route path="/overview" exact component={Overview} />
-                <Route path="/challenges" exact component={ChallengePage} />
-                <Route path="/progress" exact component={ProgressPage} />
+                <PrivateRoute path="/overview" exact component={Overview} />
+                <PrivateRoute path="/challenges" exact component={ChallengePage} />
+                <PrivateRoute path="/progress" exact component={ProgressPage} />
               </PageTemplate>
             </Switch>
           </AuthProvider>
@@ -134,6 +138,7 @@ function App() {
         <Switch>
           <Route path="*" component={NotFoundPage} />
         </Switch>
+
       </Router>
     );
   }
