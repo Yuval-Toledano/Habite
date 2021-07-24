@@ -43,7 +43,7 @@ export default function SignUpJG(props) {
             console.log(error);
         }
         setLoading(false);
-        history.push("/user/overview")
+        history.push("/overview")
     }
 
     /* The function handles submit image */

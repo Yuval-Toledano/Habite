@@ -20,7 +20,7 @@ export const BottomSideData = [
     mode: "black",
   },
   {
-    title: "Achievements",
+    title: "Progress",
     icon: <TrendingUpIcon />,
     link: "/progress",
     mode: "white",
