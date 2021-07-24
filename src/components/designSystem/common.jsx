@@ -282,17 +282,8 @@ export const BadgePosterDiv = styled.div`
   overflow-x: scroll;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  text-align: center;
-`;
-
-export const BadgePoster = styled.div`
-  min-width: 18rem;
-  max-height: 21rem;
-`;
-
-export const BadgeStars = styled.div`
-  min-height: 2.2rem;
-  align-content: center;
+  display: flex;
+  align-items: stretch;
 `;
 
 export const BadgeTitle = styled.div`

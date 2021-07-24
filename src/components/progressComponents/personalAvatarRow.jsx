@@ -7,8 +7,12 @@ import Marshmellow from "../../components/svgs/avatars/3-marshmellow.svg";
 import Dots from "../../components/svgs/avatars/AvatarProgressDots.svg";
 import { PrevPeronalAvatarDiv, CurrPeronalAvatarDiv, IndicationText } from "../designSystem/common";
 
+/**
+ * Personal avatar row component
+ */
 export function PersonalAvatarRow(props) {
 
+    // user data variables
     const [currUser, setCurrUser] = useState();
 
     useEffect(() => {
@@ -35,6 +39,7 @@ export function PersonalAvatarRow(props) {
 
     const userLevel = currUser ? currUser.level : "no cur user"
 
+    // case: user is level 1
     if (userLevel == 1) {
         return (
             <div className="d-flex flex-row align-items-center">
@@ -46,6 +51,7 @@ export function PersonalAvatarRow(props) {
                 </div>
             </div>
         );
+    // case: user is level 2
     } else if (userLevel == 2) {
         return (
             <div className="d-flex flex-row align-items-center">
@@ -64,6 +70,7 @@ export function PersonalAvatarRow(props) {
                 </div>
             </div>
         );
+    // case: user is level 3
     } else if (userLevel == 3) {
         return (
             <div className="d-flex flex-row align-items-center justify-content-around">
@@ -89,6 +96,7 @@ export function PersonalAvatarRow(props) {
                 </div>
             </div>
         );
+    // case: user is level 4 and above (not included in MVP) / data did was not pulled corecctly from DB
     } else {
         return (
             <div className="d-flex flex-row align-items-center">

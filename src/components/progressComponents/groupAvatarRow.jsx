@@ -6,8 +6,13 @@ import SugarCube from "../../components/svgs/avatars/2-sugarCube.svg";
 import Marshmellow from "../../components/svgs/avatars/3-marshmellow.svg";
 import { PrevPeronalAvatarDiv, CurrPeronalAvatarDiv, IndicationText } from "../designSystem/common";
 
+
+/**
+ * GroupAvatarRow component
+ */
 export function GroupAvatarRow(props) {
 
+    // variables for the user and group data
     const [currUser, setCurrUser] = useState();
     const [currGroup, setCurrGroup] = useState();
     const [groupMembers, setGroupMembers] = useState();
@@ -68,11 +73,13 @@ export function GroupAvatarRow(props) {
     fetchGroupMembers()
     }, [currGroup])
 
+    // sorting the group array acording to level
     const sortedGroupMemberData = groupMembers ? [].concat(groupMembers) : false;
     if (sortedGroupMemberData) {
         sortedGroupMemberData.sort((a, b) => (a.level < b.level) ? 1 : -1);
     }
 
+    // function for choosing the correct avatar according to the user's level
     function userAvatarPhoto(userLevel) {
         if (userLevel === 1) {
             return SugarPile;
@@ -87,6 +94,7 @@ export function GroupAvatarRow(props) {
 
     if (currUser != null && sortedGroupMemberData) {
         return (
+            // leading user section (first on the left)
             <div className="d-flex flex-row align-items-center justify-content-evenly">
                 <div className="d-flex flex-column align-items-center" id={currUser.id}>
                     <IndicationText>{sortedGroupMemberData[0].userName}</IndicationText>
@@ -97,9 +105,8 @@ export function GroupAvatarRow(props) {
                 {sortedGroupMemberData &&
                 sortedGroupMemberData.slice(1,).map((member) => {
                     const userLevel = member.level
-                
+                // mapping the avatars of the other group members
                   return (
-                      // not finished!!!! DB not responding
                       <div className="d-flex flex-column align-items-center" id={currUser.id}>
                           <IndicationText>{member.userName}</IndicationText>
                           <PrevPeronalAvatarDiv className="d-flex justify-content-center align-items-center m-2">
@@ -111,6 +118,7 @@ export function GroupAvatarRow(props) {
             </div>
         );
     } else {
+      // handling cases in which data was not pulled from DB/place holders until data is pulled
         return (
             <IndicationText>Loading...</IndicationText>
         );

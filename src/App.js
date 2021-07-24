@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PageTemplate from "./containers/pages/pageTemplate";
 import Overview from "./containers/pages/overview";
@@ -19,7 +19,6 @@ import Login from "./containers/pages/auth/LogIn";
 import PrivateRoute from "./components/privateRoute/privateRoute";
 import NotFoundPage from "./containers/pages/NotFoundPage";
 
-
 /****************** WINDOW DIMENSIONS ******************/
 
 function getWindowDimensions() {
@@ -37,7 +36,6 @@ function useWindowDimensions() {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
-
 
   useEffect(() => {
     function handleResize() {
@@ -67,17 +65,14 @@ function App() {
     "/progress",
     "/rulesOfGame",
     "/styling",
-    "/progress",
   ];
 
   const currPath = window.location.pathname;
   var dimensions = useWindowDimensions();
 
   if (ValidPaths.indexOf(currPath) > -1) {
-
     //mobile
     if (dimensions.width < 500) {
-
       return (
         <Router>
           <AuthProvider>
@@ -87,19 +82,38 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup/:groupId" component={SignUpJG} />
               <MobileHomeTemplate>
-                <PrivateRoute exact mode="white" path="/overview" component={MobileOverview} />
-                <PrivateRoute exact path="/challenges" component={MobileChallenges} mode="black" />
-                <PrivateRoute exact path="/achievements" component={MobileAchievements} mode="white" />
-                <Route exact path="/rulesOfGame" component={MobileRules} mode="black" />
+                <PrivateRoute
+                  exact
+                  mode="white"
+                  path="/overview"
+                  component={MobileOverview}
+                />
+                <PrivateRoute
+                  exact
+                  path="/challenges"
+                  component={MobileChallenges}
+                  mode="black"
+                />
+                <PrivateRoute
+                  exact
+                  path="/progress"
+                  component={MobileAchievements}
+                  mode="white"
+                />
+                <Route
+                  exact
+                  path="/rulesOfGame"
+                  component={MobileRules}
+                  mode="black"
+                />
               </MobileHomeTemplate>
             </Switch>
           </AuthProvider>
         </Router>
       );
 
-    // web
+      // web
     } else {
-
       return (
         <Router>
           <AuthProvider>
@@ -111,7 +125,11 @@ function App() {
               <Route path="/signup/:groupId" component={SignUpJG} />
               <PageTemplate>
                 <PrivateRoute path="/overview" exact component={Overview} />
-                <PrivateRoute path="/challenges" exact component={ChallengePage} />
+                <PrivateRoute
+                  path="/challenges"
+                  exact
+                  component={ChallengePage}
+                />
                 <PrivateRoute path="/progress" exact component={ProgressPage} />
               </PageTemplate>
             </Switch>
@@ -120,9 +138,8 @@ function App() {
       );
     }
 
-  //invalid path
+    //invalid path
   } else {
-
     return (
       <Router>
         <Switch>

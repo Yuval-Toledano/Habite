@@ -99,15 +99,7 @@ export function GroupProgressCard(props) {
             <div className="col-6">
                 <GroupStatBox className="" title={sumGroupScore()} subtitle="Points earned by the group members"/>
             </div>
-            {/* <div className="col-6">
-              <GroupStatBox className="" title="7" subtitle="Days of joint group streak"/>
-            </div> */}
           </div>
-          {/* <div className="StatRow row"> */}
-            {/* <div className="col-6">
-              <GroupStatBox className="" title="2" subtitle="Takeovers of the top spot in the last month"/>
-            </div> */}
-          {/* </div> */}
         </div>
       </div>
       </VoteBox>

@@ -6,9 +6,12 @@ import { PersonalStatBox } from "./personalStatBox";
 import { PersonalAvatarRow } from "./personalAvatarRow";
 import { Separator } from '../../components/marginer/marginer';
 
+/**
+ * Single Group Stat Box component
+ */
+export function PersonalProgressCard() {
 
-export function PersonalProgressCard(props) {
-
+  // data variables of the user and group
   const [currUser, setCurrUser] = useState();
   const [currGroup, setCurrGroup] = useState();
   
@@ -52,6 +55,7 @@ export function PersonalProgressCard(props) {
    
 }, [currUser])
 
+  // saving the relevant details in specific variables
   const level = currUser ? currUser.level : " "
   const score = currUser ? currUser.score : " "
   const challenges = currGroup ? currGroup.pastChallenges.length : " ";
@@ -78,9 +82,6 @@ export function PersonalProgressCard(props) {
             <div className="col-4">
                 <PersonalStatBox className="" title={score} subtitle="Points overall"/>
             </div>
-            {/* <div className="col-6">
-              <PersonalStatBox className="" title="23" subtitle="Day streak in a row"/>
-            </div> */}
           </div>
         </div>
       </div>

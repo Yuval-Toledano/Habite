@@ -1,44 +1,67 @@
-import React from "react";
+import React, {useState, useEffect} from 'react';
+import { auth } from "../../../firebase"
+import { useAuth } from "../../../context/AuthContext";
+import { getUserDocumentData } from "../../../server/firebaseTools";
 import SpoonFull from '../../../components/svgs/Badges/sugarSpoonPoster.svg';
 import Bottle from '../../../components/svgs/Badges/bottlePoster.svg';
 import NonGuilty from '../../../components/svgs/Badges/dessertPoster.svg';
-import FilledStar from '../../../components/svgs/Badges/filledStar.svg';
-import Star from '../../../components/svgs/Badges/unfilledStar.svg';
-import { MobileBadgeDiv, StyledText } from "../../designSystem/mobileDS";
+import { MobileBadgeDiv, StyledTitle } from "../../designSystem/mobileDS";
 
 /**
  * mobile badge component
  */
 export function MobileBadges(props) {
 
+    const badgesArr = {"pEJUfZGBTNMObhPGPY0P": SpoonFull, "fJxrW00NGZqDVLcxhAv1": Bottle,
+    "gp0L3ZobXb6cYT5oRGc4": NonGuilty}
+    const [currUser, setCurrUser] = useState();
+    const { userData } = useAuth()
+
+    useEffect(() => {
+        const loginUser = auth.currentUser;
+        if (!loginUser) {
+          console.log("no user is logged in");
+          return;
+        }
+    
+        // The function gets the data of the user from the database
+        const fetchUser = (userId) => {
+          const userPromise = getUserDocumentData(userId);
+          userPromise.then((doc) => {
+            if (doc.exists) {
+              const userData = { ...doc.data(), id: doc.id };
+              setCurrUser(userData);
+              
+            }
+          });
+        };
+    
+        fetchUser(loginUser.uid);      
+      }, []);
+
+    const userChallenges = userData ? userData.successChallenge : "No user data"
+    var userBadges = [];
+
+    for (var key in badgesArr) {
+        if (userChallenges.indexOf(key) > -1) {
+            userBadges.push(badgesArr[key]);
+        }
+    }
+
 return (
-    <MobileBadgeDiv className="d-flex flex-row">
-        <div className="d-flex flex-column m-2">
-            <StyledText>Reduce Sugar Spoon Challenge Series: 3 out of 3</StyledText>
-            <img src={SpoonFull} alt="Reduce Sugar Spoon poster"/>
-            <div className="d-flex flex-row justify-content-center mt-2">
-                <img src={FilledStar} alt="Filled star"/>
-                <img src={FilledStar} alt="Filled star"/>
-                <img src={FilledStar} alt="Filled star"/>
-            </div>
+    <MobileBadgeDiv className="d-flex flex-column align-items-start">
+        <div className="d-flex m-2">
+            <StyledTitle type="subtitle" >Badges</StyledTitle>
         </div>
-        <div className="d-flex flex-column m-2">
-            <StyledText>Non-Guilty Pleasure Challenge Series: 2 out of 3</StyledText>
-            <img src={NonGuilty} alt="Non-Guilty Pleasure poster"/>
-            <div className="d-flex flex-row justify-content-center mt-2">
-                <img src={FilledStar} alt="Filled star"/>
-                <img src={FilledStar} alt="Filled star"/>
-                <img src={Star} alt="Star"/>
+        <div className="d-flex flex-row">
+        {userBadges && userBadges.map((poster) => {
+
+            return (
+            <div className="d-flex m-2">
+                <img src={poster} alt="Badge poster" />
             </div>
-        </div>
-        <div className="d-flex flex-column m-2">
-            <StyledText>Bye Bye Sugary Drinks Challenge Series: 1 out of 3</StyledText>
-            <img src={Bottle} alt="Bye Bye Sugary Drinks poster"/>
-            <div className="d-flex flex-row justify-content-center mt-2">
-                <img src={FilledStar} alt="Filled star"/>
-                <img src={Star} alt="Star"/>
-                <img src={Star} alt="Star"/>
-            </div>
+            );
+        })}
         </div>
     </MobileBadgeDiv>
 );
