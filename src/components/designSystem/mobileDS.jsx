@@ -102,6 +102,15 @@ export const StyledTextCentered = styled.p`
   margin-bottom: 0;
 `;
 
+export const StyledTextMenu = styled.p`
+  font-family: "Open sans";
+  font-style: Regular;
+  font-size: 12px;
+  color: ${colors.mid_gray};
+  margin-bottom: 0;
+  text-align: center;
+`;
+
 /* LINKS */
 
 export const StyledLinkWrapper = styled.a`
