@@ -2,6 +2,9 @@ import React from 'react';
 import { StatBoxContainer, StatBoxNumber, StatBoxText } from "../designSystem/common";
 import CrownLogo from "../../components/svgs/topThreeSvgs/crown.svg";
 
+/**
+ * user statistic component
+ */
 export function PersonalStatBox(props) {
     return (
         <StatBoxContainer>

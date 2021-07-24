@@ -7,6 +7,9 @@ import Marshmellow from "../../components/svgs/avatars/3-marshmellow.svg";
 import Dots from "../../components/svgs/avatars/AvatarProgressDots.svg";
 import { PrevPeronalAvatarDiv, CurrPeronalAvatarDiv, IndicationText } from "../designSystem/common";
 
+/**
+ * display personal avatar
+ */
 export function PersonalAvatarRow(props) {
 
     const [currUser, setCurrUser] = useState();

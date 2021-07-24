@@ -9,6 +9,9 @@ import NonGuilty from '../../components/svgs/Badges/dessertPoster.svg';
 import FilledStar from '../../components/svgs/Badges/filledStar.svg';
 import Star from '../../components/svgs/Badges/unfilledStar.svg';
 
+/**
+ * web user badges
+ */
 export function BadgeProgressCard(props) {
 
     const badgesArr = {"pEJUfZGBTNMObhPGPY0P": SpoonFull, "fJxrW00NGZqDVLcxhAv1": Bottle,

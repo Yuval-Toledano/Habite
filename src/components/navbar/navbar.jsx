@@ -39,6 +39,9 @@ const NavbarLinks = styled.a`
   }
 `;
 
+/**
+ * landing page navbar component
+ */
 export function Navbar(props) {
   return (
     <NavbarContainer>
