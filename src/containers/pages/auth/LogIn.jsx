@@ -1,37 +1,15 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState} from 'react';
 import { useHistory,Link } from "react-router-dom";
-import { StyledTitle, StyledText, InfoBoxDiv, StyledButton } from "../../../components/designSystem/mobileDS";
 import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
 import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
 import { Marginer } from "../../../components/marginer/marginer";
 import "./auth.css";
 
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-      width,
-      height,
-    };
-  }
-  
-  function useWindowDimensions() {
-    const [windowDimensions, setWindowDimensions] = useState(
-      getWindowDimensions()
-    );
-  
-    useEffect(() => {
-      function handleResize() {
-        setWindowDimensions(getWindowDimensions());
-      }
-  
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, []);
-  
-    return windowDimensions;
-  }
 
+/**
+ * login form page
+ */
 export default function Login(props) {
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -40,7 +18,6 @@ export default function Login(props) {
     const history = useHistory();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    // const dimentions = useWindowDimensions();
     
   async function handleSubmit(e) {
     e.preventDefault();

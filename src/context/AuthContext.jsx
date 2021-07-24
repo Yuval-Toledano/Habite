@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import firebase from "firebase/app";
 import { auth, db, storage} from "../firebase";
-import {
-  getGroupMembersData,
-} from "../server/firebaseTools";
+import { getGroupMembersData } from "../server/firebaseTools";
 
 const AuthContext = React.createContext();
 const increment = firebase.firestore.FieldValue.increment(1);
@@ -12,6 +10,9 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
+/**
+ * gets the data from the db and share it with the other components in the tree
+ */
 export function AuthProvider({ children }) {
   const [currUser, setCurrUser] = useState();
   const [userId, setUserId] = useState();
@@ -24,7 +25,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [loadUser, setLoadUser] = useState(false);
 
-  // The function creates new user and new group documents
+  /* The function creates new user and new group documents */
   async function signUpNG(email, password, name, pic) {
     //add profile picture to firebase storage.
     const userImagePath = "users/" + email + "/profile";
@@ -63,7 +64,7 @@ export function AuthProvider({ children }) {
         })})  
   }
 
-  // The function creates new user and updates the group info
+  /* The function creates new user and updates the group info */
   async function signUpJG(email, password, groupId, name, pic) {
       //add profile picture to firebase storage.
        const userImagePath = "users/" + email + "/profile";
@@ -117,7 +118,6 @@ export function AuthProvider({ children }) {
 
   function isLogin(){
     var user = firebase.auth().currentUser;
-
     if (user) {
     // User is signed in.
       return true
@@ -128,7 +128,7 @@ export function AuthProvider({ children }) {
   }
   
 
-  // the function sign out the user
+  /* the function sign out the user */
   function logOut() {
     return auth.signOut().then(() => {
       setUserId(null);
@@ -138,11 +138,12 @@ export function AuthProvider({ children }) {
     });
   }
 
-  // the function force page render
+  /* the function force page render */
   function forceRender() {
     setUpdateVal((prevVal) => prevVal + 1);
   }
 
+  /* custom hook to use the previous value of a variable  */
   function usePrevious(value) {
     const ref = useRef();
     useEffect(() => {
@@ -167,7 +168,7 @@ export function AuthProvider({ children }) {
             setUserData(dataUser);
           });
       } else {
-        // console.log("ERROR: no userId")
+        console.log("ERROR: no userId")
         setUserData(null);
         setGroupData(null);
         setGroupMemberData([]);
@@ -200,8 +201,6 @@ export function AuthProvider({ children }) {
           setLoadData(false);
         });
       } else {
-        // console.log("no userData")
-        // setUserId(null);
         setUserData(null);
         setGroupData(null);
         setGroupMemberData([]);

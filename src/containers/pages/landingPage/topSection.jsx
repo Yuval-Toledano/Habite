@@ -59,7 +59,9 @@ const SloganText = styled.h4`
     color: #333331;
 `;
 
-
+/**
+ * web top section of the landing page
+ */
 export function TopSection(props){
     const {children} = props;
 
@@ -72,7 +74,6 @@ export function TopSection(props){
             <Marginer direction="vertical" margin={10}/>
             <SloganText>Regaining control back on your mind and life, together!</SloganText>
             </TitleContainer>
-            {/* <Button>Me? sugar-free?</Button> */}
             <a className="Button-primary Big-link" href="#yesContainer">Me? sugar-free?</a>
         </TopSectionInnerContainer>    
     </TopSectionContainer>

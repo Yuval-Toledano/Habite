@@ -2,10 +2,7 @@ import styled from "styled-components";
 import { Footer } from "../../../components/footer/footer";
 import { Marginer } from "../../../components/marginer/marginer";
 import { Navbar } from "../../../components/navbar/navbar";
-import {
-  InnerPageContainer,
-  PageContainer,
-} from "../../../components/pageContainers/pageContainer";
+import { InnerPageContainer, PageContainer } from "../../../components/pageContainers/pageContainer";
 import { TopSection } from "./topSection";
 import { ContentContainer } from "../../../components/designSystem/common";
 import { Link } from "react-router-dom";
@@ -17,7 +14,6 @@ const Title = styled.h2`
   font-size: ${({ size }) => size ? size : "48px"};
   line-height: 149.58%;
   color: ${({ color }) => color ? color : "#e71c96"};
-  
 `;
 
 const SubTitle = styled.h6`
@@ -43,15 +39,13 @@ const HowContainer = styled.div`
     flex-direction: col;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: space-between;
-    
+    justify-content: space-between; 
 `;
 
 const HowWrapper = styled.div`
     align-items: flex-start;
     width: 248px; 
-    margin-top: 50px;
-    
+    margin-top: 50px;  
 `;
 
 const HomepageWhiteButtonWrapper = styled.button`
@@ -85,6 +79,9 @@ const HomepageWhiteButtonWrapper = styled.button`
   }
 `;
 
+/**
+ * web landing page
+ */
 export function HomePage(props) {
   return (
     <PageContainer>
@@ -115,10 +112,7 @@ export function HomePage(props) {
             your mind and life back to yourself.
           </Paragraph>
         </ContentContainer>
-        {/* <Link to="/containers/mainpage"> */}
         <a className="Button-primary Big-link" href="#howContainer">How does it work?</a>
-        {/* <Button>start now</Button> */}
-        {/* </Link> */}
       </InnerPageContainer>
 
       {/* HOW */}
@@ -131,17 +125,14 @@ export function HomePage(props) {
               <SubTitle>Be aware</SubTitle>
               <Paragraph>Awareness is the biggest step towards the change you desire</Paragraph>
             </HowWrapper>
-            {/* <Marginer direction="horizontal" margin={100} /> */}
             <HowWrapper >
               <SubTitle>Walk together</SubTitle>
               <Paragraph>Participate in small nutrition challenges with group members who share your goal</Paragraph>
             </HowWrapper>
-            {/* <Marginer direction="horizontal" margin={100} /> */}
             <HowWrapper >
               <SubTitle>Kudos to all</SubTitle>
               <Paragraph>Express the love and help each other earn points and achievements</Paragraph>
             </HowWrapper>
-            {/* <Marginer direction="horizontal" margin={100} /> */}
             <HowWrapper >
               <SubTitle>Repeat</SubTitle>
               <Paragraph>Establish your new healthy habit, fast</Paragraph>
