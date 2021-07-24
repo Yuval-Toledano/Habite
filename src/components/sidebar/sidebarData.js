@@ -1,12 +1,12 @@
 import React from 'react'
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import Home from '@material-ui/icons';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 
 export const SidebarData = [
     {
-        title: "Overview",
-        icon: <DashboardIcon />,
+        title: "Home",
+        icon: <Home />,
         link: "/overview"
     },
     {
