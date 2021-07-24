@@ -4,7 +4,7 @@ import NotificationBarBlack from "../../components/MobileNotification/Notificati
 import { BackgroundRules } from "../../components/designSystem/mobileDS";
 import SugarCube from "../../components/svgs/avatars/2-sugarCube.svg";
 
-
+// Mobile rules of the game container
 export default function MobileRules() {
     return (
         <>

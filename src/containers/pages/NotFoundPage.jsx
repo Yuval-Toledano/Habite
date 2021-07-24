@@ -1,16 +1,19 @@
+// 404 page container
+
 import React from "react";
 import Gramophone from '../../images/Gramophone.svg';
 import { StyledButton, StyledTitle, StyledTextCentered, StyledLink } from "../../components/designSystem/mobileDS";
 import { useHistory } from "react-router-dom";
 
+// contact habite team through email
 function sendMail(event) {
     event.preventDefault();
     var link = "mailto:hellohabite@gmail.com";
 
     window.location.href = link;
-    // document.location.href = "mailto:hellohabite@gmail.com";
 };
 
+// 404 error - Not found page container
 export default function NotFoundPage() {
     const history = useHistory();
 

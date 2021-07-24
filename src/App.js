@@ -66,8 +66,7 @@ function App() {
     "/challenges",
     "/progress",
     "/rulesOfGame",
-    "/styling",
-    "/progress",
+    "/styling"
   ];
 
   const currPath = window.location.pathname;
@@ -89,7 +88,7 @@ function App() {
               <MobileHomeTemplate>
                 <PrivateRoute exact mode="white" path="/overview" component={MobileOverview} />
                 <PrivateRoute exact path="/challenges" component={MobileChallenges} mode="black" />
-                <PrivateRoute exact path="/achievements" component={MobileAchievements} mode="white" />
+                <PrivateRoute exact path="/progress" component={MobileAchievements} mode="white" />
                 <Route exact path="/rulesOfGame" component={MobileRules} mode="black" />
               </MobileHomeTemplate>
             </Switch>

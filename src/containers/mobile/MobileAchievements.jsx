@@ -6,7 +6,7 @@ import { BackgroundCircle, FlyingBox, BackgroundRegular } from "../../components
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileBadges } from "../../components/mobileComponents/mobileBadges/mobileBadges"
 
-
+// Mobile achievements container
 export default function MobileAchievements() {
 
     return (
