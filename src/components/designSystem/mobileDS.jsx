@@ -1,11 +1,16 @@
-// mobile design system - only for mobile
-// import this file if you work on mobile version
-
 import styled from 'styled-components';
+
+/**** MOBILE DESIGN SYSTEM ****/
+
+/* GLOBAL CONSTANTS FOR STYLING SYSTEM*/
 
 const px = "px";
 
+// shadows
 const shadow = "-2px 4px 0px rgba(160, 160, 160, 0.25)";
+
+// colors
+
 const colors = {
     main_cta: "#E71C7D", bg: "#FAF0E4", text: "#333331", accent: "#F8F7F5", link: "#00397B",
     shadow_main: "#E993B1", shadow_orange: "#F16643", shadow_teal: "#0891A8", shadow_yellow: "#FBE536",
@@ -17,6 +22,8 @@ const colors = {
 const typography = {
     big: "36", medium: "24", small: "18", tiny: "14"
 };
+
+/* TITLES */
 
 export const StyledTitleWrapper = styled.h1`
     margin-bottom: 0.5rem;
@@ -78,6 +85,8 @@ export const StyledTitleWrapper = styled.h1`
     justify-self: center;
 `;
 
+/* TEXT */
+
 export const StyledText = styled.p`
   font-family: "Open sans";
   font-style: Regular;
@@ -92,6 +101,8 @@ export const StyledTextCentered = styled.p`
   color: ${({ mode }) => (mode === "over_dark" ? colors.accent : colors.text)};
   margin-bottom: 0;
 `;
+
+/* LINKS */
 
 export const StyledLinkWrapper = styled.a`
   font-family: "Open sans";
@@ -122,8 +133,7 @@ export const StyledLinkWrapper = styled.a`
   };
 `;
 
-
-// buttons
+/* BUTTONS */
 
 const StyledButtonWrapper = styled.button`
     margin: 0.5rem;
@@ -214,8 +224,14 @@ const StyledButtonWrapper = styled.button`
                 return colors.accent;
         }
     }};
-    }
 `;
+
+export const ChallengeButton = styled.button`
+    background: ${colors.accent};
+    border: none;
+`;
+
+/* LOGO */
 
 const LogoWrapper = styled.h2`
     font-family: "Oleo script";
@@ -234,12 +250,7 @@ const LogoWrapper = styled.h2`
     }
 `;
 
-export const ChallengeButton = styled.button`
-    background: ${colors.accent};
-    border: none;
-`;
-
-// menus
+/* MENUS */
 
 const BottombarWrapper = styled.div`
     align-items: center;
@@ -271,7 +282,7 @@ const BottombarButtonWrapper = styled.button`
     }
 `;
 
-// images
+/* IMAGES & BACKGROUNDS */
 
 export const BackgroundCircle = styled.img`
     width: 100%;
@@ -302,17 +313,50 @@ export const BackgroundRegular = styled.div`
     z-index: 0;
 `;
 
-export const LeaderBoardPhotoWrapper = styled.img`
-    height: 45px;
-    width: 45px;
-    border-radius: 56px;
-    border: ${props => {
-        switch (props.color) {
-            default:
-                return (props.color)
-        }
-    }};
+/* CONTAINERS */
+
+export const FlyingBoxWrapper = styled.div`
+    z-index: ${({ zindx }) => (zindx ? zindx : zindx)};
+    position: absolute;
+    top: ${({ top }) => (top ? top + px : 0 + px)};
+    height: ${({ height }) => (height ? height + "%" : "calc(100vh - 16%)")};
+    width: 100%;
+    overflow-x: scroll;
 `;
+
+export const InfoBoxDiv = styled.div`
+    background-color: ${colors.accent};
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    margin: 1.5rem;
+    border-radius: 20px;
+    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 2;
+`;
+
+export const InfoBoxBar = styled.div`
+    background-color: ${colors.accent};
+`;
+
+/* leaderboard */
+
+export const LeaderBoardPhotoWrapper = styled.img`
+height: 45px;
+width: 45px;
+border-radius: 56px;
+border: ${props => {
+    switch (props.color) {
+        default:
+                return (props.color)
+            }
+    }};
+    `;
+    
+/* top three row */
 
 export const TopThreeMiddle = styled.img`
     height: 70px;
@@ -359,35 +403,6 @@ export const VoterPhoto = styled.img`
     margin: 0px 3px 10px 3px;
 `;
 
-// containers
-
-export const FlyingBoxWrapper = styled.div`
-    z-index: ${({ zindx }) => (zindx ? zindx : zindx)};
-    position: absolute;
-    top: ${({ top }) => (top ? top + px : 0 + px)};
-    height: ${({ height }) => (height ? height + "%" : "calc(100vh - 16%)")};
-    width: 100%;
-    overflow-x: scroll;
-`;
-
-export const InfoBoxDiv = styled.div`
-    background-color: ${colors.accent};
-    overflow: visible;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    padding: 1rem;
-    margin: 1.5rem;
-    border-radius: 20px;
-    box-shadow: -2px 4px 4px 0px rgba(0, 0, 0, 0.15);
-    position: relative;
-    z-index: 2;
-`;
-
-export const InfoBoxBar = styled.div`
-    background-color: ${colors.accent};
-`
-
 export const LeaderboardDivWrapper = styled.div`
     background-color: ${colors.accent};
     padding: 5px 5px 5px 5px;
@@ -407,6 +422,25 @@ export const LeaderboardContainer = styled.div`
     position: relative;
     align-items: center;
 `;
+
+export function LeaderBoardPhoto(props) {
+    const { color, src } = props;
+    return (
+        <LeaderBoardPhotoWrapper src={src} color={color}></LeaderBoardPhotoWrapper>
+    )
+}
+
+export function LeaderboardDiv(props) {
+    const { color } = props;
+    return (
+        <LeaderboardDivWrapper color={color} className="d-flex flex-row m-1 d-flex justify-content-around">
+            {props.children}
+        </LeaderboardDivWrapper>
+    )
+}
+
+
+/* challenges */
 
 export const SingleChallengeDiv = styled.div`
     background-color: ${colors.accent};
@@ -443,22 +477,7 @@ export const SingleRuleDiv = styled.div`
     width: 85%;
 `;
 
-export function LeaderBoardPhoto(props) {
-    const { color, src } = props;
-    return (
-        <LeaderBoardPhotoWrapper src={src} color={color}></LeaderBoardPhotoWrapper>
-    )
-}
-
-export function LeaderboardDiv(props) {
-    const { color } = props;
-    return (
-        <LeaderboardDivWrapper color={color} className="d-flex flex-row m-1 d-flex justify-content-around">
-            {props.children}
-        </LeaderboardDivWrapper>
-    )
-}
-
+/**** STYLED COMPONENTS ****/
 
 export function StyledButton(props) {
     const { type, size, color, background, onClick, width, wide } = props;
@@ -508,7 +527,7 @@ export function StyledBottombar(props) {
 }
 
 export function StyledBottombarButton(props) {
-    const { onClick} = props;
+    const { onClick } = props;
     return <BottombarButtonWrapper onClick={onClick}>
         {props.children}
     </BottombarButtonWrapper>

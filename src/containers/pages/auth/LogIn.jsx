@@ -1,5 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import { useHistory,Link } from "react-router-dom";
+import { StyledTitle, StyledText, InfoBoxDiv, StyledButton } from "../../../components/designSystem/mobileDS";
 import {TextInPage, StandAloneTitle} from "../../../components/designSystem/common";
 import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";

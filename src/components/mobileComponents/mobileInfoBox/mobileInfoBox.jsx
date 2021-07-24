@@ -375,7 +375,7 @@ export function MobileInfoBox(props) {
       return (
         <InfoBoxDiv className="d-flex flex-column">
           <StyledText>Share group code</StyledText>
-          <StyledTitle type={"subtitle"}>Make your group bigger and stronger</StyledTitle>
+          <StyledTitle type={"subtitle"}>Make your group bigger and stronger 🤩</StyledTitle>
           <div className="d-flex flex-row justify-content-between">
             <LinkIcon style={{ fill: "#E71C7D", cursor: 'pointer' }}
               fontSize="large"
@@ -390,28 +390,51 @@ export function MobileInfoBox(props) {
         </InfoBoxDiv>
       );
     }
-  } 
-
+  }
   // styled mobile info box popup for invite friends to the group
-  } else if (type === "groupAddBar") {
-    return (
-      <div>
-        <StyledTitle type={"subtitle"}>Invite friends to the group</StyledTitle>
-        <div className="d-flex flex-row justify-content-evenly w-50 pt-1 mx-5 pb-">
-          <LinkIcon style={{ fill: "#E71C7D", cursor: 'pointer' }}
-            fontSize="large"
-            onClick={() => { copyGroupCode() }} />
-          <WhatsappShareButton
-            title="Join My Group"
-            url={urlJG}>
-            <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
-          </WhatsappShareButton>
-        </div>
+  else if (type === "groupAddBar") {
+    if (groupCount === 1) {
+      return (
         <div>
-          <StyledText id="indicationCopy" className="group_code_text"></StyledText>
+          <StyledTitle type={"subtitle"}>Oh no, your group is empty 😭</StyledTitle>
+          <StyledText>Invite friends with:</StyledText>
+          <div className="d-flex flex-row justify-content-evenly w-50 pt-1 mx-5 pb-">
+            <LinkIcon style={{ fill: "#E71C7D", cursor: 'pointer' }}
+              fontSize="large"
+              onClick={() => { copyGroupCode() }} />
+            <WhatsappShareButton
+              title="Join My Group"
+              url={urlJG}>
+              <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
+            </WhatsappShareButton>
+          </div>
+          <div>
+            <StyledText id="indicationCopy" className="group_code_text"></StyledText>
+          </div>
+      );
+    }
+    else {
+      // Add members to group when there are at least 2 members
+      return (
+        <div>
+          <StyledTitle type={"subtitle"}>Invite friends to the group 🤩</StyledTitle>
+          <StyledText>Share with:</StyledText>
+          <div className="d-flex flex-row justify-content-evenly w-50 pt-1 mx-5 pb-">
+            <LinkIcon style={{ fill: "#E71C7D", cursor: 'pointer' }}
+              fontSize="large"
+              onClick={() => { copyGroupCode() }} />
+            <WhatsappShareButton
+              title="Join My Group"
+              url={urlJG}>
+              <WhatsAppIcon style={{ fill: "#E71C7D" }} fontSize="large" />
+            </WhatsappShareButton>
+          </div>
+          <div>
+            <StyledText id="indicationCopy" className="group_code_text"></StyledText>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   // styled mobile info box for user statistics in achievement page

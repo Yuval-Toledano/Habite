@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
 import NotificationBarWhite from "../../components/MobileNotification/NotificationBarWhite";
-import { BackgroundCircle, FlyingBox, StyledButton } from "../../components/designSystem/mobileDS";
+import { BackgroundCircle, FlyingBox, StyledButton, StyledTextCentered } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
 import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
@@ -44,6 +44,7 @@ export default function MobileOverview() {
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader/>
                     <MobileInfoBox type="currChallenge" />
+                    <div><StyledTextCentered>My group scoreboard 🏆</StyledTextCentered></div>
                     <TopThree />
                     <MobileLeaderboard/>
                     <div className="d-flex flex-row justify-content-center m-2 mb-4">
@@ -64,7 +65,6 @@ export default function MobileOverview() {
 
                 <FlyingBox zindx={1} top={50}>
                     <MobileUserDetailsHeader/>
-                    {/* <MobileInfoBox type="groupAdd" /> */}
                     <div className="d-flex flex-row justify-content-center m-2">
                         <StyledButton type="secondary" color="rgba(231, 28, 125, 0.6)" onClick={(event) => handleLogOut(event)}><ExitToAppIcon />&nbsp;logout</StyledButton>
                         <StyledButton type="secondary" color="rgba(231, 28, 125, 0.6)" onClick={() => openInNewTab(bugLink)}><BugReportIcon />&nbsp;Report</StyledButton>
