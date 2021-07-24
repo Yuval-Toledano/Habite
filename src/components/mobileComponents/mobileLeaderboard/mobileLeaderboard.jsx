@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../../context/AuthContext";
-import { StyledTextCentered, StyledNameTag, LeaderboardDiv, LeaderboardContainer, LeaderBoardPhoto } from "../../designSystem/mobileDS";
+import { StyledTextCentered, LeaderboardDiv, LeaderboardContainer, LeaderBoardPhoto } from "../../designSystem/mobileDS";
 
 export function MobileLeaderboard() {
 

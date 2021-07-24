@@ -32,13 +32,13 @@ export function MobileInfoBox(props) {
   const history = useHistory();
   const [successDate, setSuccessDate] = useState();
   const nowDate = new Date().getDate();
-  const groupId = groupData ? groupData.id : "No group Id";
+  // const groupId = groupData ? groupData.id : "No group Id";
   const groupCount = groupData ? groupData.countGroup : "No group count";
   const userScore = userData ? userData.score : <StyledText>Loading score...</StyledText>;
   const userLevel = userData ? userData.level : <StyledText>Loading level...</StyledText>;
   const userChallenges = userData ? userData.successChallenge.length : <StyledText>Loading challenges...</StyledText>;
   const [urlJG, setURL] = useState();
-  const dimentions = useWindowDimensions();
+  // const dimentions = useWindowDimensions();
 
   // types of notifications
   const GO_VOTE = 0;
@@ -430,7 +430,7 @@ export function MobileInfoBox(props) {
         <StyledText>My Stats</StyledText>
         <div className="d-flex flex-row justify-content-between align-items-center w-100 px-3 py-1">
           <StyledTitle type={"subtitle"}>Level&nbsp;</StyledTitle>
-          <img src={GetAvatar()} className="d-flex w-25" />
+          <img src={GetAvatar()} className="d-flex w-25" alt="user's avatar" />
         </div>
         <div className="d-flex flex-row justify-content-between w-100 px-3 py-1">
           <StyledTitle type={"subtitle"}>Total points&nbsp;</StyledTitle>

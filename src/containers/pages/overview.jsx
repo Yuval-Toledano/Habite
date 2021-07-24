@@ -24,7 +24,7 @@ import {
   getChallengeLogData,
 } from "../../server/firebaseTools";
 import { LeaderBoard } from "../../components/leaderBoard/leaderBoard";
-import File_copy from "@material-ui/icons/FileCopy";
+import FileCopy from "@material-ui/icons/FileCopy";
 import styled from "styled-components";
 // import Chart from "../../components/chart/chart";
 import ChallengeTimer from "../../components/timer/challengeTimer";
@@ -380,7 +380,7 @@ export default function Overview() {
                   id="btn_copy"
                   onClick={copyGroupCode}
                   color="#0890A7">
-                  <File_copy />
+                  <FileCopy />
                 </TextualButton>
                 <WhatsappShareButton
                 title="Join My Group"

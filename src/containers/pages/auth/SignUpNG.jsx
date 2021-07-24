@@ -45,7 +45,7 @@ export default function SignUpNG(props) {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const dimentions = useWindowDimensions();
+//   const dimentions = useWindowDimensions();
 
   function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
