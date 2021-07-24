@@ -7,7 +7,7 @@ import {
   PageContainer,
 } from "../../../components/pageContainers/pageContainer";
 import { TopSection } from "./topSection";
-import { ContentContainer } from "../../../components/designSystem/common"
+import { ContentContainer } from "../../../components/designSystem/common";
 import { Link } from "react-router-dom";
 
 const Title = styled.h2`

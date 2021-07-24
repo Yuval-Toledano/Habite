@@ -370,7 +370,7 @@ export default function Overview() {
             <InfoBox>
               <IndicationText>Share group code</IndicationText>
               <SubTitle className="title">
-                <b>Make your group bigger & stronger</b>
+                <b>Make your group bigger & stronger 🤩</b>
               </SubTitle>
               <div className="d-flex flex-row">
                 <div id="groupCodeText" className="group_code_div">

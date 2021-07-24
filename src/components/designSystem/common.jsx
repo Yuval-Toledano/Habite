@@ -1,14 +1,9 @@
 import styled from "styled-components";
 import { deviceSize } from "./responsive";
 
-export const SubTitle = styled.h6`
-  font-family: "Open sans";
-  font-style: normal;
-  font-size: ${({ size }) => (size ? size + "px" : "18px")};
-  color: ${({ color }) => (color ? color : "#333331")};
-  margin-bottom: 16px;
-`;
+/**** DESKTOP DESIGN SYSTEM ****/
 
+/**** TITLES ****/
 export const StandAloneTitle = styled.h6`
   font-family: "Open sans";
   font-style: normal;
@@ -37,6 +32,14 @@ export const Title = styled.h1`
   text-shadow: -3px 0px 0px #e993b1;
 `;
 
+export const SubTitle = styled.h6`
+  font-family: "Open sans";
+  font-style: normal;
+  font-size: ${({ size }) => (size ? size + "px" : "18px")};
+  color: ${({ color }) => (color ? color : "#333331")};
+  margin-bottom: 16px;
+`;
+
 export const TextInPage = styled.div`
   font-family: "Open sans";
   font-style: normal;
@@ -60,10 +63,13 @@ export const H4 = styled.h4`
   color: ${({ color }) => (color ? color : "#333331")};
 `;
 
-export const ContentContainer = styled.div`
-  width: 100%;
-  max-width: ${deviceSize.laptop}px;
-  padding: 50px;
+export const NiceTitle = styled.h2`
+  font-family: "Oleo Script";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 149.58%;
+  color: #000000;
 `;
 
 export const Logo = styled.h2`
@@ -73,15 +79,6 @@ export const Logo = styled.h2`
   font-size: 18px;
   line-height: 149.58%;
   color: #e71c7d;
-`;
-
-export const NiceTitle = styled.h2`
-  font-family: "Oleo Script";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 149.58%;
-  color: #000000;
 `;
 
 export const LogoWrapper = styled.div`
@@ -98,6 +95,7 @@ export const LogoWrapper = styled.div`
   user-select: none;
 `;
 
+/**** LINKS ****/
 export const ExternalLink = styled.a`
   // font-family: Quicksand;
   font-style: normal;
@@ -122,10 +120,24 @@ export const PinkLink = styled.a`
   color: #E71C7D;
 `;
 
-
+/**** TEXT ****/
 export const IndicationText = styled.h5`
   font-size: 14px !important;
   line-height: 160%;
+`;
+
+/**** CONTAINERS ****/
+export const ContentContainer = styled.div`
+  width: 100%;
+  max-width: ${deviceSize.laptop}px;
+  padding: 50px;
+`;
+
+export const PointsText = styled.p`
+font-size: 18px;
+font-weight: bold;
+align-items: center;
+color: #333333;
 `;
 
 export const IndicationButton = styled.button`
@@ -178,13 +190,6 @@ export const ChallengeBoxContainer = styled.div`
   max-height: 6.5rem;
 `;
 
-export const PointsText = styled.p`
-font-size: 18px;
-font-weight: bold;
-align-items: center;
-color: #333333;
-`;
-
 export const FoodLabel = styled.div`
   height: 40px;
   // font-family: "Quicksand";
@@ -207,7 +212,7 @@ export const FoodLabelName = styled.p`
   left: 50%;
 `;
 
-/* STATBOX CSS */
+/**** STATBOX CSS ****/
 export const StatBoxContainer = styled.div`
   background-color: #FAF0E4;
   border: 1px solid #E4DCD3;
@@ -235,7 +240,7 @@ color: "#333331";
 padding: 0rem 0rem 0rem 0.2rem;
 `;
 
-/* SIDEBAR CSS */
+/**** SIDEBAR CSS ****/
 export const SidebarTitle = styled.h2`
   font-style: normal;
   margin-bottom: 0px;
@@ -245,7 +250,7 @@ export const SidebarTitle = styled.h2`
   align-items: center;
 `;
 
-/* PROGRESS CATEGORIES CSS */
+/**** PROGRESS CATEGORIES CSS ****/
 export const ProgressCategoriesTitle = styled.h2`
   font-style: normal;
   margin-bottom: 0px;
@@ -261,7 +266,7 @@ export const ProgressCategoriesIconDiv = styled.div`
   border-radius: 50%;
 `;
 
-/* PROGRESS PAGE CSS */
+/**** PROGRESS PAGE CSS ****/
 
 export const BadgeCollectionDiv = styled.div`
   background-color: #FFFFFF;

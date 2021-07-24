@@ -12,7 +12,6 @@ export function MobileUserDetailsHeader() {
     const [userScore, setUserScore] = useState(0)
     const { userData } = useAuth();
 
-
     useEffect(() => {
         const whatIsTheHour = () => {
             var date = new Date();
