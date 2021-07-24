@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import styled from 'styled-components';
 import { StyledText, StyledTitle } from "../../components/designSystem/mobileDS";
@@ -8,6 +7,9 @@ export const MobileUserDetailsHeaderWrapper = styled.div`
     
 `;
 
+/**
+ * mobile header component
+ */
 export function MobileUserDetailsHeader({ props }) {
     const [hour, setHour] = useState("");
     const [userScore, setUserScore] = useState(0)

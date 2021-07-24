@@ -7,16 +7,18 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
-// types of notifications
+/****************** TYPE OF NOTIFICATION ******************/
 const MEMBER_VOTED = 1;
 
+/**
+ * mobile challenge (full) card
+ */
 export function SingleChallenge(props) {
-
   const [isOpen, setIsOpen] = useState(false);
   const { curr } = props;
   const [votersPhotos, setVotersPhotos] = useState([]);
   const [isDisabled, setDisabled] = useState(false);
-  const {userData, groupMemberData, forceRender, updateVal} = useAuth();
+  const {userData, groupMemberData, forceRender} = useAuth();
 
   useEffect(() => {
     // set disabled button if needed
@@ -38,6 +40,7 @@ export function SingleChallenge(props) {
   }, [userData, curr]);
 
   useEffect(() => {
+    //get voted group members photos
     const fetchVotersPhotos = () => {
       if (userData == null || curr == null) {
         return;
@@ -45,7 +48,7 @@ export function SingleChallenge(props) {
       const votePromise = getVoteDocData(curr.id, userData.groupId);
       votePromise.then(async (doc) => {
         if (doc != null) {
-          const votersId = doc.votersId.filter((id) => id !== userData.id);
+          const votersId = doc.votersId
           let images = []
           groupMemberData.forEach((member) => {
             if (votersId.includes(member.id)){
@@ -62,16 +65,20 @@ export function SingleChallenge(props) {
     fetchVotersPhotos();
   }, [curr, userData, groupMemberData]);
 
+   /* the function handles click event */
   const handleVote = (event) => {
     event.preventDefault();
     setDisabled(true);
+
     // creates vote document with the user's vote
     generateVotesDocument(userData, curr, groupMemberData);
+
     //send notification to the other group members
     notiForGroupMembers(groupMemberData, userData.id, MEMBER_VOTED);
     forceRender();
   };
 
+  // voters images object
   const images = votersPhotos.length > 0 ? (
     votersPhotos.map((voter, index) => {
       return (
@@ -111,15 +118,13 @@ export function SingleChallenge(props) {
 }
 
 
-// ////////////////////////////// end of single challenge component /////////////////////////
-// ////////////////////////////// Start of full challenge div component /////////////////////////
-
-
+/**
+ * mobile challenge (brief) component
+ */
 export function ChallengesDiv() {
-
     const [challenges, setChallenges] = useState([]);
 
-    //gets the  10 challenges from db order by level
+    //gets the challenges from db order by level
     useEffect(() => {
         const fetchChallenges = async () => {
           const challengesPromise = getChallengesData();
@@ -128,6 +133,7 @@ export function ChallengesDiv() {
         fetchChallenges();
       }, []);
 
+    //display all the challenges
     var displayChallenges = challenges ? (
         challenges.map((challenge) => {
           return (

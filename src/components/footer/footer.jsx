@@ -45,6 +45,9 @@ const PrivacyText = styled.p`
   font-size: 11px;
 `;
 
+/**
+ * web App footer components
+ */
 export function Footer(props) {
   return (
     <FooterContainer>

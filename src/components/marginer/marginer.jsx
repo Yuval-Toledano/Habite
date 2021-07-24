@@ -21,6 +21,10 @@ const Separator = styled.span`
     margin-bottom: 32px;
     display:inline-block;
 `;
+
+/**
+ * margin component
+ */
 function Marginer(props) {
   const { direction } = props;
 

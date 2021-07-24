@@ -5,10 +5,12 @@ import {useAuth} from "../../context/AuthContext";
 import {getChallengeDocumentData, generateVotesDocument, notiForGroupMembers} from "../../server/firebaseTools";
 import {getVoteDocData} from "../../server/firebaseTools";
 
-// types of notifications
+/****************** TYPE OF NOTIFICATION ******************/
 const MEMBER_VOTED = 1;
 
-
+/**
+ * web challenge (full) card
+ */
 export function ChallengeCard(props) {
     const { curr } = props;
     const [challenge, setChallenge] = useState(null);
@@ -54,16 +56,15 @@ export function ChallengeCard(props) {
     }, [curr]);
   
     useEffect(() => {
+      //get voted group members photos
       const fetchVotersPhotos = () => {
         if (userData == null || challenge == null) {
           return;
         }
-        // //TODO: ask about how its looking
-        // setVotersPhotos([]);
         const votePromise = getVoteDocData(challenge.id, userData.groupId);
         votePromise.then(async (doc) => {
           if (doc != null) {
-            const votersId = doc.votersId.filter((id) => id !== userData.id);
+            const votersId = doc.votersId
             let images = []
             groupMemberData.forEach((member) => {
               if (votersId.includes(member.id)){
@@ -80,16 +81,20 @@ export function ChallengeCard(props) {
       fetchVotersPhotos();
     }, [challenge, userData, groupMemberData]);
   
+    /* the function handles click event */
     const handleVote = (event) => {
       event.preventDefault();
       setDisabled(true);
+
       // creates vote document with the user's vote
       generateVotesDocument(userData, challenge, groupMemberData);
+
       //send notification to the other group members
       notiForGroupMembers(groupMemberData, userData.id, MEMBER_VOTED);
       forceRender();
     };
   
+    /* the function gets challenge's level */
     function getLevel() {
       if (challenge.level === 1) {
         return "Beginner";
@@ -100,6 +105,7 @@ export function ChallengeCard(props) {
       }
     }
   
+    // voters images object
     const images = votersPhotos.length > 0 ? (
       votersPhotos.map((voter, index) => {
         return (
@@ -120,6 +126,7 @@ export function ChallengeCard(props) {
         );
       })) : <div>no group member voted for this challenge</div>
     
+    // current button object
     const button = isDisabled ? (
       <DisableButton>I'm in</DisableButton>
       ) : (

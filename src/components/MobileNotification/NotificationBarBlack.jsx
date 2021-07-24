@@ -4,9 +4,10 @@ import styled from "styled-components"
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import { NotificationWindow } from "./MobileNotiWindow";
-import useSound from 'use-sound';
 import { JoinFriendsWindow } from "../joinFriends/joinWindow";
 import { JoinFriendsBG } from "../joinFriends/joinBG";
+
+/****************** STYLED NOTIFICATION ICON BLACK ******************/
 
 const NotiBarContainer = styled.div`
     display: inline-flex;
@@ -96,10 +97,6 @@ function NotificationBarBlack(props) {
     const [notiData, setNotiData] = useState([])
     const [showJoin, setShowJoin] = useState(false)
 
-    // error here
-    const [play] = useSound('../../audio/piano.mp3', {
-        onPlayError: () => { console.log("error audio") }
-    })
 
     const prevNoti = usePrevious(notiData)
 
@@ -115,21 +112,19 @@ function NotificationBarBlack(props) {
             const isNewNoti = isEqual(prevNoti, noti)
             setNotiData(noti)
             setShowDot(!isNewNoti)
-            if (isNewNoti) {
-                play()
-            };
+           
         }
         fetchNotification();
     }, [userData, prevNoti, showDot, show])
 
     const closeWindow = () => {
         setShow(!show);
-        play();
+
     }
 
     const closeWindowJoin = () => {
         setShowJoin(!showJoin);
-        play();
+
     }
 
     return (

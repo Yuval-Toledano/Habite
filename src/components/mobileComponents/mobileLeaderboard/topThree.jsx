@@ -6,14 +6,15 @@ import SecondCircle from "../../svgs/topThreeSvgs/SecondCircle.svg";
 import ThirdCircle from "../../svgs/topThreeSvgs/ThirdCircle.svg";
 import Crown from "../../svgs/topThreeSvgs/crown.svg";
 
-
+/**
+ * group members top 3 component
+ */
 export function TopThree() {
 
     const { groupMemberData } = useAuth();
     const sortedGroupMemberData = [].concat(groupMemberData);
     sortedGroupMemberData.sort((a, b) => (a.score < b.score) ? 1 : -1);
     if (sortedGroupMemberData.length > 2) {
-
         const topThreeMembers = sortedGroupMemberData.slice(0, 3);
 
         return (

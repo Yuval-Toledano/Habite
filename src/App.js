@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useHistory,
-  useParams,
-  Redirect,
-  useLocation,
-} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PageTemplate from "./containers/pages/pageTemplate";
 import Overview from "./containers/pages/overview";
@@ -21,15 +13,14 @@ import MobileOverview from "./containers/mobile/MobileOverview";
 import MobileChallenges from "./containers/mobile/MobileChallenges";
 import MobileAchievements from "./containers/mobile/MobileAchievements";
 import MobileRules from "./containers/mobile/Rules";
-// sign up/log in proccess
 import SignUpNG from "./containers/pages/auth/SignUpNG";
 import SignUpJG from "./containers/pages/auth/SignUpJG";
 import Login from "./containers/pages/auth/LogIn";
-
 import PrivateRoute from "./components/privateRoute/privateRoute";
-
 import NotFoundPage from "./containers/pages/NotFoundPage";
 
+
+/****************** WINDOW DIMENSIONS ******************/
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -39,10 +30,14 @@ function getWindowDimensions() {
   };
 }
 
+/**
+ * custom hook to make the app responsive
+ */
 function useWindowDimensions() {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
+
 
   useEffect(() => {
     function handleResize() {
@@ -56,6 +51,11 @@ function useWindowDimensions() {
   return windowDimensions;
 }
 
+/****************** HABITE APP ******************/
+
+/**
+ * The main App component, provide an entry into the App
+ */
 function App() {
   const ValidPaths = [
     "/",
@@ -71,11 +71,12 @@ function App() {
   ];
 
   const currPath = window.location.pathname;
-  var dimentions = useWindowDimensions();
+  var dimensions = useWindowDimensions();
 
   if (ValidPaths.indexOf(currPath) > -1) {
-    if (dimentions.width < 500) {
-      // needs to be the mobile routing!!!
+
+    //mobile
+    if (dimensions.width < 500) {
 
       return (
         <Router>
@@ -86,37 +87,19 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup/:groupId" component={SignUpJG} />
               <MobileHomeTemplate>
-                <PrivateRoute
-                  exact
-                  mode="white"
-                  path="/overview"
-                  component={MobileOverview}
-                />
-                <PrivateRoute
-                  exact
-                  path="/challenges"
-                  component={MobileChallenges}
-                  mode="black"
-                />
-                <PrivateRoute
-                  exact
-                  path="/achievements"
-                  component={MobileAchievements}
-                  mode="white"
-                />
-                <Route
-                  exact
-                  path="/rulesOfGame"
-                  component={MobileRules}
-                  mode="black"
-                />
+                <PrivateRoute exact mode="white" path="/overview" component={MobileOverview} />
+                <PrivateRoute exact path="/challenges" component={MobileChallenges} mode="black" />
+                <PrivateRoute exact path="/achievements" component={MobileAchievements} mode="white" />
+                <Route exact path="/rulesOfGame" component={MobileRules} mode="black" />
               </MobileHomeTemplate>
             </Switch>
           </AuthProvider>
         </Router>
       );
-      // end of mobile routing
+
+    // web
     } else {
+
       return (
         <Router>
           <AuthProvider>
@@ -136,13 +119,15 @@ function App() {
         </Router>
       );
     }
+
+  //invalid path
   } else {
+
     return (
       <Router>
         <Switch>
           <Route path="*" component={NotFoundPage} />
         </Switch>
-
       </Router>
     );
   }
