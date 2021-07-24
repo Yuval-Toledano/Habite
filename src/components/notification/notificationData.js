@@ -1,7 +1,9 @@
 import React from 'react'
 
 
-
+/**
+ * type of notifications
+ */
 export const NotificationData = [
     {
         id: 0,

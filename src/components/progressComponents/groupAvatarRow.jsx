@@ -4,6 +4,9 @@ import SugarCube from "../../components/svgs/avatars/2-sugarCube.svg";
 import Marshmellow from "../../components/svgs/avatars/3-marshmellow.svg";
 import { PrevPeronalAvatarDiv, CurrPeronalAvatarDiv, IndicationText } from "../designSystem/common";
 
+/**
+ * web avatars display
+ */
 export function GroupAvatarRow(props) {
     return (
         <div className="row d-flex align-items-center">

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import {getGroupDocument} from "../../server/firebaseTools"
 import { useAuth } from "../../context/AuthContext";
 
-
+/**
+ * timer component
+ */
 export default function ChallengeTimer() {
   const { groupData } = useAuth();
   
   const endTime = groupData.timeStampEnd2; 
-  console.log()
   const calculateTimeLeft = () => {
     let endDate = new Date(endTime.seconds * 1000);
     let nowDate = new Date();

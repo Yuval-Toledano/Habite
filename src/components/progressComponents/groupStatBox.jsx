@@ -2,6 +2,9 @@ import React from 'react';
 import { StatBoxContainer, StatBoxNumber, StatBoxText } from "../designSystem/common";
 import TrophyLogo from "../../components/svgs/Trophy.svg";
 
+/**
+ * group member statistic component
+ */
 export function GroupStatBox(props) {
     return (
         <StatBoxContainer>

@@ -5,10 +5,10 @@ import './notificationWindow.css'
 import { NotificationData } from './notificationData.js'
 
 
-
+/**
+ * open web notification window component
+ */
 export const NotificationWindow = ({ show, notiData}) => {
-
-
     const reverseNotiArr = notiData.reverse() ;
     const displayNoti = notiData? (notiData.length > 3 ? notiData.slice(-3) : reverseNotiArr) : []
     
