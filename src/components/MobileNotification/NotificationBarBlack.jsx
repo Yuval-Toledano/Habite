@@ -120,7 +120,7 @@ function NotificationBarBlack(props) {
             };
         }
         fetchNotification();
-    }, [userData, prevNoti, showDot, show])
+    }, [userData, prevNoti, showDot, show]);
 
     const closeWindow = () => {
         setShow(!show);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {getGroupDocument} from "../../server/firebaseTools"
+// import {getGroupDocument} from "../../server/firebaseTools";
 import { useAuth } from "../../context/AuthContext";
 
 
@@ -53,15 +53,15 @@ export default function ChallengeTimer() {
     );
   });
 
-  function timesUp() {
-    const groupPromise = getGroupDocument(groupData.groupId);
-    groupPromise.then(doc => {
-      doc.update({
-        finish: true,
-      })
-    })
-    return <span>Time's up!</span>
-  }
+  // function timesUp() {
+  //   const groupPromise = getGroupDocument(groupData.groupId);
+  //   groupPromise.then(doc => {
+  //     doc.update({
+  //       finish: true,
+  //     })
+  //   })
+  //   return <span>Time's up!</span>
+  // }
 
   return (
     <div>

@@ -16,7 +16,7 @@ export function SingleChallenge(props) {
   const { curr } = props;
   const [votersPhotos, setVotersPhotos] = useState([]);
   const [isDisabled, setDisabled] = useState(false);
-  const {userData, groupMemberData, forceRender, updateVal} = useAuth();
+  const {userData, groupMemberData, forceRender} = useAuth();
 
   useEffect(() => {
     // set disabled button if needed

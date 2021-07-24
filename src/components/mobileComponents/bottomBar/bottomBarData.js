@@ -17,7 +17,7 @@ export const bottomsideData = [
   {
     title: "Achievements",
     icon: <Dashboard />,
-    link: "/achievements",
+    link: "/progress",
     mode: "white",
   },
   {

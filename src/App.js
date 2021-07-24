@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  useHistory,
-  useParams,
-  Redirect,
-  useLocation,
+  Route
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import PageTemplate from "./containers/pages/pageTemplate";
@@ -64,7 +60,7 @@ function App() {
     "/signup/:groupId",
     "/overview",
     "/challenges",
-    "/achievements",
+    "/progress",
     "/rulesOfGame",
     "/styling",
     "/progress",
@@ -100,7 +96,7 @@ function App() {
                 />
                 <PrivateRoute
                   exact
-                  path="/achievements"
+                  path="/progress"
                   component={MobileAchievements}
                   mode="white"
                 />

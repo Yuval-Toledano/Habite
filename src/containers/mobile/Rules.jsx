@@ -1,8 +1,7 @@
 import React from "react";
 import { FlyingBox, SingleRuleDiv, StyledTitle, StyledText } from "../../components/designSystem/mobileDS";
-import BGpink from "../../components/svgs/mobileBackgrounds/BGpink.svg";
 import NotificationBarBlack from "../../components/MobileNotification/NotificationBarBlack";
-import { BackgroundCircleRules, BackgroundRules } from "../../components/designSystem/mobileDS";
+import { BackgroundRules } from "../../components/designSystem/mobileDS";
 import SugarCube from "../../components/svgs/avatars/2-sugarCube.svg";
 
 

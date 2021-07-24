@@ -69,20 +69,18 @@ export function PersonalProgressCard(props) {
         <Separator className="mt-4"/>
         <div className="statCardSection row">
           <div className="StatRow row">
-            <div className="col-6">
+            <div className="col-4">
               <PersonalStatBox className="" title={challenges} subtitle="Challenges completed"/>
             </div>
-            <div className="col-6">
-              <PersonalStatBox className="" title="23" subtitle="Day streak in a row"/>
-            </div>
-          </div>
-          <div className="StatRow row">
-            <div className="col-6">
-                <PersonalStatBox className="" title={score} subtitle="Points overall"/>
-            </div>
-            <div className="col-6">
+            <div className="col-4">
               <PersonalStatBox className="" title={level} subtitle="Character level"/>
             </div>
+            <div className="col-4">
+                <PersonalStatBox className="" title={score} subtitle="Points overall"/>
+            </div>
+            {/* <div className="col-6">
+              <PersonalStatBox className="" title="23" subtitle="Day streak in a row"/>
+            </div> */}
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ export default function Login(props) {
     const history = useHistory();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const dimentions = useWindowDimensions();
+    // const dimentions = useWindowDimensions();
     
   async function handleSubmit(e) {
     e.preventDefault();

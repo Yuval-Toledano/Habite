@@ -8,9 +8,7 @@ import { Link } from "react-router-dom";
 
 function sendMail(event) {
   event.preventDefault();
-  var link = "mailto:hellohabite@gmail.com"
-    + "&subject=" + encodeURIComponent("Hi there!")
-    ;
+  var link = "mailto:hellohabite@gmail.com";
 
   window.location.href = link;
   // document.location.href = "mailto:hellohabite@gmail.com";
@@ -158,7 +156,7 @@ export function MobileLanding(props) {
             <StyledText mode={"over_dark"}>Got a question?</StyledText>
             <StyledLink mode={"over_dark"} onClick={sendMail} id="contactus"><Markunread fontSize="small" /> Contact us</StyledLink>
             <p></p>
-            <StyledText mode={"over_dark"}>© 2021 Habite. All rights reserved. Built by TYSAN with love 🧡</StyledText>
+            <StyledText mode={"over_dark"}>© 2021 Habite. All rights reserved. Built by the Habite team: Yuval, Sara, Avigail, Noam and Tal, with love 🧡</StyledText>
           </div>
           <div className="col-1">
 
