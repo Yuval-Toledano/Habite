@@ -36,7 +36,7 @@ export function TopThree() {
     } else {
         return (
             <InfoBoxDiv>
-                <StyledText>There are less than 3 members... &#128542;</StyledText>
+                <StyledText>To see the leaderboard add more than 3 members to your group. &#128542;</StyledText>
             </InfoBoxDiv>
         );
     }

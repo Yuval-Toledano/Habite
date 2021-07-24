@@ -2,7 +2,7 @@ import React from "react";
 import { StyledTitle } from "../../components/designSystem/mobileDS";
 import Orange from "../../components/svgs/mobileBackgrounds/Orange.svg";
 import NotificationBarWhite from "../../components/MobileNotification/NotificationBarWhite";
-import { BackgroundCircle, FlyingBox } from "../../components/designSystem/mobileDS";
+import { BackgroundCircle, FlyingBox, BackgroundRegular } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileBadges } from "../../components/mobileComponents/mobileBadges/mobileBadges"
 
@@ -27,6 +27,7 @@ export default function MobileAchievements() {
             </FlyingBox>
 
             <BackgroundCircle src={Orange} alt="Upper background color" />
+            <BackgroundRegular alt="Upper background color" />
         </>
     );
 }
