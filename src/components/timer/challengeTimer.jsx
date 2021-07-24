@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import {getGroupDocument} from "../../server/firebaseTools";
 import { useAuth } from "../../context/AuthContext";
 
 /**
