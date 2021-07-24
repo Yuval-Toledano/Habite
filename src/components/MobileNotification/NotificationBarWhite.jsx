@@ -8,6 +8,9 @@ import useSound from 'use-sound';
 import { JoinFriendsWindow } from "../joinFriends/joinWindow";
 import { JoinFriendsBG } from "../joinFriends/joinBG";
 
+
+/****************** STYLED NOTIFICATION ICON WHITE ******************/
+
 const NotiBarContainer = styled.div`
     display: inline-flex;
     justify-content: space-between;

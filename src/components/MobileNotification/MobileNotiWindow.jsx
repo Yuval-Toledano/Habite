@@ -3,12 +3,10 @@ import '../notification/notificationWindow.css';
 import { NotificationData } from '../notification/notificationData.js';
 import { StyledTitle, StyledText } from "../../components/designSystem/mobileDS";
 
-
-
-
+/**
+ * open mobile notification window component
+ */
 export const NotificationWindow = ({ show, notiData}) => {
-
-
     const reverseNotiArr = notiData.reverse() ;
     const displayNoti = notiData? (notiData.length > 3 ? notiData.slice(-3) : reverseNotiArr) : []
     

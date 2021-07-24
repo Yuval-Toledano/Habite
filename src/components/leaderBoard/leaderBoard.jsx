@@ -17,6 +17,9 @@ const LeaderBoxContainer = styled.div`
   border-radius: 10px;
 `;
 
+/**
+ * web leader board
+ */
 export function LeaderBoard() {
   const { groupMemberData } = useAuth();
 

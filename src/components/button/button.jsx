@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { ProgressCategoriesTitle, ProgressCategoriesIconDiv } from '../designSystem/common';
 
+/****************** STYLED BUTTONS ******************/
+
 const ButtonWrapper = styled.button`
   border: none;
   outline: none;
@@ -23,7 +25,6 @@ const ButtonWrapper = styled.button`
   z-index: 1;
   height: ${({ height }) => (height ? height + "px" : "auto")};
 
-  //TODO: new hover for white button
   &:hover {
     color: #FFF4E6;
     background-color: #FD35BD;
@@ -106,11 +107,6 @@ const DisableButtonWrapper = styled.button`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-  // button:disabled {
-  //   cursor: not-allowed;
-  //   pointer-events: all !important;
-  // }
 `;
 
 const ProgressSidebarWrapper = styled.button`
@@ -142,6 +138,9 @@ const ProgressSidebarWrapper = styled.button`
   }
 `;
 
+/**
+ * primary button component
+ */
 export function Button(props) {
   const { size, color, background, onClick, width, height } = props;
 
@@ -152,6 +151,9 @@ export function Button(props) {
   );
 }
 
+/**
+ * disabled button component
+ */
 export function DisableButton(props){
   const { size, color, background } = props;
 
@@ -162,6 +164,9 @@ export function DisableButton(props){
   );
 }
 
+/**
+ * secondary button component
+ */
 export function SecondaryButton(props){
   const { size, color, background, onClick, width } = props;
 
@@ -172,6 +177,9 @@ export function SecondaryButton(props){
   );
 }
 
+/**
+ * link button component
+ */
 export function TextualButton(props){
   const { size, color, background, onClick, id } = props;
 
@@ -182,6 +190,9 @@ export function TextualButton(props){
   );
 }
 
+/**
+ * progress page button component
+ */
 export function ProgressSidebarButton(props){
   const { size, color, background, onClick } = props;
 
