@@ -232,7 +232,6 @@ export function MobileInfoBox(props) {
       var challengeLogData = await Promise.all(usersChallengeLogPromise);
 
       if (challengeLogData.some(item => item === undefined)) {
-        // forceRender()
         return;
       }
       else {
