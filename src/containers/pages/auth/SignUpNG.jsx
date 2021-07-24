@@ -1,65 +1,37 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import {
-  TextInPage,
-  StandAloneTitle,
-} from "../../../components/designSystem/common";
+import { TextInPage, StandAloneTitle } from "../../../components/designSystem/common";
 import { PageContainer } from "../../../components/pageContainers/pageContainer";
 import { useAuth } from "../../../context/AuthContext";
 import "./auth.css";
 
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height,
-  };
-}
-
-function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  );
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimensions(getWindowDimensions());
-    }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return windowDimensions;
-}
-
+/**
+ * sign up and create a new group form 
+ */
 export default function SignUpNG(props) {
   const emailRef = useRef();
   const passwordRef = useRef();
   const nameRef = useRef();
   const imageRef = useRef();
   const [image, setImage] = useState(null);
-
   const { signUpNG} = useAuth();
   const history = useHistory();
-
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-//   const dimentions = useWindowDimensions();
 
+  /* the function checks if the the email is a valid input */
   function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
-  // The function handles submit form
+  /* The function handles submit form */
   async function handleSubmit(event) {
     event.preventDefault();
 
     if(!validateEmail(emailRef.current.value)){
         return setError("The email address is badly formatted.")
     }
-
     try {
       setError("");
       setLoading(true);
@@ -77,7 +49,7 @@ export default function SignUpNG(props) {
     history.push("/overview");
   }
 
-  // The function handles submit image
+  /* The function handles submit image */
   function handleUploadImage(e) {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
@@ -151,7 +123,7 @@ export default function SignUpNG(props) {
                 name="userPassword"
                 id="userPassword"
                 ref={passwordRef}
-                placeholder="thestrongestpasswordinthe"
+                placeholder="6-digits-min"
                 required
               ></input>
             </div>

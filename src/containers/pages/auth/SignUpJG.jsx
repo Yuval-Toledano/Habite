@@ -5,29 +5,28 @@ import {PageContainer} from "../../../components/pageContainers/pageContainer"
 import {useAuth} from "../../../context/AuthContext";
 import "./auth.css";
 
+/**
+ * sign up and join to existing group form
+ */
 export default function SignUpJG(props) {
     const emailRef = useRef();
     const passwordRef = useRef();
     const nameRef = useRef();
     const imageRef = useRef();
     const [image, setImage] = useState(null);
-    
     const { groupId }  = useParams();
-
     const { signUpJG } = useAuth();
     const history = useHistory();
-    
-
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    /* the function checks if the the email is a valid input */
     function validateEmail(email) {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
 
-    
-    // The function handles submit form
+    /* The function handles submit form */
     async function handleSubmit(event) {
         event.preventDefault();
         
@@ -47,7 +46,7 @@ export default function SignUpJG(props) {
         history.push("/user/overview")
     }
 
-    // The function handles submit image
+    /* The function handles submit image */
     async function handleUploadImage(e){
         if(e.target.files[0]){
           setImage(e.target.files[0])
@@ -108,7 +107,7 @@ return (
                             name="userPassword"
                             id="userPassword"
                             ref={passwordRef}
-                            placeholder="thestrongestpasswordinthe" 
+                            placeholder="6-digits-min" 
                             required></input>
                         </div>
                     </div>
