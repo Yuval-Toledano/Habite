@@ -90,8 +90,16 @@ export function MobileLanding(props) {
             <div className="d-flex flex-col justify-content-between py-4">
               <div className="p-2">
                 <div className="slide">
-                  <StyledTitle type={"landingTitle"}>How?</StyledTitle>
+                  <StyledTitle type={"landingTitle"}>How? ⚙️</StyledTitle>
                   <StyledText>Awareness is the biggest step towards the change you desire</StyledText>
+                </div>
+                <div className="slide">
+                  <StyledTitle type={"landingTitle"}>Form your supergroup ✨</StyledTitle>
+                  <StyledText>Participate in small nutrition challenges with group members who share your goal</StyledText>
+                </div>
+                <div className="slide">
+                  <StyledTitle type={"landingTitle"}>Express the love 🤟</StyledTitle>
+                  <StyledText>Help each other earn points and achievements</StyledText>
                 </div>
               </div>
             </div>
@@ -106,8 +114,8 @@ export function MobileLanding(props) {
 
         <div className="row justify-content-center">
           <div className="col-auto">
-            <div className="d-flex flex-row justify-content-center">
-              <div className="StripAnimation">
+            <div className="d-flex flex-row justify-content-between">
+              <div className="d-flex flex-row StripAnimation">
                 <SvgBeerbottle />
                 <SvgBeerbottle />
                 <SvgBeerbottle />
