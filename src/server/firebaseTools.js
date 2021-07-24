@@ -14,13 +14,13 @@ const CLASSIC_UPDATE = 1;
 const NO_APPROVED_UPDATE = 2;
 const NO_CURR_UPDATE = 3;
 
-const TO_LEVEL_2 = 300;
-const TO_LEVEL_3 = 700;
+// const TO_LEVEL_2 = 300;
+// const TO_LEVEL_3 = 700;
 
 // types of notifications
-const GO_VOTE = 0;
-const MEMBER_VOTED = 1;
-const MEMBER_SUCCESS = 2;
+// const GO_VOTE = 0;
+// const MEMBER_VOTED = 1;
+// const MEMBER_SUCCESS = 2;
 const NEW_CHALLENGE = 3;
 
 /************************** AUTH FUNCTIONS **************************/
@@ -33,11 +33,11 @@ export const generateUserDocument = async (user, groupId, name, pic) => {
   const userRef = db.doc(`users/${user.uid}`);
   const snapshot = await userRef.get();
   if (!snapshot.exists) {
-    const email = user.email;
-    const challengeVotes = [];
-    const notification = [];
-    const score = 0;
-    const level = 1;
+    // const email = user.email;
+    // const challengeVotes = [];
+    // const notification = [];
+    // const score = 0;
+    // const level = 1;
     try {
       await userRef.set({
         email: user.email,
@@ -480,7 +480,7 @@ export const generateVotesDocument = async (
   // if no vote, then creates a new doc in votes collection with relevant info
   if (dataVotes.empty) {
     var votesId = [currUserData.id];
-    const res = await db.collection("votes").add({
+    await db.collection("votes").add({
       groupId: currGroupId,
       challengeId: challengeId,
       votersId: votesId,

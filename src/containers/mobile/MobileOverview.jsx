@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
 import Teal from "../../components/svgs/mobileBackgrounds/Teal.svg";
 import NotificationBarWhite from "../../components/MobileNotification/NotificationBarWhite";
-import { BackgroundCircle, FlyingBox, StyledButton, StyledText } from "../../components/designSystem/mobileDS";
+import { BackgroundCircle, FlyingBox, StyledButton } from "../../components/designSystem/mobileDS";
 import { MobileInfoBox } from "../../components/mobileComponents/mobileInfoBox/mobileInfoBox";
 import { MobileLeaderboard } from "../../components/mobileComponents/mobileLeaderboard/mobileLeaderboard";
 import { TopThree } from "../../components/mobileComponents/mobileLeaderboard/topThree";
@@ -15,7 +15,7 @@ import BugReportIcon from '@material-ui/icons/BugReport';
 
 export default function MobileOverview() {
 
-    const { groupData, logOut, userData } = useAuth();
+    const { groupData, logOut } = useAuth();
     const history = useHistory();
     const groupCount = groupData ? groupData.countGroup : "No group count";
     // to send users to the bug report page

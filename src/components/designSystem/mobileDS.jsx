@@ -1,19 +1,16 @@
 // mobile design system - only for mobile
 // import this file if you work on mobile version
 
-import { MicNoneSharp, MicNoneTwoTone, PinDropRounded } from '@material-ui/icons';
 import styled from 'styled-components';
 
 const px = "px";
-const rem = "rem";
-const shadow = "-2px 4px 0px rgba(160, 160, 160, 0.25)";
 
+const shadow = "-2px 4px 0px rgba(160, 160, 160, 0.25)";
 const colors = {
     main_cta: "#E71C7D", bg: "#FAF0E4", text: "#333331", accent: "#F8F7F5", link: "#00397B",
     shadow_main: "#E993B1", shadow_orange: "#F16643", shadow_teal: "#0891A8", shadow_yellow: "#FBE536",
     pink_hover: "#FD35BD", light_gray: "#D8D8D8", mid_gray: "#999896", dark_gray: "#666662"
 };
-
 
 // typography
 
@@ -49,6 +46,8 @@ export const StyledTitleWrapper = styled.h1`
             case 'subtitle':
             case 'landingTitle':
                 return typography.line_height_2 + px;
+            default:
+                return "16px";
         }
     }};
     font-size: ${props => (props.size ? props.size + px : () => {
@@ -58,17 +57,21 @@ export const StyledTitleWrapper = styled.h1`
             case 'subtitle':
             case 'landingTitle':
                 return typography.medium + px;
+            default:
+                return props.size + px;
         }
     }
     )};
     color: ${props => (props.color ? props.color : () => {
         switch (props.type) {
             case 'title':
-                return (props.mode == "over_dark" ? colors.accent : colors.text);
+                return (props.mode === "over_dark" ? colors.accent : colors.text);
             case 'subtitle':
-                return (props.mode == "over_dark" ? colors.accent : colors.text);
+                return (props.mode === "over_dark" ? colors.accent : colors.text);
             case 'landingTitle':
                 return colors.main_cta;
+            default:
+                return colors.shadow_teal;
         }
     }
     )};
@@ -79,14 +82,14 @@ export const StyledText = styled.p`
   font-family: "Open sans";
   font-style: Regular;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
-  color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
+  color: ${({ mode }) => (mode === "over_dark" ? colors.accent : colors.text)};
 `;
 
 export const StyledTextCentered = styled.p`
   font-family: "Open sans";
   font-style: Regular;
   font-size: ${({ size }) => (size ? size + px : typography.tiny + px)};
-  color: ${({ mode }) => (mode == "over_dark" ? colors.accent : colors.text)};
+  color: ${({ mode }) => (mode === "over_dark" ? colors.accent : colors.text)};
   margin-bottom: 0;
 `;
 
@@ -133,6 +136,8 @@ const StyledButtonWrapper = styled.button`
                 return colors.accent;
             case 'disabled':
                 return colors.light_gray;
+            default:
+                return colors.main_cta;
         }
     }};
     color: ${props => {
@@ -144,6 +149,8 @@ const StyledButtonWrapper = styled.button`
                 return colors.main_cta;
             case 'disabled':
                 return colors.dark_gray;
+            default:
+                return colors.accent;
         }
     }};
     font-size: ${({ size }) => (size ? size + px : typography.small + px)};
@@ -179,6 +186,8 @@ const StyledButtonWrapper = styled.button`
             case 'primary':
             case 'secondary':
                 return "none";
+            default:
+                return shadow;
         }
     }};
         background: ${props => {
@@ -189,6 +198,8 @@ const StyledButtonWrapper = styled.button`
                 return colors.pink_hover;
             case 'disabled':
                 return colors.light_gray;
+            default:
+                return colors.pink_hover;
         }
     }};
         color: ${props => {
@@ -199,6 +210,8 @@ const StyledButtonWrapper = styled.button`
                 return colors.accent;
             case 'disabled':
                 return colors.dark_gray;
+            default:
+                return colors.accent;
         }
     }};
     }
@@ -301,7 +314,7 @@ export const LeaderBoardPhotoWrapper = styled.img`
     }};
 `;
 
-export const TopThreeMiddle= styled.img`
+export const TopThreeMiddle = styled.img`
     height: 70px;
     width: 70px;
     border-radius: 50%;
@@ -438,7 +451,7 @@ export function LeaderBoardPhoto(props) {
 }
 
 export function LeaderboardDiv(props) {
-    const { color} = props;
+    const { color } = props;
     return (
         <LeaderboardDivWrapper color={color} className="d-flex flex-row m-1 d-flex justify-content-around">
             {props.children}
@@ -489,14 +502,14 @@ export function Logo(props) {
 
 export function StyledBottombar(props) {
     const { size } = props;
-    return <BottombarWrapper className="bottom-0 end-0">
+    return <BottombarWrapper className="bottom-0 end-0" size={size}>
         {props.children}
     </BottombarWrapper>
 }
 
 export function StyledBottombarButton(props) {
-    const { onClick, alt, icon } = props;
-    return <BottombarButtonWrapper>
+    const { onClick} = props;
+    return <BottombarButtonWrapper onClick={onClick}>
         {props.children}
     </BottombarButtonWrapper>
 }

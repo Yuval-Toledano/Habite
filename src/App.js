@@ -64,7 +64,7 @@ function App() {
     "/signup/:groupId",
     "/overview",
     "/challenges",
-    "/achievements",
+    "/progress",
     "/rulesOfGame",
     "/styling",
     "/progress",

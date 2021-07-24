@@ -10,7 +10,7 @@ export const MobileUserDetailsHeaderWrapper = styled.div`
 /**
  * mobile header component
  */
-export function MobileUserDetailsHeader({ props }) {
+export function MobileUserDetailsHeader() {
     const [hour, setHour] = useState("");
     const [userScore, setUserScore] = useState(0)
     const { userData } = useAuth();

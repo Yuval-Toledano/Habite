@@ -167,7 +167,7 @@ export function AuthProvider({ children }) {
             setUserData(dataUser);
           });
       } else {
-        console.log("ERROR: no userId")
+        // console.log("ERROR: no userId")
         setUserData(null);
         setGroupData(null);
         setGroupMemberData([]);
@@ -200,7 +200,7 @@ export function AuthProvider({ children }) {
           setLoadData(false);
         });
       } else {
-        console.log("no userData")
+        // console.log("no userData")
         // setUserId(null);
         setUserData(null);
         setGroupData(null);
