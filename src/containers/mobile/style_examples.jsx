@@ -1,6 +1,7 @@
 import { MobilePageContainer } from "../../components/pageContainers/mobile_page_container";
 import { StyledButton, StyledTitle, StyledLink, StyledText } from "../../components/designSystem/mobileDS";
 
+// Styling codex
 export function StyleExamples(props) {
   return (
     <MobilePageContainer>

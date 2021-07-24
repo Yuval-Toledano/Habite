@@ -5,21 +5,13 @@ import { BackgroundCircle, FlyingBox, StyledTitle, BackgroundRegular } from "../
 import { ChallengesDiv } from "../../components/mobileComponents/Challenges/ChallengesDiv";
 import { useLocation } from "react-router-dom";
 
-
+// Mobile challenges container
 export default function MobileChallenges() {
-    
-    const location = useLocation();
-
-    if(location){
-        console.log("test test test: ", location)
-    }
-
-    
 
     return (
         <>
             {/* NotificationBar starts here */}
-            <NotificationBarBlack/>
+            <NotificationBarBlack />
             {/* NotificationBar ends here */}
             <FlyingBox zindx={1} top={50}>
                 <div className="d-flex flex-column align-items-center justify-content-center mb-4">
