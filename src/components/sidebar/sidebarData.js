@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from '@material-ui/icons';
+import {Home} from '@material-ui/icons';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 
