@@ -26,7 +26,7 @@ import {
 import { LeaderBoard } from "../../components/leaderBoard/leaderBoard";
 import File_copy from "@material-ui/icons/FileCopy";
 import styled from "styled-components";
-import Chart from "../../components/chart/chart";
+// import Chart from "../../components/chart/chart";
 import ChallengeTimer from "../../components/timer/challengeTimer";
 import { WhatsappShareButton } from 'react-share';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
@@ -48,7 +48,7 @@ const NO_CURR_UPDATE = 3;
 export default function Overview() {
   const { userData, groupData, groupMemberData, forceRender, loadData, updateVal} = useAuth();
   const [currChallenge, setCurrChallenge] = useState();
-  const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
+  // const [challengeLogSuccess, setChallengeLogSuccess] = useState(null);
   const [disabledButton, setDisabledButton] = useState(true);
   const history = useHistory();
 
@@ -208,7 +208,7 @@ export default function Overview() {
         return;
       }
       else {
-        setChallengeLogSuccess(challengeLogData);
+        // setChallengeLogSuccess(challengeLogData);
       }
     }
 
@@ -353,6 +353,16 @@ export default function Overview() {
         <div className="col me-2 my-0">
           {/* Current challenge row start */}
           {whatToDisplay}
+          {/* Leaderboard row start */}
+          <div className="" id="leaderboard_box">
+            <InfoBox>
+              <IndicationText>Leaderboard</IndicationText>
+              <LeaderBoardContainer className="d-flex flex-row">
+                    <LeaderBoard/>
+                  </LeaderBoardContainer>
+            </InfoBox>
+          </div>
+          {/* Leaderboard row end */}
           {/* Current challenge row end */}
 
           {/* Group code row start */}
@@ -389,21 +399,10 @@ export default function Overview() {
         {/* ----------------------------------- */}
         {/* Charts secondary column start */}
         <div className="col me-2 my-0">
-          {/* Leaderboard row start */}
-
-          <div className="" id="leaderboard_box">
-            <InfoBox>
-              <IndicationText>Leaderboard</IndicationText>
-              <LeaderBoardContainer className="d-flex flex-row">
-                    <LeaderBoard/>
-                  </LeaderBoardContainer>
-            </InfoBox>
-          </div>
-          {/* Leaderboard row end */}
 
           {/* Chart place start */}
           <div className="" id="progress_chart_box">
-            <InfoBox>
+            {/* <InfoBox>
               <div className="row">
                 <IndicationText>Group progress</IndicationText>
                 <SubTitle>
@@ -417,7 +416,7 @@ export default function Overview() {
               <div className="col">
                 {challengeLogSuccess && <Chart challengeLog={challengeLogSuccess}/>}
               </div>
-            </InfoBox>
+            </InfoBox> */}
           </div>
           {/* Chart place end */}
         </div>

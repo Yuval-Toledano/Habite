@@ -42,7 +42,7 @@ export default function SignUpNG(props) {
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const dimentions = useWindowDimensions();
+    // const dimentions = useWindowDimensions();
     
     // The function handles submit form
      async function handleSubmit(event) {

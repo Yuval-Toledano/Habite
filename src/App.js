@@ -60,7 +60,7 @@ function App() {
     "/signup/:groupId",
     "/overview",
     "/challenges",
-    "/achievements",
+    "/progress",
     "/rulesOfGame",
     "/styling",
     "/progress",
@@ -96,7 +96,7 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/achievements"
+                  path="/progress"
                   component={MobileAchievements}
                   mode="white"
                 />
