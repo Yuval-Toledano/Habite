@@ -48,21 +48,41 @@ export function MobileBadges(props) {
         }
     }
 
+// Static poster for the live presentation - remove after!
 return (
-    <MobileBadgeDiv className="d-flex flex-column align-items-start">
+  <MobileBadgeDiv className="d-flex flex-column align-items-start">
+      <div className="d-flex m-2">
+          <StyledTitle type="subtitle" >Badges</StyledTitle>
+      </div>
+      <div className="d-flex flex-row">
         <div className="d-flex m-2">
-            <StyledTitle type="subtitle" >Badges</StyledTitle>
+            <img src={SpoonFull} alt="Badge poster" />
         </div>
-        <div className="d-flex flex-row">
-        {userBadges && userBadges.map((poster) => {
-
-            return (
-            <div className="d-flex m-2">
-                <img src={poster} alt="Badge poster" />
-            </div>
-            );
-        })}
+        <div className="d-flex m-2">
+            <img src={Bottle} alt="Badge poster" />
         </div>
-    </MobileBadgeDiv>
+        <div className="d-flex m-2">
+            <img src={NonGuilty} alt="Badge poster" />
+        </div>
+      </div>
+  </MobileBadgeDiv>
 );
+
+// return (
+//     <MobileBadgeDiv className="d-flex flex-column align-items-start">
+//         <div className="d-flex m-2">
+//             <StyledTitle type="subtitle" >Badges</StyledTitle>
+//         </div>
+//         <div className="d-flex flex-row">
+//         {userBadges && userBadges.map((poster) => {
+
+//             return (
+//             <div className="d-flex m-2">
+//                 <img src={poster} alt="Badge poster" />
+//             </div>
+//             );
+//         })}
+//         </div>
+//     </MobileBadgeDiv>
+// );
 }
