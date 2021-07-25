@@ -82,7 +82,7 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup/:groupId" component={SignUpJG} />
               <MobileHomeTemplate>
-                <PrivateRoute exact mode="white" path="/overview" component={MobileOverview} />
+                <Route exact mode="white" path="/overview" component={MobileOverview} />
                 <PrivateRoute exact path="/challenges" component={MobileChallenges} mode="black" />
                 <PrivateRoute exact path="/progress" component={MobileAchievements} mode="white" />
                 <Route exact path="/rulesOfGame" component={MobileRules} mode="black" />
@@ -104,7 +104,7 @@ function App() {
               <Route path="/login" exact component={Login} />
               <Route path="/signup/:groupId" component={SignUpJG} />
               <PageTemplate>
-                <PrivateRoute path="/overview" exact component={Overview} />
+                <Route path="/overview" exact component={Overview} />
                 <PrivateRoute
                   path="/challenges"
                   exact
