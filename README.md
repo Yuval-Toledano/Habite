@@ -1,73 +1,35 @@
 
 ![](https://github.com/Yuval-Toledano/Habite/blob/main/src/images/logo.svg)
 
-# Getting Started with Create React App
+## HABITE 🍬 
+<p><b>Social sugar consumption reduction application.</b></p>
+<p>Habite helps young people who want to consume sugar more responsibly, to compete together with people whom they trust in nutrition challenges and by this, create healthier habits.</>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a href="https://habite-fd756.web.app">To the App...</a>
 
-## Available Scripts
+### Why Habite? 🤩
 
-In the project directory, you can run:
+<p>A common issue many face nowadays is the high sugar consumption found in most western countries. While many struggle to decrease their sugar intake very few actually succeed.         <b>Habite</b> is a solution for adults and young adults who are interested in changing their sugar consumption habits, and do so by turning the unpleasant experience into a democratic   group challenge game.</p>
+<p>We started with a user research. It revealed that people wish to have a positive empowering experience, rather than a failure-focused one. They want to share their nutrition         struggles with those who deal with similar issues, and we chose to target the section of that audience that responds well to competition, and use it to motivate them.
+<br>Based on those conclusions, we designed the game structure and started developing the client side and later the server side.</p>
 
-### `npm start`
+### Features
+Habite let you:
+- Communicate with group members in a competitional / encouraging manner
+- Present personal progress and relative achievement to group
+- Choose challenges by using a voting system and create the overall journey
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<details>
+  <summary>Architectural overview</summary>
+</details>
+  
+<details>
+<summary>Main APIs</summary>
+  <br>
+  Firebase was chosen as the server-side DB and it is Habite’s storage & hosting platform.<br>
+  Firebase provides the tools and infrastructure we needed to develop Habite. by firebase we were able to authenticate and manage users who access our application. Firebase Storage     lets us upload and store user generated content, such as images. Finally, we were able to manage our DB at cloud firestore. cloud firestore is a flexible, scalable database for       mobile, web, and server development from Firebase and Google Cloud Platform.
+  <br><br>
+  At firebaseTools.js file, you can find most of our functions that communicate with the data base.
+  
+  
+</details>
