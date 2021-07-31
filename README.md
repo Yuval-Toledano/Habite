@@ -9,12 +9,12 @@
 
 ### Why Habite? 🤩
 
-<p>A common issue many face nowadays is the high sugar consumption found in most western countries. While many struggle to decrease their sugar intakeת very few actually succeed.         <b>Habite</b> is a solution for adults and young adults who are interested in changing their sugar consumption habits, and do so by turning the unpleasant experience into a democratic   group challenge game.</p>
+<p>A common issue many face nowadays is the high sugar consumption found in most western countries. While many struggle to decrease their sugar intakes very few actually succeed.         <b>Habite</b> is a solution for adults and young adults who are interested in changing their sugar consumption habits, and do so by turning the unpleasant experience into a democratic   group challenge game.</p>
 <p>We started with a user research. It revealed that people wish to have a positive empowering experience, rather than a failure-focused one. They want to share their nutrition         struggles with those who deal with similar issues, and we chose to target the section of that audience that responds well to competition, and use it to motivate them.
 <br>Based on those conclusions, we designed the game structure and started developing the client side and later the server side.</p>
 
 ### Features:
-Habite letד you:
+Habite lets you:
 - Communicate with group members in a competitional / encouraging manner
 - Present personal progress and relative achievement to group
 - Choose challenges by using a voting system and create the overall journey
