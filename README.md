@@ -46,6 +46,7 @@ Habite lets you:
     Contains- challenge name, challenge XP, description, level, and rewards.</li>
   </ul
   <br>
+  <img width="700px" src="https://github.com/Yuval-Toledano/Habite/blob/main/src/images/architectural overview.jpeg" />
 </details>
   
 <details>
