@@ -49,7 +49,7 @@ export default function Overview() {
 
   useEffect(() => {
     if (groupData) {
-      setURL(`http://localhost:3001/signup/${groupData.id}`)
+      setURL(`https://habite-fd756.web.app/signup/${groupData.id}`)
     }
   }, [groupData])
 
