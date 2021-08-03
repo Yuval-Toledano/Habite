@@ -36,7 +36,7 @@ Habite lets you:
   Collections-
   <ul>
     <li><b>Users:</b> personal information of each user, generated for each user in the signup process.
-    Contains- name, email, profile picture, score, level, group id and list of notifications.</li?
+      Contains- name, email, profile picture, score, level, group id and list of notifications.</li>
     <li><b>Groups:</b> information of each group, keeps track of the current challenge of each group and the future approved challenge. The document is generated when a group is          created and is updated if user joins group and all changes in challenges.
   Contains- user Id’s in group, number of group members, current challenge Id, start timestamp of current challenge, end timestamp of current challenge, list of approved       challenges and list of past challenges.</li>
   <li><b>Votes:</b> a vote document is generated for each challenge that one of the group members has voted for. If another group member votes for a challenge that’s been voted for,    their vote will be added to the document the exists for that challenge. 
