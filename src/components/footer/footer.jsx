@@ -59,7 +59,7 @@ export function Footer(props) {
       </Paragraph>
       <BottomContainer>
         <PrivacyText>
-          © 2021 Habite. All rights reserved. Built by TYSAN team with love 🧡
+          © 2021 Habite. All rights reserved. Built by the Habite team: Yuval, Sara, Avigail, Noam and Tal, with love 🧡
         </PrivacyText>
       </BottomContainer>
     </FooterContainer>
