@@ -5,7 +5,9 @@
 <p><b>Social sugar consumption reduction application.</b></p>
 <p>Habite helps young people who want to consume sugar more responsibly, to compete together with people whom they trust in nutrition challenges and by this, create themselves healthier habits.</>
 
-<a href="https://habite-fd756.web.app">Try Habite</a>
+<b><a href="https://habite-fd756.web.app">Try Habite</a></b>
+
+![](https://github.com/Yuval-Toledano/Habite/blob/main/src/images/cover.png)
 
 ### Why Habite? 🤩
 
