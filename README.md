@@ -68,14 +68,14 @@ Habite lets you:
 
 ## Contributors ✨
 
-Thanks goes to these wonderful people:
+Contribution by these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <!--<td align="center"><a href="https://github.com/Yuval-Toledano"><img src="" width="100px;" alt=""/><br /><sub><b>Yuval Toledano</b></sub></a><br /><a  title="code">💻</a></td>-->
+    <td align="center"><a href="https://github.com/Yuval-Toledano"><img src="" width="100px;" alt=""/><br /><sub><b>Yuval Toledano</b></sub></a><br /><a  title="code">💻</a></td>
     <td align="center"><a href="https://github.com/noamTzi"><img src="https://avatars.githubusercontent.com/u/39398826?v=4" width="100px;" alt=""/><br /><sub><b>Noam Tzi</b></sub></a><br /><a title="code">💻</a></td>
     <td align="center"><a href="https://github.com/IggieB"><img src="https://avatars.githubusercontent.com/u/82638159?v=4" width="100px;" alt=""/><br /><sub><b>Iggie B</b></sub></a><br /><a title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Tal-Rosenzvi"><img src="https://avatars.githubusercontent.com/u/81176209?v=4" width="100px;" alt=""/><br /><sub><b>Tal</b></sub></a><br /><a title="Code">💻</a></td>
