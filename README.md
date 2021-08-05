@@ -49,6 +49,8 @@ Habite lets you:
   </ul
   <br>
   <img width="700px" src="https://github.com/Yuval-Toledano/Habite/blob/main/src/images/architectural overview.jpeg" />
+    
+  <a href="https://github.com/Yuval-Toledano/Habite/blob/f1f335d6911bd836743dbbfa6ec8d03f3f22c0b1/src/Habite%20user%20and%20app%20research%20documentation.pdf"><b>Click here to UX documentation</b></a>
 </details>
   
 <details>
