@@ -1,7 +1,7 @@
 
-![](https://github.com/Yuval-Toledano/Habite/blob/main/src/images/logo.svg)
+<!-- ![](https://github.com/Yuval-Toledano/Habite/blob/main/src/images/logo.svg) -->
 
-## HABITE 🍬 
+## <img src='https://github.com/Yuval-Toledano/Habite/blob/main/src/images/logo.svg' width="90px" type='image'> 🍬 
 <p><b>Social sugar consumption reduction application.</b></p>
 <p align="justify" >Habite helps young people who want to consume sugar more responsibly, to compete together with people whom they trust in nutrition challenges and by this, create themselves healthier habits.</>
 
