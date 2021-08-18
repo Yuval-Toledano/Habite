@@ -4,6 +4,7 @@
 ## <img src='https://github.com/Yuval-Toledano/Habite/blob/main/src/images/logo.svg' width="90px" type='image'> 🍬 
 <p><b>Social sugar consumption reduction application.</b></p>
 <p align="justify" >Habite helps young people who want to consume sugar more responsibly, to compete together with people whom they trust in nutrition challenges and by this, create themselves healthier habits.</>
+<p align="justify" >Habite works both on mobile and desktop. Feel free to try out both versions by changing the window size.</>
 
 <b><a href="https://habite-fd756.web.app">Try Habite</a></b>
 
