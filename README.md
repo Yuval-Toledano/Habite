@@ -24,6 +24,33 @@ Habite lets you:
 - Present personal progress and relative achievement to group
 - Choose challenges by using a voting system and create the overall journey
 
+### Setup
+
+Prerequisites:
+
+* NodeJS v14.16.0 and up - Install Node JS from its [download page](https://nodejs.org/en/download/).
+* NPM (Node package manager) - npm is installed along with NodeJS. Our version at the time of commit was v14.16.0.
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+* First Git clone the repo into your computer
+```
+git clone https://github.com/Yuval-Toledano/Habite.git
+```
+
+To get started developing right away:
+
+* Open your terminal
+```
+$ npm install
+```
+* This should install all the dependencies. Once done
+* Run 
+``` 
+$ npm start
+```
+* to start the app locally in your development environment, by default it will be in http://localhost:3000.
+
 <details>
   <br>
   <summary><b>Screenshots 👀</b></summary>
